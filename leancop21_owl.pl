@@ -107,3 +107,15 @@ parse_axioms([Head|Rest], Axioms) :- \+axiom(Axiom, [Head], []), parse_axioms(Re
 print([]) :- writeln('\n').
 print([A|B]) :- writeln(A), print(B).
 
+
+create_matrix([], _).
+create_matrix([Head|AxiomList], Matrix) :-
+    to_clausule(Head, Clausule),
+    (Clausule == [] -> Matrix = Ret; Matrix = [Clausule|Ret]),
+    create_matrix(AxiomList, Ret).
+
+to_clausule(subClassOf(A, B), M) :- M = [[A], [-B]].
+to_clausule(Item, []) :-
+    \+Item = subClassOf(_, _).
+
+
