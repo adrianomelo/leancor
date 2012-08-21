@@ -4,6 +4,13 @@ atom_con2cat(Begin, Wanted, End, Input) :-
     atom_concat(Begin, RestA, Input),
     atom_concat(Wanted, End, RestA).
 
+iri(Class) --> [In], {
+    atom_concat(RestA, '>', In),
+    atom_concat(RestC, RestB, RestA),
+	atom_concat(_, '#', RestC),
+	downcase_atom(RestB, Class)
+}.
+
 prefix(prefix(Prefix)) --> [In], {atom_con2cat('Prefix(', Prefix, ')', In)}.
 import(import(URL))    --> [In], {atom_con2cat('Import(', URL, ')', In)}.
 
@@ -65,7 +72,11 @@ declaration(Entity) -->
         entity(Entity, [DeclarationValue], [])
     }.
 
-    entity(class(ClassValue)) --> [In], {atom_con2cat('Class(', ClassValue, ')', In)}.
+    entity(class(Class)) --> [In], {
+		atom_con2cat('Class(', IRI, ')', In),
+		iri(ClassValue, [IRI], []),
+		functor(Class, ClassValue, 1)
+	}.
     entity(dataType(DataTypeValue)) --> [In], {atom_con2cat('DataType(', DataTypeValue, ')', In)}.
     entity(dataProperty(DataPropertyValue)) --> [In], {atom_con2cat('DataProperty(', DataPropertyValue, ')', In)}.
     entity(objectProperty(ObjectPropertyValue)) --> [In], {atom_con2cat('ObjectProperty(', ObjectPropertyValue, ')', In)}.
@@ -104,18 +115,24 @@ parse_axioms([], []) :- !.
 parse_axioms([Head|Rest], [Axiom|Axioms]) :- axiom(Axiom, [Head], []), parse_axioms(Rest, Axioms).
 parse_axioms([Head|Rest], Axioms) :- \+axiom(Axiom, [Head], []), parse_axioms(Rest, Axioms).
 
-print([]) :- writeln('\n').
-print([A|B]) :- writeln(A), print(B).
+%print([]) :- writeln('\n').
+%print([A|B]) :- writeln(A), print(B).
 
-
-create_matrix([], _).
+create_matrix([], []).
 create_matrix([Head|AxiomList], Matrix) :-
+    to_clausule(Head, []),
+    create_matrix(AxiomList, Matrix).
+	
+create_matrix([Head|AxiomList], Ret) :-
     to_clausule(Head, Clausule),
-    (Clausule == [] -> Matrix = Ret; Matrix = [Clausule|Ret]),
-    create_matrix(AxiomList, Ret).
+	append(Clausule, Matrix, Ret),
+    create_matrix(AxiomList, Matrix).
 
-to_clausule(subClassOf(A, B), M) :- M = [[A], [-B]].
+to_clausule(subClassOf(A, -B), M) :- M = [[A, B]].
+to_clausule(subClassOf(A, B), M) :- M = [[A, -B]].
+to_clausule(subClassOf(union(A, B), C), M) :- M = [[A, -C], [B, -C]].
+to_clausule(subClassOf(A, union(B, C)), M) :- M = [[A, -B, -C]].
+to_clausule(subClassOf(intersection(A, B), C), M) :- M = [[A, B, -C]].
+to_clausule(subClassOf(A, intersection(B, C)), M) :- M = [[A, -B], [A, -C]].
 to_clausule(Item, []) :-
     \+Item = subClassOf(_, _).
-
-
