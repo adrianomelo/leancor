@@ -1,12 +1,11 @@
-:- [leancop_main].
 :- [leancop21_owl].
 
 :- begin_tests(owlparser).
 
 test(classDeclaration) :-
 	Input  = 'Declaration(Class(<http://www.cin.ufpe.br/~astm/owl/bird.owl#Animal>))',
-    Output = class(animal(_)),
-    declaration(Output, [Input], []).
+	Output = class(animal(_)),
+	declaration(Output, [Input], []).
 
 test(prefix) :-
     Input  = 'Prefix(rdf:=<http://www.w3.org/1999/02/22-rdf-syntax-ns#>)',
@@ -89,10 +88,13 @@ test(righthandsideintersection1) :-
 :- end_tests(creatematrix).
 :- begin_tests(leancop).
 
+:- [leancop_main].
+
 test(owl1) :-
 	parse_owl('testfiles/bird.owl', _, _, _, Axioms),
-	create_matrix(Axioms, Matrix).
+	create_matrix(Axioms, Matrix),
+	prove(Matrix, Proof),
+	.\Proof == [].
 
 :- end_tests(leancop).
 :- run_tests.
-
