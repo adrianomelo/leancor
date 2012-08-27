@@ -8,13 +8,13 @@ iri(IRIName) --> [In], {
     atom_concat(RestA, '>', In),
     atom_concat('<', RestD, RestA),
     atom_concat(RestC, RestB, RestD),
-	atom_concat(_, '#', RestC),
-	atom_codes(RestB, Codes),
-	\+member(35, Codes),
-	\+member(58, Codes),
-	\+member(32, Codes),
-	\+member(47, Codes),
-	downcase_atom(RestB, IRIName)
+    atom_concat(_, '#', RestC),
+    atom_codes(RestB, Codes),
+    \+member(35, Codes),
+    \+member(58, Codes),
+    \+member(32, Codes),
+    \+member(47, Codes),
+    downcase_atom(RestB, IRIName)
 }.
 
 prefix(prefix(Prefix)) --> [In], {atom_con2cat('Prefix(', Prefix, ')', In)}.
@@ -31,16 +31,16 @@ subClassOf(subClassOf(Left, Right)) -->
     [In], {
         atom_con2cat('SubClassOf(', Rest, ')', In),
         atomic_list_concat(List, ' ', Rest),
-		append(List1, List2, List),
-		atomic_list_concat(List1, ' ', Atom1),
-		atomic_list_concat(List2, ' ', Atom2),
+        append(List1, List2, List),
+        atomic_list_concat(List1, ' ', Atom1),
+        atomic_list_concat(List2, ' ', Atom2),
         classExpression(Left, [Atom1], []),
         classExpression(Right, [Atom2], [])
     }.
 
 classExpression(Class) --> [In], {
-	iri(ClassValue, [In], []),
-	functor(Class, ClassValue, 1)
+    iri(ClassValue, [In], []),
+    functor(Class, ClassValue, 1)
 }.
     
 classExpression(objectSomeValuesFrom(Property, Inside)) -->
@@ -49,36 +49,36 @@ classExpression(objectSomeValuesFrom(Property, Inside)) -->
         atomic_list_concat([PropertyIRI|List], ' ', RestB),
         atomic_list_concat(List, ' ', ClassExpressionValue),
         classExpression(ClassExpression, [ClassExpressionValue], []),
-		iri(FunctorName, [PropertyIRI], []),
-		Property=..[FunctorName, _, ClassExpression]
+        iri(FunctorName, [PropertyIRI], []),
+        Property=..[FunctorName, _, ClassExpression]
     }.   
 
 classExpression(intersection(Left, Right)) -->
     [In], {
         atom_con2cat('ObjectIntersectionOf(', RestB, ')', In),
         atomic_list_concat(List, ' ', RestB),
-		append(List1, List2, List),
-		atomic_list_concat(List1, ' ', Atom1),
-		atomic_list_concat(List2, ' ', Atom2),
+        append(List1, List2, List),
+        atomic_list_concat(List1, ' ', Atom1),
+        atomic_list_concat(List2, ' ', Atom2),
         classExpression(Left, [Atom1], []),
         classExpression(Right, [Atom2], [])
     }.
-	
+    
 % must be improved to work with N intersections
 classExpression(intersection(Left, Middle, Right)) -->
     [In], {
         atom_con2cat('ObjectIntersectionOf(', RestB, ')', In),
         atomic_list_concat(List, ' ', RestB),
-		append(List1, ListRest, List),
-		append(List2, List3, ListRest),
-		atomic_list_concat(List1, ' ', Atom1),
-		atomic_list_concat(List2, ' ', Atom2),
-		atomic_list_concat(List3, ' ', Atom3),
+        append(List1, ListRest, List),
+        append(List2, List3, ListRest),
+        atomic_list_concat(List1, ' ', Atom1),
+        atomic_list_concat(List2, ' ', Atom2),
+        atomic_list_concat(List3, ' ', Atom3),
         classExpression(Left, [Atom1], []),
         classExpression(Middle, [Atom2], []),
         classExpression(Right, [Atom3], [])
     }.  
-		
+        
 classExpression(objectMinCardinality(Number, Property)) -->
     [In], {
         atom_con2cat('ObjectMinCardinality(', RestB, ')', In),
@@ -99,8 +99,8 @@ classExpression(objectExactCardinality(Number, Property)) -->
 
 classExpression(Class) -->
     [In], {
-		iri(IRIName, [In], []),
-		functor(Class, IRIName, 1)
+        iri(IRIName, [In], []),
+        functor(Class, IRIName, 1)
     }.
 
 classExpression(A) --> 
@@ -120,14 +120,14 @@ declaration(Entity) -->
     }.
 
     entity(Class) --> [In], {
-		atom_con2cat('Class(', IRI, ')', In),
-		iri(ClassValue, [IRI], []),
-		functor(Class, ClassValue, 1)
-	}.
+        atom_con2cat('Class(', IRI, ')', In),
+        iri(ClassValue, [IRI], []),
+        functor(Class, ClassValue, 1)
+    }.
     entity(dataType(DataTypeValue)) --> [In], {atom_con2cat('DataType(', DataTypeValue, ')', In)}.
     entity(dataProperty(DataPropertyValue)) --> [In], {atom_con2cat('DataProperty(', DataPropertyValue, ')', In)}.
     entity(objectProperty(ObjectPropertyValue)) --> [In], {atom_con2cat('ObjectProperty(', ObjectPropertyValue, ')', In)}.
-	
+    
 parse_owl(File, Prefixes, Imports, Annotations, Axioms) :-
     read_file_to_codes(File, Codes, []),
     atom_codes(OntologyDocument, Codes),
@@ -169,10 +169,10 @@ create_matrix([], []).
 create_matrix([Head|AxiomList], Matrix) :-
     to_clausule(Head, []),
     create_matrix(AxiomList, Matrix).
-	
+    
 create_matrix([Head|AxiomList], Ret) :-
     to_clausule(Head, Clausule),
-	append(Clausule, Matrix, Ret),
+    append(Clausule, Matrix, Ret),
     create_matrix(AxiomList, Matrix).
 
 to_clausule(subClassOf(objectSomeValuesFrom(A, B), C), M) :- M = [[A, B, -C]].
