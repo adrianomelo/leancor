@@ -2,11 +2,6 @@
 
 :- begin_tests(owlparser).
 
-test(classDeclaration) :-
-	Input  = 'Declaration(Class(<http://www.cin.ufpe.br/~astm/owl/bird.owl#Animal>))',
-	Output = class(animal(_)),
-	declaration(Output, [Input], []).
-
 test(prefix) :-
     Input  = 'Prefix(rdf:=<http://www.w3.org/1999/02/22-rdf-syntax-ns#>)',
     Output = prefix('rdf:=<http://www.w3.org/1999/02/22-rdf-syntax-ns#>'),
@@ -17,6 +12,53 @@ test(ontologyImport) :-
     Output = import('<http://www.co-ode.org/ontologies/pizza/pizza.owl>'),
     import(Output, [Input], []).
 
+test(classDeclaration) :-
+	Input  = 'Declaration(Class(<http://www.cin.ufpe.br/~astm/owl/bird.owl#Animal>))',
+	Output = animal(_),
+	axiom(Output, [Input], []).
+	
+%test(individual) :-
+%	Input  = 'ClassAssertion(<http://protege.stanford.edu/plugins/owl/owl-library/koala.owl#Degree> <http://protege.stanford.edu/plugins/owl/owl-library/koala.owl#BA>)',
+%	Output = degree(ba),
+%	axiom(Output, [Input], []).
+
+test(somevaluesfrom) :-
+    Input  = 'ObjectSomeValuesFrom(<http://protege.stanford.edu/plugins/owl/owl-library/koala.owl#hasHabitat> <http://protege.stanford.edu/plugins/owl/owl-library/koala.owl#DryEucalyptForest>)',
+	Output = objectSomeValuesFrom(hashabitat(_, dryeucalyptforest(_))),
+	classExpression(Output, [Input], []).
+	
+test(intersection1) :-
+	Input  = 'ObjectIntersectionOf(<http://www.cin.ufpe.br/~astm/owl/null.owl#ClassA> <http://www.cin.ufpe.br/~astm/owl/null.owl#ClassB>)',
+	Output = intersection(classa(_), classb(_)),
+	classExpression(Output, [Input], []).
+
+test(intersection2) :-
+	Input  = 'ObjectIntersectionOf(<http://www.cin.ufpe.br/~astm/owl/null.owl#ClassA> <http://www.cin.ufpe.br/~astm/owl/null.owl#ClassB> <http://www.cin.ufpe.br/~astm/owl/null.owl#ClassC>)',
+	Output = intersection(classa(X), classb(X), classc(X)),
+	classExpression(Output, [Input], []).
+
+test(intersection3) :-
+    Input  = 'ObjectIntersectionOf(ObjectSomeValuesFrom(<http://www.co-ode.org/ontologies/ont.owl#hasPart> <http://www.cin.ufpe.br/~astm/owl/bird.owl#Bone>) <http://www.cin.ufpe.br/~astm/owl/bird.owl#Animal>)',
+	Output = intersection(objectSomeValuesFrom(haspart(_, bone(_))), animal(_)),
+	classExpression(Output, [Input], []).
+	
+test(subClass1) :-
+    Input = 'SubClassOf(<http://protege.stanford.edu/plugins/owl/owl-library/koala.owl#TasmanianDevil> <http://protege.stanford.edu/plugins/owl/owl-library/koala.owl#Marsupials>)',
+	Output = subClassOf(tasmaniandevil(X), marsupials(X)),
+	axiom(Output, [Input], []).
+	
+test(subClass2) :-
+	Input = 'SubClassOf(<http://www.cin.ufpe.br/~astm/owl/bird.owl#Bird> ObjectIntersectionOf(<http://www.cin.ufpe.br/~astm/owl/bird.owl#Animal> ObjectSomeValuesFrom(<http://www.co-ode.org/ontologies/ont.owl#hasPart> <http://www.cin.ufpe.br/~astm/owl/bird.owl#Bone>) ObjectSomeValuesFrom(<http://www.co-ode.org/ontologies/ont.owl#hasPart> <http://www.cin.ufpe.br/~astm/owl/bird.owl#Feather>)))',
+    Output = subClassOf(bird(X), intersection(animal(X),
+                                              objectSomeValuesFrom(haspart(animal(X), bone(Y))),
+											  objectSomeValuesFrom(haspart(animal(X), feather(Y))))),
+    axiom(Output, [Input], []).
+
+test(subClass3) :-
+    Input  = 'SubClassOf(ObjectIntersectionOf(ObjectSomeValuesFrom(<http://www.co-ode.org/ontologies/ont.owl#hasPart> <http://www.cin.ufpe.br/~astm/owl/bird.owl#Bone>) <http://www.cin.ufpe.br/~astm/owl/bird.owl#Animal>) <http://www.cin.ufpe.br/~astm/owl/bird.owl#Vertebrate>)',
+	Output = subClassOf(intersection(objectSomeValuesFrom(haspart(_, bone(_))), animal(_)), vertebrate(_)),
+	axiom(Output, [Input], []).
+	
 :- end_tests(owlparser).
 :- begin_tests(creatematrix).
 
@@ -93,8 +135,7 @@ test(righthandsideintersection1) :-
 test(owl1) :-
 	parse_owl('testfiles/bird.owl', _, _, _, Axioms),
 	create_matrix(Axioms, Matrix),
-	prove(Matrix, Proof),
-	.\Proof == [].
+	prove(Matrix, Proof).
 
 :- end_tests(leancop).
 :- run_tests.

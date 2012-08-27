@@ -4,11 +4,17 @@ atom_con2cat(Begin, Wanted, End, Input) :-
     atom_concat(Begin, RestA, Input),
     atom_concat(Wanted, End, RestA).
 
-iri(Class) --> [In], {
+iri(IRIName) --> [In], {
     atom_concat(RestA, '>', In),
-    atom_concat(RestC, RestB, RestA),
+    atom_concat('<', RestD, RestA),
+    atom_concat(RestC, RestB, RestD),
 	atom_concat(_, '#', RestC),
-	downcase_atom(RestB, Class)
+	atom_codes(RestB, Codes),
+	\+member(35, Codes),
+	\+member(58, Codes),
+	\+member(32, Codes),
+	\+member(47, Codes),
+	downcase_atom(RestB, IRIName)
 }.
 
 prefix(prefix(Prefix)) --> [In], {atom_con2cat('Prefix(', Prefix, ')', In)}.
@@ -21,50 +27,91 @@ axiom(Axiom) --> subClassOf(Axiom).
 annotationAssertion(annotationAssertion(AnnotationAssertionValue)) -->
     [In], {atom_con2cat('AnnotationAssertion(', AnnotationAssertionValue, ')', In)}.
 
-subClassOf(subClassOf(class(Parent), ClassExpression)) --> 
+subClassOf(subClassOf(Left, Right)) --> 
     [In], {
-        atom_con2cat('SubClassOf(', SubClassOfValue, ')', In),
-        atomic_list_concat([Parent|List], ' ', SubClassOfValue),
-        atomic_list_concat(List, ' ', ClassExpressionValue),
-        classExpression(ClassExpression, [ClassExpressionValue], [])
+        atom_con2cat('SubClassOf(', Rest, ')', In),
+        atomic_list_concat(List, ' ', Rest),
+		append(List1, List2, List),
+		atomic_list_concat(List1, ' ', Atom1),
+		atomic_list_concat(List2, ' ', Atom2),
+        classExpression(Left, [Atom1], []),
+        classExpression(Right, [Atom2], [])
     }.
 
-    classExpression(class(Class)) --> [In], {atomic_list_concat([Class], ' ', In)}.
+classExpression(Class) --> [In], {
+	iri(ClassValue, [In], []),
+	functor(Class, ClassValue, 1)
+}.
     
-    classExpression(objectSomeValuesFrom(objectProperty(Property), ClassExpression)) -->
-        [In], {
-            atom_con2cat('ObjectSomeValuesFrom(', RestB, ')', In),
-            atomic_list_concat([Property|List], ' ', RestB),
-            atomic_list_concat(List, ' ', ClassExpressionValue),
-            classExpression(ClassExpression, [ClassExpressionValue], [])
-        }.   
+classExpression(objectSomeValuesFrom(Property, Inside)) -->
+    [In], {
+        atom_con2cat('ObjectSomeValuesFrom(', RestB, ')', In),
+        atomic_list_concat([PropertyIRI|List], ' ', RestB),
+        atomic_list_concat(List, ' ', ClassExpressionValue),
+        classExpression(ClassExpression, [ClassExpressionValue], []),
+		iri(FunctorName, [PropertyIRI], []),
+		Property=..[FunctorName, _, ClassExpression]
+    }.   
 
-    classExpression(objectMinCardinality(Number, Property)) -->
-        [In], {
-            atom_con2cat('ObjectMinCardinality(', RestB, ')', In),
-            atomic_list_concat([Number, Property], ' ', RestB)
-        }.
+classExpression(intersection(Left, Right)) -->
+    [In], {
+        atom_con2cat('ObjectIntersectionOf(', RestB, ')', In),
+        atomic_list_concat(List, ' ', RestB),
+		append(List1, List2, List),
+		atomic_list_concat(List1, ' ', Atom1),
+		atomic_list_concat(List2, ' ', Atom2),
+        classExpression(Left, [Atom1], []),
+        classExpression(Right, [Atom2], [])
+    }.
+	
+% must be improved to work with N intersections
+classExpression(intersection(Left, Middle, Right)) -->
+    [In], {
+        atom_con2cat('ObjectIntersectionOf(', RestB, ')', In),
+        atomic_list_concat(List, ' ', RestB),
+		append(List1, ListRest, List),
+		append(List2, List3, ListRest),
+		atomic_list_concat(List1, ' ', Atom1),
+		atomic_list_concat(List2, ' ', Atom2),
+		atomic_list_concat(List3, ' ', Atom3),
+        classExpression(Left, [Atom1], []),
+        classExpression(Middle, [Atom2], []),
+        classExpression(Right, [Atom3], [])
+    }.  
+		
+classExpression(objectMinCardinality(Number, Property)) -->
+    [In], {
+        atom_con2cat('ObjectMinCardinality(', RestB, ')', In),
+        atomic_list_concat([Number, Property], ' ', RestB)
+    }.
 
-    classExpression(objectMaxCardinality(Number, Property)) -->
-        [In], {
-            atom_con2cat('ObjectMaxCardinality(', RestB, ')', In),
-            atomic_list_concat([Number, Property], ' ', RestB)
-        }.
+classExpression(objectMaxCardinality(Number, Property)) -->
+    [In], {
+        atom_con2cat('ObjectMaxCardinality(', RestB, ')', In),
+        atomic_list_concat([Number, Property], ' ', RestB)
+    }.
 
-    classExpression(objectExactCardinality(Number, Property)) -->
-        [In], {
-            atom_con2cat('ObjectExactCardinality(', RestB, ')', In),
-            atomic_list_concat([Number, Property], ' ', RestB)
-        }.
+classExpression(objectExactCardinality(Number, Property)) -->
+    [In], {
+        atom_con2cat('ObjectExactCardinality(', RestB, ')', In),
+        atomic_list_concat([Number, Property], ' ', RestB)
+    }.
 
-    classExpression(A) --> 
-        [A], {
-            \+atom_concat('ObjectExactCardinality', _, A),
-            \+atom_concat('ObjectMaxCardinality', _, A),
-            \+atom_concat('ObjectMixtCardinality', _, A),
-            \+atom_concat('ObjectSomeValuesFrom', _, A),
-            \+atomic_list_concat([B], ' ', A)
-        }.
+classExpression(Class) -->
+    [In], {
+		iri(IRIName, [In], []),
+		functor(Class, IRIName, 1)
+    }.
+
+classExpression(A) --> 
+    [A], {
+        \+atom_concat('ObjectExactCardinality', _, A),
+        \+atom_concat('ObjectMaxCardinality', _, A),
+        \+atom_concat('ObjectMixtCardinality', _, A),
+        \+atom_concat('ObjectSomeValuesFrom', _, A),
+        \+atom_concat('ObjectIntersectionOf', _, A),
+        \+atomic_list_concat([_], ' ', A)
+    }.
 
 declaration(Entity) --> 
     [In], {
@@ -72,7 +119,7 @@ declaration(Entity) -->
         entity(Entity, [DeclarationValue], [])
     }.
 
-    entity(class(Class)) --> [In], {
+    entity(Class) --> [In], {
 		atom_con2cat('Class(', IRI, ')', In),
 		iri(ClassValue, [IRI], []),
 		functor(Class, ClassValue, 1)
@@ -109,11 +156,11 @@ parse_imports([Head|Rest], Imports) :- \+import(_, [Head], []), parse_imports(Re
 
 parse_annotations([], _) :- !.
 parse_annotations([Head|Rest], [Annotation|Annotations]) :- annotation(Annotation, [Head], []), parse_annotations(Rest, Annotations).
-parse_annotations([Head|Rest], Annotations) :- \+parse_annotations(Rest, Annotations).
+parse_annotations([_|Rest], Annotations) :- \+parse_annotations(Rest, Annotations).
 
 parse_axioms([], []) :- !.
 parse_axioms([Head|Rest], [Axiom|Axioms]) :- axiom(Axiom, [Head], []), parse_axioms(Rest, Axioms).
-parse_axioms([Head|Rest], Axioms) :- \+axiom(Axiom, [Head], []), parse_axioms(Rest, Axioms).
+parse_axioms([Head|Rest], Axioms) :- \+axiom(_, [Head], []), parse_axioms(Rest, Axioms).
 
 %print([]) :- writeln('\n').
 %print([A|B]) :- writeln(A), print(B).
@@ -128,11 +175,13 @@ create_matrix([Head|AxiomList], Ret) :-
 	append(Clausule, Matrix, Ret),
     create_matrix(AxiomList, Matrix).
 
-to_clausule(subClassOf(A, -B), M) :- M = [[A, B]].
-to_clausule(subClassOf(A, B), M) :- M = [[A, -B]].
+to_clausule(subClassOf(objectSomeValuesFrom(A, B), C), M) :- M = [[A, B, -C]].
+to_clausule(subClassOf(A, objectSomeValuesFrom(B, C), M) :- M = [[A, -B], [A, -C]].
 to_clausule(subClassOf(union(A, B), C), M) :- M = [[A, -C], [B, -C]].
 to_clausule(subClassOf(A, union(B, C)), M) :- M = [[A, -B, -C]].
 to_clausule(subClassOf(intersection(A, B), C), M) :- M = [[A, B, -C]].
 to_clausule(subClassOf(A, intersection(B, C)), M) :- M = [[A, -B], [A, -C]].
+to_clausule(subClassOf(A, -B), M) :- M = [[A, B]].
+to_clausule(subClassOf(A, B), M) :- M = [[A, -B]].
 to_clausule(Item, []) :-
     \+Item = subClassOf(_, _).
