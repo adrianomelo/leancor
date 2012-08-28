@@ -137,5 +137,10 @@ test(owl1) :-
     create_matrix(Axioms, Matrix),
     prove(Matrix, Proof).
 
+test(owl2) :-
+    parse_owl('testfiles/cyclic.owl', _, _, _, Axioms),
+    create_matrix(Axioms, Matrix),
+    prove(Matrix, Proof).
+
 :- end_tests(leancop).
 :- run_tests.
