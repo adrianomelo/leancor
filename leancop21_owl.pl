@@ -50,7 +50,9 @@ classExpression(objectSomeValuesFrom(Property, Inside)) -->
         atomic_list_concat(List, ' ', ClassExpressionValue),
         classExpression(ClassExpression, [ClassExpressionValue], []),
         iri(FunctorName, [PropertyIRI], []),
-        Property=..[FunctorName, _, ClassExpression]
+        Property=..[FunctorName, X, Y],
+		ClassExpression=..[ClassName, _],
+		Inside=..[ClassName, Y]
     }.   
 
 classExpression(intersection(Left, Right)) -->
@@ -126,7 +128,11 @@ declaration(Entity) -->
     }.
     entity(dataType(DataTypeValue)) --> [In], {atom_con2cat('DataType(', DataTypeValue, ')', In)}.
     entity(dataProperty(DataPropertyValue)) --> [In], {atom_con2cat('DataProperty(', DataPropertyValue, ')', In)}.
-    entity(objectProperty(ObjectPropertyValue)) --> [In], {atom_con2cat('ObjectProperty(', ObjectPropertyValue, ')', In)}.
+    entity(Property) --> [In], {
+		atom_con2cat('ObjectProperty(', ObjectPropertyValue, ')', In),
+        iri(PropertyValue, [ObjectPropertyValue], []),
+        functor(Property, PropertyValue, 2)
+	}.
     
 parse_owl(File, Prefixes, Imports, Annotations, Axioms) :-
     read_file_to_codes(File, Codes, []),
@@ -175,13 +181,58 @@ create_matrix([Head|AxiomList], Ret) :-
     append(Clausule, Matrix, Ret),
     create_matrix(AxiomList, Matrix).
 
-to_clausule(subClassOf(objectSomeValuesFrom(A, B), C), M) :- M = [[A, B, -C]].
-to_clausule(subClassOf(A, objectSomeValuesFrom(B, C), M) :- M = [[A, -B], [A, -C]].
-to_clausule(subClassOf(union(A, B), C), M) :- M = [[A, -C], [B, -C]].
-to_clausule(subClassOf(A, union(B, C)), M) :- M = [[A, -B, -C]].
-to_clausule(subClassOf(intersection(A, B), C), M) :- M = [[A, B, -C]].
-to_clausule(subClassOf(A, intersection(B, C)), M) :- M = [[A, -B], [A, -C]].
-to_clausule(subClassOf(A, -B), M) :- M = [[A, B]].
-to_clausule(subClassOf(A, B), M) :- M = [[A, -B]].
-to_clausule(Item, []) :-
-    \+Item = subClassOf(_, _).
+% This code can be improved. recursion needed!
+%to_clausule(subClassOf(objectSomeValuesFrom(A, B), C), M) :- M = [[A, B, -C]], !.
+%to_clausule(subClassOf(A, objectSomeValuesFrom(B, C), M)) :- M = [[A, -B], [A, -C]], !.
+%to_clausule(subClassOf(union(A, B), C), M) :- M = [[A, -C], [B, -C]], !.
+%to_clausule(subClassOf(A, union(B, C)), M) :- M = [[A, -B, -C]], !.
+%to_clausule(subClassOf(intersection(objectSomeValuesFrom(A, B), C), M)) :- M = [[A, B, -C]], !.
+%to_clausule(subClassOf(intersection(A, B), C), M) :- M = [[A, B, -C]], !.
+%to_clausule(subClassOf(A, intersection(B, C)), M) :- M = [[A, -B], [A, -C]], !.
+%to_clausule(subClassOf(A, -B), M) :- M = [[A, B]], !.
+%to_clausule(subClassOf(A, B), M) :- M = [[A, -B]], !.
+%to_clausule(Item, []) :-
+%    \+Item = subClassOf(_, _).
+
+to_clausule(subClassOf(A, B), Matrix) :-
+	to_clausule_left(A, Ad),
+	to_clausule_right(B, Bd),
+	append(Ad, Bd, M),
+	remove_rows(M, Matrix),
+	!.
+	
+to_clausule(Item, []) :- \+Item=subClassOf(_,_), !.
+
+to_clausule_left(A, [A]) :- var(A), !.
+to_clausule_left(union(A, B), [M]) :- to_clausule_left(A, Ad), to_clausule_left(B, Bd), append(Ad, Bd, M), !.
+to_clausule_left(intersection(A, B), M) :- to_clausule_left(A, Ad), to_clausule_left(B, Bd), append(Ad, Bd, M), !.
+to_clausule_left(objectSomeValuesFrom(A, B), M) :- to_clausule_left(A, Ad), to_clausule_left(B, Bd), append(Ad, Bd, M), !.
+to_clausule_left(A, [A]) :- !.
+
+to_clausule_right(A, [-A]) :- var(A), !.
+to_clausule_right(union(A, B), M) :- to_clausule_right(A, Ad), to_clausule_right(B, Bd), append(Ad, Bd, M), !.
+to_clausule_right(intersection(A, B), [M]) :- to_clausule_right(A, Ad), to_clausule_right(B, Bd), append(Ad, Bd, M), !.
+to_clausule_right(objectAllValuesFrom(A, B), M) :- to_clausule_right(A, Ad), to_clausule_right(B, Bd), append(Ad, Bd, M), !.
+to_clausule_right(-A, [A]) :- !.
+to_clausule_right(A, [-A]).
+
+remove_rows([], [[]]).
+remove_rows([Head|In], Processed2) :-
+	is_list(Head),
+	remove_rows(In, Processed1),
+	append_list(Head, Processed1, Processed2), !.
+	
+remove_rows([Head|In], Processed2) :-
+	remove_rows(In, Processed1),
+	append_element(Head, Processed1, Processed2).
+
+append_list([], _, []).	
+append_list([ListHead|List], MatrixInput, Matrix) :-
+	append_list(List, MatrixInput, MatrixOutput1),
+	append_element(ListHead, MatrixInput, MatrixOutput2),
+	append(MatrixOutput1, MatrixOutput2, Matrix).
+	
+append_element(_, [], []).
+append_element(Element, [Head|Matrix], [Head2|Output]) :-
+	append([Element], Head, Head2),
+	append_element(Element, Matrix, Output).

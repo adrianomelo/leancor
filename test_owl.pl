@@ -24,7 +24,7 @@ test(classDeclaration) :-
 
 test(somevaluesfrom) :-
     Input  = 'ObjectSomeValuesFrom(<http://protege.stanford.edu/plugins/owl/owl-library/koala.owl#hasHabitat> <http://protege.stanford.edu/plugins/owl/owl-library/koala.owl#DryEucalyptForest>)',
-    Output = objectSomeValuesFrom(hashabitat(_, dryeucalyptforest(_))),
+    Output = objectSomeValuesFrom(hashabitat(X, Y), dryeucalyptforest(Y)),
     classExpression(Output, [Input], []).
     
 test(intersection1) :-
@@ -39,7 +39,7 @@ test(intersection2) :-
 
 test(intersection3) :-
     Input  = 'ObjectIntersectionOf(ObjectSomeValuesFrom(<http://www.co-ode.org/ontologies/ont.owl#hasPart> <http://www.cin.ufpe.br/~astm/owl/bird.owl#Bone>) <http://www.cin.ufpe.br/~astm/owl/bird.owl#Animal>)',
-    Output = intersection(objectSomeValuesFrom(haspart(_, bone(_))), animal(_)),
+    Output = intersection(objectSomeValuesFrom(haspart(_, Y), bone(Y)), animal(_)),
     classExpression(Output, [Input], []).
     
 test(subClass1) :-
@@ -50,13 +50,13 @@ test(subClass1) :-
 test(subClass2) :-
     Input = 'SubClassOf(<http://www.cin.ufpe.br/~astm/owl/bird.owl#Bird> ObjectIntersectionOf(<http://www.cin.ufpe.br/~astm/owl/bird.owl#Animal> ObjectSomeValuesFrom(<http://www.co-ode.org/ontologies/ont.owl#hasPart> <http://www.cin.ufpe.br/~astm/owl/bird.owl#Bone>) ObjectSomeValuesFrom(<http://www.co-ode.org/ontologies/ont.owl#hasPart> <http://www.cin.ufpe.br/~astm/owl/bird.owl#Feather>)))',
     Output = subClassOf(bird(X), intersection(animal(X),
-                                              objectSomeValuesFrom(haspart(animal(X), bone(Y))),
-                                              objectSomeValuesFrom(haspart(animal(X), feather(Y))))),
+                                              objectSomeValuesFrom(haspart(X, Y), bone(Y)),
+                                              objectSomeValuesFrom(haspart(X, Y), feather(Y)))),
     axiom(Output, [Input], []).
 
 test(subClass3) :-
     Input  = 'SubClassOf(ObjectIntersectionOf(ObjectSomeValuesFrom(<http://www.co-ode.org/ontologies/ont.owl#hasPart> <http://www.cin.ufpe.br/~astm/owl/bird.owl#Bone>) <http://www.cin.ufpe.br/~astm/owl/bird.owl#Animal>) <http://www.cin.ufpe.br/~astm/owl/bird.owl#Vertebrate>)',
-    Output = subClassOf(intersection(objectSomeValuesFrom(haspart(_, bone(_))), animal(_)), vertebrate(_)),
+    Output = subClassOf(intersection(objectSomeValuesFrom(haspart(X, Y), bone(Y)), animal(_)), vertebrate(_)),
     axiom(Output, [Input], []).
     
 :- end_tests(owlparser).
@@ -89,7 +89,7 @@ test(disjunction2) :-
 
 test(lefthandsideunion1) :-
     Input  = [subClassOf(union(class(a(_)), class(b(_))), class(c(_)))],
-    Output = [[class(a(_)), -class(c(_))], [class(b(_)), -class(c(_))]],
+    Output = [[class(b(_)), -class(c(_))], [class(a(_)), -class(c(_))]],
     create_matrix(Input, Output).
 
 test(righthandsideunion1) :-
@@ -104,7 +104,7 @@ test(lefthandsideintersection1) :-
 
 test(righthandsideintersection1) :-
     Input  = [subClassOf(class(a(_)), intersection(class(b(_)), class(c(_))))],
-    Output = [[class(a(_)), -class(b(_))], [class(a(_)), -class(c(_))]],
+    Output = [[class(a(_)), -class(c(_))], [class(a(_)), -class(b(_))]],
     create_matrix(Input, Output).
 
 %test(lefthandsideexistencialrestriction1) :-
