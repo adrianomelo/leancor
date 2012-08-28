@@ -174,7 +174,7 @@ parse_axioms([Head|Rest], Axioms) :- \+axiom(_, [Head], []), parse_axioms(Rest, 
 create_matrix([], []).
 create_matrix([Head|AxiomList], Matrix) :-
     to_clausule(Head, []),
-    create_matrix(AxiomList, Matrix).
+    create_matrix(AxiomList, Matrix), !.
     
 create_matrix([Head|AxiomList], Ret) :-
     to_clausule(Head, Clausule),
@@ -213,6 +213,7 @@ to_clausule_right(A, [-A]) :- var(A), !.
 to_clausule_right(union(A, B), M) :- to_clausule_right(A, Ad), to_clausule_right(B, Bd), append(Ad, Bd, M), !.
 to_clausule_right(intersection(A, B), [M]) :- to_clausule_right(A, Ad), to_clausule_right(B, Bd), append(Ad, Bd, M), !.
 to_clausule_right(objectAllValuesFrom(A, B), M) :- to_clausule_right(A, Ad), to_clausule_right(B, Bd), append(Ad, Bd, M), !.
+to_clausule_right(objectSomeValuesFrom(A, B), [M]) :- to_clausule_right(A, Ad), to_clausule_right(B, Bd), append(Ad, Bd, M), !.
 to_clausule_right(-A, [A]) :- !.
 to_clausule_right(A, [-A]).
 
