@@ -4,7 +4,10 @@ Prefix(xml:=<http://www.w3.org/XML/1998/namespace>)
 Prefix(xsd:=<http://www.w3.org/2001/XMLSchema#>)
 Prefix(rdfs:=<http://www.w3.org/2000/01/rdf-schema#>)
 
+
 Ontology(<http://www.cin.ufpe.br/~astm/cyclic.owl>
- Declaration(Class(<http://www.cin.ufpe.br/~astm/cyclic.owl#A>))
- Declaration(ObjectProperty(<http://www.cin.ufpe.br/~astm/cyclic.owl#property>))
+
+Declaration(Class(<http://www.cin.ufpe.br/~astm/cyclic.owl#A>))
+SubClassOf(<http://www.cin.ufpe.br/~astm/cyclic.owl#A> ObjectSomeValuesFrom(<http://www.cin.ufpe.br/~astm/cyclic.owl#property> <http://www.cin.ufpe.br/~astm/cyclic.owl#A>))
+Declaration(ObjectProperty(<http://www.cin.ufpe.br/~astm/cyclic.owl#property>))
 )
