@@ -23,6 +23,7 @@ import(import(URL))    --> [In], {atom_con2cat('Import(', URL, ')', In)}.
 annotation(Annotation) --> annotationAssertion(Annotation).
 axiom(Axiom) --> declaration(Axiom).
 axiom(Axiom) --> subClassOf(Axiom).
+axiom(Axiom) --> disjoint(Axiom).
 
 annotationAssertion(annotationAssertion(AnnotationAssertionValue)) -->
     [In], {atom_con2cat('AnnotationAssertion(', AnnotationAssertionValue, ')', In)}.
@@ -125,6 +126,7 @@ classExpression(A) -->
         \+atom_concat('ObjectSomeValuesFrom', _, A),
         \+atom_concat('ObjectAllValuesFrom', _,A),
         \+atom_concat('ObjectIntersectionOf', _, A),
+        \+atom_concat('DisjointClasses',_,A),
         \+atomic_list_concat([_], ' ', A)
     }.
 
@@ -146,6 +148,21 @@ declaration(Entity) -->
         iri(PropertyValue, [ObjectPropertyValue], []),
         functor(Property, PropertyValue, 2)
 	}.
+
+disjoint(Expression) -->
+    [In], {
+        atom_con2cat('DisjointClasses(',RestB,')',In),
+        atomic_list_concat(List, ' ', RestB),
+        disjoint_classes(List, Expression), !
+    }.
+
+disjoint_classes([Element], IRI) :-
+    classExpression(IRI, [Element], []), !.
+
+disjoint_classes([HeadIn|In], Expression) :-
+    classExpression(IRI, [HeadIn], []),
+    disjoint_classes(In, Out2),
+    Expression = disjoint(IRI, Out2), !.
     
 parse_owl(File, Prefixes, Imports, Annotations, Axioms) :-
     read_file_to_codes(File, Codes, []),

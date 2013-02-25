@@ -63,6 +63,16 @@ test(subClass3) :-
     Input  = 'SubClassOf(ObjectIntersectionOf(ObjectSomeValuesFrom(<http://www.co-ode.org/ontologies/ont.owl#hasPart> <http://www.cin.ufpe.br/~astm/owl/bird.owl#Bone>) <http://www.cin.ufpe.br/~astm/owl/bird.owl#Animal>) <http://www.cin.ufpe.br/~astm/owl/bird.owl#Vertebrate>)',
     Output = subClassOf(intersection(objectSomeValuesFrom(haspart(X, Y), bone(Y)), animal(_)), vertebrate(_)),
     axiom(Output, [Input], []).
+
+test(disjoint) :-
+    Input  = 'DisjointClasses(<http://www.cin.ufpe.br/~astm/owl/bird.owl#A> <http://www.cin.ufpe.br/~astm/owl/bird.owl#B>)',
+    Output = disjoint(a(_), b(_)),
+    axiom(Output, [Input], []).
+
+test(disjoint2) :-
+    Input  = 'DisjointClasses(<http://www.cin.ufpe.br/~astm/owl/bird.owl#A> <http://www.cin.ufpe.br/~astm/owl/bird.owl#B> <http://www.cin.ufpe.br/~astm/owl/bird.owl#C>)',
+    Output = disjoint(a(_), disjoint(b(_), c(_))),
+    axiom(Output, [Input], []).
     
 :- end_tests(owlparser).
 :- begin_tests(creatematrix).
