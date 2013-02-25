@@ -121,7 +121,7 @@ classExpression(A) -->
     [A], {
         \+atom_concat('ObjectExactCardinality', _, A),
         \+atom_concat('ObjectMaxCardinality', _, A),
-        \+atom_concat('ObjectMixtCardinality', _, A),
+        \+atom_concat('ObjectMinCardinality', _, A),
         \+atom_concat('ObjectSomeValuesFrom', _, A),
         \+atom_concat('ObjectAllValuesFrom', _,A),
         \+atom_concat('ObjectIntersectionOf', _, A),
