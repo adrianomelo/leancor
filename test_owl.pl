@@ -158,17 +158,25 @@ test(righthandsideintersection1) :-
 :- end_tests(creatematrix).
 :- begin_tests(leancop).
 
-:- [leancop_main].
+:- [leancop21_swi].
 
-test(owl1) :-
-    parse_owl('testfiles/bird.owl', _, _, _, Axioms),
-    create_matrix(Axioms, Matrix),
-    prove(Matrix, Proof).
+test(prefixes1) :-
+    Input = 'Prefix(owl:=<http://www.w3.org/2002/07/owl#>)\nPrefix(rdfs:=<http://www.w3.org/2000/01/rdf-schema#>)\n\n',
+    Prefixes = [prefix('owl:=<http://www.w3.org/2002/07/owl#>'), prefix('rdfs:=<http://www.w3.org/2000/01/rdf-schema#>')],
+    parse_prefixes(Input, Prefixes, _).
 
-test(owl2) :-
-    parse_owl('testfiles/cyclic.owl', _, _, _, Axioms),
-    create_matrix(Axioms, Matrix),
-    prove(Matrix, Proof).
+test(prefixesAndOntology) :-
+    Input = 'Prefix(owl:=<http://www.w3.org/2002/07/owl#>)\n\n\nOntology(<http://www.semanticweb.org/adrianomelo/ontologies/2013/1/subclassof>\n\nDeclaration(Class(<http://www.semanticweb.org/adrianomelo/ontologies/2013/1/subclassof#B>)))\n',
+    Prefixes = [prefix('owl:=<http://www.w3.org/2002/07/owl#>')],
+    Axioms = [b(_)],
+    parse_prefixes(Input, Prefixes2, Ontology),
+    parse_ontology(Ontology, _, _, Axioms).
+
+test(owl0) :-
+    Axioms = [
+        b(_), subClassOf(b(Y),objectSomeValuesFrom(property(Y,X),c(X))),
+        c(_), property(_,_)],
+    parse_owl('testfiles/subclassof.owl', _, _, _, Axioms).
 
 :- end_tests(leancop).
 :- run_tests.
