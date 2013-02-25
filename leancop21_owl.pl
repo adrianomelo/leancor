@@ -76,11 +76,11 @@ classExpression(Expression) -->
     }.
 
 classExpression(Expression) -->
-[In], {
-    atom_con2cat('ObjectUnionOf(', RestB, ')', In),
-    atomic_list_concat(List, ' ', RestB),
-    complex_therm_union(List, Expression), !
-}.
+    [In], {
+        atom_con2cat('ObjectUnionOf(', RestB, ')', In),
+        atomic_list_concat(List, ' ', RestB),
+        complex_therm_union(List, Expression), !
+    }.
 
 classExpression(objectMinCardinality(Number, Property)) -->
     [In], {
