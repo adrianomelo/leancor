@@ -53,7 +53,19 @@ classExpression(objectSomeValuesFrom(Property, Inside)) -->
         Property=..[FunctorName, X, Y],
 		ClassExpression=..[ClassName, _],
 		Inside=..[ClassName, Y]
-    }.   
+    }.
+
+classExpression(objectAllValuesFrom(Property, Inside)) -->
+    [In], {
+        atom_con2cat('ObjectAllValuesFrom(', RestB, ')', In),
+        atomic_list_concat([PropertyIRI|List], ' ', RestB),
+        atomic_list_concat(List, ' ', ClassExpressionValue),
+        classExpression(ClassExpression, [ClassExpressionValue], []),
+        iri(FunctorName, [PropertyIRI], []),
+        Property=..[FunctorName, X, Y],
+        ClassExpression=..[ClassName, _],
+        Inside=..[ClassName, Y]
+    }.
 
 classExpression(intersection(Left, Right)) -->
     [In], {
@@ -111,6 +123,7 @@ classExpression(A) -->
         \+atom_concat('ObjectMaxCardinality', _, A),
         \+atom_concat('ObjectMixtCardinality', _, A),
         \+atom_concat('ObjectSomeValuesFrom', _, A),
+        \+atom_concat('ObjectAllValuesFrom', _,A),
         \+atom_concat('ObjectIntersectionOf', _, A),
         \+atomic_list_concat([_], ' ', A)
     }.

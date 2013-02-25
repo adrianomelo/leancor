@@ -26,7 +26,12 @@ test(somevaluesfrom) :-
     Input  = 'ObjectSomeValuesFrom(<http://protege.stanford.edu/plugins/owl/owl-library/koala.owl#hasHabitat> <http://protege.stanford.edu/plugins/owl/owl-library/koala.owl#DryEucalyptForest>)',
     Output = objectSomeValuesFrom(hashabitat(X, Y), dryeucalyptforest(Y)),
     classExpression(Output, [Input], []).
-    
+
+test(allvaluesfrom) :-
+    Input  = 'ObjectAllValuesFrom(<http://protege.stanford.edu/plugins/owl/owl-library/koala.owl#hasHabitat> <http://protege.stanford.edu/plugins/owl/owl-library/koala.owl#DryEucalyptForest>)',
+    Output = objectAllValuesFrom(hashabitat(X, Y), dryeucalyptforest(Y)),
+    classExpression(Output, [Input], []).
+
 test(intersection1) :-
     Input  = 'ObjectIntersectionOf(<http://www.cin.ufpe.br/~astm/owl/null.owl#ClassA> <http://www.cin.ufpe.br/~astm/owl/null.owl#ClassB>)',
     Output = intersection(classa(_), classb(_)),
