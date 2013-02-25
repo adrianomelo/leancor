@@ -46,6 +46,21 @@ test(intersection3) :-
     Input  = 'ObjectIntersectionOf(ObjectSomeValuesFrom(<http://www.co-ode.org/ontologies/ont.owl#hasPart> <http://www.cin.ufpe.br/~astm/owl/bird.owl#Bone>) <http://www.cin.ufpe.br/~astm/owl/bird.owl#Animal>)',
     Output = intersection(objectSomeValuesFrom(haspart(_, Y), bone(Y)), animal(_)),
     classExpression(Output, [Input], []).
+
+test(union1) :-
+    Input  = 'ObjectUnionOf(<http://www.cin.ufpe.br/~astm/owl/null.owl#ClassA> <http://www.cin.ufpe.br/~astm/owl/null.owl#ClassB>)',
+    Output = union(classa(_), classb(_)),
+    classExpression(Output, [Input], []).
+
+test(union2) :-
+    Input  = 'ObjectUnionOf(<http://www.cin.ufpe.br/~astm/owl/null.owl#ClassA> <http://www.cin.ufpe.br/~astm/owl/null.owl#ClassB> <http://www.cin.ufpe.br/~astm/owl/null.owl#ClassC>)',
+    Output = union(classa(_), union(classb(_), classc(_))),
+    classExpression(Output, [Input], []).
+
+test(union3) :-
+    Input  = 'ObjectUnionOf(ObjectSomeValuesFrom(<http://www.co-ode.org/ontologies/ont.owl#hasPart> <http://www.cin.ufpe.br/~astm/owl/bird.owl#Bone>) <http://www.cin.ufpe.br/~astm/owl/bird.owl#Animal>)',
+    Output = union(objectSomeValuesFrom(haspart(_, Y), bone(Y)), animal(_)),
+    classExpression(Output, [Input], []).
     
 test(subClass1) :-
     Input = 'SubClassOf(<http://protege.stanford.edu/plugins/owl/owl-library/koala.owl#TasmanianDevil> <http://protege.stanford.edu/plugins/owl/owl-library/koala.owl#Marsupials>)',

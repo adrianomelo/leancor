@@ -92,8 +92,15 @@ classExpression(intersection(Left, Middle, Right)) -->
         classExpression(Left, [Atom1], []),
         classExpression(Middle, [Atom2], []),
         classExpression(Right, [Atom3], [])
-    }.  
-        
+    }.
+
+classExpression(Expression) -->
+[In], {
+    atom_con2cat('ObjectUnionOf(', RestB, ')', In),
+    atomic_list_concat(List, ' ', RestB),
+    complex_therm_union(List, Expression), !
+}.
+
 classExpression(objectMinCardinality(Number, Property)) -->
     [In], {
         atom_con2cat('ObjectMinCardinality(', RestB, ')', In),
@@ -148,6 +155,21 @@ declaration(Entity) -->
         iri(PropertyValue, [ObjectPropertyValue], []),
         functor(Property, PropertyValue, 2)
 	}.
+
+complex_therm_union([HeadIn], Expression) :-
+    classExpression(Expression, [HeadIn], []).
+
+complex_therm_union([HeadIn|In], Expression) :-
+    classExpression(Out, [HeadIn], []),
+    complex_therm_union(In, Out2),
+    Expression = union(Out, Out2).
+
+complex_therm_union([HeadIn|In], Expression):-
+    append([HeadIn2|[]],Rest,In),
+    atom_concat(HeadIn, ' ', Temp),
+    atom_concat(Temp, HeadIn2, HeadIn3),
+    append([HeadIn3], Rest, In2),
+    complex_therm_union(In2, Expression).
 
 disjoint(Expression) -->
     [In], {
