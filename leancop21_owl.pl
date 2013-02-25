@@ -28,15 +28,11 @@ axiom(Axiom) --> disjoint(Axiom).
 annotationAssertion(annotationAssertion(AnnotationAssertionValue)) -->
     [In], {atom_con2cat('AnnotationAssertion(', AnnotationAssertionValue, ')', In)}.
 
-subClassOf(subClassOf(Left, Right)) --> 
+subClassOf(Expression) --> 
     [In], {
         atom_con2cat('SubClassOf(', Rest, ')', In),
         atomic_list_concat(List, ' ', Rest),
-        append(List1, List2, List),
-        atomic_list_concat(List1, ' ', Atom1),
-        atomic_list_concat(List2, ' ', Atom2),
-        classExpression(Left, [Atom1], []),
-        classExpression(Right, [Atom2], [])
+        complex_therm_subclassof(List, Expression), !
     }.
 
 classExpression(Class) --> [In], {
@@ -136,6 +132,21 @@ declaration(Entity) -->
         iri(PropertyValue, [ObjectPropertyValue], []),
         functor(Property, PropertyValue, 2)
 	}.
+
+complex_therm_subclassof([HeadIn], Expression) :-
+    classExpression(Expression, [HeadIn], []).
+
+complex_therm_subclassof([HeadIn|In], Expression) :-
+    classExpression(Out, [HeadIn], []),
+    complex_therm_subclassof(In, Out2),
+    Expression = subClassOf(Out, Out2).
+
+complex_therm_subclassof([HeadIn|In], Expression):-
+    append([HeadIn2|[]],Rest,In),
+    atom_concat(HeadIn, ' ', Temp),
+    atom_concat(Temp, HeadIn2, HeadIn3),
+    append([HeadIn3], Rest, In2),
+    complex_therm_subclassof(In2, Expression).
 
 complex_therm_intersection([HeadIn], Expression) :-
     classExpression(Expression, [HeadIn], []).
