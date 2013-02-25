@@ -68,30 +68,11 @@ classExpression(objectAllValuesFrom(Property, Inside)) -->
         Inside=..[ClassName, Y]
     }.
 
-classExpression(intersection(Left, Right)) -->
+classExpression(Expression) -->
     [In], {
         atom_con2cat('ObjectIntersectionOf(', RestB, ')', In),
         atomic_list_concat(List, ' ', RestB),
-        append(List1, List2, List),
-        atomic_list_concat(List1, ' ', Atom1),
-        atomic_list_concat(List2, ' ', Atom2),
-        classExpression(Left, [Atom1], []),
-        classExpression(Right, [Atom2], [])
-    }.
-    
-% must be improved to work with N intersections
-classExpression(intersection(Left, Middle, Right)) -->
-    [In], {
-        atom_con2cat('ObjectIntersectionOf(', RestB, ')', In),
-        atomic_list_concat(List, ' ', RestB),
-        append(List1, ListRest, List),
-        append(List2, List3, ListRest),
-        atomic_list_concat(List1, ' ', Atom1),
-        atomic_list_concat(List2, ' ', Atom2),
-        atomic_list_concat(List3, ' ', Atom3),
-        classExpression(Left, [Atom1], []),
-        classExpression(Middle, [Atom2], []),
-        classExpression(Right, [Atom3], [])
+        complex_therm_intersection(List, Expression), !
     }.
 
 classExpression(Expression) -->
@@ -155,6 +136,21 @@ declaration(Entity) -->
         iri(PropertyValue, [ObjectPropertyValue], []),
         functor(Property, PropertyValue, 2)
 	}.
+
+complex_therm_intersection([HeadIn], Expression) :-
+    classExpression(Expression, [HeadIn], []).
+
+complex_therm_intersection([HeadIn|In], Expression) :-
+    classExpression(Out, [HeadIn], []),
+    complex_therm_intersection(In, Out2),
+    Expression = intersection(Out, Out2).
+
+complex_therm_intersection([HeadIn|In], Expression):-
+    append([HeadIn2|[]],Rest,In),
+    atom_concat(HeadIn, ' ', Temp),
+    atom_concat(Temp, HeadIn2, HeadIn3),
+    append([HeadIn3], Rest, In2),
+    complex_therm_intersection(In2, Expression).
 
 complex_therm_union([HeadIn], Expression) :-
     classExpression(Expression, [HeadIn], []).

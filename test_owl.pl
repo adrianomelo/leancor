@@ -39,7 +39,7 @@ test(intersection1) :-
 
 test(intersection2) :-
     Input  = 'ObjectIntersectionOf(<http://www.cin.ufpe.br/~astm/owl/null.owl#ClassA> <http://www.cin.ufpe.br/~astm/owl/null.owl#ClassB> <http://www.cin.ufpe.br/~astm/owl/null.owl#ClassC>)',
-    Output = intersection(classa(X), classb(X), classc(X)),
+    Output = intersection(classa(_), intersection(classb(_), classc(_))),
     classExpression(Output, [Input], []).
 
 test(intersection3) :-
@@ -69,7 +69,7 @@ test(subClass1) :-
     
 test(subClass2) :-
     Input = 'SubClassOf(<http://www.cin.ufpe.br/~astm/owl/bird.owl#Bird> ObjectIntersectionOf(<http://www.cin.ufpe.br/~astm/owl/bird.owl#Animal> ObjectSomeValuesFrom(<http://www.co-ode.org/ontologies/ont.owl#hasPart> <http://www.cin.ufpe.br/~astm/owl/bird.owl#Bone>) ObjectSomeValuesFrom(<http://www.co-ode.org/ontologies/ont.owl#hasPart> <http://www.cin.ufpe.br/~astm/owl/bird.owl#Feather>)))',
-    Output = subClassOf(bird(X), intersection(animal(X), objectSomeValuesFrom(haspart(X, Y), bone(Y)), objectSomeValuesFrom(haspart(X, Y), feather(Y)))),
+    Output = subClassOf(bird(X),intersection(animal(X),intersection(objectSomeValuesFrom(haspart(X,Y), bone(Y)),objectSomeValuesFrom(haspart(X,Y), feather(Y))))),
     axiom(Output, [Input], []).
 
 test(subClass3) :-
