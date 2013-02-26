@@ -77,6 +77,11 @@ test(subClass3) :-
     Output = subClassOf(intersection(objectSomeValuesFrom(haspart(X, Y), bone(Y)), animal(_)), vertebrate(_)),
     axiom(Output, [Input], []).
 
+test(gci) :-
+    Input = 'SubClassOf(ObjectSomeValuesFrom(<http://www.cin.ufpe.br/~astm/cycles1.owl#hasSon> ObjectUnionOf(<http://www.cin.ufpe.br/~astm/cycles1.owl#DrAncestor> <http://www.cin.ufpe.br/~astm/cycles1.owl#Dr>)) <http://www.cin.ufpe.br/~astm/cycles1.owl#DrAncestor>)',
+    Output = subclassOf(objectSomeValuesFrom(hasson(X, Y), union(drancestor(Y), dr(Y))), drancestor(X)),
+    axiom(Output, [Input, []]).
+
 test(disjoint) :-
     Input  = 'DisjointClasses(<http://www.cin.ufpe.br/~astm/owl/bird.owl#A> <http://www.cin.ufpe.br/~astm/owl/bird.owl#B>)',
     Output = disjoint(a(_), b(_)),
