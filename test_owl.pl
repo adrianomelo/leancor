@@ -178,5 +178,35 @@ test(owl0) :-
         c(_), property(_,_)],
     parse_owl('testfiles/subclassof.owl', _, _, _, Axioms).
 
+test(owl2) :-
+    Axioms = [
+        a(_G2366),subClassOf(a(_G2392),union(c(_G2421),b(_G2432))),
+        b(_G2455),c(_G2472)],
+    parse_owl('testfiles/or.owl', _, _, _, Axioms).
+
+test(owl2) :-
+    parse_owl('testfiles/pizza.owl', _, _, _, Axioms),
+    create_matrix(Axioms, Matrix),
+    Axioms = [
+        subClassOf(a(_G4790),union(tomate(_G4834),muzzarella(_G4872))),
+        muzzarella(_G4922),
+        pizza(_G4951),
+        pizzamargherita(_G5010),
+        subClassOf(pizzamargherita(_G5075),pizza(_G5098)),
+        subClassOf(pizzamargherita(_G5169),objectSomeValuesFrom(hastopping(_G5266,_G5269),muzzarella(_G5269))),
+        subClassOf(pizzamargherita(_G5358),objectSomeValuesFrom(hastopping(_G5443,_G5446),tomate(_G5446))),
+        subClassOf(pizzamargherita(_G5535),objectAllValuesFrom(hastopping(_G5605,_G5608),a(_G5608))),
+        tomate(_G5661),
+        hastopping(_G5705,_G5706)],
+    Matrix = [
+        [a(_G5651),-tomate(_G5695),-muzzarella(_G5733)],
+        [pizzamargherita(_G5936),-pizza(_G5959)],
+        [pizzamargherita(_G6030),-muzzarella(_G6130)],
+        [pizzamargherita(_G6030),-hastopping(_G6127,_G6130)],
+        [pizzamargherita(_G6219),-tomate(_G6307)],
+        [pizzamargherita(_G6219),-hastopping(_G6304,_G6307)],
+        [pizzamargherita(_G6396),-hastopping(_G6466,_G6469),-a(_G6469)]
+    ].
+
 :- end_tests(leancop).
 :- run_tests.
