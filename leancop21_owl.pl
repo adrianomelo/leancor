@@ -211,8 +211,8 @@ parse_prefix(List, _, Ontology) :- atomic_list_concat(List, '\n', Ontology), ato
 parse_ontology(Ontology, Imports, Annotations, Axioms) :- 
     atom_con2cat('Ontology(', RestB, ')\n', Ontology),
     atomic_list_concat(List, '\n', RestB),
-    parse_imports(List, Imports),
-    parse_annotations(List, Annotations),
+    %parse_imports(List, Imports),
+    %parse_annotations(List, Annotations),
     parse_axioms(List, Axioms).
 
 parse_imports([], []) :- !.
