@@ -1,0 +1,22 @@
+Prefix(owl:=<http://www.w3.org/2002/07/owl#>)
+Prefix(rdf:=<http://www.w3.org/1999/02/22-rdf-syntax-ns#>)
+Prefix(xml:=<http://www.w3.org/XML/1998/namespace>)
+Prefix(xsd:=<http://www.w3.org/2001/XMLSchema#>)
+Prefix(rdfs:=<http://www.w3.org/2000/01/rdf-schema#>)
+
+
+Ontology(<http://www.cin.ufpe.br/~astm/cycles1.owl>
+
+Declaration(Class(<http://www.cin.ufpe.br/~astm/cycles1.owl#Dr>))
+Declaration(Class(<http://www.cin.ufpe.br/~astm/cycles1.owl#DrAncestor>))
+Declaration(NamedIndividual(<http://www.cin.ufpe.br/~astm/cycles1.owl#Fred>))
+Declaration(NamedIndividual(<http://www.cin.ufpe.br/~astm/cycles1.owl#ZePadre>))
+Declaration(NamedIndividual(<http://www.cin.ufpe.br/~astm/cycles1.owl#Luiz>))
+Declaration(NamedIndividual(<http://www.cin.ufpe.br/~astm/cycles1.owl#Moises>))
+Declaration(ObjectProperty(<http://www.cin.ufpe.br/~astm/cycles1.owl#hasSon>))
+ClassAssertion(<http://www.cin.ufpe.br/~astm/cycles1.owl#Dr> <http://www.cin.ufpe.br/~astm/cycles1.owl#Fred>)
+ObjectPropertyAssertion(<http://www.cin.ufpe.br/~astm/cycles1.owl#hasSon> <http://www.cin.ufpe.br/~astm/cycles1.owl#Luiz> <http://www.cin.ufpe.br/~astm/cycles1.owl#Fred>)
+ObjectPropertyAssertion(<http://www.cin.ufpe.br/~astm/cycles1.owl#hasSon> <http://www.cin.ufpe.br/~astm/cycles1.owl#Moises> <http://www.cin.ufpe.br/~astm/cycles1.owl#Luiz>)
+ObjectPropertyAssertion(<http://www.cin.ufpe.br/~astm/cycles1.owl#hasSon> <http://www.cin.ufpe.br/~astm/cycles1.owl#ZePadre> <http://www.cin.ufpe.br/~astm/cycles1.owl#Moises>)
+SubClassOf(ObjectSomeValuesFrom(<http://www.cin.ufpe.br/~astm/cycles1.owl#hasSon> ObjectUnionOf(<http://www.cin.ufpe.br/~astm/cycles1.owl#DrAncestor> <http://www.cin.ufpe.br/~astm/cycles1.owl#Dr>)) <http://www.cin.ufpe.br/~astm/cycles1.owl#DrAncestor>)
+)
