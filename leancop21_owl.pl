@@ -24,9 +24,19 @@ annotation(Annotation) --> annotationAssertion(Annotation).
 axiom(Axiom) --> declaration(Axiom).
 axiom(Axiom) --> subClassOf(Axiom).
 axiom(Axiom) --> disjoint(Axiom).
+axiom(Axiom) --> classAssertion(Axiom).
 
 annotationAssertion(annotationAssertion(AnnotationAssertionValue)) -->
     [In], {atom_con2cat('AnnotationAssertion(', AnnotationAssertionValue, ')', In)}.
+
+classAssertion(ClassAssertionValue) -->
+    [In], {
+        atom_con2cat('ClassAssertion(', Rest, ')', In),
+        atomic_list_concat([Class, Instance], ' ', Rest),
+        iri(ClassValue, [Class], []),
+        iri(InstanceValue, [Instance], []),
+        ClassAssertionValue=..[ClassValue, InstanceValue]
+    }.
 
 subClassOf(Expression) --> 
     [In], {

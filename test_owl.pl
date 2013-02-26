@@ -17,10 +17,10 @@ test(classDeclaration) :-
     Output = animal(_),
     axiom(Output, [Input], []).
     
-%test(individual) :-
-%   Input  = 'ClassAssertion(<http://protege.stanford.edu/plugins/owl/owl-library/koala.owl#Degree> <http://protege.stanford.edu/plugins/owl/owl-library/koala.owl#BA>)',
-%   Output = degree(ba),
-%   axiom(Output, [Input], []).
+test(individual) :-
+   Input  = 'ClassAssertion(<http://protege.stanford.edu/plugins/owl/owl-library/koala.owl#Degree> <http://protege.stanford.edu/plugins/owl/owl-library/koala.owl#BA>)',
+   Output = degree(ba),
+   axiom(Output, [Input], []).
 
 test(somevaluesfrom) :-
     Input  = 'ObjectSomeValuesFrom(<http://protege.stanford.edu/plugins/owl/owl-library/koala.owl#hasHabitat> <http://protege.stanford.edu/plugins/owl/owl-library/koala.owl#DryEucalyptForest>)',
