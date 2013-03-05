@@ -22,6 +22,11 @@ test(individual) :-
    Output = degree(ba),
    axiom(Output, [Input], []).
 
+test(propertyassertion1) :-
+   Input  = 'ObjectPropertyAssertion(<http://www.cin.ufpe.br/~astm/cycles1.owl#hasSon> <http://www.cin.ufpe.br/~astm/cycles1.owl#Luiz> <http://www.cin.ufpe.br/~astm/cycles1.owl#Fred>)',
+   Output = hasson(luiz,fred),
+   axiom(Output, [Input], []).
+
 test(somevaluesfrom1) :-
     Input  = 'ObjectSomeValuesFrom(<http://protege.stanford.edu/plugins/owl/owl-library/koala.owl#hasHabitat> <http://protege.stanford.edu/plugins/owl/owl-library/koala.owl#DryEucalyptForest>)',
     Output = objectSomeValuesFrom(hashabitat(X, Y), dryeucalyptforest(Y)),

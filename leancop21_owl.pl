@@ -38,6 +38,17 @@ assertion(ClassAssertionValue) -->
         ClassAssertionValue=..[ClassValue, InstanceValue]
     }.
 
+assertion(Assertion) -->
+    [In], {
+        atom_con2cat('ObjectPropertyAssertion(', Rest, ')', In),
+        atomic_list_concat(List, ' ', Rest),
+        List = [Property, IndividualA, IndividualB],
+        iri(PropertyFunctorName, [Property], []),
+        iri(IndAFunctorName, [IndividualA], []),
+        iri(IndBFunctorName, [IndividualB], []),
+        Assertion=..[PropertyFunctorName, IndAFunctorName, IndBFunctorName]
+    }.
+
 subClassOf(subClassOf(ExpressionA, ExpressionB)) --> 
     [In], {
         atom_con2cat('SubClassOf(', Rest, ')', In),
