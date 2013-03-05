@@ -92,10 +92,20 @@ test(subClass3) :-
     Output = subClassOf(intersection(objectSomeValuesFrom(haspart(X, Y), bone(Y)), animal(_)), vertebrate(_)),
     axiom(Output, [Input], []).
 
-test(gci) :-
+test(gci1) :-
     Input = 'SubClassOf(ObjectSomeValuesFrom(<http://www.cin.ufpe.br/~astm/cycles1.owl#hasSon> ObjectUnionOf(<http://www.cin.ufpe.br/~astm/cycles1.owl#DrAncestor> <http://www.cin.ufpe.br/~astm/cycles1.owl#Dr>)) <http://www.cin.ufpe.br/~astm/cycles1.owl#DrAncestor>)',
-    Output = subclassOf(objectSomeValuesFrom(hasson(X, Y), union(drancestor(Y), dr(Y))), drancestor(X)),
-    axiom(Output, [Input, []]).
+    Output = subClassOf(objectSomeValuesFrom(hasson(X, Y), union(drancestor(Y), dr(Y))), drancestor(X)),
+    axiom(Output, [Input], []).
+
+test(gci2) :-
+    Input = 'SubClassOf(ObjectUnionOf(<http://www.cin.ufpe.br/~astm/cycles1.owl#DrAncestor> <http://www.cin.ufpe.br/~astm/cycles1.owl#Dr>) <http://www.cin.ufpe.br/~astm/cycles1.owl#DrAncestor>)',
+    Output = subClassOf(union(drancestor(Y), dr(Y)), drancestor(X)),
+    axiom(Output, [Input], []).
+
+test(gci3) :-
+    Input = 'SubClassOf(ObjectSomeValuesFrom(<http://www.cin.ufpe.br/~astm/cycles1.owl#hasSon> <http://www.cin.ufpe.br/~astm/cycles1.owl#Dr>) <http://www.cin.ufpe.br/~astm/cycles1.owl#DrAncestor>)',
+    Output = subClassOf(objectSomeValuesFrom(hasson(X, Y),  dr(Y)), drancestor(X)),
+    axiom(Output, [Input], []).
 
 test(disjoint) :-
     Input  = 'DisjointClasses(<http://www.cin.ufpe.br/~astm/owl/bird.owl#A> <http://www.cin.ufpe.br/~astm/owl/bird.owl#B>)',
@@ -204,7 +214,7 @@ test(owl2) :-
         b(_G2455),c(_G2472)],
     parse_owl('testfiles/or.owl', _, _, _, Axioms).
 
-test(owl2) :-
+test(owl3) :-
     parse_owl('testfiles/pizza.owl', _, _, _, Axioms),
     create_matrix(Axioms, Matrix),
     Axioms = [
@@ -227,6 +237,23 @@ test(owl2) :-
         [pizzamargherita(_G6219),-hastopping(_G6304,_G6307)],
         [pizzamargherita(_G6396),-hastopping(_G6466,_G6469),-a(_G6469)]
     ].
+
+test(owl4) :-
+    Axioms = [
+        dr(_),
+        drancestor(_),
+        hasson(_,_),
+        dr(fred),
+        hasson(luiz,fred),
+        hasson(moises,luiz),
+        hasson(zepadre,moises),
+        subClassOf(
+            objectSomeValuesFrom(
+                hasson(_,_),
+                union(drancestor(_), dr(_))),
+            drancestor(_)
+        )],
+    parse_owl('testfiles/cycles1.owl', _, _, _, Axioms).
 
 :- end_tests(leancop).
 :- run_tests.
