@@ -38,11 +38,15 @@ assertion(ClassAssertionValue) -->
         ClassAssertionValue=..[ClassValue, InstanceValue]
     }.
 
-subClassOf(Expression) --> 
+subClassOf(subClassOf(ExpressionA, ExpressionB)) --> 
     [In], {
         atom_con2cat('SubClassOf(', Rest, ')', In),
         atomic_list_concat(List, ' ', Rest),
-        complex_therm_subclassof(List, Expression), !
+        append(A, B, List), \+length(A, 0), \+length(B, 0),
+        atomic_list_concat(A, ' ', AtomA),
+        classExpression(ExpressionA, [AtomA], []),
+        atomic_list_concat(B, ' ', AtomB),
+        classExpression(ExpressionB, [AtomB], [])
     }.
 
 classExpression(Class) --> [In], {
@@ -69,7 +73,7 @@ classExpression(objectAllValuesFrom(Property, Inside)) -->
         iri(FunctorName, [PropertyIRI], []),
         Property=..[FunctorName, X, Y],
         ClassExpression=..[ClassName, _],
-        Inside=..[ClassName, Y]
+        Inside=..[ClassName, Y], !
     }.
 
 classExpression(Expression) -->
@@ -141,21 +145,6 @@ declaration(Entity) -->
         iri(PropertyValue, [ObjectPropertyValue], []),
         functor(Property, PropertyValue, 2)
 	}.
-
-complex_therm_subclassof([HeadIn], Expression) :-
-    classExpression(Expression, [HeadIn], []).
-
-complex_therm_subclassof([HeadIn|In], Expression) :-
-    classExpression(Out, [HeadIn], []),
-    complex_therm_subclassof(In, Out2),
-    Expression = subClassOf(Out, Out2).
-
-complex_therm_subclassof([HeadIn|In], Expression):-
-    append([HeadIn2|[]],Rest,In),
-    atom_concat(HeadIn, ' ', Temp),
-    atom_concat(Temp, HeadIn2, HeadIn3),
-    append([HeadIn3], Rest, In2),
-    complex_therm_subclassof(In2, Expression).
 
 complex_therm_intersection([HeadIn], Expression) :-
     classExpression(Expression, [HeadIn], []).
