@@ -50,16 +50,14 @@ classExpression(Class) --> [In], {
     functor(Class, ClassValue, 1)
 }.
     
-classExpression(objectSomeValuesFrom(Property, Inside)) -->
+classExpression(objectSomeValuesFrom(Property, ClassExpression)) -->
     [In], {
         atom_con2cat('ObjectSomeValuesFrom(', RestB, ')', In),
         atomic_list_concat([PropertyIRI|List], ' ', RestB),
         atomic_list_concat(List, ' ', ClassExpressionValue),
         classExpression(ClassExpression, [ClassExpressionValue], []),
         iri(FunctorName, [PropertyIRI], []),
-        Property=..[FunctorName, X, Y],
-		ClassExpression=..[ClassName, _],
-		Inside=..[ClassName, Y]
+        Property=..[FunctorName, X, Y], !
     }.
 
 classExpression(objectAllValuesFrom(Property, Inside)) -->

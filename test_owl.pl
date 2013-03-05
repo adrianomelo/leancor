@@ -22,9 +22,14 @@ test(individual) :-
    Output = degree(ba),
    axiom(Output, [Input], []).
 
-test(somevaluesfrom) :-
+test(somevaluesfrom1) :-
     Input  = 'ObjectSomeValuesFrom(<http://protege.stanford.edu/plugins/owl/owl-library/koala.owl#hasHabitat> <http://protege.stanford.edu/plugins/owl/owl-library/koala.owl#DryEucalyptForest>)',
     Output = objectSomeValuesFrom(hashabitat(X, Y), dryeucalyptforest(Y)),
+    classExpression(Output, [Input], []).
+
+test(somevaluesfrom2) :-
+    Input  = 'ObjectSomeValuesFrom(<http://protege.stanford.edu/plugins/owl/owl-library/koala.owl#hasHabitat> ObjectUnionOf(<http://www.cin.ufpe.br/~astm/owl/null.owl#ClassA> <http://www.cin.ufpe.br/~astm/owl/null.owl#ClassB>))',
+    Output = objectSomeValuesFrom(hashabitat(X, Y), union(classa(Y), classb(Y))),
     classExpression(Output, [Input], []).
 
 test(allvaluesfrom) :-
