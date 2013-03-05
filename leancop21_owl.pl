@@ -21,15 +21,15 @@ prefix(prefix(Prefix)) --> [In], {atom_con2cat('Prefix(', Prefix, ')', In)}.
 import(import(URL))    --> [In], {atom_con2cat('Import(', URL, ')', In)}.
 
 annotation(Annotation) --> annotationAssertion(Annotation).
-axiom(Axiom) --> declaration(Axiom).
-axiom(Axiom) --> subClassOf(Axiom).
-axiom(Axiom) --> disjoint(Axiom).
-axiom(Axiom) --> classAssertion(Axiom).
+axiom(Axiom) --> declaration(Axiom), !.
+axiom(Axiom) --> subClassOf(Axiom), !.
+axiom(Axiom) --> disjoint(Axiom), !.
+axiom(Axiom) --> assertion(Axiom), !.
 
 annotationAssertion(annotationAssertion(AnnotationAssertionValue)) -->
     [In], {atom_con2cat('AnnotationAssertion(', AnnotationAssertionValue, ')', In)}.
 
-classAssertion(ClassAssertionValue) -->
+assertion(ClassAssertionValue) -->
     [In], {
         atom_con2cat('ClassAssertion(', Rest, ')', In),
         atomic_list_concat([Class, Instance], ' ', Rest),
