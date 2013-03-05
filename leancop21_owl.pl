@@ -23,8 +23,8 @@ import(import(URL))    --> [In], {atom_con2cat('Import(', URL, ')', In)}.
 annotation(Annotation) --> annotationAssertion(Annotation).
 axiom(Axiom) --> declaration(Axiom), !.
 axiom(Axiom) --> subClassOf(Axiom), !.
-axiom(Axiom) --> disjoint(Axiom), !.
 axiom(Axiom) --> assertion(Axiom), !.
+axiom(Axiom) --> disjoint(Axiom), !.
 
 annotationAssertion(annotationAssertion(AnnotationAssertionValue)) -->
     [In], {atom_con2cat('AnnotationAssertion(', AnnotationAssertionValue, ')', In)}.
