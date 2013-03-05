@@ -236,9 +236,6 @@ parse_axioms([], []) :- !.
 parse_axioms([Head|Rest], [Axiom|Axioms]) :- axiom(Axiom, [Head], []), parse_axioms(Rest, Axioms).
 parse_axioms([Head|Rest], Axioms) :- \+axiom(_, [Head], []), parse_axioms(Rest, Axioms).
 
-%print([]) :- writeln('\n').
-%print([A|B]) :- writeln(A), print(B).
-
 create_matrix([], []).
 create_matrix([Head|AxiomList], Matrix) :-
     to_clausule(Head, []),
@@ -248,19 +245,6 @@ create_matrix([Head|AxiomList], Ret) :-
     to_clausule(Head, Clausule),
     append(Clausule, Matrix, Ret),
     create_matrix(AxiomList, Matrix).
-
-% This code can be improved. recursion needed!
-%to_clausule(subClassOf(objectSomeValuesFrom(A, B), C), M) :- M = [[A, B, -C]], !.
-%to_clausule(subClassOf(A, objectSomeValuesFrom(B, C), M)) :- M = [[A, -B], [A, -C]], !.
-%to_clausule(subClassOf(union(A, B), C), M) :- M = [[A, -C], [B, -C]], !.
-%to_clausule(subClassOf(A, union(B, C)), M) :- M = [[A, -B, -C]], !.
-%to_clausule(subClassOf(intersection(objectSomeValuesFrom(A, B), C), M)) :- M = [[A, B, -C]], !.
-%to_clausule(subClassOf(intersection(A, B), C), M) :- M = [[A, B, -C]], !.
-%to_clausule(subClassOf(A, intersection(B, C)), M) :- M = [[A, -B], [A, -C]], !.
-%to_clausule(subClassOf(A, -B), M) :- M = [[A, B]], !.
-%to_clausule(subClassOf(A, B), M) :- M = [[A, -B]], !.
-%to_clausule(Item, []) :-
-%    \+Item = subClassOf(_, _).
 
 to_clausule(subClassOf(A, B), Matrix) :-
 	to_clausule_left(A, Ad),
