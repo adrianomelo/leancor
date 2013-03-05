@@ -118,6 +118,7 @@ classExpression(A) -->
         \+atom_concat('ObjectSomeValuesFrom', _, A),
         \+atom_concat('ObjectAllValuesFrom', _,A),
         \+atom_concat('ObjectIntersectionOf', _, A),
+        \+atom_concat('ObjectUnionOf', _, A),
         \+atom_concat('DisjointClasses',_,A),
         \+atomic_list_concat([_], ' ', A)
     }.

@@ -67,6 +67,11 @@ test(union3) :-
     Output = union(objectSomeValuesFrom(haspart(_, Y), bone(Y)), animal(_)),
     classExpression(Output, [Input], []).
     
+test(union4) :-
+    Input  = 'ObjectUnionOf(<http://www.cin.ufpe.br/~astm/cycles1.owl#DrAncestor> <http://www.cin.ufpe.br/~astm/cycles1.owl#Dr>)',
+    Output = union(drancestor(_), dr(_)),
+    classExpression(Output, [Input], []).
+
 test(subClass1) :-
     Input = 'SubClassOf(<http://protege.stanford.edu/plugins/owl/owl-library/koala.owl#TasmanianDevil> <http://protege.stanford.edu/plugins/owl/owl-library/koala.owl#Marsupials>)',
     Output = subClassOf(tasmaniandevil(X), marsupials(X)),
