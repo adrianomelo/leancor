@@ -24,7 +24,7 @@ test(individual) :-
 
 test(propertyassertion1) :-
    Input  = 'ObjectPropertyAssertion(<http://www.cin.ufpe.br/~astm/cycles1.owl#hasSon> <http://www.cin.ufpe.br/~astm/cycles1.owl#Luiz> <http://www.cin.ufpe.br/~astm/cycles1.owl#Fred>)',
-   Output = hasson(luiz,fred),
+   Output = propertyAssertion(hasson(luiz,fred)),
    axiom(Output, [Input], []).
 
 test(somevaluesfrom1) :-
@@ -130,6 +130,11 @@ test(class2) :-
     Output = [[-classname(_)]],
     create_matrix(Input, Output).
 
+test(property1) :-
+    Input  = [propertyAssertion(relation(a, b))],
+    Output = [[-relation(a, b)]],
+    create_matrix(Input, Output).
+
 test(subsumption1) :-
     Input  = [subClassOf(class(a(_)), class(b(_)))],
     Output = [[class(a(_)), -class(b(_))]],
@@ -229,9 +234,9 @@ test(owl4) :-
         drancestor(_),
         hasson(_,_),
         classAssertion(dr(fred)),
-        hasson(luiz,fred),
-        hasson(moises,luiz),
-        hasson(zepadre,moises),
+        propertyAssertion(hasson(luiz,fred)),
+        propertyAssertion(hasson(moises,luiz)),
+        propertyAssertion(hasson(zepadre,moises)),
         subClassOf(
             objectSomeValuesFrom(
                 hasson(_,_),

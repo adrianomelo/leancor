@@ -38,7 +38,7 @@ assertion(classAssertion(ClassAssertionValue)) -->
         ClassAssertionValue=..[ClassValue, InstanceValue]
     }.
 
-assertion(Assertion) -->
+assertion(propertyAssertion(Assertion)) -->
     [In], {
         atom_con2cat('ObjectPropertyAssertion(', Rest, ')', In),
         atomic_list_concat(List, ' ', Rest),
@@ -249,9 +249,11 @@ to_clausule(subClassOf(A, B), Matrix) :-
 	remove_rows(M, Matrix), !.
 
 to_clausule(classAssertion(A), [[-A]]) :- !.
+to_clausule(propertyAssertion(A), [[-A]]) :- !.
 
 to_clausule(Item, []) :- \+Item=subClassOf(_,_), !.
 to_clausule(Item, []) :- \+Item=classAssertion(_), !.
+to_clausule(Item, []) :- \+Item=propertyAssertion(_), !.
 
 to_clausule_left(A, [A]) :- var(A), !.
 to_clausule_left(union(A, B), [M]) :- to_clausule_left(A, Ad), to_clausule_left(B, Bd), append(Ad, Bd, M), !.
