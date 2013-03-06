@@ -19,7 +19,7 @@ test(classDeclaration) :-
     
 test(individual) :-
    Input  = 'ClassAssertion(<http://protege.stanford.edu/plugins/owl/owl-library/koala.owl#Degree> <http://protege.stanford.edu/plugins/owl/owl-library/koala.owl#BA>)',
-   Output = degree(ba),
+   Output = classAssertion(degree(ba)),
    axiom(Output, [Input], []).
 
 test(propertyassertion1) :-
@@ -123,6 +123,11 @@ test(disjoint2) :-
 test(class1) :-
     Input  = [class(classname(_))],
     Output = [],
+    create_matrix(Input, Output).
+
+test(class2) :-
+    Input  = [classAssertion(classname(_))],
+    Output = [[-classname(_)]],
     create_matrix(Input, Output).
 
 test(subsumption1) :-
@@ -243,7 +248,7 @@ test(owl4) :-
         dr(_),
         drancestor(_),
         hasson(_,_),
-        dr(fred),
+        classAssertion(dr(fred)),
         hasson(luiz,fred),
         hasson(moises,luiz),
         hasson(zepadre,moises),

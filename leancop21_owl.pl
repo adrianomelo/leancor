@@ -29,7 +29,7 @@ axiom(Axiom) --> disjoint(Axiom), !.
 annotationAssertion(annotationAssertion(AnnotationAssertionValue)) -->
     [In], {atom_con2cat('AnnotationAssertion(', AnnotationAssertionValue, ')', In)}.
 
-assertion(ClassAssertionValue) -->
+assertion(classAssertion(ClassAssertionValue)) -->
     [In], {
         atom_con2cat('ClassAssertion(', Rest, ')', In),
         atomic_list_concat([Class, Instance], ' ', Rest),
@@ -237,10 +237,6 @@ parse_axioms([Head|Rest], [Axiom|Axioms]) :- axiom(Axiom, [Head], []), parse_axi
 parse_axioms([Head|Rest], Axioms) :- \+axiom(_, [Head], []), parse_axioms(Rest, Axioms).
 
 create_matrix([], []).
-create_matrix([Head|AxiomList], Matrix) :-
-    to_clausule(Head, []),
-    create_matrix(AxiomList, Matrix), !.
-    
 create_matrix([Head|AxiomList], Ret) :-
     to_clausule(Head, Clausule),
     append(Clausule, Matrix, Ret),
@@ -250,10 +246,12 @@ to_clausule(subClassOf(A, B), Matrix) :-
 	to_clausule_left(A, Ad),
 	to_clausule_right(B, Bd),
 	append(Ad, Bd, M),
-	remove_rows(M, Matrix),
-	!.
-	
+	remove_rows(M, Matrix), !.
+
+to_clausule(classAssertion(A), [[-A]]) :- !.
+
 to_clausule(Item, []) :- \+Item=subClassOf(_,_), !.
+to_clausule(Item, []) :- \+Item=classAssertion(_), !.
 
 to_clausule_left(A, [A]) :- var(A), !.
 to_clausule_left(union(A, B), [M]) :- to_clausule_left(A, Ad), to_clausule_left(B, Bd), append(Ad, Bd, M), !.
