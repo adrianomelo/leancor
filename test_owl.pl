@@ -229,21 +229,65 @@ test(owl3) :-
     ].
 
 test(owl4) :-
+    parse_owl('testfiles/cycles1.owl', _, _, _, Axioms),
+    create_matrix(Axioms, Matrix),
     Axioms = [
-        dr(_),
-        drancestor(_),
-        hasson(_,_),
+        dr(_), drancestor(_), hasson(_,_),
         classAssertion(dr(fred)),
         propertyAssertion(hasson(luiz,fred)),
         propertyAssertion(hasson(moises,luiz)),
         propertyAssertion(hasson(zepadre,moises)),
-        subClassOf(
-            objectSomeValuesFrom(
-                hasson(_,_),
-                union(drancestor(_), dr(_))),
-            drancestor(_)
-        )],
-    parse_owl('testfiles/cycles1.owl', _, _, _, Axioms).
+        subClassOf(objectSomeValuesFrom(hasson(_,_), union(drancestor(_), dr(_))), drancestor(_))],
+    Matrix = [
+        [-dr(fred)],
+        [-hasson(luiz,fred)],
+        [-hasson(moises,luiz)],
+        [-hasson(zepadre,moises)],
+        [hasson(X,Y),dr(Y),-drancestor(X)],
+        [hasson(X,Y),drancestor(Y),-drancestor(X)],
+        [drancestor(zepadre)]].
+
+test(owl5) :-
+    parse_owl('testfiles/grandparent.owl',_,_,_,Axioms),
+    create_matrix(Axioms, Matrix),
+    Axioms = [
+        classAssertion(person(pa)),
+        classAssertion(person(pb)),
+        classAssertion(person(pc)),
+        classAssertion(person(pd)),
+        grandparent(_),
+        greatgrandparent(_),
+        parent(_),
+        person(_),
+        subClassOf(grandparent(X),objectSomeValuesFrom(haschild(X,Y),parent(Y))),
+        subClassOf(objectSomeValuesFrom(haschild(X,Y),parent(Y)),grandparent(X)),
+        subClassOf(greatgrandparent(X),objectSomeValuesFrom(haschild(X,Y),grandparent(Y))),
+        subClassOf(objectSomeValuesFrom(haschild(X,Y),grandparent(Y)),greatgrandparent(X)),
+        subClassOf(parent(X),objectSomeValuesFrom(haschild(X,Y),person(Y))),
+        subClassOf(objectSomeValuesFrom(haschild(X,Y),person(Y)),parent(X)),
+        propertyAssertion(haschild(pa,pb)),
+        propertyAssertion(haschild(pb,pc)),
+        propertyAssertion(haschild(pc,pd))
+    ],
+    Matrix = [
+        [-person(pa)],
+        [-person(pb)],
+        [-person(pc)],
+        [-person(pd)],
+        [grandparent(X),-parent(f(Y))],
+        [grandparent(X),-haschild(X,f(Y))],
+        [haschild(X,Y),parent(Y),-grandparent(X)],
+        [greatgrandparent(X),-grandparent(g(Y))],
+        [greatgrandparent(X),-haschild(X,g(Y))],
+        [haschild(X,Y),grandparent(Y),-greatgrandparent(X)],
+        [parent(X),-person(h(Y))],
+        [parent(X),-haschild(X,h(Y))],
+        [haschild(X,Y),person(Y),-parent(X)],
+        [-haschild(pa,pb)],
+        [-haschild(pb,pc)],
+        [-haschild(pc,pd)],
+        [greatgrandparent(pa)]
+    ].
 
 :- end_tests(leancop).
 :- run_tests.
