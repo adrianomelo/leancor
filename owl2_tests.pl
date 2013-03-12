@@ -1,4 +1,4 @@
-:- [owl2].
+:- [owl2_parser].
 
 :- begin_tests(basic).
 
