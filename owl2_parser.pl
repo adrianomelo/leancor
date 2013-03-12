@@ -12,8 +12,11 @@ import(import(Uri)) -->
     "Import(", uri(Uri), ")".
 
 declaration(class(Class)) -->
-    "Declaration(Class(", entity(Name), "))",
+    "Declaration(Class(", entity(Name), "))", !,
         { Class=..[Name, _] }.
+
+declaration(namedIndividual(Name)) -->
+    "Declaration(NamedIndividual(", entity(Name), "))".
 
 classAssertion(classAssertion(Instance)) --> 
     "ClassAssertion(", entity(ClassName), " ", entity(InstanceName), ")", 
@@ -44,7 +47,7 @@ disjoint(Disjoint) -->
 entity(Name) -->
     "<", any_chars(_), "#", word(Name), ">", { ! }.
 
-uri(Uri) --> "<", any_chars(Chars), "#>", { name(Uri, Chars), ! }.
+uri(Uri) --> "<", any_chars(Chars), "#>", !, { name(Uri, Chars) }.
 uri(Uri) --> "<", any_chars(Chars), ">", { name(Uri, Chars) }.
 
 %%%%%%%%%%%%%%%%%%%%%%
@@ -90,6 +93,10 @@ disjointExpression(Expression) --> class(Expression).
 %%%%%%%%%%%%%%%%%
 
 is_any_char(X) :- X >= 0, X < 255, X \== 32, X \== 41.
+
+parse_owl(File, Prefixes, Imports, Axioms) :-
+    read_file_to_codes(File, Input, []),
+    owl(Prefixes, Imports, Axioms, Input, _).
 
 %%%%%%%%%%%%%%%%%%%
 %% Helper Clauses %
