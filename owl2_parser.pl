@@ -57,7 +57,7 @@ uri(Uri) --> "<", any_chars(Chars), ">", { name(Uri, Chars) }.
 property(Class) --> entity(PropertyName), { Class=..[PropertyName,_,_] }.
 class(Class) --> entity(ClassName), { Class=..[ClassName,_] }.
 
-assertion(X) --> classAssertion(X).
+assertion(X) --> classAssertion(X), !.
 assertion(X) --> objectPropertyAssertion(X).
 
 classExpression(Exp) --> class(Exp), !.
@@ -68,6 +68,7 @@ classExpression(Exp) --> objectIntersectionOf(Exp).
 
 axiom(X) --> declaration(X), !.
 axiom(X) --> subClassOf(X), !.
+axiom(X) --> assertion(X), !.
 axiom(X) --> disjoint(X).
 
 imports([Import|Imports]) --> import(Import), "\n", imports(Imports), !.
