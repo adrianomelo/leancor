@@ -1,22 +1,24 @@
 
 owl(Prefixes, Imports, Axioms) --> 
-    prefixes(Prefixes), "\n\n", ontology(Imports, Axioms).
+    prefixes(Prefixes), newline, ontology(Imports, Axioms).
 
 prefix(prefix(Ns, Uri)) -->
     "Prefix(", word(Ns) ,":=", uri(Uri), ")".
 
 ontology(Imports, Axioms) --> 
-    "Ontology(", uri(_), "\n\n", imports(Imports), axioms(Axioms), ")", !.
+    "Ontology(", uri(_), newline, imports(Imports), axioms(Axioms), ")", !.
 
 import(import(Uri)) -->
     "Import(", uri(Uri), ")".
 
 declaration(class(Class)) -->
-    "Declaration(Class(", entity(Name), "))", !,
-        { Class=..[Name, _] }.
+    "Declaration(Class(", class(Class), "))".
 
 declaration(namedIndividual(Name)) -->
     "Declaration(NamedIndividual(", entity(Name), "))".
+
+declaration(objectProperty(Property)) -->
+    "Declaration(ObjectProperty(", property(Property), "))".
 
 classAssertion(classAssertion(Instance)) --> 
     "ClassAssertion(", entity(ClassName), " ", entity(InstanceName), ")", 
@@ -47,7 +49,7 @@ disjoint(Disjoint) -->
 entity(Name) -->
     "<", any_chars(_), "#", word(Name), ">", { ! }.
 
-uri(Uri) --> "<", any_chars(Chars), "#>", !, { name(Uri, Chars) }.
+uri(Uri) --> "<", any_chars(Chars), "#>", { name(Uri, Chars), ! }.
 uri(Uri) --> "<", any_chars(Chars), ">", { name(Uri, Chars) }.
 
 %%%%%%%%%%%%%%%%%%%%%%
@@ -66,8 +68,8 @@ classExpression(Exp) --> objectAllValuesFrom(Exp), !.
 classExpression(Exp) --> objectUnionOf(Exp), !.
 classExpression(Exp) --> objectIntersectionOf(Exp).
 
-axiom(X) --> declaration(X), !.
 axiom(X) --> subClassOf(X), !.
+axiom(X) --> declaration(X), !.
 axiom(X) --> assertion(X), !.
 axiom(X) --> disjoint(X).
 
@@ -103,6 +105,9 @@ parse_owl(File, Prefixes, Imports, Axioms) :-
 %% Helper Clauses %
 %%%%%%%%%%%%%%%%%%%
 
+newline --> "\n", newline, !.
+newline --> [].
+
 any_chars([X|Y]) --> any_char(X), any_chars(Y).
 any_chars([]) --> [].
 
@@ -120,3 +125,10 @@ is_char(X) :- X >= 0'a, X =< 0'z, !.
 is_char(X) :- X >= 0'A, X =< 0'Z, !.
 is_char(X) :- X >= 0'0, X =< 0'9, !.
 is_char(0'_).
+
+% TODO: Annotation, AnnotationAssertion, DataPropertyAssertion, 
+% DataPropertyDomain, DataPropertyRange, DifferentIndividuals,
+% DisjointClasses, EquivalentClasses, FunctionalObjectProperty,
+% InverseObjectProperties, ObjectPropertyDomain, ObjectPropertyRange
+% SubObjectPropertyOf, SymmetricObjectProperty, TransitiveObjectProperty
+
