@@ -137,13 +137,19 @@ test(ontology1) :-
     ontology(Imports, Axioms, Input, []).
 
 test(ontology2) :-
+    Input = "Ontology(<http://cin.ufpe.br/~astm/owl/bird.owl>\nSubClassOf(<http://protege.stanford.edu/plugins/owl/owl-library/koala.owl#TasmanianDevil> <http://protege.stanford.edu/plugins/owl/owl-library/koala.owl#Marsupials>)\n)",
+    Imports = [],
+    Axioms = [subClassOf(tasmaniandevil(_), marsupials(_))],
+    ontology(Imports, Axioms, Input, []).
+
+test(owl1) :-
     Input = "Prefix(owl:=<http://www.w3.org/2002/07/owl#>)\n\n\nOntology(<http://www.cin.ufpe.br/~astm/or.owl>\n\nDeclaration(Class(<http://www.cin.ufpe.br/~astm/or.owl#A>))\n)",
     Prefixes = [prefix(owl, 'http://www.w3.org/2002/07/owl')],
     Imports = [],
     Axioms = [class(a(_))],
     owl(Prefixes, Imports, Axioms, Input, []).
 
-test(ontology3) :-
+test(owl2) :-
     Input = "Prefix(owl:=<http://www.w3.org/2002/07/owl#>)\nPrefix(rdf:=<http://www.w3.org/1999/02/22-rdf-syntax-ns#>)\nPrefix(xml:=<http://www.w3.org/XML/1998/namespace>)\nPrefix(xsd:=<http://www.w3.org/2001/XMLSchema#>)\nPrefix(rdfs:=<http://www.w3.org/2000/01/rdf-schema#>)\n\n\nOntology(<http://www.cin.ufpe.br/~astm/or.owl>\n\nDeclaration(Class(<http://www.cin.ufpe.br/~astm/or.owl#A>))\nSubClassOf(<http://www.cin.ufpe.br/~astm/or.owl#A> ObjectUnionOf(<http://www.cin.ufpe.br/~astm/or.owl#C> <http://www.cin.ufpe.br/~astm/or.owl#B>))\nDeclaration(Class(<http://www.cin.ufpe.br/~astm/or.owl#B>))\nDeclaration(Class(<http://www.cin.ufpe.br/~astm/or.owl#C>))\n)",
     Prefixes = [prefix(owl, 'http://www.w3.org/2002/07/owl'), prefix(rdf, 'http://www.w3.org/1999/02/22-rdf-syntax-ns'), prefix(xml, 'http://www.w3.org/XML/1998/namespace'), prefix(xsd, 'http://www.w3.org/2001/XMLSchema'), prefix(rdfs, 'http://www.w3.org/2000/01/rdf-schema')],
     Imports = [],
