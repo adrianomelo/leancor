@@ -47,6 +47,27 @@ dataPropertyAssertion(dataPropertyAssertion(Property)) -->
 inverseObjectProperties(inverseObjectProperties(PropertyA, PropertyB)) -->
     "InverseObjectProperties(", property(PropertyA), " ", property(PropertyB), ")".
 
+symmetricObjectProperty(symmetricObjectProperty(Property)) -->
+    "SymmetricObjectProperty(", property(Property), ")".
+
+asymmetricObjectProperty(asymmetricObjectProperty(Property)) -->
+    "AsymmetricObjectProperty(", property(Property), ")".
+
+reflexiveObjectProperty(reflexiveObjectProperty(Property)) -->
+    "ReflexiveObjectProperty(", property(Property), ")".
+
+irreflexiveObjectProperty(irreflexiveObjectProperty(Property)) -->
+    "IrreflexiveObjectProperty(", property(Property), ")".
+
+transitiveObjectProperty(transitiveObjectProperty(Property)) -->
+    "TransitiveObjectProperty(", property(Property), ")".
+
+functionalObjectProperty(functionalObjectProperty(Property)) -->
+    "FunctionalObjectProperty(", property(Property), ")".
+
+inverseFunctionalObjectProperty(inverseFunctionalObjectProperty(Property)) -->
+    "InverseFunctionalObjectProperty(", property(Property), ")".
+
 objectSomeValuesFrom(objectSomeValuesFrom(Property, Expression)) -->
     "ObjectSomeValuesFrom(", property(Property), " ", classExpression(Expression), ")".
 
@@ -92,6 +113,13 @@ propertyProperties(Pro) --> objectPropertyDomain(Pro), !.
 propertyProperties(Pro) --> objectPropertyRange(Pro), !.
 propertyProperties(Pro) --> dataPropertyDomain(Pro), !.
 propertyProperties(Pro) --> dataPropertyRange(Pro), !.
+propertyProperties(Pro) --> symmetricObjectProperty(Pro), !.
+propertyProperties(Pro) --> asymmetricObjectProperty(Pro), !.
+propertyProperties(Pro) --> reflexiveObjectProperty(Pro), !.
+propertyProperties(Pro) --> irreflexiveObjectProperty(Pro), !.
+propertyProperties(Pro) --> transitiveObjectProperty(Pro), !.
+propertyProperties(Pro) --> functionalObjectProperty(Pro), !.
+propertyProperties(Pro) --> inverseFunctionalObjectProperty(Pro), !.
 propertyProperties(Pro) --> inverseObjectProperties(Pro).
 
 axiom(X) --> subClassOf(X), !.

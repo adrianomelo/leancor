@@ -47,6 +47,11 @@ test(inverseObjectProperty) :-
     Output = inverseObjectProperties(hascba(_, _), hasabc(_, _)),
     axiom(Output, Input, []).
 
+test(symmetricObjectProperty) :-
+    Input  = "SymmetricObjectProperty(<http://www.cin.ufpe.br/~astm/dataproperty#hasCba>)",
+    Output = symmetricObjectProperty(hascba(_, _)),
+    axiom(Output, Input, []).
+
 test(propertyassertion1) :-
     Input  = "ObjectPropertyAssertion(<http://www.cin.ufpe.br/~astm/cycles1.owl#hasSon> <http://www.cin.ufpe.br/~astm/cycles1.owl#Luiz> <http://www.cin.ufpe.br/~astm/cycles1.owl#Fred>)",
     Output = objectPropertyAssertion(hasson(luiz,fred)),
