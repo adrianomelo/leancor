@@ -34,6 +34,12 @@ objectPropertyAssertion(objectPropertyAssertion(Property)) -->
     "ObjectPropertyAssertion(", entity(PropName), " ", entity(Ind1), " ", entity(Ind2), ")",
         { Property=..[PropName, Ind1, Ind2] }.
 
+dataPropertyDomain(dataPropertyDomain(Property, Exp)) -->
+    "DataPropertyDomain(", property(Property), " ", classExpression(Exp), ")".
+
+dataPropertyRange(dataPropertyRange(Property, Exp)) -->
+    "DataPropertyRange(", property(Property), " ", classExpression(Exp), ")".
+
 dataPropertyAssertion(dataPropertyAssertion(Property)) --> 
     "DataPropertyAssertion(", entity(PropName), " ", entity(Ind1), " ", any_chars(Chars), ")",
         { name(Ind2, Chars), Property=..[PropName, Ind1, Ind2], ! }.
@@ -80,7 +86,9 @@ classExpression(Exp) --> objectUnionOf(Exp), !.
 classExpression(Exp) --> objectIntersectionOf(Exp).
 
 propertyProperties(Pro) --> objectPropertyDomain(Pro), !.
-propertyProperties(Pro) --> objectPropertyRange(Pro).
+propertyProperties(Pro) --> objectPropertyRange(Pro), !.
+propertyProperties(Pro) --> dataPropertyDomain(Pro), !.
+propertyProperties(Pro) --> dataPropertyRange(Pro).
 
 axiom(X) --> subClassOf(X), !.
 axiom(X) --> declaration(X), !.
