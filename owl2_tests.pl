@@ -29,7 +29,12 @@ test(individual) :-
 
 test(propertyassertion1) :-
    Input  = "ObjectPropertyAssertion(<http://www.cin.ufpe.br/~astm/cycles1.owl#hasSon> <http://www.cin.ufpe.br/~astm/cycles1.owl#Luiz> <http://www.cin.ufpe.br/~astm/cycles1.owl#Fred>)",
-   Output = propertyAssertion(hasson(luiz,fred)),
+   Output = objectPropertyAssertion(hasson(luiz,fred)),
+   assertion(Output, Input, []).
+
+test(propertyassertion2) :-
+   Input  = "DataPropertyAssertion(<http://www.cin.ufpe.br/~astm/dataproperty#temNome> <http://www.cin.ufpe.br/~astm/dataproperty#c> \"nomeC\")",
+   Output = dataPropertyAssertion(temnome(c,'\"nomeC\"')),
    assertion(Output, Input, []).
 
 test(somevaluesfrom1) :-

@@ -24,9 +24,13 @@ classAssertion(classAssertion(Instance)) -->
     "ClassAssertion(", entity(ClassName), " ", entity(InstanceName), ")", 
         { Instance=..[ClassName, InstanceName] }.
 
-objectPropertyAssertion(propertyAssertion(Property)) --> 
+objectPropertyAssertion(objectPropertyAssertion(Property)) --> 
     "ObjectPropertyAssertion(", entity(PropName), " ", entity(Ind1), " ", entity(Ind2), ")",
         { Property=..[PropName, Ind1, Ind2] }.
+
+dataPropertyAssertion(dataPropertyAssertion(Property)) --> 
+    "DataPropertyAssertion(", entity(PropName), " ", entity(Ind1), " ", any_chars(Chars), ")",
+        { name(Ind2, Chars), Property=..[PropName, Ind1, Ind2], ! }.
 
 objectSomeValuesFrom(objectSomeValuesFrom(Property, Expression)) -->
     "ObjectSomeValuesFrom(", property(Property), " ", classExpression(Expression), ")".
@@ -60,7 +64,8 @@ property(Class) --> entity(PropertyName), { Class=..[PropertyName,_,_] }.
 class(Class) --> entity(ClassName), { Class=..[ClassName,_] }.
 
 assertion(X) --> classAssertion(X), !.
-assertion(X) --> objectPropertyAssertion(X).
+assertion(X) --> objectPropertyAssertion(X), !.
+assertion(X) --> dataPropertyAssertion(X).
 
 classExpression(Exp) --> class(Exp), !.
 classExpression(Exp) --> objectSomeValuesFrom(Exp), !.
