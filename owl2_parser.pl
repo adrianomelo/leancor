@@ -24,6 +24,12 @@ classAssertion(classAssertion(Instance)) -->
     "ClassAssertion(", entity(ClassName), " ", entity(InstanceName), ")", 
         { Instance=..[ClassName, InstanceName] }.
 
+objectPropertyDomain(objectPropertyDomain(Property, Exp)) -->
+    "ObjectPropertyDomain(", property(Property), " ", classExpression(Exp), ")".
+
+objectPropertyRange(objectPropertyRange(Property, Exp)) -->
+    "ObjectPropertyRange(", property(Property), " ", classExpression(Exp), ")".
+
 objectPropertyAssertion(objectPropertyAssertion(Property)) --> 
     "ObjectPropertyAssertion(", entity(PropName), " ", entity(Ind1), " ", entity(Ind2), ")",
         { Property=..[PropName, Ind1, Ind2] }.
@@ -73,9 +79,13 @@ classExpression(Exp) --> objectAllValuesFrom(Exp), !.
 classExpression(Exp) --> objectUnionOf(Exp), !.
 classExpression(Exp) --> objectIntersectionOf(Exp).
 
+propertyProperties(Pro) --> objectPropertyDomain(Pro), !.
+propertyProperties(Pro) --> objectPropertyRange(Pro).
+
 axiom(X) --> subClassOf(X), !.
 axiom(X) --> declaration(X), !.
 axiom(X) --> assertion(X), !.
+axiom(X) --> propertyProperties(X), !.
 axiom(X) --> disjoint(X).
 
 imports([Import|Imports]) --> import(Import), "\n", imports(Imports), !.

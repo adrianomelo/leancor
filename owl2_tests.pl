@@ -27,6 +27,21 @@ test(individual) :-
     Output = classAssertion(degree(ba)),
     classAssertion(Output, Input, []).
 
+test(propertyDomain) :-
+   Input  = "ObjectPropertyDomain(<http://www.cin.ufpe.br/~astm/dataproperty#hasAbc> <http://www.cin.ufpe.br/~astm/dataproperty#C>)",
+   Output = objectPropertyDomain(hasabc(_, _), c(_)),
+   axiom(Output, Input, []).
+
+test(propertyRange1) :-
+   Input  = "ObjectPropertyRange(<http://www.cin.ufpe.br/~astm/dataproperty#hasAbc> <http://www.cin.ufpe.br/~astm/dataproperty#C>)",
+   Output = objectPropertyRange(hasabc(_, _), c(_)),
+   axiom(Output, Input, []).
+
+test(propertyRange2) :-
+   Input  = "ObjectPropertyRange(<http://www.cin.ufpe.br/~astm/dataproperty#hasAbc> ObjectSomeValuesFrom(<http://www.cin.ufpe.br/~astm/dataproperty#hasAbc> <http://www.cin.ufpe.br/~astm/dataproperty#C>))",
+   Output = objectPropertyRange(hasabc(_, _), objectSomeValuesFrom(hasabc(_,_), c(_))),
+   axiom(Output, Input, []).
+
 test(propertyassertion1) :-
    Input  = "ObjectPropertyAssertion(<http://www.cin.ufpe.br/~astm/cycles1.owl#hasSon> <http://www.cin.ufpe.br/~astm/cycles1.owl#Luiz> <http://www.cin.ufpe.br/~astm/cycles1.owl#Fred>)",
    Output = objectPropertyAssertion(hasson(luiz,fred)),
