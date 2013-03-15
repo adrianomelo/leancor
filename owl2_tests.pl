@@ -42,6 +42,10 @@ test(propertyRange2) :-
    Output = objectPropertyRange(hasabc(_, _), objectSomeValuesFrom(hasabc(_,_), c(_))),
    axiom(Output, Input, []).
 
+test(inverseObjectProperty) :-
+    Input = "InverseObjectProperties(<http://www.cin.ufpe.br/~astm/dataproperty#hasCba> <http://www.cin.ufpe.br/~astm/dataproperty#hasAbc>)",
+    axiom(Output, Input, []).
+
 test(propertyassertion1) :-
    Input  = "ObjectPropertyAssertion(<http://www.cin.ufpe.br/~astm/cycles1.owl#hasSon> <http://www.cin.ufpe.br/~astm/cycles1.owl#Luiz> <http://www.cin.ufpe.br/~astm/cycles1.owl#Fred>)",
    Output = objectPropertyAssertion(hasson(luiz,fred)),
