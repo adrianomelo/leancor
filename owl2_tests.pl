@@ -142,6 +142,11 @@ test(gci3) :-
     Output = subClassOf(objectSomeValuesFrom(hasson(X, Y),  dr(Y)), drancestor(X)),
     axiom(Output, Input, []).
 
+test(equivalent1) :-
+    Input = "EquivalentClasses(<http://www.cin.ufpe.br/~astm/wine.owl#WineDescriptor> ObjectUnionOf(<http://www.cin.ufpe.br/~astm/wine.owl#WineTaste> <http://www.cin.ufpe.br/~astm/wine.owl#WineColor>))",
+    Output = equivalentClasses(winedescriptor(_), objectUnionOf(winetaste(_), winecolor(_))),
+    axiom(Output, Input, []).
+
 test(disjoint) :-
     Input  = "DisjointClasses(<http://www.cin.ufpe.br/~astm/owl/bird.owl#A> <http://www.cin.ufpe.br/~astm/owl/bird.owl#B>)",
     Output = disjoint(a(_), b(_)),

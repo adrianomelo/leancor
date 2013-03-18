@@ -83,6 +83,9 @@ objectIntersectionOf(Intersection) -->
 subClassOf(subClassOf(Exp1, Exp2)) --> 
     "SubClassOf(", classExpression(Exp1), " ", classExpression(Exp2), ")".
 
+equivalentClasses(equivalentClasses(Exp1, Exp2)) -->
+    "EquivalentClasses(", classExpression(Exp1), " ", classExpression(Exp2), ")".
+
 disjoint(Disjoint) -->
     "DisjointClasses(", disjointExpression(Disjoint), ")".
 
@@ -123,6 +126,7 @@ propertyProperties(Pro) --> inverseFunctionalObjectProperty(Pro), !.
 propertyProperties(Pro) --> inverseObjectProperties(Pro).
 
 axiom(X) --> subClassOf(X), !.
+axiom(X) --> equivalentClasses(X), !.
 axiom(X) --> declaration(X), !.
 axiom(X) --> assertion(X), !.
 axiom(X) --> propertyProperties(X), !.
