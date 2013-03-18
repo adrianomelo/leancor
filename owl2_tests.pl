@@ -12,6 +12,11 @@ test(ontologyImport) :-
     Output = import('http://www.co-ode.org/ontologies/pizza/pizza.owl'),
     import(Output, Input, []).
 
+test(uri1) :-
+    Input = "ObjectPropertyAssertion(:hasBody :VentanaCheninBlanc :Medium)",
+    Output = objectPropertyAssertion(hasbody(ventanacheninblanc, medium)),
+    axiom(Output, Input, []).
+
 test(classDeclaration1) :-
     Input  = "Declaration(NamedIndividual(<http://www.cin.ufpe.br/~astm/granparent.owl#pc>))",
     Output = namedIndividual(pc),
