@@ -115,6 +115,20 @@ classExpression(Exp) --> objectSomeValuesFrom(Exp), !.
 classExpression(Exp) --> objectAllValuesFrom(Exp), !.
 classExpression(Exp) --> objectUnionOf(Exp), !.
 classExpression(Exp) --> objectIntersectionOf(Exp).
+%classExpression(Exp) --> objectComplementOf(Exp).
+%classExpression(Exp) --> objectOneOf(Exp).
+%classExpression(Exp) --> objectObjectHasValue(Exp).
+%classExpression(Exp) --> objectHasValue(Exp).
+%classExpression(Exp) --> objectHasSelf(Exp).
+%classExpression(Exp) --> objectMinCardinality(Exp).
+%classExpression(Exp) --> objectMaxCardinality(Exp).
+%classExpression(Exp) --> objectExactCardinality(Exp).
+%classExpression(Exp) --> dataSomeValuesFrom(Exp).
+%classExpression(Exp) --> dataAllValuesFrom(Exp).
+%classExpression(Exp) --> dataHasValue(Exp).
+%classExpression(Exp) --> dataMinCardinality(Exp).
+%classExpression(Exp) --> dataMaxCardinality(Exp).
+%classExpression(Exp) --> dataExactCardinality(Exp).
 
 propertyProperties(Pro) --> objectPropertyDomain(Pro), !.
 propertyProperties(Pro) --> objectPropertyRange(Pro), !.
@@ -128,6 +142,20 @@ propertyProperties(Pro) --> transitiveObjectProperty(Pro), !.
 propertyProperties(Pro) --> functionalObjectProperty(Pro), !.
 propertyProperties(Pro) --> inverseFunctionalObjectProperty(Pro), !.
 propertyProperties(Pro) --> inverseObjectProperties(Pro).
+
+%axiom(X) --> classAxiom(X), !.
+%axiom(X) --> declaration(X), !.
+%axiom(X) --> objectPropertyAxiom(X), !.
+%axiom(X) --> dataPropertyAxiom(X), !.
+%axiom(X) --> dataTypeDefinition(X), !.
+%axiom(X) --> hasKey(X), !.
+%axiom(X) --> assetion(X), !.
+%axiom(X) --> annotationAxiom(X).
+
+%classAxiom(X) --> subClassOf(X), !.
+%classAxiom(X) --> equivalentClasses(X), !.
+%classAxiom(X) --> disjointClasses(X), !.
+%classAxiom(X) --> disjointUnion(X), !.
 
 axiom(X) --> subClassOf(X), !.
 axiom(X) --> equivalentClasses(X), !.
