@@ -194,4 +194,7 @@ is_char(0'_).
 % DisjointClasses, EquivalentClasses, FunctionalObjectProperty,
 % InverseObjectProperties, ObjectPropertyDomain, ObjectPropertyRange
 % SubObjectPropertyOf, SymmetricObjectProperty, TransitiveObjectProperty
-
+% ObjectHasValue, ObjectMaxCardinality, DisjointUnion,
+% EquivalentObjectProperties, DisjointObjectProperties, SubDataPropertyOf,
+% EquivalentDataProperties, DisjointDataProperties, FunctionalDataProperty,
+% SameIndividual, NegativeObjectPropertyAssertion
