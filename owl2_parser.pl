@@ -84,6 +84,10 @@ objectMaxCardinality(objectMaxCardinality(Number, PropertyName)) -->
     "ObjectMaxCardinality(", word(NumberValue), " ", entity(PropertyName), ")",
         { atom_number(NumberValue, Number) }.
 
+objectMinCardinality(objectMinCardinality(Number, PropertyName)) --> 
+    "ObjectMinCardinality(", word(NumberValue), " ", entity(PropertyName), ")",
+        { atom_number(NumberValue, Number) }.
+
 objectHasValue(objectHasValue(Property)) --> 
     "ObjectHasValue(", entity(PropertyName), " ", entity(IndividualName), ")",
         { Property=..[PropertyName, _, IndividualName] }.
@@ -127,6 +131,7 @@ classExpression(Exp) --> objectAllValuesFrom(Exp), !.
 classExpression(Exp) --> objectUnionOf(Exp), !.
 classExpression(Exp) --> objectHasValue(Exp), !.
 classExpression(Exp) --> objectMaxCardinality(Exp), !.
+classExpression(Exp) --> objectMinCardinality(Exp), !.
 classExpression(Exp) --> objectOneOf(Exp), !.
 classExpression(Exp) --> objectIntersectionOf(Exp).
 

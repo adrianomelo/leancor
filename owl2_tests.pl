@@ -167,6 +167,11 @@ test(equivalent2) :-
     Output = equivalentClasses(alsatianwine(_), objectIntersectionOf(objectHasValue(locatedin(_, alsaceregion)), wine(_))),
     axiom(Output, Input, []).
 
+test(equivalent3) :-
+    Input  = "EquivalentClasses(:Meritage ObjectIntersectionOf(:Wine ObjectAllValuesFrom(:madeFromGrape ObjectOneOf(:PetiteVerdotGrape :MerlotGrape :MalbecGrape :CabernetSauvignonGrape :CabernetFrancGrape)) ObjectMinCardinality(2 :madeFromGrape)))",
+    Output = equivalentClasses(meritage(_), objectIntersectionOf(wine(_), objectIntersectionOf(objectAllValuesFrom(madefromgrape(_, _), objectOneOf(petiteverdotgrape, objectOneOf(merlotgrape, objectOneOf(malbecgrape, objectOneOf(cabernetsauvignongrape, cabernetfrancgrape))))), objectMinCardinality(2, madefromgrape)))),
+    axiom(Output, Input, []).
+
 test(disjoint) :-
     Input  = "DisjointClasses(<http://www.cin.ufpe.br/~astm/owl/bird.owl#A> <http://www.cin.ufpe.br/~astm/owl/bird.owl#B>)",
     Output = disjoint(a(_), b(_)),
