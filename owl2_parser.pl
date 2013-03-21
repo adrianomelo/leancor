@@ -80,6 +80,10 @@ objectUnionOf(Union) -->
 objectIntersectionOf(Intersection) --> 
     "ObjectIntersectionOf(", objectIntersectionOfExpression(Intersection), ")".
 
+objectHasValue(objectHasValue(Property)) --> 
+    "ObjectHasValue(", entity(PropertyName), " ", entity(IndividualName), ")",
+        { Property=..[PropertyName, _, IndividualName] }.
+
 subClassOf(subClassOf(Exp1, Exp2)) --> 
     "SubClassOf(", classExpression(Exp1), " ", classExpression(Exp2), ")".
 
@@ -114,7 +118,9 @@ classExpression(Exp) --> class(Exp), !.
 classExpression(Exp) --> objectSomeValuesFrom(Exp), !.
 classExpression(Exp) --> objectAllValuesFrom(Exp), !.
 classExpression(Exp) --> objectUnionOf(Exp), !.
+classExpression(Exp) --> objectHasValue(Exp), !.
 classExpression(Exp) --> objectIntersectionOf(Exp).
+
 %classExpression(Exp) --> objectComplementOf(Exp).
 %classExpression(Exp) --> objectOneOf(Exp).
 %classExpression(Exp) --> objectObjectHasValue(Exp).

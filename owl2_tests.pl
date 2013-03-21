@@ -152,6 +152,11 @@ test(equivalent1) :-
     Output = equivalentClasses(winedescriptor(_), objectUnionOf(winetaste(_), winecolor(_))),
     axiom(Output, Input, []).
 
+test(equivalent2) :-
+    Input = "EquivalentClasses(:AlsatianWine ObjectIntersectionOf(ObjectHasValue(:locatedIn :AlsaceRegion) :Wine))",
+    Output = equivalentClasses(alsatianwine(_), objectIntersectionOf(objectHasValue(locatedin(_, alsaceregion)), wine(_))),
+    axiom(Output, Input, []).
+
 test(disjoint) :-
     Input  = "DisjointClasses(<http://www.cin.ufpe.br/~astm/owl/bird.owl#A> <http://www.cin.ufpe.br/~astm/owl/bird.owl#B>)",
     Output = disjoint(a(_), b(_)),
