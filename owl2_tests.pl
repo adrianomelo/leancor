@@ -117,6 +117,11 @@ test(union4) :-
     Output = objectUnionOf(drancestor(_), dr(_)),
     classExpression(Output, Input, []).
 
+test(maxCardinality1) :-
+    Input = "ObjectMaxCardinality(1 :madeFromGrape)",
+    Output = objectMaxCardinality(1, madefromgrape),
+    classExpression(Output, Input, []).
+
 test(subClass1) :-
     Input = "SubClassOf(<http://protege.stanford.edu/plugins/owl/owl-library/koala.owl#TasmanianDevil> <http://protege.stanford.edu/plugins/owl/owl-library/koala.owl#Marsupials>)",
     Output = subClassOf(tasmaniandevil(X), marsupials(X)),
