@@ -122,6 +122,11 @@ test(maxCardinality1) :-
     Output = objectMaxCardinality(1, madefromgrape),
     classExpression(Output, Input, []).
 
+test(objectOneOf1) :-
+    Input = "ObjectOneOf(:Peter :Lois :Stewie :Meg :Chris :Brian)",
+    Output = objectOneOf(peter, objectOneOf(lois, objectOneOf(stewie, objectOneOf(meg, objectOneOf(chris, brian))))),
+    classExpression(Output, Input, []).
+
 test(subClass1) :-
     Input = "SubClassOf(<http://protege.stanford.edu/plugins/owl/owl-library/koala.owl#TasmanianDevil> <http://protege.stanford.edu/plugins/owl/owl-library/koala.owl#Marsupials>)",
     Output = subClassOf(tasmaniandevil(X), marsupials(X)),

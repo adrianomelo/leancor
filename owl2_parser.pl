@@ -88,6 +88,9 @@ objectHasValue(objectHasValue(Property)) -->
     "ObjectHasValue(", entity(PropertyName), " ", entity(IndividualName), ")",
         { Property=..[PropertyName, _, IndividualName] }.
 
+objectOneOf(OneOf) -->
+    "ObjectOneOf(", objectOneOfExpression(OneOf), ")".
+
 subClassOf(subClassOf(Exp1, Exp2)) --> 
     "SubClassOf(", classExpression(Exp1), " ", classExpression(Exp2), ")".
 
@@ -124,6 +127,7 @@ classExpression(Exp) --> objectAllValuesFrom(Exp), !.
 classExpression(Exp) --> objectUnionOf(Exp), !.
 classExpression(Exp) --> objectHasValue(Exp), !.
 classExpression(Exp) --> objectMaxCardinality(Exp), !.
+classExpression(Exp) --> objectOneOf(Exp), !.
 classExpression(Exp) --> objectIntersectionOf(Exp).
 
 %classExpression(Exp) --> objectComplementOf(Exp).
@@ -189,6 +193,9 @@ objectUnionOfExpression(Expression) --> classExpression(Expression).
 
 objectIntersectionOfExpression(objectIntersectionOf(Exp1, Exp2)) --> classExpression(Exp1), " ", objectIntersectionOfExpression(Exp2), !.
 objectIntersectionOfExpression(Expression) --> classExpression(Expression).
+
+objectOneOfExpression(objectOneOf(Exp1, Exp2)) --> entity(Exp1), " ", objectOneOfExpression(Exp2), !.
+objectOneOfExpression(Expression) --> entity(Expression).
 
 disjointExpression(disjoint(Exp1, Exp2)) --> class(Exp1), " ", disjointExpression(Exp2), !.
 disjointExpression(Expression) --> class(Expression).
