@@ -265,13 +265,3 @@ is_char(X) :- X >= 0'a, X =< 0'z, !.
 is_char(X) :- X >= 0'A, X =< 0'Z, !.
 is_char(X) :- X >= 0'0, X =< 0'9, !.
 is_char(0'_).
-
-% TODO: Annotation, AnnotationAssertion, DataPropertyAssertion, 
-% DataPropertyDomain, DataPropertyRange, DifferentIndividuals,
-% DisjointClasses, EquivalentClasses, FunctionalObjectProperty,
-% InverseObjectProperties, ObjectPropertyDomain, ObjectPropertyRange
-% SubObjectPropertyOf, SymmetricObjectProperty, TransitiveObjectProperty
-% ObjectHasValue, ObjectMaxCardinality, DisjointUnion,
-% EquivalentObjectProperties, DisjointObjectProperties, SubDataPropertyOf,
-% EquivalentDataProperties, DisjointDataProperties, FunctionalDataProperty,
-% SameIndividual, NegativeObjectPropertyAssertion
