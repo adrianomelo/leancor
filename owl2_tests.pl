@@ -184,6 +184,12 @@ test(disjoint2) :-
 
 test(subObjectPropertyOf1) :-
     Input  = "SubObjectPropertyOf(:hasBody :hasWineDescriptor)",
+    Output = subObjectPropertyOf(hasbody(_,_), haswinedescriptor(_,_)),
+    axiom(Output, Input, []).
+
+test(differentIndividuals1) :- 
+    Input  = "DifferentIndividuals(:Delicate :Moderate :Strong)",
+    Output = differentIndividuals(delicate, differentIndividuals(moderate, strong)),
     axiom(Output, Input, []).
 
 :- end_tests(basic).

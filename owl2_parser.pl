@@ -20,6 +20,9 @@ declarationNamedIndividual(namedIndividual(Name)) -->
 declarationObjectProperty(objectProperty(Property)) -->
     "Declaration(ObjectProperty(", property(Property), "))".
 
+declarationDataProperty(dataProperty(Property)) -->
+    "Declaration(DataProperty(", property(Property), "))".
+
 classAssertion(classAssertion(Instance)) --> 
     "ClassAssertion(", entity(ClassName), " ", entity(InstanceName), ")", 
         { Instance=..[ClassName, InstanceName] }.
@@ -111,6 +114,9 @@ equivalentClasses(equivalentClasses(Exp1, Exp2)) -->
 disjointClasses(Disjoint) -->
     "DisjointClasses(", disjointExpression(Disjoint), ")".
 
+differentIndividuals(Different) -->
+    "DifferentIndividuals(", differentIndividualsExpression(Different), ")".
+
 entity(Name) -->
     "<", any_chars(_), "#", word(Name), ">", { ! }.
 
@@ -131,12 +137,12 @@ class(Class) --> entity(ClassName), { Class=..[ClassName,_] }.
 declaration(Exp) --> declarationClass(Exp), !.
 %declaration(Exp) --> declarationDatatype(Exp), !.
 declaration(Exp) --> declarationObjectProperty(Exp), !.
-%declaration(Exp) --> declarationDataProperty(Exp), !.
+declaration(Exp) --> declarationDataProperty(Exp), !.
 %declaration(Exp) --> declarationAnnotationProperty(Exp), !.
 declaration(Exp) --> declarationNamedIndividual(Exp).
 
 %assertion(X) --> sameIndifidual(X), !.
-%assertion(X) --> differentIndividuals(X), !.
+assertion(X) --> differentIndividuals(X), !.
 assertion(X) --> classAssertion(X), !.
 assertion(X) --> objectPropertyAssertion(X), !.
 %assertion(X) --> negativeObjectPropertyAssertion(X), !.
@@ -221,6 +227,9 @@ objectOneOfExpression(Expression) --> entity(Expression).
 
 disjointExpression(disjointClasses(Exp1, Exp2)) --> class(Exp1), " ", disjointExpression(Exp2), !.
 disjointExpression(Expression) --> class(Expression).
+
+differentIndividualsExpression(differentIndividuals(Ind1, Ind2)) --> entity(Ind1), " ", differentIndividualsExpression(Ind2), !.
+differentIndividualsExpression(Individual) --> entity(Individual).
 
 %%%%%%%%%%%%%%%%%
 %% Helper Rules %
