@@ -11,13 +11,13 @@ ontology(Imports, Axioms) -->
 import(import(Uri)) -->
     "Import(", uri(Uri), ")".
 
-declaration(class(Class)) -->
+declarationClass(class(Class)) -->
     "Declaration(Class(", class(Class), "))".
 
-declaration(namedIndividual(Name)) -->
+declarationNamedIndividual(namedIndividual(Name)) -->
     "Declaration(NamedIndividual(", entity(Name), "))".
 
-declaration(objectProperty(Property)) -->
+declarationObjectProperty(objectProperty(Property)) -->
     "Declaration(ObjectProperty(", property(Property), "))".
 
 classAssertion(classAssertion(Instance)) --> 
@@ -96,6 +96,9 @@ objectHasValue(objectHasValue(Property)) -->
     "ObjectHasValue(", entity(PropertyName), " ", entity(IndividualName), ")",
         { Property=..[PropertyName, _, IndividualName] }.
 
+subObjectPropertyOf(subObjectPropertyOf(PropA, PropB)) --> 
+    "SubObjectPropertyOf(", property(PropA), " ", property(PropB), ")".
+
 objectOneOf(OneOf) -->
     "ObjectOneOf(", objectOneOfExpression(OneOf), ")".
 
@@ -105,7 +108,7 @@ subClassOf(subClassOf(Exp1, Exp2)) -->
 equivalentClasses(equivalentClasses(Exp1, Exp2)) -->
     "EquivalentClasses(", classExpression(Exp1), " ", classExpression(Exp2), ")".
 
-disjoint(Disjoint) -->
+disjointClasses(Disjoint) -->
     "DisjointClasses(", disjointExpression(Disjoint), ")".
 
 entity(Name) -->
@@ -125,29 +128,33 @@ uri(Uri) --> "<", any_chars(Chars), ">", { name(Uri, Chars) }.
 property(Class) --> entity(PropertyName), { Class=..[PropertyName,_,_] }.
 class(Class) --> entity(ClassName), { Class=..[ClassName,_] }.
 
+declaration(Exp) --> declarationClass(Exp), !.
+%declaration(Exp) --> declarationDatatype(Exp), !.
+declaration(Exp) --> declarationObjectProperty(Exp), !.
+%declaration(Exp) --> declarationDataProperty(Exp), !.
+%declaration(Exp) --> declarationAnnotationProperty(Exp), !.
+declaration(Exp) --> declarationNamedIndividual(Exp).
+
+%assertion(X) --> sameIndifidual(X), !.
+%assertion(X) --> differentIndividuals(X), !.
 assertion(X) --> classAssertion(X), !.
 assertion(X) --> objectPropertyAssertion(X), !.
+%assertion(X) --> negativeObjectPropertyAssertion(X), !.
 assertion(X) --> dataPropertyAssertion(X).
+%assertion(X) --> negativeDataPropertyAssertion(X).
 
 classExpression(Exp) --> class(Exp), !.
+classExpression(Exp) --> objectIntersectionOf(Exp), !.
+classExpression(Exp) --> objectUnionOf(Exp), !.
+%classExpression(Exp) --> objectComplementOf(Exp).
+classExpression(Exp) --> objectOneOf(Exp), !.
 classExpression(Exp) --> objectSomeValuesFrom(Exp), !.
 classExpression(Exp) --> objectAllValuesFrom(Exp), !.
-classExpression(Exp) --> objectUnionOf(Exp), !.
 classExpression(Exp) --> objectHasValue(Exp), !.
-classExpression(Exp) --> objectMaxCardinality(Exp), !.
-classExpression(Exp) --> objectMinCardinality(Exp), !.
-classExpression(Exp) --> objectExactCardinality(Exp), !.
-classExpression(Exp) --> objectOneOf(Exp), !.
-classExpression(Exp) --> objectIntersectionOf(Exp).
-
-%classExpression(Exp) --> objectComplementOf(Exp).
-%classExpression(Exp) --> objectOneOf(Exp).
-%classExpression(Exp) --> objectObjectHasValue(Exp).
-%classExpression(Exp) --> objectHasValue(Exp).
 %classExpression(Exp) --> objectHasSelf(Exp).
-%classExpression(Exp) --> objectMinCardinality(Exp).
-%classExpression(Exp) --> objectMaxCardinality(Exp).
-%classExpression(Exp) --> objectExactCardinality(Exp).
+classExpression(Exp) --> objectMinCardinality(Exp), !.
+classExpression(Exp) --> objectMaxCardinality(Exp), !.
+classExpression(Exp) --> objectExactCardinality(Exp).
 %classExpression(Exp) --> dataSomeValuesFrom(Exp).
 %classExpression(Exp) --> dataAllValuesFrom(Exp).
 %classExpression(Exp) --> dataHasValue(Exp).
@@ -155,39 +162,44 @@ classExpression(Exp) --> objectIntersectionOf(Exp).
 %classExpression(Exp) --> dataMaxCardinality(Exp).
 %classExpression(Exp) --> dataExactCardinality(Exp).
 
-propertyProperties(Pro) --> objectPropertyDomain(Pro), !.
-propertyProperties(Pro) --> objectPropertyRange(Pro), !.
-propertyProperties(Pro) --> dataPropertyDomain(Pro), !.
-propertyProperties(Pro) --> dataPropertyRange(Pro), !.
-propertyProperties(Pro) --> symmetricObjectProperty(Pro), !.
-propertyProperties(Pro) --> asymmetricObjectProperty(Pro), !.
-propertyProperties(Pro) --> reflexiveObjectProperty(Pro), !.
-propertyProperties(Pro) --> irreflexiveObjectProperty(Pro), !.
-propertyProperties(Pro) --> transitiveObjectProperty(Pro), !.
-propertyProperties(Pro) --> functionalObjectProperty(Pro), !.
-propertyProperties(Pro) --> inverseFunctionalObjectProperty(Pro), !.
-propertyProperties(Pro) --> inverseObjectProperties(Pro).
+objectPropertyAxiom(Ax) --> subObjectPropertyOf(Ax), !.
+%objectPropertyAxiom(Ax) --> equivalentObjectProperties(Ax), !.
+%objectPropertyAxiom(Ax) --> disjointObjectProperties(Ax), !.
+objectPropertyAxiom(Ax) --> inverseObjectProperties(Ax), !.
+objectPropertyAxiom(Ax) --> objectPropertyDomain(Ax), !.
+objectPropertyAxiom(Ax) --> objectPropertyRange(Ax), !.
+objectPropertyAxiom(Ax) --> functionalObjectProperty(Ax), !.
+objectPropertyAxiom(Ax) --> inverseFunctionalObjectProperty(Ax), !.
+objectPropertyAxiom(Ax) --> reflexiveObjectProperty(Ax), !.
+objectPropertyAxiom(Ax) --> irreflexiveObjectProperty(Ax), !.
+objectPropertyAxiom(Ax) --> symmetricObjectProperty(Ax), !.
+objectPropertyAxiom(Ax) --> asymmetricObjectProperty(Ax), !.
+objectPropertyAxiom(Ax) --> transitiveObjectProperty(Ax), !.
 
-%axiom(X) --> classAxiom(X), !.
-%axiom(X) --> declaration(X), !.
-%axiom(X) --> objectPropertyAxiom(X), !.
-%axiom(X) --> dataPropertyAxiom(X), !.
+%dataPropertyAxiom(Ax) --> subDataPropertyOf(Ax), !.
+%dataPropertyAxiom(Ax) --> equivalentDataProperties(Ax), !.
+%dataPropertyAxiom(Ax) --> disjointDataProperties(Ax), !.
+dataPropertyAxiom(Ax) --> dataPropertyDomain(Ax), !.
+dataPropertyAxiom(Ax) --> dataPropertyRange(Ax).
+%dataPropertyAxiom(Ax) --> functionalDataProperty(Ax), !.
+
+axiom(X) --> declaration(X), !.
+axiom(X) --> classAxiom(X), !.
+axiom(X) --> objectPropertyAxiom(X), !.
+axiom(X) --> dataPropertyAxiom(X), !.
 %axiom(X) --> dataTypeDefinition(X), !.
 %axiom(X) --> hasKey(X), !.
-%axiom(X) --> assetion(X), !.
+axiom(X) --> assertion(X).
 %axiom(X) --> annotationAxiom(X).
 
-%classAxiom(X) --> subClassOf(X), !.
-%classAxiom(X) --> equivalentClasses(X), !.
-%classAxiom(X) --> disjointClasses(X), !.
+classAxiom(X) --> subClassOf(X), !.
+classAxiom(X) --> equivalentClasses(X), !.
+classAxiom(X) --> disjointClasses(X).
 %classAxiom(X) --> disjointUnion(X), !.
 
-axiom(X) --> subClassOf(X), !.
-axiom(X) --> equivalentClasses(X), !.
-axiom(X) --> declaration(X), !.
-axiom(X) --> assertion(X), !.
-axiom(X) --> propertyProperties(X), !.
-axiom(X) --> disjoint(X).
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Clauses that create lists %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 imports([Import|Imports]) --> import(Import), "\n", imports(Imports), !.
 imports([]) --> [].
@@ -207,7 +219,7 @@ objectIntersectionOfExpression(Expression) --> classExpression(Expression).
 objectOneOfExpression(objectOneOf(Exp1, Exp2)) --> entity(Exp1), " ", objectOneOfExpression(Exp2), !.
 objectOneOfExpression(Expression) --> entity(Expression).
 
-disjointExpression(disjoint(Exp1, Exp2)) --> class(Exp1), " ", disjointExpression(Exp2), !.
+disjointExpression(disjointClasses(Exp1, Exp2)) --> class(Exp1), " ", disjointExpression(Exp2), !.
 disjointExpression(Expression) --> class(Expression).
 
 %%%%%%%%%%%%%%%%%

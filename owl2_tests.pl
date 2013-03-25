@@ -174,12 +174,16 @@ test(equivalent3) :-
 
 test(disjoint) :-
     Input  = "DisjointClasses(<http://www.cin.ufpe.br/~astm/owl/bird.owl#A> <http://www.cin.ufpe.br/~astm/owl/bird.owl#B>)",
-    Output = disjoint(a(_), b(_)),
+    Output = disjointClasses(a(_), b(_)),
     axiom(Output, Input, []).
 
 test(disjoint2) :-
     Input  = "DisjointClasses(<http://www.cin.ufpe.br/~astm/owl/bird.owl#A> <http://www.cin.ufpe.br/~astm/owl/bird.owl#B> <http://www.cin.ufpe.br/~astm/owl/bird.owl#C>)",
-    Output = disjoint(a(_), disjoint(b(_), c(_))),
+    Output = disjointClasses(a(_), disjointClasses(b(_), c(_))),
+    axiom(Output, Input, []).
+
+test(subObjectPropertyOf1) :-
+    Input  = "SubObjectPropertyOf(:hasBody :hasWineDescriptor)",
     axiom(Output, Input, []).
 
 :- end_tests(basic).
