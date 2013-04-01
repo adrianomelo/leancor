@@ -26,6 +26,11 @@ test(left_union3) :-
     to_clausule(Input, Output),
     Output == [[a(X), -e(X)], [b(X), -e(X)], [c(X), -e(X)], [d(X), -e(X)]].
 
+test(left_intersection_union1) :-
+    Input  = subClassOf(objectIntersectionOf(a(X), objectUnionOf(b(X), c(X))), d(X)),
+    to_clausule(Input, Output),
+    Output == [[b(X), a(X), -d(X)], [c(X), a(X), -d(X)]].
+
 test(right_intersection1) :-
     Input  = subClassOf(a(X), objectIntersectionOf(b(X), c(X))),
     to_clausule(Input, Output),
