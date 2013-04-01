@@ -1,20 +1,63 @@
 :- [owl2_matrix].
+:- begin_tests(to_clausule).
+
+test(left_intersection1) :-
+    Input  = subClassOf(objectIntersectionOf(a(X), b(X)), c(X)),
+    to_clausule(Input, Output),
+    Output == [[a(X), b(X), -c(X)]].
+
+test(left_intersection2) :-
+    Input  = subClassOf(objectIntersectionOf(a(X), objectIntersectionOf(b(X), c(X))), d(X)),
+    to_clausule(Input, Output),
+    Output == [[a(X), b(X), c(X), -d(X)]].
+
+test(left_union1) :-
+    Input  = subClassOf(objectUnionOf(a(X), b(X)), c(X)),
+    to_clausule(Input, Output),
+    Output == [[a(X), -c(X)], [b(X), -c(X)]].
+
+test(left_union2) :-
+    Input  = subClassOf(objectUnionOf(a(X), objectUnionOf(b(X), c(X))), d(X)),
+    to_clausule(Input, Output),
+    Output == [[a(X), -d(X)], [b(X), -d(X)], [c(X), -d(X)]].
+
+test(left_union3) :-
+    Input  = subClassOf(objectUnionOf(a(X), objectUnionOf(b(X), objectUnionOf(c(X), d(X)))), e(X)),
+    to_clausule(Input, Output),
+    Output == [[a(X), -e(X)], [b(X), -e(X)], [c(X), -e(X)], [d(X), -e(X)]].
+
+test(right_intersection1) :-
+    Input  = subClassOf(a(X), objectIntersectionOf(b(X), c(X))),
+    to_clausule(Input, Output),
+    Output == [[-b(X), a(X)], [-c(X), a(X)]].
+
+test(right_union1) :-
+    Input  = subClassOf(a(X), objectUnionOf(b(X), c(X))),
+    to_clausule(Input, Output),
+    Output == [[a(X), -b(X), -c(X)]].
+
+:- end_tests(to_clausule).
 :- begin_tests(creatematrix).
 
 test(subsumption1) :-
     Input  = [subClassOf(tasmaniandevil(X), marsupials(X))],
-    Output = [[tasmaniandevil(X), -marsupials(X)]],
-    create_matrix(Input, Output).
+    create_matrix(Input, Output),
+    Output == [[tasmaniandevil(X), -marsupials(X)]].
 
 test(subsumption2) :-
     Input  = [subClassOf(tasmaniandevil(X), marsupials(X)), subClassOf(tasmaniandevil(X), marsupials(X))],
-    Output = [[tasmaniandevil(X), -marsupials(X)], [tasmaniandevil(X), -marsupials(X)]],
-    create_matrix(Input, Output).
+    create_matrix(Input, Output),
+    Output == [[tasmaniandevil(X), -marsupials(X)], [tasmaniandevil(X), -marsupials(X)]].
 
-test(lefthandsideunion) :-
+test(lefthandsideunion1) :-
     Input = [subClassOf(objectUnionOf(drancestor(Y), dr(Y)), drancestor(Y))],
-    Output = [[drancestor(Y), -drancestor(Y)], [dr(Y), -drancestor(Y)]],
-    create_matrix(Input, Output).
+    create_matrix(Input, Output),
+    Output == [[drancestor(Y), -drancestor(Y)], [dr(Y), -drancestor(Y)]].
+
+test(lefthandsideunion2) :-
+    Input = [subClassOf(objectUnionOf(drancestor(Y), objectUnionOf(dr(Y), person(Y))), drancestor(Y))],
+    create_matrix(Input, Output),
+    Output == [[drancestor(Y), -drancestor(Y)], [dr(Y), -drancestor(Y)], [person(Y), -drancestor(Y)]].
 
 :- end_tests(creatematrix).
 :- begin_tests(nested).
@@ -32,22 +75,41 @@ test(nested1) :-
     ],
     nested(Input, Output).
 
+test(nested2) :-
+    Input  = [[drancestor(Y), [dr(Y), person(Y)]], -drancestor(Y)],
+    Output = [
+        [drancestor(Y), -drancestor(Y)],
+        [dr(Y), -drancestor(Y)],
+        [person(Y), -drancestor(Y)]
+    ],
+    nested(Input, Output).
+
+test(nested3) :-
+    Input  = [[test1(Y), [test2(Y), test3(Y)]], -test4(Y)],
+    Output = [
+        [test1(Y), -test4(Y)],
+        [test2(Y), -test4(Y)],
+        [test3(Y), -test4(Y)]
+    ],
+    nested(Input, Output).
+
 test(nestedclausules1) :-
     Clausules = [a,b,c,[d,e],f],
-    nested_clausules(Clausules, Nested, NotNested),
-    Nested = [[d, e]],
-    NotNested = [a, b, c, f].
+    get_nested(Clausules, Nested, NotNested),
+    Nested == [[d, e]],
+    NotNested == [a, b, c, f].
 
 test(nestedclausules2) :-
     Clausules = [[drancestor(Y), dr(Y)], -drancestor(Y)],
-    nested_clausules(Clausules, Nested, NotNested),
-    Nested = [[drancestor(Y), dr(Y)]],
-    NotNested = [-drancestor(Y)].
+    get_nested(Clausules, Nested, NotNested),
+    Nested == [[drancestor(Y), dr(Y)]],
+    NotNested == [-drancestor(Y)].
 
-test(normalize21) :-
+test(combine_clausules1) :-
     HeadNested = [drancestor(Y), dr(Y)],
-    NotNested = [-drancestor(Y)],
-    normalize2(HeadNested, NotNested, Matrix).
+    NotNested  = [-drancestor(Y)],
+    combine_clausules(HeadNested, NotNested, Matrix),
+    Matrix == [[drancestor(Y), -drancestor(Y)], [dr(Y), -drancestor(Y)]].
 
 :- end_tests(nested).
 :- run_tests.

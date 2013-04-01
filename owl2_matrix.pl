@@ -20,6 +20,9 @@ to_clausule(subClassOf(A, B), Matrix) :-
 to_clausule_left(objectUnionOf(A, B), [M]) :-
     to_clausule_left(A, Ad), to_clausule_left(B, Bd), append(Ad, Bd, M), !.
 
+to_clausule_left(objectIntersectionOf(A, B), M) :-
+    to_clausule_left(A, Ad), to_clausule_left(B, Bd), append(Ad, Bd, M), !.
+
 to_clausule_left(A, [A]) :- 
     functor(A, _, 1).
 
@@ -27,7 +30,15 @@ to_clausule_left(A, [A]) :-
 % to_clausule_left(objectSomeValuesFrom(A, B), M) :- to_clausule_left(A, Ad), to_clausule_left(B, Bd), append(Ad, Bd, M), !.
 % to_clausule_left(A, [A]) :- !.
 
-to_clausule_right(A, [-A]) :- functor(A, _, 1).
+to_clausule_right(objectUnionOf(A, B), M) :-
+    to_clausule_right(A, Ad), to_clausule_right(B, Bd), append(Ad, Bd, M), !.
+
+to_clausule_right(objectIntersectionOf(A, B), [M]) :-
+    to_clausule_right(A, Ad), to_clausule_right(B, Bd), append(Ad, Bd, M), !.
+
+to_clausule_right(A, [-A]) :-
+    functor(A, _, 1).
+
 % to_clausule_right(union(A, B), M) :- to_clausule_right(A, Ad), to_clausule_right(B, Bd), append(Ad, Bd, M), !.
 % to_clausule_right(intersection(A, B), [M]) :- to_clausule_right(A, Ad), to_clausule_right(B, Bd), append(Ad, Bd, M), !.
 % to_clausule_right(objectAllValuesFrom(A, B), M) :- to_clausule_right(A, Ad), to_clausule_right(B, Bd), append(Ad, Bd, M), !.
@@ -35,30 +46,41 @@ to_clausule_right(A, [-A]) :- functor(A, _, 1).
 % to_clausule_right(-A, [A]) :- !.
 % to_clausule_right(A, [-A]).
 
-nested(Clausules, [Clausules]) :-
-    nested_clausules(Clausules, Nested, _), Nested == [], !.
-nested(Clausules, Matrix) :-
-    nested_clausules(Clausules, Nested, NotNested),
-    normalize(Nested, NotNested, Matrix).
+nested_matrix([], []).
+nested_matrix([Clausule|Clausules], Matrix) :-
+    nested(Clausule, MatrixA),
+    nested_matrix(Clausules, MatrixB),
+    append(MatrixA, MatrixB, Matrix).
 
-nested_clausules([], [], []).
-nested_clausules([HeadIn|In], [HeadIn|NestedList], NotNested) :- 
+nested(Clausules, [Clausules]) :-
+    get_nested(Clausules, Nested, _), Nested == [], !.
+nested(Clausules, Matrix) :-
+    get_nested(Clausules, Nested, NotNested),
+    normalize(Nested, NotNested, Matrix1),
+    nested_matrix(Matrix1, Matrix).
+ 
+get_nested([], [], []).
+get_nested([HeadIn|In], [HeadIn|NestedList], NotNested) :- 
     is_list(HeadIn),
-    nested_clausules(In, NestedList, NotNested), !.
-nested_clausules([HeadIn|In], NestedList, [HeadIn|NotNested]) :- 
-    nested_clausules(In, NestedList, NotNested).
+    get_nested(In, NestedList, NotNested), !.
+get_nested([HeadIn|In], NestedList, [HeadIn|NotNested]) :- 
+    get_nested(In, NestedList, NotNested).
 
 normalize([], Matrix, Matrix).
 normalize([HeadNested|Nested], NotNested, Matrix) :-
-    normalize2(HeadNested, NotNested, PartialMatrix),
+    combine_clausules(HeadNested, NotNested, PartialMatrix),
     normalize(Nested, PartialMatrix, Matrix).
 
-normalize2([], _, []).
-normalize2([Literal|Clausules], NotNested, Matrix) :-
+combine_clausules([], _, []).
+combine_clausules([Literal|Clausules], NotNested, Matrix) :-
     append([Literal], NotNested, NewClausule),
-    normalize2(Clausules, NotNested, PartialMatrix),
+    combine_clausules(Clausules, NotNested, PartialMatrix),
     append([NewClausule], PartialMatrix, Matrix).
 
 
+conjunction(objectIntersectionOf(_,_)).
+conjunction(objectSomeValuesFrom(_,_)).
 
+disjunction(objectUnionOf(_,_)).
+disjunction(objectAllValuesFrom(_,_)).
 
