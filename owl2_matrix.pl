@@ -10,6 +10,11 @@ to_clausule(subClassOf(A, B), Matrix) :-
     append(Ad, Bd, M),
     nested(M, Matrix).
 
+to_clausule(equivalentClasses(A, B), Matrix) :-
+    to_clausule(subClassOf(A, B), Matrix1),
+    to_clausule(subClassOf(B, A), Matrix2),
+    append(Matrix1, Matrix2, Matrix).
+
 % to_clausule(classAssertion(A), [[-A]]) :- !.
 % to_clausule(propertyAssertion(A), [[-A]]) :- !.
 

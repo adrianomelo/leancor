@@ -1,3 +1,4 @@
+
 :- [owl2_matrix].
 :- begin_tests(to_clausule).
 
@@ -40,6 +41,11 @@ test(right_union1) :-
     Input  = subClassOf(a(X), objectUnionOf(b(X), c(X))),
     to_clausule(Input, Output),
     Output == [[a(X), -b(X), -c(X)]].
+
+test(equivalent1) :-
+    Input  = equivalentClasses(alsatianwine(X), objectIntersectionOf(abc(X), wine(X))),
+    to_clausule(Input, Output),
+    Output == [[-abc(X), alsatianwine(X)], [-wine(X), alsatianwine(X)], [abc(X), wine(X), -alsatianwine(X)]].
 
 :- end_tests(to_clausule).
 :- begin_tests(creatematrix).
