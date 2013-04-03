@@ -27,6 +27,8 @@ to_clausule(subObjectPropertyOf(A, B), [[NewA, -NewB], [-NewA, NewB]]) :-
     NewA=..[PropertyNameA, X, Y],
     NewB=..[PropertyNameB, Y, X].
 
+to_clausule(classAssertion(A), [[-A]]).
+
 to_clausule_left(Exp, [M]) :-
     disjunction(Exp, A, B),
     to_clausule_left(A, Ad), to_clausule_left(B, Bd), append(Ad, Bd, M), !.

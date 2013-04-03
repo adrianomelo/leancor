@@ -154,6 +154,12 @@ test(axiom3) :-
         [-hassugar(X, Y), haswinedescriptor(Y, X)]
     ].
 
+test(axiom4) :-
+    Input  = "ClassAssertion(:Region :AlsaceRegion)",
+    axiom(Parsed, Input, []),
+    create_matrix([Parsed], Matrix),
+    Matrix == [[-region(alsaceregion)]].
+
 :- end_tests(complete).
 :- run_tests.
 
@@ -161,9 +167,10 @@ test(axiom3) :-
 % EquivalentClasses, ObjectIntersectionOf, ObjectHasValue, 
 % InverseObjectProperties, SubObjectPropertyOf, ObjectUnionOf,
 % ObjectAllValuesFrom, ObjectSomeValuesFrom, SubClassOf
+% ClassAssertion
 
 % TO DO
-% ClassAssertion, ObjectPropertyDomain, ObjectPropertyRange,
+% ObjectPropertyDomain, ObjectPropertyRange,
 % ObjectPropertyAssertion, DataPropertyDomain, DataPropertyRange,
 % DataPropertyAssertion, InverseObjectProperties, SymmetricObjectProperty
 % AsymmetricObjectProperty, ReflexiveObjectProperty, IrreflexiveObjectProperty,
