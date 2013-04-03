@@ -126,7 +126,7 @@ objectExactCardinality(objectExactCardinality(Number, PropertyName)) -->
     "ObjectExactCardinality(", word(NumberValue), " ", entity(PropertyName), ")",
         { atom_number(NumberValue, Number) }.
 
-objectHasValue(objectHasValue(Property)) --> 
+objectHasValue(Property) --> 
     "ObjectHasValue(", entity(PropertyName), " ", entity(IndividualName), ")",
         { Property=..[PropertyName, _, IndividualName] }.
 

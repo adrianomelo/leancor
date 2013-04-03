@@ -192,7 +192,7 @@ test(equivalent1) :-
 
 test(equivalent2) :-
     Input = "EquivalentClasses(:AlsatianWine ObjectIntersectionOf(ObjectHasValue(:locatedIn :AlsaceRegion) :Wine))",
-    Output = equivalentClasses(alsatianwine(_), objectIntersectionOf(objectHasValue(locatedin(_, alsaceregion)), wine(_))),
+    Output = equivalentClasses(alsatianwine(_), objectIntersectionOf(locatedin(_, alsaceregion), wine(_))),
     axiom(Output, Input, []).
 
 test(equivalent3) :-
