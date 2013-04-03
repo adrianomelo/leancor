@@ -40,6 +40,7 @@ to_clausule(objectPropertyRange(Property, Class), [[NewProperty, -NewClass]]) :-
     NewProperty=..[PropertyName,_,X].
 
 to_clausule(classAssertion(A), [[-A]]).
+to_clausule(objectPropertyAssertion(A), [[-A]]).
 
 to_clausule_left(Exp, [M]) :-
     disjunction(Exp, A, B),

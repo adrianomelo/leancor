@@ -172,6 +172,12 @@ test(axiom6) :-
     create_matrix([Parsed], Matrix),
     Matrix = [[adjacentregion(_, X), -region(X)]].
 
+test(axiom7) :-
+    Input  = "ObjectPropertyAssertion(:locatedIn :AlsaceRegion :FrenchRegion)",
+    axiom(Parsed, Input, []),
+    create_matrix([Parsed], Matrix),
+    Matrix == [[-locatedin(alsaceregion, frenchregion)]].
+
 :- end_tests(complete).
 :- run_tests.
 
@@ -180,6 +186,7 @@ test(axiom6) :-
 % InverseObjectProperties, SubObjectPropertyOf, ObjectUnionOf,
 % ObjectAllValuesFrom, ObjectSomeValuesFrom, SubClassOf
 % ClassAssertion, ObjectPropertyDomain, ObjectPropertyRange
+% ObjectPropertyAssertion
 
 % TO DO
 % ObjectPropertyAssertion, DataPropertyDomain, DataPropertyRange,
