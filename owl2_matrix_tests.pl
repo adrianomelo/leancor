@@ -1,5 +1,6 @@
 
 :- [owl2_matrix].
+:- [owl2_parser].
 :- begin_tests(to_clausule).
 
 test(left_intersection1) :-
@@ -123,4 +124,49 @@ test(combine_clausules1) :-
     Matrix == [[drancestor(Y), -drancestor(Y)], [dr(Y), -drancestor(Y)]].
 
 :- end_tests(nested).
+:- begin_tests(complete).
+
+test(axiom1) :-
+    Input  = "EquivalentClasses(:AlsatianWine ObjectIntersectionOf(ObjectHasValue(:locatedIn :AlsaceRegion) :Wine))",
+    axiom(Parsed, Input, []),
+    create_matrix([Parsed], Matrix),
+    Matrix = [
+        [-locatedin(_, alsaceregion), alsatianwine(_)],
+        [-wine(_), alsatianwine(_)],
+        [locatedin(_, alsaceregion), wine(_), -alsatianwine(_)]
+    ].
+
+test(axiom2) :-
+    Input  = "InverseObjectProperties(:producesWine :hasMaker)",
+    axiom(Parsed, Input, []),
+    create_matrix([Parsed], Matrix),
+    Matrix = [
+        [produceswine(X, Y), -hasmaker(Y, X)],
+        [-produceswine(X, Y), hasmaker(Y, X)]
+    ].
+
+test(axiom3) :-
+    Input  = "SubObjectPropertyOf(:hasSugar :hasWineDescriptor)",
+    axiom(Parsed, Input, []),
+    create_matrix([Parsed], Matrix),
+    Matrix = [
+        [hassugar(X, Y), -haswinedescriptor(Y, X)],
+        [-hassugar(X, Y), haswinedescriptor(Y, X)]
+    ].
+
+:- end_tests(complete).
 :- run_tests.
+
+% DONE
+% EquivalentClasses, ObjectIntersectionOf, ObjectHasValue, 
+% InverseObjectProperties, SubObjectPropertyOf, ObjectUnionOf,
+% ObjectAllValuesFrom, ObjectSomeValuesFrom, SubClassOf
+
+% TO DO
+% ClassAssertion, ObjectPropertyDomain, ObjectPropertyRange,
+% ObjectPropertyAssertion, DataPropertyDomain, DataPropertyRange,
+% DataPropertyAssertion, InverseObjectProperties, SymmetricObjectProperty
+% AsymmetricObjectProperty, ReflexiveObjectProperty, IrreflexiveObjectProperty,
+% TransitiveObjectProperty, FunctionalObjectProperty, InverseFunctionalObjectProperty
+% ObjectMaxCardinality, ObjectMinCardinality, ObjectExactCardinality
+% ObjectOneOf, DisjointClasses, DifferentIndividuals

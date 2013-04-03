@@ -1,8 +1,8 @@
 create_matrix([], []).
 create_matrix([Head|AxiomList], Ret) :-
+    create_matrix(AxiomList, Matrix),
     to_clausule(Head, Clausule),
-    append(Clausule, Matrix, Ret),
-    create_matrix(AxiomList, Matrix).
+    append(Clausule, Matrix, Ret).
 
 to_clausule(subClassOf(A, B), Matrix) :-
     to_clausule_left(A, Ad),
@@ -15,34 +15,48 @@ to_clausule(equivalentClasses(A, B), Matrix) :-
     to_clausule(subClassOf(B, A), Matrix2),
     append(Matrix1, Matrix2, Matrix).
 
-% to_clausule(classAssertion(A), [[-A]]) :- !.
-% to_clausule(propertyAssertion(A), [[-A]]) :- !.
+to_clausule(inverseObjectProperties(A, B), [[NewA, -NewB], [-NewA, NewB]]) :-
+    A=..[PropertyNameA,_,_],
+    B=..[PropertyNameB,_,_],
+    NewA=..[PropertyNameA, X, Y],
+    NewB=..[PropertyNameB, Y, X].
 
-% to_clausule(Item, []) :- \+Item=subClassOf(_,_), !.
-% to_clausule(Item, []) :- \+Item=classAssertion(_), !.
-% to_clausule(Item, []) :- \+Item=propertyAssertion(_), !.
+to_clausule(subObjectPropertyOf(A, B), [[NewA, -NewB], [-NewA, NewB]]) :-
+    A=..[PropertyNameA,_,_],
+    B=..[PropertyNameB,_,_],
+    NewA=..[PropertyNameA, X, Y],
+    NewB=..[PropertyNameB, Y, X].
 
-to_clausule_left(objectUnionOf(A, B), [M]) :-
+to_clausule_left(Exp, [M]) :-
+    disjunction(Exp, A, B),
     to_clausule_left(A, Ad), to_clausule_left(B, Bd), append(Ad, Bd, M), !.
 
-to_clausule_left(objectIntersectionOf(A, B), M) :-
+to_clausule_left(Exp, M) :-
+    conjunction(Exp, A, B),
     to_clausule_left(A, Ad), to_clausule_left(B, Bd), append(Ad, Bd, M), !.
+
+to_clausule_left(A, [A]) :-
+    A=..[_, Arg1], atom_or_var(Arg1), !.
 
 to_clausule_left(A, [A]) :- 
-    functor(A, _, 1).
+    A=..[_, Arg1, Arg2], atom_or_var(Arg1), atom_or_var(Arg2).
 
-% to_clausule_left(intersection(A, B), M) :- to_clausule_left(A, Ad), to_clausule_left(B, Bd), append(Ad, Bd, M), !.
-% to_clausule_left(objectSomeValuesFrom(A, B), M) :- to_clausule_left(A, Ad), to_clausule_left(B, Bd), append(Ad, Bd, M), !.
-% to_clausule_left(A, [A]) :- !.
-
-to_clausule_right(objectUnionOf(A, B), M) :-
+to_clausule_right(Exp, M) :-
+    disjunction(Exp, A, B),
     to_clausule_right(A, Ad), to_clausule_right(B, Bd), append(Ad, Bd, M), !.
 
-to_clausule_right(objectIntersectionOf(A, B), [M]) :-
+to_clausule_right(Exp, [M]) :-
+    conjunction(Exp, A, B),
     to_clausule_right(A, Ad), to_clausule_right(B, Bd), append(Ad, Bd, M), !.
 
 to_clausule_right(A, [-A]) :-
-    functor(A, _, 1).
+    A=..[_, Arg1], atom_or_var(Arg1), !.
+
+to_clausule_right(A, [-A]) :-
+    A=..[_, Arg1, Arg2], atom_or_var(Arg1), atom_or_var(Arg2).
+
+atom_or_var(A) :- var(A).
+atom_or_var(A) :- atom(A).
 
 % to_clausule_right(union(A, B), M) :- to_clausule_right(A, Ad), to_clausule_right(B, Bd), append(Ad, Bd, M), !.
 % to_clausule_right(intersection(A, B), [M]) :- to_clausule_right(A, Ad), to_clausule_right(B, Bd), append(Ad, Bd, M), !.
@@ -83,9 +97,9 @@ combine_clausules([Literal|Clausules], NotNested, Matrix) :-
     append([NewClausule], PartialMatrix, Matrix).
 
 
-conjunction(objectIntersectionOf(_,_)).
-conjunction(objectSomeValuesFrom(_,_)).
+conjunction(objectIntersectionOf(A, B), A, B).
+conjunction(objectSomeValuesFrom(A, B), A, B).
 
-disjunction(objectUnionOf(_,_)).
-disjunction(objectAllValuesFrom(_,_)).
+disjunction(objectUnionOf(A, B), A, B).
+disjunction(objectAllValuesFrom(A, B), A, B).
 
