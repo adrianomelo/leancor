@@ -27,6 +27,18 @@ to_clausule(subObjectPropertyOf(A, B), [[NewA, -NewB], [-NewA, NewB]]) :-
     NewA=..[PropertyNameA, X, Y],
     NewB=..[PropertyNameB, Y, X].
 
+to_clausule(objectPropertyDomain(Property, Class), [[NewProperty, -NewClass]]) :-
+    Property=..[PropertyName,_,_],
+    Class=..[ClassName,_],
+    NewClass=..[ClassName,X],
+    NewProperty=..[PropertyName,X,_].
+
+to_clausule(objectPropertyRange(Property, Class), [[NewProperty, -NewClass]]) :-
+    Property=..[PropertyName,_,_],
+    Class=..[ClassName,_],
+    NewClass=..[ClassName,X],
+    NewProperty=..[PropertyName,_,X].
+
 to_clausule(classAssertion(A), [[-A]]).
 
 to_clausule_left(Exp, [M]) :-

@@ -160,6 +160,18 @@ test(axiom4) :-
     create_matrix([Parsed], Matrix),
     Matrix == [[-region(alsaceregion)]].
 
+test(axiom5) :-
+    Input  = "ObjectPropertyDomain(:adjacentRegion :Region)",
+    axiom(Parsed, Input, []),
+    create_matrix([Parsed], Matrix),
+    Matrix = [[adjacentregion(X, _), -region(X)]].
+
+test(axiom6) :-
+    Input  = "ObjectPropertyRange(:adjacentRegion :Region)",
+    axiom(Parsed, Input, []),
+    create_matrix([Parsed], Matrix),
+    Matrix = [[adjacentregion(_, X), -region(X)]].
+
 :- end_tests(complete).
 :- run_tests.
 
@@ -167,10 +179,9 @@ test(axiom4) :-
 % EquivalentClasses, ObjectIntersectionOf, ObjectHasValue, 
 % InverseObjectProperties, SubObjectPropertyOf, ObjectUnionOf,
 % ObjectAllValuesFrom, ObjectSomeValuesFrom, SubClassOf
-% ClassAssertion
+% ClassAssertion, ObjectPropertyDomain, ObjectPropertyRange
 
 % TO DO
-% ObjectPropertyDomain, ObjectPropertyRange,
 % ObjectPropertyAssertion, DataPropertyDomain, DataPropertyRange,
 % DataPropertyAssertion, InverseObjectProperties, SymmetricObjectProperty
 % AsymmetricObjectProperty, ReflexiveObjectProperty, IrreflexiveObjectProperty,
