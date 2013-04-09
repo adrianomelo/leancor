@@ -27,6 +27,12 @@ to_clausule(subObjectPropertyOf(A, B), [[NewA, -NewB]]) :-
     NewA=..[PropertyNameA, X, Y],
     NewB=..[PropertyNameB, X, Y].
 
+to_clausule(transitiveObjectProperty(A), [[NewA, NewB, -NewC]]) :-
+    A=..[PropertyNameA,_,_],
+    NewA=..[PropertyNameA, X, Y],
+    NewB=..[PropertyNameA, Y, Z],
+    NewC=..[PropertyNameA, X, Z].
+
 to_clausule(symmetricObjectProperty(A), [[NewA, -NewB]]) :-
     A=..[PropertyNameA,_,_],
     NewA=..[PropertyNameA, X, Y],
