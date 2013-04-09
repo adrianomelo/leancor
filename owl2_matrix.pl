@@ -21,11 +21,16 @@ to_clausule(inverseObjectProperties(A, B), [[NewA, -NewB], [-NewA, NewB]]) :-
     NewA=..[PropertyNameA, X, Y],
     NewB=..[PropertyNameB, Y, X].
 
-to_clausule(subObjectPropertyOf(A, B), [[NewA, -NewB], [-NewA, NewB]]) :-
+to_clausule(subObjectPropertyOf(A, B), [[NewA, -NewB]]) :-
     A=..[PropertyNameA,_,_],
     B=..[PropertyNameB,_,_],
     NewA=..[PropertyNameA, X, Y],
-    NewB=..[PropertyNameB, Y, X].
+    NewB=..[PropertyNameB, X, Y].
+
+to_clausule(symmetricObjectProperty(A), [[NewA, -NewB]]) :-
+    A=..[PropertyNameA,_,_],
+    NewA=..[PropertyNameA, X, Y],
+    NewB=..[PropertyNameA, Y, X].
 
 % TODO: refactor the next 4 rules
 to_clausule(objectPropertyDomain(Property, Class), [[NewProperty, -NewClass]]) :-

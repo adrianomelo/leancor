@@ -149,10 +149,7 @@ test(axiom3) :-
     Input  = "SubObjectPropertyOf(:hasSugar :hasWineDescriptor)",
     axiom(Parsed, Input, []),
     create_matrix([Parsed], Matrix),
-    Matrix = [
-        [hassugar(X, Y), -haswinedescriptor(Y, X)],
-        [-hassugar(X, Y), haswinedescriptor(Y, X)]
-    ].
+    Matrix = [[hassugar(X, Y), -haswinedescriptor(X, Y)]].
 
 test(axiom4) :-
     Input  = "ClassAssertion(:Region :AlsaceRegion)",
@@ -196,6 +193,12 @@ test(axiom10) :-
     create_matrix([Parsed], Matrix),
     Matrix = [[yearvalue(_, X), -positiveinteger(X)]].
 
+test(axiom11) :-
+    Input  = "SymmetricObjectProperty(:hasSugar)",
+    axiom(Parsed, Input, []),
+    create_matrix([Parsed], Matrix),
+    Matrix = [[hassugar(X, Y), -hassugar(Y, X)]].
+
 :- end_tests(complete).
 :- run_tests.
 
@@ -205,10 +208,10 @@ test(axiom10) :-
 % ObjectAllValuesFrom, ObjectSomeValuesFrom, SubClassOf
 % ClassAssertion, ObjectPropertyDomain, ObjectPropertyRange
 % ObjectPropertyAssertion, DataPropertyDomain, DataPropertyRange
+% SymmetricObjectProperty
 
 % TO DO
-% InverseObjectProperties, SymmetricObjectProperty
-% AsymmetricObjectProperty, ReflexiveObjectProperty, IrreflexiveObjectProperty,
+% AsymmetricObjectProperty (eq), ReflexiveObjectProperty, IrreflexiveObjectProperty,
 % TransitiveObjectProperty, FunctionalObjectProperty, InverseFunctionalObjectProperty
 % ObjectMaxCardinality, ObjectMinCardinality, ObjectExactCardinality
 % ObjectOneOf, DisjointClasses, DifferentIndividuals
