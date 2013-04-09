@@ -27,13 +27,26 @@ to_clausule(subObjectPropertyOf(A, B), [[NewA, -NewB], [-NewA, NewB]]) :-
     NewA=..[PropertyNameA, X, Y],
     NewB=..[PropertyNameB, Y, X].
 
+% TODO: refactor the next 4 rules
 to_clausule(objectPropertyDomain(Property, Class), [[NewProperty, -NewClass]]) :-
     Property=..[PropertyName,_,_],
     Class=..[ClassName,_],
     NewClass=..[ClassName,X],
     NewProperty=..[PropertyName,X,_].
 
+to_clausule(dataPropertyDomain(Property, Class), [[NewProperty, -NewClass]]) :-
+    Property=..[PropertyName,_,_],
+    Class=..[ClassName,_],
+    NewClass=..[ClassName,X],
+    NewProperty=..[PropertyName,X,_].
+
 to_clausule(objectPropertyRange(Property, Class), [[NewProperty, -NewClass]]) :-
+    Property=..[PropertyName,_,_],
+    Class=..[ClassName,_],
+    NewClass=..[ClassName,X],
+    NewProperty=..[PropertyName,_,X].
+
+to_clausule(dataPropertyRange(Property, Class), [[NewProperty, -NewClass]]) :-
     Property=..[PropertyName,_,_],
     Class=..[ClassName,_],
     NewClass=..[ClassName,X],

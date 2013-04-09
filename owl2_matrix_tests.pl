@@ -184,6 +184,18 @@ test(axiom8) :-
     create_matrix([Parsed], Matrix),
     Matrix == [[-yearvalue(year1998, '"1998"^^xsd:positiveInteger')]].
 
+test(axiom9) :-
+    Input  = "DataPropertyDomain(:yearValue :VintageYear)",
+    axiom(Parsed, Input, []),
+    create_matrix([Parsed], Matrix),
+    Matrix = [[yearvalue(X, _), -vintageyear(X)]].
+
+test(axiom10) :-
+    Input  = "DataPropertyRange(:yearValue :positiveInteger)",
+    axiom(Parsed, Input, []),
+    create_matrix([Parsed], Matrix),
+    Matrix = [[yearvalue(_, X), -positiveinteger(X)]].
+
 :- end_tests(complete).
 :- run_tests.
 
@@ -192,10 +204,9 @@ test(axiom8) :-
 % InverseObjectProperties, SubObjectPropertyOf, ObjectUnionOf,
 % ObjectAllValuesFrom, ObjectSomeValuesFrom, SubClassOf
 % ClassAssertion, ObjectPropertyDomain, ObjectPropertyRange
-% ObjectPropertyAssertion, DataPropertyDomain
+% ObjectPropertyAssertion, DataPropertyDomain, DataPropertyRange
 
 % TO DO
-% DataPropertyDomain, DataPropertyRange,
 % InverseObjectProperties, SymmetricObjectProperty
 % AsymmetricObjectProperty, ReflexiveObjectProperty, IrreflexiveObjectProperty,
 % TransitiveObjectProperty, FunctionalObjectProperty, InverseFunctionalObjectProperty
