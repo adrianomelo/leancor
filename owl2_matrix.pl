@@ -41,6 +41,7 @@ to_clausule(objectPropertyRange(Property, Class), [[NewProperty, -NewClass]]) :-
 
 to_clausule(classAssertion(A), [[-A]]).
 to_clausule(objectPropertyAssertion(A), [[-A]]).
+to_clausule(dataPropertyAssertion(A), [[-A]]).
 
 to_clausule_left(Exp, [M]) :-
     disjunction(Exp, A, B),
@@ -70,7 +71,7 @@ to_clausule_right(A, [-A]) :-
 to_clausule_right(A, [-A]) :-
     A=..[_, Arg1, Arg2], atom_or_var(Arg1), atom_or_var(Arg2).
 
-atom_or_var(A) :- var(A).
+atom_or_var(A) :- var(A), !.
 atom_or_var(A) :- atom(A).
 
 % to_clausule_right(union(A, B), M) :- to_clausule_right(A, Ad), to_clausule_right(B, Bd), append(Ad, Bd, M), !.

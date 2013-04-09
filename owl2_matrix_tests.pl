@@ -178,6 +178,12 @@ test(axiom7) :-
     create_matrix([Parsed], Matrix),
     Matrix == [[-locatedin(alsaceregion, frenchregion)]].
 
+test(axiom8) :-
+    Input  = "DataPropertyAssertion(:yearValue :Year1998 \"1998\"^^xsd:positiveInteger)",
+    axiom(Parsed, Input, []),
+    create_matrix([Parsed], Matrix),
+    Matrix == [[-yearvalue(year1998, '"1998"^^xsd:positiveInteger')]].
+
 :- end_tests(complete).
 :- run_tests.
 
@@ -186,11 +192,11 @@ test(axiom7) :-
 % InverseObjectProperties, SubObjectPropertyOf, ObjectUnionOf,
 % ObjectAllValuesFrom, ObjectSomeValuesFrom, SubClassOf
 % ClassAssertion, ObjectPropertyDomain, ObjectPropertyRange
-% ObjectPropertyAssertion
+% ObjectPropertyAssertion, DataPropertyDomain
 
 % TO DO
-% ObjectPropertyAssertion, DataPropertyDomain, DataPropertyRange,
-% DataPropertyAssertion, InverseObjectProperties, SymmetricObjectProperty
+% DataPropertyDomain, DataPropertyRange,
+% InverseObjectProperties, SymmetricObjectProperty
 % AsymmetricObjectProperty, ReflexiveObjectProperty, IrreflexiveObjectProperty,
 % TransitiveObjectProperty, FunctionalObjectProperty, InverseFunctionalObjectProperty
 % ObjectMaxCardinality, ObjectMinCardinality, ObjectExactCardinality
