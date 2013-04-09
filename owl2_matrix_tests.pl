@@ -199,6 +199,12 @@ test(axiom11) :-
     create_matrix([Parsed], Matrix),
     Matrix = [[hassugar(X, Y), -hassugar(Y, X)]].
 
+test(axiom12) :-
+    Input  = "ReflexiveObjectProperty(:hasSugar)",
+    axiom(Parsed, Input, []),
+    create_matrix([Parsed], Matrix),
+    Matrix = [[-hassugar(X, X)]].
+
 :- end_tests(complete).
 :- run_tests.
 
@@ -208,10 +214,10 @@ test(axiom11) :-
 % ObjectAllValuesFrom, ObjectSomeValuesFrom, SubClassOf
 % ClassAssertion, ObjectPropertyDomain, ObjectPropertyRange
 % ObjectPropertyAssertion, DataPropertyDomain, DataPropertyRange
-% SymmetricObjectProperty
+% SymmetricObjectProperty, ReflexiveObjectProperty
 
 % TO DO
-% AsymmetricObjectProperty (eq), ReflexiveObjectProperty, IrreflexiveObjectProperty,
+% AsymmetricObjectProperty (eq), IrreflexiveObjectProperty,
 % TransitiveObjectProperty, FunctionalObjectProperty, InverseFunctionalObjectProperty
 % ObjectMaxCardinality, ObjectMinCardinality, ObjectExactCardinality
 % ObjectOneOf, DisjointClasses, DifferentIndividuals
