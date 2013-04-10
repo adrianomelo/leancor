@@ -51,6 +51,11 @@ to_clausule(irreflexiveObjectProperty(A), [[NewA, eq(X, Y)]]) :-
     A=..[PropertyNameA,_,_],
     NewA=..[PropertyNameA, X, Y].
 
+to_clausule(functionalObjectProperty(A), [[NewA, NewB, -eq(Y, Z)]]) :-
+    A=..[PropertyNameA,_,_],
+    NewA=..[PropertyNameA, X, Y],
+    NewB=..[PropertyNameA, X, Z].
+
 % TODO: refactor the next 4 rules
 to_clausule(objectPropertyDomain(Property, Class), [[NewProperty, -NewClass]]) :-
     Property=..[PropertyName,_,_],
