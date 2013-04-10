@@ -38,6 +38,11 @@ to_clausule(symmetricObjectProperty(A), [[NewA, -NewB]]) :-
     NewA=..[PropertyNameA, X, Y],
     NewB=..[PropertyNameA, Y, X].
 
+to_clausule(asymmetricObjectProperty(A), [[NewA, NewB]]) :-
+    A=..[PropertyNameA,_,_],
+    NewA=..[PropertyNameA, X, Y],
+    NewB=..[PropertyNameA, Y, X].
+
 to_clausule(reflexiveObjectProperty(A), [[-NewA]]) :-
     A=..[PropertyNameA,_,_],
     NewA=..[PropertyNameA, X, X].

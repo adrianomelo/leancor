@@ -205,11 +205,17 @@ test(axiom12) :-
     create_matrix([Parsed], Matrix),
     Matrix = [[-hassugar(X, X)]].
 
-test(axiom12) :-
+test(axiom13) :-
     Input  = "TransitiveObjectProperty(:hasSugar)",
     axiom(Parsed, Input, []),
     create_matrix([Parsed], Matrix),
     Matrix = [[hassugar(X, Y), hassugar(Y,Z), -hassugar(X, Z)]].
+
+test(axiom14) :-
+    Input  = "AsymmetricObjectProperty(:hasSugar)", % aRb -> -bRa
+    axiom(Parsed, Input, []),
+    create_matrix([Parsed], Matrix),
+    Matrix = [[hassugar(X, Y), hassugar(Y, X)]].
 
 :- end_tests(complete).
 :- run_tests.
@@ -221,9 +227,10 @@ test(axiom12) :-
 % ClassAssertion, ObjectPropertyDomain, ObjectPropertyRange
 % ObjectPropertyAssertion, DataPropertyDomain, DataPropertyRange
 % SymmetricObjectProperty, ReflexiveObjectProperty, TransitiveObjectProperty
+% AsymmetricObjectProperty
 
 % TO DO
-% AsymmetricObjectProperty (eq), IrreflexiveObjectProperty (eq),
-% FunctionalObjectProperty, InverseFunctionalObjectProperty
+% IrreflexiveObjectProperty (eq),
+% FunctionalObjectProperty (eq), InverseFunctionalObjectProperty
 % ObjectMaxCardinality, ObjectMinCardinality, ObjectExactCardinality
 % ObjectOneOf, DisjointClasses, DifferentIndividuals
