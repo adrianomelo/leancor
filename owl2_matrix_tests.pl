@@ -217,6 +217,12 @@ test(axiom14) :-
     create_matrix([Parsed], Matrix),
     Matrix = [[hassugar(X, Y), hassugar(Y, X)]].
 
+test(axiom15) :-
+    Input  = "IrreflexiveObjectProperty(:hasSugar)", % aRb -> a!=b
+    axiom(Parsed, Input, []),
+    create_matrix([Parsed], Matrix),
+    Matrix = [[hassugar(X, Y), eq(X, Y)]].
+
 :- end_tests(complete).
 :- run_tests.
 
