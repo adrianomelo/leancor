@@ -276,6 +276,17 @@ test(axiom21) :-
     ].
 
 :- end_tests(complete).
+:- begin_tests(skolemfunction).
+
+test(skolem1) :-
+    skolem_function(F),
+    F = f1.
+
+test(skolem2) :-
+    skolem_function(F),
+    F = f2.
+
+:- end_tests(skolemfunction).
 :- run_tests.
 
 % DONE

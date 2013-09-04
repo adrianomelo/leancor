@@ -154,6 +154,15 @@ combine_clausules([Literal|Clausules], NotNested, Matrix) :-
     combine_clausules(Clausules, NotNested, PartialMatrix),
     append([NewClausule], PartialMatrix, Matrix).
 
+skolem_function(Function) :-
+    skolemcounter(Counter),
+    retractall(skolemcounter(_)),
+    NewCounter is Counter+1,
+    assert(skolemcounter(NewCounter)),
+    atomic_list_concat([f, NewCounter], Function).
+
+:- dynamic(skolemcounter/1).
+:- assert(skolemcounter(0)).
 
 conjunction(objectIntersectionOf(A, B), A, B).
 conjunction(objectSomeValuesFrom(A, B), A, B).
