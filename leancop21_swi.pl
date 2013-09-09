@@ -52,6 +52,7 @@ prove(PathLim,Set,Proof) :-
 prove([],_,_,_,_,[]).
 
 prove([Lit|Cla],Path,PathLim,Lem,Set,Proof) :-
+    print('path: '), print(Path), print('set '), print(Set), print('\n'),
     Proof=[[[NegLit|Cla1]|Proof1]|Proof2],
     \+ (member(LitC,[Lit|Cla]), member(LitP,Path), LitC==LitP),
     (-NegLit=Lit;-Lit=NegLit) ->
@@ -62,8 +63,10 @@ prove([Lit|Cla],Path,PathLim,Lem,Set,Proof) :-
          ;
          lit(NegLit,NegL,Cla1,Grnd1),
          unify_with_occurs_check(NegL,NegLit),
-         ( Grnd1=g -> true ; length(Path,K), K<PathLim -> true ;
-           \+ pathlim -> assert(pathlim), fail ),
+        print('\npath size: '), length(Path,A), print(A), print('\n\n'),
+        length(Path,A), A<PathLim,
+           ( Grnd1=g -> true ; length(Path,K), K<PathLim -> true ;
+           \+ pathlim -> assert(pathlim), print('fail'), fail ),
          prove(Cla1,[Lit|Path],PathLim,Lem,Set,Proof1)
        ),
        ( member(cut,Set) -> ! ; true ),
