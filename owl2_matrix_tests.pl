@@ -229,6 +229,52 @@ test(axiom16) :-
     create_matrix([Parsed], Matrix),
     Matrix = [[hassugar(X, Y), hassugar(X, Z), -eq(Y, Z)]].
 
+test(axiom17) :-
+    Input  = "SubClassOf(:Wine ObjectMaxCardinality(1 :madeFromGrape))", % aRA ^ aRB ->  A=B ..
+    axiom(Parsed, Input, []),
+    create_matrix([Parsed], Matrix),
+    Matrix = [[wine(X), madefromgrape(X, A), madefromgrape(X, B), -eq(A,B)]].
+
+test(axiom18) :-
+    Input  = "SubClassOf(:Wine ObjectMaxCardinality(2 :madeFromGrape))", % aRA ^ aRB ^ aRC ->  A=B || B=C || A=C..
+    axiom(Parsed, Input, []),
+    create_matrix([Parsed], Matrix),
+    Matrix = [
+        [wine(X), madefromgrape(X, A), madefromgrape(X, B),
+         madefromgrape(X, C), -eq(A,B), -eq(A,C), -eq(B,C)]].
+
+test(axiom19) :-
+    Input  = "SubClassOf(:Wine ObjectMinCardinality(1 :madeFromGrape))", % aRA ^ aRB  ->  A!=B
+    axiom(Parsed, Input, []),
+    create_matrix([Parsed], Matrix),
+    Matrix = [[wine(X), madefromgrape(X, A), madefromgrape(X, B), -eq(A,B)]].
+
+test(axiom20) :-
+    Input  = "SubClassOf(:Wine ObjectMinCardinality(2 :madeFromGrape))", % aRA ^ aRB ^ aRC ->  A!=B && B!=C && A!=C..
+    axiom(Parsed, Input, []),
+    create_matrix([Parsed], Matrix),
+    Matrix = [
+        [wine(X), madefromgrape(X, f1(_)),
+            madefromgrape(X,f2(_)), madefromgrape(X,f3(_)), -eq(f1(_),f2(_))],
+        [wine(X), madefromgrape(X, f1(_)),
+            madefromgrape(X,f2(_)), madefromgrape(X,f3(_)), -eq(f2(_),f3(_))],
+        [wine(X), madefromgrape(X, f1(_)),
+            madefromgrape(X,f2(_)), madefromgrape(X,f3(_)), -eq(f1(_),f3(_))]
+    ].
+
+test(axiom21) :-
+    Input  = "SubClassOf(:Wine ObjectExactCardinality(2 :madeFromGrape))", % aRA ^ aRB ^ aRC->  A!=B && (A=C || B=C)..
+    axiom(Parsed, Input, []),
+    create_matrix([Parsed], Matrix),
+    Matrix = [
+        [wine(X), madefromgrape(X, f1(_)),
+            madefromgrape(X,f2(_)), madefromgrape(X,f3(_)), -eq(f1(_),f2(_))],
+        [wine(X), madefromgrape(X, f1(_)),
+            madefromgrape(X,f2(_)), madefromgrape(X,f3(_)), -eq(f2(_),f3(_))],
+        [wine(X), madefromgrape(X, f1(_)),
+            madefromgrape(X,f2(_)), madefromgrape(X,f3(_)), -eq(f1(_),f3(_))]
+    ].
+
 :- end_tests(complete).
 :- run_tests.
 
@@ -239,9 +285,9 @@ test(axiom16) :-
 % ClassAssertion, ObjectPropertyDomain, ObjectPropertyRange
 % ObjectPropertyAssertion, DataPropertyDomain, DataPropertyRange
 % SymmetricObjectProperty, ReflexiveObjectProperty, TransitiveObjectProperty
-% AsymmetricObjectProperty, IrreflexiveObjectProperty, 
+% AsymmetricObjectProperty, IrreflexiveObjectProperty, FunctionalObjectProperty
 
 % TO DO
-% FunctionalObjectProperty (eq), InverseFunctionalObjectProperty
+% InverseFunctionalObjectProperty
 % ObjectMaxCardinality, ObjectMinCardinality, ObjectExactCardinality
 % ObjectOneOf, DisjointClasses, DifferentIndividuals
