@@ -161,6 +161,10 @@ skolem_function(Function) :-
     assert(skolemcounter(NewCounter)),
     atomic_list_concat([f, NewCounter], Function).
 
+skolem_clear :-
+    retractall(skolemcounter(_)),
+    assert(skolemcounter(0)).
+
 :- dynamic(skolemcounter/1).
 :- assert(skolemcounter(0)).
 
