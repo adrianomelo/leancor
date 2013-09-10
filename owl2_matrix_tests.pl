@@ -276,7 +276,7 @@ test(axiom21) :-
     ].
 
 :- end_tests(complete).
-:- begin_tests(skolemfunction).
+:- begin_tests(skolem).
 
 test(skolem1) :-
     skolem_clear,
@@ -292,7 +292,21 @@ test(skolem3) :-
     skolem_function(F),
     F = f1.
 
-:- end_tests(skolemfunction).
+test(apply1) :-
+    A = abc,
+    skolem_clear,
+    skolem_function(Function),
+    skolem_apply(Function, A, Fa).
+    Fa = f1(abc).
+
+test(apply2) :-
+    A = f2(f3(abc)),
+    skolem_clear,
+    skolem_function(Function),
+    skolem_apply(Function, A, Fa).
+    Fa = f1(f2(f3(abc))).
+
+:- end_tests(skolem).
 :- run_tests.
 
 % DONE

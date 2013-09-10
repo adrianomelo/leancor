@@ -168,6 +168,9 @@ skolem_function(Function) :-
     assert(skolemcounter(NewCounter)),
     atomic_list_concat([f, NewCounter], Function).
 
+skolem_apply(Function, A, Fa) :-
+    Fa=..[Function, A].
+
 skolem_clear :-
     retractall(skolemcounter(_)),
     assert(skolemcounter(0)).
