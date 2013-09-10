@@ -116,13 +116,6 @@ to_clausule_right(A, [-A]) :-
 atom_or_var(A) :- var(A), !.
 atom_or_var(A) :- atom(A).
 
-% to_clausule_right(union(A, B), M) :- to_clausule_right(A, Ad), to_clausule_right(B, Bd), append(Ad, Bd, M), !.
-% to_clausule_right(intersection(A, B), [M]) :- to_clausule_right(A, Ad), to_clausule_right(B, Bd), append(Ad, Bd, M), !.
-% to_clausule_right(objectAllValuesFrom(A, B), M) :- to_clausule_right(A, Ad), to_clausule_right(B, Bd), append(Ad, Bd, M), !.
-% to_clausule_right(objectSomeValuesFrom(A, B), [M]) :- to_clausule_right(A, Ad), to_clausule_right(B, Bd), append(Ad, Bd, M), !.
-% to_clausule_right(-A, [A]) :- !.
-% to_clausule_right(A, [-A]).
-
 nested_matrix([], []).
 nested_matrix([Clausule|Clausules], Matrix) :-
     nested(Clausule, MatrixA),
