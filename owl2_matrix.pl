@@ -15,6 +15,47 @@ to_clausule(equivalentClasses(A, B), Matrix) :-
     to_clausule(subClassOf(B, A), Matrix2),
     append(Matrix1, Matrix2, Matrix).
 
+conjunction(objectIntersectionOf(A, B), A, B).
+conjunction(objectSomeValuesFrom(A, B), A, B).
+
+disjunction(objectUnionOf(A, B), A, B).
+disjunction(objectAllValuesFrom(A, B), A, B).
+
+to_clausule_left(Exp, [M]) :-
+    disjunction(Exp, A, B),
+    to_clausule_left(A, Ad), to_clausule_left(B, Bd), append(Ad, Bd, M), !.
+
+to_clausule_left(Exp, M) :-
+    conjunction(Exp, A, B),
+    to_clausule_left(A, Ad), to_clausule_left(B, Bd), append(Ad, Bd, M), !.
+
+to_clausule_left(A, [A]) :-
+    A=..[_, Arg1], atom_or_var(Arg1), !.
+
+to_clausule_left(A, [A]) :- 
+    A=..[_, Arg1, Arg2], atom_or_var(Arg1), atom_or_var(Arg2).
+
+to_clausule_right(Exp, M) :-
+    disjunction(Exp, A, B),
+    to_clausule_right(A, Ad), to_clausule_right(B, Bd), append(Ad, Bd, M), !.
+
+to_clausule_right(Exp, [M]) :-
+    conjunction(Exp, A, B),
+    to_clausule_right(A, Ad), to_clausule_right(B, Bd), append(Ad, Bd, M), !.
+
+to_clausule_right(A, [-A]) :-
+    A=..[_, Arg1], atom_or_var(Arg1), !.
+
+to_clausule_right(A, [-A]) :-
+    A=..[_, Arg1, Arg2], atom_or_var(Arg1), atom_or_var(Arg2).
+
+atom_or_var(A) :- var(A), !.
+atom_or_var(A) :- atom(A).
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Axioms not related with Class Expressions %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 to_clausule(inverseObjectProperties(A, B), [[NewA, -NewB], [-NewA, NewB]]) :-
     A=..[PropertyNameA,_,_],
     B=..[PropertyNameB,_,_],
@@ -85,36 +126,9 @@ to_clausule(classAssertion(A), [[-A]]).
 to_clausule(objectPropertyAssertion(A), [[-A]]).
 to_clausule(dataPropertyAssertion(A), [[-A]]).
 
-to_clausule_left(Exp, [M]) :-
-    disjunction(Exp, A, B),
-    to_clausule_left(A, Ad), to_clausule_left(B, Bd), append(Ad, Bd, M), !.
-
-to_clausule_left(Exp, M) :-
-    conjunction(Exp, A, B),
-    to_clausule_left(A, Ad), to_clausule_left(B, Bd), append(Ad, Bd, M), !.
-
-to_clausule_left(A, [A]) :-
-    A=..[_, Arg1], atom_or_var(Arg1), !.
-
-to_clausule_left(A, [A]) :- 
-    A=..[_, Arg1, Arg2], atom_or_var(Arg1), atom_or_var(Arg2).
-
-to_clausule_right(Exp, M) :-
-    disjunction(Exp, A, B),
-    to_clausule_right(A, Ad), to_clausule_right(B, Bd), append(Ad, Bd, M), !.
-
-to_clausule_right(Exp, [M]) :-
-    conjunction(Exp, A, B),
-    to_clausule_right(A, Ad), to_clausule_right(B, Bd), append(Ad, Bd, M), !.
-
-to_clausule_right(A, [-A]) :-
-    A=..[_, Arg1], atom_or_var(Arg1), !.
-
-to_clausule_right(A, [-A]) :-
-    A=..[_, Arg1, Arg2], atom_or_var(Arg1), atom_or_var(Arg2).
-
-atom_or_var(A) :- var(A), !.
-atom_or_var(A) :- atom(A).
+%%%%%%%%%%%%%%%%%%
+%% Helper Rules %%
+%%%%%%%%%%%%%%%%%%
 
 nested_matrix([], []).
 nested_matrix([Clausule|Clausules], Matrix) :-
@@ -160,10 +174,3 @@ skolem_clear :-
 
 :- dynamic(skolemcounter/1).
 :- assert(skolemcounter(0)).
-
-conjunction(objectIntersectionOf(A, B), A, B).
-conjunction(objectSomeValuesFrom(A, B), A, B).
-
-disjunction(objectUnionOf(A, B), A, B).
-disjunction(objectAllValuesFrom(A, B), A, B).
-
