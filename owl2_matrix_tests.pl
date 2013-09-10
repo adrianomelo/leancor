@@ -296,15 +296,21 @@ test(apply1) :-
     A = abc,
     skolem_clear,
     skolem_function(Function),
-    skolem_apply(Function, A, Fa).
+    skolem_apply(Function, A, Fa),
     Fa = f1(abc).
 
 test(apply2) :-
     A = f2(f3(abc)),
     skolem_clear,
     skolem_function(Function),
-    skolem_apply(Function, A, Fa).
+    skolem_apply(Function, A, Fa,
     Fa = f1(f2(f3(abc))).
+
+test(apply3) :-
+    A = abc,
+    List = [f1, f2, f3, f4, f5],
+    skolem_apply_list(List, A, Fa),
+    Fa = f5(f4(f3(f2(f1(abc))))).
 
 :- end_tests(skolem).
 :- run_tests.

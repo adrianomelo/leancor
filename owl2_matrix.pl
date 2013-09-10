@@ -171,6 +171,11 @@ skolem_function(Function) :-
 skolem_apply(Function, A, Fa) :-
     Fa=..[Function, A].
 
+skolem_apply_list([], A, A).
+skolem_apply_list([Function|List], A, Fa) :-
+    skolem_apply(Function, A, Fna),
+    skolem_apply_list(List, Fna, Fa).
+
 skolem_clear :-
     retractall(skolemcounter(_)),
     assert(skolemcounter(0)).
