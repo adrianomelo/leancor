@@ -20,13 +20,13 @@ PROVER_PATH=.
 
 # set Prolog system, path, and options
 
-PROLOG=eclipse
-PROLOG_PATH=/usr/bin/eclipse
-PROLOG_OPTIONS='-e'
+#PROLOG=eclipse
+#PROLOG_PATH=/usr/bin/eclipse
+#PROLOG_OPTIONS='-e'
 
-#PROLOG=swi
-#PROLOG_PATH=/usr/bin/swipl
-#PROLOG_OPTIONS='-nodebug -L120M -G120M -T100M -q -t'
+PROLOG=swi
+PROLOG_PATH=/opt/local/bin/swipl
+PROLOG_OPTIONS='-nodebug -L120M -G120M -T100M -q -t'
 
 #PROLOG=sicstus
 #PROLOG_PATH=/usr/bin/sicstus
