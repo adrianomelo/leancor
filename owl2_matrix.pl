@@ -1,3 +1,5 @@
+:- [owl2_clausal].
+
 create_matrix([], []).
 create_matrix([Head|AxiomList], Ret) :-
     create_matrix(AxiomList, Matrix),
@@ -6,9 +8,10 @@ create_matrix([Head|AxiomList], Ret) :-
 
 to_clausule(subClassOf(A, B), Matrix) :-
     to_clausule_left(A, Ad),
-    to_clausule_right(B, Bd),
+    to_clausule_right(B, Bd, []),
     append(Ad, Bd, M),
-    nested(M, Matrix).
+    print('\n'), print(M), print('\n').
+    %nested(M, Matrix).
 
 to_clausule(equivalentClasses(A, B), Matrix) :-
     to_clausule(subClassOf(A, B), Matrix1),
@@ -23,34 +26,66 @@ disjunction(objectAllValuesFrom(A, B), A, B).
 
 to_clausule_left(Exp, [M]) :-
     disjunction(Exp, A, B),
-    to_clausule_left(A, Ad), to_clausule_left(B, Bd), append(Ad, Bd, M), !.
+    to_clausule_left(A, Ad),
+    to_clausule_left(B, Bd),
+    append([Ad], [Bd], M), !.
 
 to_clausule_left(Exp, M) :-
     conjunction(Exp, A, B),
-    to_clausule_left(A, Ad), to_clausule_left(B, Bd), append(Ad, Bd, M), !.
+    to_clausule_left(A, Ad),
+    to_clausule_left(B, Bd),
+    append(Ad, Bd, M), !.
 
 to_clausule_left(A, [A]) :-
-    A=..[_, Arg1], atom_or_var(Arg1), !.
+    A=..[_, Arg1],
+    atom_or_var(Arg1), !.
 
 to_clausule_left(A, [A]) :- 
-    A=..[_, Arg1, Arg2], atom_or_var(Arg1), atom_or_var(Arg2).
+    A=..[_, Arg1, Arg2],
+    atom_or_var(Arg1),
+    atom_or_var(Arg2).
 
-to_clausule_right(Exp, M) :-
+to_clausule_right(Exp, M, SkolemFunctions) :-
     disjunction(Exp, A, B),
-    to_clausule_right(A, Ad), to_clausule_right(B, Bd), append(Ad, Bd, M), !.
+    to_clausule_right(A, Ad, SkolemFunctions),
+    to_clausule_right(B, Bd, SkolemFunctions),
+    append(Ad, Bd, M), !.
 
-to_clausule_right(Exp, [M]) :-
+to_clausule_right(objectSomeValuesFrom(A, B), [M], SkolemFunctions) :-
+    to_clausule_apply_skolem(A, Ad, SkolemFunctions, NewSkolemFunctions),
+    to_clausule_right(B, Bd, NewSkolemFunctions),
+    append([[-Ad]], [Bd], M), !.
+
+to_clausule_right(Exp, [M], SkolemFunctions) :-
     conjunction(Exp, A, B),
-    to_clausule_right(A, Ad), to_clausule_right(B, Bd), append(Ad, Bd, M), !.
+    to_clausule_right(A, Ad, SkolemFunctions),
+    to_clausule_right(B, Bd, SkolemFunctions),
+    append([Ad], [Bd], M), !.
 
-to_clausule_right(A, [-A]) :-
-    A=..[_, Arg1], atom_or_var(Arg1), !.
+to_clausule_right(A, [-B], SkolemFunctions) :-
+    A=..[Functor, Arg1],
+    atom_or_var(Arg1),
+    skolem_apply_list(SkolemFunctions, Arg1, Farg1),
+    B=..[Functor, Farg1], !.
 
-to_clausule_right(A, [-A]) :-
-    A=..[_, Arg1, Arg2], atom_or_var(Arg1), atom_or_var(Arg2).
+to_clausule_right(A, [-B], SkolemFunctions) :-
+    A=..[Functor, Arg1, Arg2],
+    atom_or_var(Arg1),
+    atom_or_var(Arg2),
+    skolem_apply_list(SkolemFunctions, Arg1, Farg1),
+    skolem_apply_list(SkolemFunctions, Arg2, Farg2),
+    B=..[Functor, Farg1, Farg2].
 
 atom_or_var(A) :- var(A), !.
 atom_or_var(A) :- atom(A).
+
+to_clausule_apply_skolem(Property, NewProperty, SkolemFunctions, [Function|SkolemFunctions]) :-
+    Property=..[Functor, A1, _],
+    skolem_function(Function),
+    skolem_apply(Function, A1, FA1),
+    skolem_apply_list(SkolemFunctions, A1, B1),
+    skolem_apply_list(SkolemFunctions, FA1, FB1),
+    NewProperty=..[Functor, B1, FB1].
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Axioms not related with Class Expressions %%
@@ -129,37 +164,6 @@ to_clausule(dataPropertyAssertion(A), [[-A]]).
 %%%%%%%%%%%%%%%%%%
 %% Helper Rules %%
 %%%%%%%%%%%%%%%%%%
-
-nested_matrix([], []).
-nested_matrix([Clausule|Clausules], Matrix) :-
-    nested(Clausule, MatrixA),
-    nested_matrix(Clausules, MatrixB),
-    append(MatrixA, MatrixB, Matrix).
-
-nested(Clausules, [Clausules]) :-
-    get_nested(Clausules, Nested, _), Nested == [], !.
-nested(Clausules, Matrix) :-
-    get_nested(Clausules, Nested, NotNested),
-    normalize(Nested, NotNested, Matrix1),
-    nested_matrix(Matrix1, Matrix).
- 
-get_nested([], [], []).
-get_nested([HeadIn|In], [HeadIn|NestedList], NotNested) :- 
-    is_list(HeadIn),
-    get_nested(In, NestedList, NotNested), !.
-get_nested([HeadIn|In], NestedList, [HeadIn|NotNested]) :- 
-    get_nested(In, NestedList, NotNested).
-
-normalize([], Matrix, Matrix).
-normalize([HeadNested|Nested], NotNested, Matrix) :-
-    combine_clausules(HeadNested, NotNested, PartialMatrix),
-    normalize(Nested, PartialMatrix, Matrix).
-
-combine_clausules([], _, []).
-combine_clausules([Literal|Clausules], NotNested, Matrix) :-
-    append([Literal], NotNested, NewClausule),
-    combine_clausules(Clausules, NotNested, PartialMatrix),
-    append([NewClausule], PartialMatrix, Matrix).
 
 skolem_function(Function) :-
     skolemcounter(Counter),

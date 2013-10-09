@@ -200,6 +200,11 @@ test(equivalent3) :-
     Output = equivalentClasses(meritage(_), objectIntersectionOf(wine(_), objectIntersectionOf(objectAllValuesFrom(madefromgrape(_, _), objectOneOf(petiteverdotgrape, objectOneOf(merlotgrape, objectOneOf(malbecgrape, objectOneOf(cabernetsauvignongrape, cabernetfrancgrape))))), objectMinCardinality(2, madefromgrape)))),
     axiom(Output, Input, []).
 
+test(equivalent4) :-
+    Input = "EquivalentClasses(:A ObjectIntersectionOf(:C :G ObjectUnionOf(:D :E :F) ObjectUnionOf(:I :H)))",
+    Output = equivalentClasses(a(_), objectIntersectionOf(c(_), objectIntersectionOf(g(_), objectIntersectionOf(objectUnionOf(d(_), objectUnionOf(e(_), f(_))), objectUnionOf(i(_), h(_)))))),
+    axiom(Output, Input, []).
+
 test(disjoint) :-
     Input  = "DisjointClasses(<http://www.cin.ufpe.br/~astm/owl/bird.owl#A> <http://www.cin.ufpe.br/~astm/owl/bird.owl#B>)",
     Output = disjointClasses(a(_), b(_)),
