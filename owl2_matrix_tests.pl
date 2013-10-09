@@ -60,7 +60,7 @@ test(left_union3) :-
 test(left_intersection_union1) :-
     Input  = subClassOf(objectIntersectionOf(a(X), objectUnionOf(b(X), c(X))), d(X)),
     to_clausule(Input, Output),
-    Output == [[a(X), b(X), -d(X)], [a(X), c(X), -d(X)]].
+    Output == [[b(X), a(X), -d(X)], [c(X), a(X), -d(X)]].
 
 test(left_union1_intersection1) :-
     Input  = subClassOf(objectUnionOf(a(X), objectIntersectionOf(b(X), c(X))), d(X)),
@@ -304,8 +304,8 @@ test(axiom22) :-
     axiom(Parsed, Input, []),
     create_matrix([Parsed], Matrix),
     Matrix = [
-        [-topobjectproperty(_G726, f1(_G726)), thing1(_G726)],
-        [-thing2(f1(_G726)), thing1(_G726)]
+        [-topobjectproperty(X, f1(X)), thing1(X)],
+        [-thing2(f1(X)), thing1(X)]
     ].
 
 test(axiom23) :-
@@ -337,10 +337,8 @@ test(axiom25) :-
     create_matrix([Parsed], Matrix),
     Matrix = [
         [-property(X, f1(X)), thing1(X)],
-        [-thing2(f1(X)), thing1(X)],
-        [-thing3(f1(X)), thing1(X)]
+        [-thing2(f1(X)), -thing3(f1(X)), thing1(X)]
     ].
-
 
 :- end_tests(complete).
 :- begin_tests(skolem).
