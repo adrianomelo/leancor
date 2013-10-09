@@ -30,8 +30,16 @@ combine_clausules([Literal|Clausules], NotNested, Matrix) :-
     combine_clausules(Clausules, NotNested, PartialMatrix),
     append([NewClausule], PartialMatrix, Matrix).
 
-list_clausules([], []).
-list_clausules([Nested], Clausules) :-
-    is_list(Nested),
-    list_clausules(Nested, Clausules).
-
+list_clausules(Input, Output) :- list_clausules(Input, [], Output).
+list_clausules([], Clausules, Return) :-
+    Return = Clausules, !.
+list_clausules(Nested, Clausules, Return) :-
+    Nested = [Head|List],
+    Head = [Element|_],
+    \+is_list(Element),
+    append(Clausules, [Head], NewClausules),
+    list_clausules(List, NewClausules, Return), !.
+list_clausules(Nested, Clausules, Return) :-
+    Nested = [Head|List],
+    append(Head, List, NewNested),
+    list_clausules(NewNested, Clausules, Return).

@@ -95,12 +95,6 @@ test(listclausules5) :-
     list_clausules(Input, Output),
     Output == [[-e, -f, -g, -h], [-a, -b, -c, -d]].
 
-test(listclausules6) :-
-    Input = a,
-    list_clausules(Input, Output),
-    Output == a.
-
-
 test(getnested1) :-
     Clausules = [a,b,c,[d,e],f],
     get_nested(Clausules, Nested, NotNested),
