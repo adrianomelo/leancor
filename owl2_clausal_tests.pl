@@ -120,10 +120,17 @@ test(getnested4) :-
     NotNested == [a,b,c,f].
 
 test(combine_clausules1) :-
-    HeadNested = [drancestor, dr],
-    NotNested  = [-drancestor],
+    HeadNested = [a, b, c],
+    NotNested  = [-d],
     combine_clausules(HeadNested, NotNested, Matrix),
-    Matrix == [[drancestor, -drancestor], [dr, -drancestor]].
+    Matrix == [[a, -d], [b, -d], [c, -d]].
+
+test(combine_clausules2) :-
+    HeadNested = [a, b, c],
+    NotNested  = [-d, e, f],
+    combine_clausules(HeadNested, NotNested, Matrix),
+    Matrix == [[a, -d, e, f], [b, -d, e, f], [c, -d, e, f]].
+
 
 :- end_tests(nested).
 :- run_tests.
