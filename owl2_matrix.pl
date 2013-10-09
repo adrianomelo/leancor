@@ -10,8 +10,7 @@ to_clausule(subClassOf(A, B), Matrix) :-
     to_clausule_left(A, Ad),
     to_clausule_right(B, Bd, []),
     append(Ad, Bd, M),
-    print('\n'), print(M), print('\n').
-    %nested(M, Matrix).
+    nested(M, Matrix).
 
 to_clausule(equivalentClasses(A, B), Matrix) :-
     to_clausule(subClassOf(A, B), Matrix1),
