@@ -4,32 +4,32 @@
 test(nested0) :-
     Input  = [a, -b],
     nested(Input, Output),
-    Output = [[a, -b]].
+    Output == [[a, -b]].
 
 test(nested1) :-
     Input  = [[[a], [[[b], [c]]]], -d],
     nested(Input, Output),
-    Output = [[a, -d], [b, -d], [c, -d]].
+    Output == [[a, -d], [b, -d], [c, -d]].
 
 test(nested2) :-
     Input  = [[[a], [[[b], [[[c], [d]]]]]], -e],
     nested(Input, Output),
-    Output = [[a, -e], [b, -e], [c, -e], [d, -e]].
+    Output == [[a, -e], [b, -e], [c, -e], [d, -e]].
 
 test(nested3) :-
     Input  = [a, [[b], [c]], -d],
     nested(Input, Output),
-    Output = [[a, b, -d], [a, c, -d]].
+    Output == [[a, b, -d], [a, c, -d]].
 
 test(nested4) :-
     Input  = [[[a], [b, c]], -d],
     nested(Input, Output),
-    Output = [[a, -d], [b, c, -d]].
+    Output == [[a, -d], [b, c, -d]].
 
 test(nested5) :-
     Input  = [[[a], [b, c, d]], -e],
     nested(Input, Output),
-    Output = [[a, -e], [b, c, d, -e]].
+    Output == [[a, -e], [b, c, d, -e]].
 
 test(nested6) :-
     % a -> c and g and (d or e or f) and (i or h)
@@ -41,34 +41,34 @@ test(nested7) :-
     % c and g and (d or e or f) and (i or h) -> a
     Input = [c, g, [[d], [[[e], [f]]]], [[i], [h]], -a],
     nested(Input, Output),
-    Output = [[c, g, d, i, -a], [c, g, e, i, -a], [c, g, f, i, -a], [c, g, d, h, -a], [c, g, e, h, -a], [c, g, f, h, -a]]
+    Output == [[c, g, d, i, -a], [c, g, e, i, -a], [c, g, f, i, -a], [c, g, d, h, -a], [c, g, e, h, -a], [c, g, f, h, -a]].
 
 test(nested8) :-
     % g -> a and b and e and f and (d or c)
     Input = [g, [[-a], [[[-b], [[[-e], [[[-f], [-d, -c]]]]]]]]],
     nested(Input, Output),
-    Output = [[g, -a], [g, -b], [g, -e], [g, -f], [g, -d, -c]].
+    Output == [[g, -a], [g, -b], [g, -e], [g, -f], [g, -d, -c]].
 
 test(nested9) :-
     % a and b and e and f and (d or c) -> g
     Input = [a, b, e, f, [[d], [c]], -g],
     nested(Input, Output),
-    Output = [[a, b, e, f, d, -g], [a, b, e, f, c, -g]].
+    Output == [[a, b, e, f, d, -g], [a, b, e, f, c, -g]].
 
 test(nested10) :-
     % a1 -> a or b or c or d and e or f or g or h
     Input = [a1, [[-e, -f, -g, -h], [-a, -b, -c, -d]]],
     nested(Input, Output),
-    Output = [[a1, -e, -f, -g, -h], [a1, -a, -b, -c, -d]].
+    Output == [[a1, -e, -f, -g, -h], [a1, -a, -b, -c, -d]].
 
 test(nested11) :-
     % a or b or c or d and e or f or g or h -> a1
     Input = [[[e], [[[f], [[[g], [h]]]]]], [[a], [[[b], [[[c], [d]]]]]], -a1],
     nested(Input, Output),
-    Output = [[e, a, -a1], [e, b, -a1], [e, c, -a1], [e, d, -a1],
-              [f, a, -a1], [f, b, -a1], [f, c, -a1], [f, d, -a1],
-              [g, a, -a1], [g, b, -a1], [g, c, -a1], [g, d, -a1],
-              [h, a, -a1], [h, b, -a1], [h, c, -a1], [h, d, -a1]].
+    Output == [[e, a, -a1], [e, b, -a1], [e, c, -a1], [e, d, -a1],
+               [f, a, -a1], [f, b, -a1], [f, c, -a1], [f, d, -a1],
+               [g, a, -a1], [g, b, -a1], [g, c, -a1], [g, d, -a1],
+               [h, a, -a1], [h, b, -a1], [h, c, -a1], [h, d, -a1]].
 
 test(listclausules1) :-
     Input = [[a], [[[b], [c]]]],
