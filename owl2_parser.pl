@@ -37,7 +37,7 @@ prefix(prefix(Ns, Uri)) -->
     "Prefix(", word(Ns) ,":=", uri(Uri), ")".
 
 ontology(Imports, Axioms) --> 
-    "Ontology(", uri(_), newline, imports(Imports), axioms(Axioms), ")", !.
+    "Ontology(", uri(_), newline, imports(Imports), axioms(Axioms), ")", newline, !.
 
 import(import(Uri)) -->
     "Import(", uri(Uri), ")".
@@ -266,7 +266,7 @@ differentIndividualsExpression(Individual) --> entity(Individual).
 %% Helper Rules %
 %%%%%%%%%%%%%%%%%
 
-is_any_char(X) :- X >= 0, X < 255, X \== 32, X \== 41.
+is_any_char(X) :- X >= 0, X < 255, X \== 32, X \== 41, X \== 10.
 
 parse_owl(File, Prefixes, Imports, Axioms) :-
     read_file_to_codes(File, Input, []),
