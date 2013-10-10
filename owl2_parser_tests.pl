@@ -32,13 +32,13 @@
 
 test(prefix) :-
     Input  = "Prefix(rdf:=<http://www.w3.org/1999/02/22-rdf-syntax-ns#>)",
-    Output = prefix(rdf, 'http://www.w3.org/1999/02/22-rdf-syntax-ns'),
-    prefix(Output, Input, []).
+    prefix(Output, Input, []),
+    Output == prefix(rdf, 'http://www.w3.org/1999/02/22-rdf-syntax-ns').
 
 test(ontologyImport) :-
     Input  = "Import(<http://www.co-ode.org/ontologies/pizza/pizza.owl>)",
-    Output = import('http://www.co-ode.org/ontologies/pizza/pizza.owl'),
-    import(Output, Input, []).
+    import(Output, Input, []),
+    Output == import('http://www.co-ode.org/ontologies/pizza/pizza.owl').
 
 test(uri1) :-
     Input = "ObjectPropertyAssertion(:hasBody :VentanaCheninBlanc :Medium)",
@@ -52,8 +52,8 @@ test(classDeclaration1) :-
 
 test(classDeclaration2) :-
     Input  = "Declaration(Class(<http://www.cin.ufpe.br/~astm/owl/bird.owl#Animal>))",
-    Output = class(animal(_)),
-    declaration(Output, Input, []).
+    declaration(Output, Input, []),
+    Output = class(animal(_)).
 
 test(individual) :-
     Input  = "ClassAssertion(<http://protege.stanford.edu/plugins/owl/owl-library/koala.owl#Degree> <http://protege.stanford.edu/plugins/owl/owl-library/koala.owl#BA>)",
@@ -230,8 +230,8 @@ test(differentIndividuals1) :-
 
 test(prefixes1) :-
     Input = "Prefix(owl:=<http://www.w3.org/2002/07/owl#>)\nPrefix(rdfs:=<http://www.w3.org/2000/01/rdf-schema#>)\n\n",
-    Prefixes = [prefix(owl, 'http://www.w3.org/2002/07/owl'), prefix(rdfs, 'http://www.w3.org/2000/01/rdf-schema')],
-    prefixes(Prefixes, Input, _).
+    prefixes(Prefixes, Input, _),
+    Prefixes = [prefix(owl, 'http://www.w3.org/2002/07/owl'), prefix(rdfs, 'http://www.w3.org/2000/01/rdf-schema')].
 
 test(ontology1) :-
     Input = "Ontology(<http://www.cin.ufpe.br/~astm/or.owl>\n\nDeclaration(Class(<http://www.cin.ufpe.br/~astm/or.owl#A>))\n)",
@@ -247,22 +247,34 @@ test(ontology2) :-
 
 test(owl1) :-
     Input = "Prefix(owl:=<http://www.w3.org/2002/07/owl#>)\n\n\nOntology(<http://www.cin.ufpe.br/~astm/or.owl>\n\nDeclaration(Class(<http://www.cin.ufpe.br/~astm/or.owl#A>))\n)",
-    Prefixes = [prefix(owl, 'http://www.w3.org/2002/07/owl')],
-    Imports = [],
-    Axioms = [class(a(_))],
-    owl(Prefixes, Imports, Axioms, Input, []).
+    owl(Prefixes, Imports, Axioms, Input, []),
+    Prefixes == [prefix(owl, 'http://www.w3.org/2002/07/owl')],
+    Imports == [],
+    Axioms = [class(a(_))].
 
 test(owl2) :-
     Input = "Prefix(owl:=<http://www.w3.org/2002/07/owl#>)\nPrefix(rdf:=<http://www.w3.org/1999/02/22-rdf-syntax-ns#>)\nPrefix(xml:=<http://www.w3.org/XML/1998/namespace>)\nPrefix(xsd:=<http://www.w3.org/2001/XMLSchema#>)\nPrefix(rdfs:=<http://www.w3.org/2000/01/rdf-schema#>)\n\n\nOntology(<http://www.cin.ufpe.br/~astm/or.owl>\n\nDeclaration(Class(<http://www.cin.ufpe.br/~astm/or.owl#A>))\nSubClassOf(<http://www.cin.ufpe.br/~astm/or.owl#A> ObjectUnionOf(<http://www.cin.ufpe.br/~astm/or.owl#C> <http://www.cin.ufpe.br/~astm/or.owl#B>))\nDeclaration(Class(<http://www.cin.ufpe.br/~astm/or.owl#B>))\nDeclaration(Class(<http://www.cin.ufpe.br/~astm/or.owl#C>))\n)",
-    Prefixes = [prefix(owl, 'http://www.w3.org/2002/07/owl'), prefix(rdf, 'http://www.w3.org/1999/02/22-rdf-syntax-ns'), prefix(xml, 'http://www.w3.org/XML/1998/namespace'), prefix(xsd, 'http://www.w3.org/2001/XMLSchema'), prefix(rdfs, 'http://www.w3.org/2000/01/rdf-schema')],
-    Imports = [],
+    owl(Prefixes, Imports, Axioms, Input, _),
+    Prefixes == [prefix(owl, 'http://www.w3.org/2002/07/owl'), prefix(rdf, 'http://www.w3.org/1999/02/22-rdf-syntax-ns'), prefix(xml, 'http://www.w3.org/XML/1998/namespace'), prefix(xsd, 'http://www.w3.org/2001/XMLSchema'), prefix(rdfs, 'http://www.w3.org/2000/01/rdf-schema')],
+    Imports == [],
     Axioms = [
         class(a(_)),
         subClassOf(a(_), objectUnionOf(c(_), b(_))),
         class(b(_)),
         class(c(_))
-    ],
-    owl(Prefixes, Imports, Axioms, Input, _).
+    ].
+
+test(owl3) :-
+    Input = "Prefix(owl:=<http://www.w3.org/2002/07/owl#>)\nPrefix(rdf:=<http://www.w3.org/1999/02/22-rdf-syntax-ns#>)\nPrefix(xml:=<http://www.w3.org/XML/1998/namespace>)\nPrefix(xsd:=<http://www.w3.org/2001/XMLSchema#>)\nPrefix(rdfs:=<http://www.w3.org/2000/01/rdf-schema#>)\n\n\nOntology(<http://www.cin.ufpe.br/~astm/or.owl>\n\nDeclaration(Class(<http://www.cin.ufpe.br/~astm/or.owl#A>))\nSubClassOf(<http://www.cin.ufpe.br/~astm/or.owl#A> ObjectUnionOf(<http://www.cin.ufpe.br/~astm/or.owl#C> <http://www.cin.ufpe.br/~astm/or.owl#B>))\nDeclaration(Class(<http://www.cin.ufpe.br/~astm/or.owl#B>))\nDeclaration(Class(<http://www.cin.ufpe.br/~astm/or.owl#C>))\n)\n",
+    owl(Prefixes, Imports, Axioms, Input, []),
+    Prefixes == [prefix(owl, 'http://www.w3.org/2002/07/owl'), prefix(rdf, 'http://www.w3.org/1999/02/22-rdf-syntax-ns'), prefix(xml, 'http://www.w3.org/XML/1998/namespace'), prefix(xsd, 'http://www.w3.org/2001/XMLSchema'), prefix(rdfs, 'http://www.w3.org/2000/01/rdf-schema')],
+    Imports == [],
+    Axioms = [
+        class(a(_)),
+        subClassOf(a(_), objectUnionOf(c(_), b(_))),
+        class(b(_)),
+        class(c(_))
+    ].
 
 test(axioms1) :-
     Input  = "Declaration(Class(<http://www.cin.ufpe.br/~astm/owl/bird.owl#Animal>))\n",
@@ -271,13 +283,13 @@ test(axioms1) :-
 
 test(axioms2) :-
     Input  = "SubClassOf(<http://protege.stanford.edu/plugins/owl/owl-library/koala.owl#TasmanianDevil> <http://protege.stanford.edu/plugins/owl/owl-library/koala.owl#Marsupials>)\nSubClassOf(<http://protege.stanford.edu/plugins/owl/owl-library/koala.owl#TasmanianDevil> <http://protege.stanford.edu/plugins/owl/owl-library/koala.owl#Marsupials>)\n",
-    Output = [subClassOf(tasmaniandevil(_), marsupials(_)), subClassOf(tasmaniandevil(_), marsupials(_))],
-    axioms(Output, Input, []).
+    axioms(Output, Input, []),
+    Output = [subClassOf(tasmaniandevil(_), marsupials(_)), subClassOf(tasmaniandevil(_), marsupials(_))].
 
 test(axioms3) :-
     Input  = "Declaration(Class(<http://www.cin.ufpe.br/~astm/owl/bird.owl#Animal>))\nDeclaration(Class(<http://www.cin.ufpe.br/~astm/owl/bird.owl#Animal>))\nDeclaration(Class(<http://www.cin.ufpe.br/~astm/owl/bird.owl#Animal>))\n",
-    Output = [class(animal(_)), class(animal(_)), class(animal(_))],
-    axioms(Output, Input, []).
+    axioms(Output, Input, []),
+    Output = [class(animal(_)), class(animal(_)), class(animal(_))].
 
 :- end_tests(combined).
 :- run_tests.
