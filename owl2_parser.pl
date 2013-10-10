@@ -154,6 +154,9 @@ entity(Name) -->
 entity(Uri) -->
     ":", any_chars(Chars), { name(Name, Chars), downcase_atom(Name, Uri) }.
 
+entity(Uri) -->
+    chars(_), ":", any_chars(Chars), { name(Name, Chars), downcase_atom(Name, Uri) }.
+
 uri(Uri) --> ":", any_chars(Chars), { name(Uri, Chars), ! }.
 uri(Uri) --> "<", any_chars(Chars), "#>", { name(Uri, Chars), ! }.
 uri(Uri) --> "<", any_chars(Chars), ">", { name(Uri, Chars) }.
