@@ -159,6 +159,8 @@ to_clausule(dataPropertyRange(Property, Class), [[NewProperty, -NewClass]]) :-
 to_clausule(classAssertion(A), [[-A]]).
 to_clausule(objectPropertyAssertion(A), [[-A]]).
 to_clausule(dataPropertyAssertion(A), [[-A]]).
+to_clausule(class(_), []).
+to_clausule(_, []).
 
 %%%%%%%%%%%%%%%%%%
 %% Helper Rules %%
