@@ -45,6 +45,16 @@ test(uri1) :-
     Output = objectPropertyAssertion(hasbody(ventanacheninblanc, medium)),
     axiom(Output, Input, []).
 
+test(uri2) :-
+    Input = ":atomic-number",
+    uri(Output, Input, []),
+    Output == 'atomic-number'.
+
+test(entity1) :-
+    Input = "abc:atomic-number",
+    entity(Output, Input, []),
+    Output == 'atomic-number'.
+
 test(classDeclaration1) :-
     Input  = "Declaration(NamedIndividual(<http://www.cin.ufpe.br/~astm/granparent.owl#pc>))",
     Output = namedIndividual(pc),
@@ -104,6 +114,11 @@ test(somevaluesfrom2) :-
     Input  = "ObjectSomeValuesFrom(<http://protege.stanford.edu/plugins/owl/owl-library/koala.owl#hasHabitat> ObjectUnionOf(<http://www.cin.ufpe.br/~astm/owl/null.owl#ClassA> <http://www.cin.ufpe.br/~astm/owl/null.owl#ClassB>))",
     Output = objectSomeValuesFrom(hashabitat(_, Y), objectUnionOf(classa(Y), classb(Y))),
     classExpression(Output, Input, []).
+
+test(datasomevaluesfrom1) :-
+    Input  = "DataSomeValuesFrom(:atomic-number xsd:integer)",
+    classExpression(Output, Input, []),
+    Output = dataSomeValuesFrom('atomic-number', integer).
 
 test(allvaluesfrom) :-
     Input  = "ObjectAllValuesFrom(<http://protege.stanford.edu/plugins/owl/owl-library/koala.owl#hasHabitat> <http://protege.stanford.edu/plugins/owl/owl-library/koala.owl#DryEucalyptForest>)",

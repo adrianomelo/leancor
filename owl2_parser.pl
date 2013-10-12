@@ -99,14 +99,23 @@ transitiveObjectProperty(transitiveObjectProperty(Property)) -->
 functionalObjectProperty(functionalObjectProperty(Property)) -->
     "FunctionalObjectProperty(", property(Property), ")".
 
+functionalDataProperty(functionalDataProperty(Property)) -->
+    "FunctionalDataProperty(", property(Property), ")".
+
 inverseFunctionalObjectProperty(inverseFunctionalObjectProperty(Property)) -->
     "InverseFunctionalObjectProperty(", property(Property), ")".
 
 objectSomeValuesFrom(objectSomeValuesFrom(Property, Expression)) -->
     "ObjectSomeValuesFrom(", property(Property), " ", classExpression(Expression), ")".
 
+dataSomeValuesFrom(dataSomeValuesFrom(Name, Type)) -->
+    "DataSomeValuesFrom(", entity(Name), " ", entity(Type), ")".
+
 objectAllValuesFrom(objectAllValuesFrom(Property, Expression)) -->
     "ObjectAllValuesFrom(", property(Property), " ", classExpression(Expression), ")".
+
+dataAllValuesFrom(dataAllValuesFrom(Property, Expression)) -->
+    "DataAllValuesFrom(", property(Property), " ", entity(Expression), ")".
 
 objectUnionOf(Union) --> 
     "ObjectUnionOf(", objectUnionOfExpression(Union), ")".
@@ -130,6 +139,9 @@ objectHasValue(Property) -->
     "ObjectHasValue(", entity(PropertyName), " ", entity(IndividualName), ")",
         { Property=..[PropertyName, _, IndividualName] }.
 
+objectComplementOf(objectComplementOf(Exp)) -->
+    "ObjectComplementOf(", classExpression(Exp), ")".
+
 subObjectPropertyOf(subObjectPropertyOf(PropA, PropB)) --> 
     "SubObjectPropertyOf(", property(PropA), " ", property(PropB), ")".
 
@@ -152,10 +164,10 @@ entity(Name) -->
     "<", any_chars(_), "#", word(Name), ">", { ! }.
 
 entity(Uri) -->
-    ":", any_chars(Chars), { name(Name, Chars), downcase_atom(Name, Uri) }.
+    class_name_chars(_), ":", class_name_chars(Chars), { name(Name, Chars), downcase_atom(Name, Uri), ! }.
 
 entity(Uri) -->
-    chars(_), ":", any_chars(Chars), { name(Name, Chars), downcase_atom(Name, Uri) }.
+    ":", class_name_chars(Chars), { name(Name, Chars), downcase_atom(Name, Uri), ! }.
 
 uri(Uri) --> ":", any_chars(Chars), { name(Uri, Chars), ! }.
 uri(Uri) --> "<", any_chars(Chars), "#>", { name(Uri, Chars), ! }.
@@ -183,10 +195,9 @@ assertion(X) --> objectPropertyAssertion(X), !.
 assertion(X) --> dataPropertyAssertion(X).
 %assertion(X) --> negativeDataPropertyAssertion(X).
 
-classExpression(Exp) --> class(Exp), !.
 classExpression(Exp) --> objectIntersectionOf(Exp), !.
 classExpression(Exp) --> objectUnionOf(Exp), !.
-%classExpression(Exp) --> objectComplementOf(Exp).
+classExpression(Exp) --> objectComplementOf(Exp), !.
 classExpression(Exp) --> objectOneOf(Exp), !.
 classExpression(Exp) --> objectSomeValuesFrom(Exp), !.
 classExpression(Exp) --> objectAllValuesFrom(Exp), !.
@@ -194,13 +205,14 @@ classExpression(Exp) --> objectHasValue(Exp), !.
 %classExpression(Exp) --> objectHasSelf(Exp).
 classExpression(Exp) --> objectMinCardinality(Exp), !.
 classExpression(Exp) --> objectMaxCardinality(Exp), !.
-classExpression(Exp) --> objectExactCardinality(Exp).
-%classExpression(Exp) --> dataSomeValuesFrom(Exp).
-%classExpression(Exp) --> dataAllValuesFrom(Exp).
+classExpression(Exp) --> objectExactCardinality(Exp), !.
+classExpression(Exp) --> dataSomeValuesFrom(Exp), !.
+classExpression(Exp) --> dataAllValuesFrom(Exp).
 %classExpression(Exp) --> dataHasValue(Exp).
 %classExpression(Exp) --> dataMinCardinality(Exp).
 %classExpression(Exp) --> dataMaxCardinality(Exp).
 %classExpression(Exp) --> dataExactCardinality(Exp).
+classExpression(Exp) --> class(Exp).
 
 objectPropertyAxiom(Ax) --> subObjectPropertyOf(Ax), !.
 %objectPropertyAxiom(Ax) --> equivalentObjectProperties(Ax), !.
@@ -209,6 +221,7 @@ objectPropertyAxiom(Ax) --> inverseObjectProperties(Ax), !.
 objectPropertyAxiom(Ax) --> objectPropertyDomain(Ax), !.
 objectPropertyAxiom(Ax) --> objectPropertyRange(Ax), !.
 objectPropertyAxiom(Ax) --> functionalObjectProperty(Ax), !.
+objectPropertyAxiom(Ax) --> functionalDataProperty(Ax), !.
 objectPropertyAxiom(Ax) --> inverseFunctionalObjectProperty(Ax), !.
 objectPropertyAxiom(Ax) --> reflexiveObjectProperty(Ax), !.
 objectPropertyAxiom(Ax) --> irreflexiveObjectProperty(Ax), !.
@@ -270,6 +283,7 @@ differentIndividualsExpression(Individual) --> entity(Individual).
 %%%%%%%%%%%%%%%%%
 
 is_any_char(X) :- X >= 0, X < 255, X \== 32, X \== 41, X \== 10.
+is_class_name_char(X) :- X >= 0, X < 255, X \== 32, X \== 41, X \== 10, X \== 58.
 
 parse_owl(File, Prefixes, Imports, Axioms) :-
     read_file_to_codes(File, Input, []),
@@ -281,6 +295,11 @@ parse_owl(File, Prefixes, Imports, Axioms) :-
 
 newline --> "\n", newline, !.
 newline --> [].
+
+class_name_chars([X|Y]) --> class_name_char(X), class_name_chars(Y).
+class_name_chars([]) --> [].
+
+class_name_char(X) --> [X], { is_class_name_char(X) }.
 
 any_chars([X|Y]) --> any_char(X), any_chars(Y).
 any_chars([]) --> [].
