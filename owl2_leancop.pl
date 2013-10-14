@@ -12,7 +12,7 @@ owl2_info(File) :-
 
 print_info([]).
 print_info([Head|Axioms]) :-
-	print_info(Axioms),
 	print('Axiom: '), print(Head), print('\n'),
 	create_matrix([Head], Matrix),
-	print('Matrix: '), print(Matrix), print('\n').
+	print('Matrix: '), print(Matrix), print('\n'),
+	print_info(Axioms).
