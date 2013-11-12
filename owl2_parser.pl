@@ -123,13 +123,25 @@ objectUnionOf(Union) -->
 objectIntersectionOf(Intersection) --> 
     "ObjectIntersectionOf(", objectIntersectionOfExpression(Intersection), ")".
 
+objectMaxCardinality(objectMaxCardinality(Number, PropertyName, Expression)) --> 
+    "ObjectMaxCardinality(", word(NumberValue), " ", entity(PropertyName), " ", classExpression(Expression), ")",
+        { atom_number(NumberValue, Number), ! }.
+
 objectMaxCardinality(objectMaxCardinality(Number, PropertyName)) --> 
     "ObjectMaxCardinality(", word(NumberValue), " ", entity(PropertyName), ")",
         { atom_number(NumberValue, Number) }.
 
+objectMinCardinality(objectMinCardinality(Number, PropertyName, Expression)) --> 
+    "ObjectMinCardinality(", word(NumberValue), " ", entity(PropertyName), " ", classExpression(Expression), ")",
+        { atom_number(NumberValue, Number), ! }.
+
 objectMinCardinality(objectMinCardinality(Number, PropertyName)) --> 
     "ObjectMinCardinality(", word(NumberValue), " ", entity(PropertyName), ")",
         { atom_number(NumberValue, Number) }.
+
+objectExactCardinality(objectExactCardinality(Number, PropertyName, Expression)) --> 
+    "ObjectExactCardinality(", word(NumberValue), " ", entity(PropertyName), " ", classExpression(Expression), ")",
+        { atom_number(NumberValue, Number), ! }.
 
 objectExactCardinality(objectExactCardinality(Number, PropertyName)) --> 
     "ObjectExactCardinality(", word(NumberValue), " ", entity(PropertyName), ")",
