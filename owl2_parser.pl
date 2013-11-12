@@ -131,12 +131,28 @@ objectMaxCardinality(objectMaxCardinality(Number, PropertyName)) -->
     "ObjectMaxCardinality(", word(NumberValue), " ", entity(PropertyName), ")",
         { atom_number(NumberValue, Number) }.
 
+dataMaxCardinality(dataMaxCardinality(Number, PropertyName, Expression)) --> 
+    "DataMaxCardinality(", word(NumberValue), " ", entity(PropertyName), " ", classExpression(Expression), ")",
+        { atom_number(NumberValue, Number), ! }.
+
+dataMaxCardinality(dataMaxCardinality(Number, PropertyName)) --> 
+    "DataMaxCardinality(", word(NumberValue), " ", entity(PropertyName), ")",
+        { atom_number(NumberValue, Number) }.
+
 objectMinCardinality(objectMinCardinality(Number, PropertyName, Expression)) --> 
     "ObjectMinCardinality(", word(NumberValue), " ", entity(PropertyName), " ", classExpression(Expression), ")",
         { atom_number(NumberValue, Number), ! }.
 
 objectMinCardinality(objectMinCardinality(Number, PropertyName)) --> 
     "ObjectMinCardinality(", word(NumberValue), " ", entity(PropertyName), ")",
+        { atom_number(NumberValue, Number) }.
+
+dataMinCardinality(dataMinCardinality(Number, PropertyName, Expression)) --> 
+    "DataMinCardinality(", word(NumberValue), " ", entity(PropertyName), " ", classExpression(Expression), ")",
+        { atom_number(NumberValue, Number), ! }.
+
+dataMinCardinality(dataMinCardinality(Number, PropertyName)) --> 
+    "DataMinCardinality(", word(NumberValue), " ", entity(PropertyName), ")",
         { atom_number(NumberValue, Number) }.
 
 objectExactCardinality(objectExactCardinality(Number, PropertyName, Expression)) --> 
@@ -147,8 +163,20 @@ objectExactCardinality(objectExactCardinality(Number, PropertyName)) -->
     "ObjectExactCardinality(", word(NumberValue), " ", entity(PropertyName), ")",
         { atom_number(NumberValue, Number) }.
 
+dataExactCardinality(dataExactCardinality(Number, PropertyName, Expression)) --> 
+    "DataExactCardinality(", word(NumberValue), " ", entity(PropertyName), " ", classExpression(Expression), ")",
+        { atom_number(NumberValue, Number), ! }.
+
+dataExactCardinality(dataExactCardinality(Number, PropertyName)) --> 
+    "DataExactCardinality(", word(NumberValue), " ", entity(PropertyName), ")",
+        { atom_number(NumberValue, Number) }.
+
 objectHasValue(Property) --> 
     "ObjectHasValue(", entity(PropertyName), " ", entity(IndividualName), ")",
+        { Property=..[PropertyName, _, IndividualName] }.
+
+dataHasValue(Property) --> 
+    "DataHasValue(", entity(PropertyName), " ", entity(IndividualName), ")",
         { Property=..[PropertyName, _, IndividualName] }.
 
 objectComplementOf(objectComplementOf(Exp)) -->
@@ -220,10 +248,10 @@ classExpression(Exp) --> objectMaxCardinality(Exp), !.
 classExpression(Exp) --> objectExactCardinality(Exp), !.
 classExpression(Exp) --> dataSomeValuesFrom(Exp), !.
 classExpression(Exp) --> dataAllValuesFrom(Exp).
-%classExpression(Exp) --> dataHasValue(Exp).
-%classExpression(Exp) --> dataMinCardinality(Exp).
-%classExpression(Exp) --> dataMaxCardinality(Exp).
-%classExpression(Exp) --> dataExactCardinality(Exp).
+classExpression(Exp) --> dataHasValue(Exp).
+classExpression(Exp) --> dataMinCardinality(Exp).
+classExpression(Exp) --> dataMaxCardinality(Exp).
+classExpression(Exp) --> dataExactCardinality(Exp).
 classExpression(Exp) --> class(Exp).
 
 objectPropertyAxiom(Ax) --> subObjectPropertyOf(Ax), !.
