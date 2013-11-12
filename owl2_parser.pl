@@ -179,6 +179,9 @@ dataHasValue(Property) -->
     "DataHasValue(", entity(PropertyName), " ", entity(IndividualName), ")",
         { Property=..[PropertyName, _, IndividualName] }.
 
+objectHasSelf(objectHasSelf(PropertyName)) --> 
+    "ObjectHasSelf(", entity(PropertyName), ")".
+
 objectComplementOf(objectComplementOf(Exp)) -->
     "ObjectComplementOf(", classExpression(Exp), ")".
 
@@ -242,7 +245,7 @@ classExpression(Exp) --> objectOneOf(Exp), !.
 classExpression(Exp) --> objectSomeValuesFrom(Exp), !.
 classExpression(Exp) --> objectAllValuesFrom(Exp), !.
 classExpression(Exp) --> objectHasValue(Exp), !.
-%classExpression(Exp) --> objectHasSelf(Exp).
+classExpression(Exp) --> objectHasSelf(Exp).
 classExpression(Exp) --> objectMinCardinality(Exp), !.
 classExpression(Exp) --> objectMaxCardinality(Exp), !.
 classExpression(Exp) --> objectExactCardinality(Exp), !.
