@@ -109,13 +109,13 @@ objectSomeValuesFrom(objectSomeValuesFrom(Property, Expression)) -->
     "ObjectSomeValuesFrom(", property(Property), " ", classExpression(Expression), ")".
 
 dataSomeValuesFrom(dataSomeValuesFrom(Name, Type)) -->
-    "DataSomeValuesFrom(", entity(Name), " ", entity(Type), ")".
+    "DataSomeValuesFrom(", property(Name), " ", classExpression(Type), ")".
 
 objectAllValuesFrom(objectAllValuesFrom(Property, Expression)) -->
     "ObjectAllValuesFrom(", property(Property), " ", classExpression(Expression), ")".
 
 dataAllValuesFrom(dataAllValuesFrom(Property, Expression)) -->
-    "DataAllValuesFrom(", property(Property), " ", entity(Expression), ")".
+    "DataAllValuesFrom(", property(Property), " ", classExpression(Expression), ")".
 
 objectUnionOf(Union) --> 
     "ObjectUnionOf(", objectUnionOfExpression(Union), ")".
