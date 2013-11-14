@@ -19,9 +19,11 @@ to_clausule(equivalentClasses(A, B), Matrix) :-
 
 conjunction(objectIntersectionOf(A, B), A, B).
 conjunction(objectSomeValuesFrom(A, B), A, B).
+conjunction(dataSomeValuesFrom(A, B), A, B).
 
 disjunction(objectUnionOf(A, B), A, B).
 disjunction(objectAllValuesFrom(A, B), A, B).
+disjunction(dataAllValuesFrom(A, B), A, B).
 
 to_clausule_left(Exp, [M]) :-
     disjunction(Exp, A, B),
@@ -51,6 +53,11 @@ to_clausule_right(Exp, M, SkolemFunctions) :-
     append(Ad, Bd, M), !.
 
 to_clausule_right(objectSomeValuesFrom(A, B), [M], SkolemFunctions) :-
+    to_clausule_apply_skolem(A, Ad, SkolemFunctions, NewSkolemFunctions),
+    to_clausule_right(B, Bd, NewSkolemFunctions),
+    append([[-Ad]], [Bd], M), !.
+
+to_clausule_right(dataSomeValuesFrom(A, B), [M], SkolemFunctions) :-
     to_clausule_apply_skolem(A, Ad, SkolemFunctions, NewSkolemFunctions),
     to_clausule_right(B, Bd, NewSkolemFunctions),
     append([[-Ad]], [Bd], M), !.
