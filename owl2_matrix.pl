@@ -42,10 +42,17 @@ to_clausule_left(A, [A]) :-
     A=..[_, Arg1],
     atom_or_var(Arg1), !.
 
+to_clausule_left(-A, [-A]) :-
+    A=..[_, Arg1],
+    atom_or_var(Arg1), !.
+
 to_clausule_left(A, [A]) :- 
     A=..[_, Arg1, Arg2],
     atom_or_var(Arg1),
     atom_or_var(Arg2).
+
+to_clausule_left(objectComplementOf(Exp), Matrix) :-
+    to_clausule_left(-Exp, Matrix), !.
 
 to_clausule_right(Exp, M, SkolemFunctions) :-
     disjunction(Exp, A, B),
@@ -69,7 +76,16 @@ to_clausule_right(Exp, [M], SkolemFunctions) :-
     to_clausule_right(B, Bd, SkolemFunctions),
     append([Ad], [Bd], M), !.
 
+to_clausule_right(objectComplementOf(Exp), Matrix, SkolemFunctions) :-
+    to_clausule_right(-Exp, Matrix, SkolemFunctions), !.
+
 to_clausule_right(A, [-B], SkolemFunctions) :-
+    A=..[Functor, Arg1],
+    atom_or_var(Arg1),
+    skolem_apply_list(SkolemFunctions, Arg1, Farg1),
+    B=..[Functor, Farg1], !.
+
+to_clausule_right(-A, [B], SkolemFunctions) :-
     A=..[Functor, Arg1],
     atom_or_var(Arg1),
     skolem_apply_list(SkolemFunctions, Arg1, Farg1),
