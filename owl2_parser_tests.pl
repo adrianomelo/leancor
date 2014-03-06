@@ -118,7 +118,7 @@ test(somevaluesfrom2) :-
 test(datasomevaluesfrom1) :-
     Input  = "DataSomeValuesFrom(:atomic-number xsd:integer)",
     classExpression(Output, Input, []),
-    Output = dataSomeValuesFrom('atomic-number', integer).
+    Output = dataSomeValuesFrom('atomic-number'(_, _), integer).
 
 test(allvaluesfrom) :-
     Input  = "ObjectAllValuesFrom(<http://protege.stanford.edu/plugins/owl/owl-library/koala.owl#hasHabitat> <http://protege.stanford.edu/plugins/owl/owl-library/koala.owl#DryEucalyptForest>)",
