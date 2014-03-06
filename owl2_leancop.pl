@@ -30,7 +30,7 @@ test_subsumption(Matrix, [TestConcept|Concepts], Concept, Pairs) :-
 %%%%%%%%%%%
 
 owl2_to_matrix(File, Matrix) :-
-	parse_owl(File, Prefixes, Imports, Axioms),
+	parse_owl(File, _, _, Axioms),
 	create_matrix(Axioms, Matrix).
 
 owl2_to_matrix(File, Matrix, Concepts) :-
