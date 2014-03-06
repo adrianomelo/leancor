@@ -7,17 +7,6 @@ create_matrix([Head|AxiomList], Ret) :-
     to_clausule(Head, Clausule),
     append(Clausule, Matrix, Ret).
 
-to_clausule(subClassOf(A, B), Matrix) :-
-    to_clausule_left(A, Ad),
-    to_clausule_right(B, Bd, []),
-    append(Ad, Bd, M),
-    nested(M, Matrix).
-
-to_clausule(equivalentClasses(A, B), Matrix) :-
-    to_clausule(subClassOf(A, B), Matrix1),
-    to_clausule(subClassOf(B, A), Matrix2),
-    append(Matrix1, Matrix2, Matrix).
-
 conjunction(objectIntersectionOf(A, B), A, B).
 conjunction(objectSomeValuesFrom(A, B), A, B).
 conjunction(dataSomeValuesFrom(A, B), A, B).
@@ -110,6 +99,21 @@ to_clausule_apply_skolem(Property, NewProperty, SkolemFunctions, [Function|Skole
     skolem_apply_list(SkolemFunctions, FA1, FB1),
     NewProperty=..[Functor, B1, FB1].
 
+%%%%%%%%%%%%%%%%%
+%% to_clausule %%
+%%%%%%%%%%%%%%%%%
+
+to_clausule(subClassOf(A, B), Matrix) :-
+    to_clausule_left(A, Ad),
+    to_clausule_right(B, Bd, []),
+    append(Ad, Bd, M),
+    nested(M, Matrix), !.
+
+to_clausule(equivalentClasses(A, B), Matrix) :-
+    to_clausule(subClassOf(A, B), Matrix1),
+    to_clausule(subClassOf(B, A), Matrix2),
+    append(Matrix1, Matrix2, Matrix), !.
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Axioms not related with Class Expressions %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -118,56 +122,56 @@ to_clausule(inverseObjectProperties(A, B), [[NewA, -NewB], [-NewA, NewB]]) :-
     A=..[PropertyNameA,_,_],
     B=..[PropertyNameB,_,_],
     NewA=..[PropertyNameA, X, Y],
-    NewB=..[PropertyNameB, Y, X].
+    NewB=..[PropertyNameB, Y, X], !.
 
 to_clausule(subObjectPropertyOf(A, B), [[NewA, -NewB]]) :-
     A=..[PropertyNameA,_,_],
     B=..[PropertyNameB,_,_],
     NewA=..[PropertyNameA, X, Y],
-    NewB=..[PropertyNameB, X, Y].
+    NewB=..[PropertyNameB, X, Y], !.
 
 to_clausule(transitiveObjectProperty(A), [[NewA, NewB, -NewC]]) :-
     A=..[PropertyNameA,_,_],
     NewA=..[PropertyNameA, X, Y],
     NewB=..[PropertyNameA, Y, Z],
-    NewC=..[PropertyNameA, X, Z].
+    NewC=..[PropertyNameA, X, Z], !.
 
 to_clausule(symmetricObjectProperty(A), [[NewA, -NewB]]) :-
     A=..[PropertyNameA,_,_],
     NewA=..[PropertyNameA, X, Y],
-    NewB=..[PropertyNameA, Y, X].
+    NewB=..[PropertyNameA, Y, X], !.
 
 to_clausule(asymmetricObjectProperty(A), [[NewA, NewB]]) :-
     A=..[PropertyNameA,_,_],
     NewA=..[PropertyNameA, X, Y],
-    NewB=..[PropertyNameA, Y, X].
+    NewB=..[PropertyNameA, Y, X], !.
 
 to_clausule(reflexiveObjectProperty(A), [[-NewA]]) :-
     A=..[PropertyNameA,_,_],
-    NewA=..[PropertyNameA, X, X].
+    NewA=..[PropertyNameA, X, X], !.
 
 to_clausule(irreflexiveObjectProperty(A), [[NewA, eq(X, Y)]]) :-
     A=..[PropertyNameA,_,_],
-    NewA=..[PropertyNameA, X, Y].
+    NewA=..[PropertyNameA, X, Y], !.
 
 to_clausule(functionalObjectProperty(A), [[NewA, NewB, -eq(Y, Z)]]) :-
     A=..[PropertyNameA,_,_],
     NewA=..[PropertyNameA, X, Y],
-    NewB=..[PropertyNameA, X, Z].
+    NewB=..[PropertyNameA, X, Z], !.
 
-to_clausule(objectPropertyDomain(Property, Class), Matrix) :- domain_range(Property, Class, Matrix).
-to_clausule(dataPropertyDomain(Property, Class), Matrix) :- domain_range(Property, Class, Matrix).
-to_clausule(objectPropertyRange(Property, Class), Matrix) :- domain_range(Property, Class, Matrix).
-to_clausule(dataPropertyRange(Property, Class), Matrix) :- domain_range(Property, Class, Matrix).
+to_clausule(objectPropertyDomain(Property, Class), Matrix) :- domain_range(Property, Class, Matrix), !.
+to_clausule(dataPropertyDomain(Property, Class), Matrix) :- domain_range(Property, Class, Matrix), !.
+to_clausule(objectPropertyRange(Property, Class), Matrix) :- domain_range(Property, Class, Matrix), !.
+to_clausule(dataPropertyRange(Property, Class), Matrix) :- domain_range(Property, Class, Matrix), !.
+
+to_clausule(classAssertion(A), [[-A]]) :- !.
+to_clausule(objectPropertyAssertion(A), [[-A]]) :- !.
+to_clausule(dataPropertyAssertion(A), [[-A]]) :- !.
+to_clausule(class(_), []) :- !.
+to_clausule(_, []).
 
 domain_range(Property, Class, [[NewProperty, -NewClass]]) :-
     Property=..[PropertyName,_,_],
     Class=..[ClassName,_],
     NewClass=..[ClassName,X],
     NewProperty=..[PropertyName,X,_].
-
-to_clausule(classAssertion(A), [[-A]]).
-to_clausule(objectPropertyAssertion(A), [[-A]]).
-to_clausule(dataPropertyAssertion(A), [[-A]]).
-to_clausule(class(_), []).
-to_clausule(_, []).
