@@ -12,13 +12,7 @@ activity([classification, Ontology, OntologyOut]) :-
     list_p(['Classification of', Ontology, 'with output', OntologyOut]).
 
 activity([sat, Ontology, CSVOutput, Concept]) :-
-    list_p(['Sat of', Concept, 'in', Ontology, 'with output', CSVOutput]),
-
-    owl2_to_matrix(Ontology, Matrix),
-    length(Matrix, Size),
-    print('Size: '), print(Size), print('\n'),
-    prove(Matrix, Proof),
-    print(Proof).
+    list_p(['Sat of', Concept, 'in', Ontology, 'with output', CSVOutput]).
 
 list_p(List) :-
     atomic_list_concat(List, ' ', Print),
