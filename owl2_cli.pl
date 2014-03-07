@@ -9,8 +9,8 @@ activity([consistency, Ontology, CSVOutput]) :-
     list_p(['Consistency check of', Ontology, 'with output', CSVOutput]).
 
 activity([classification, Ontology, OntologyOut]) :-
-    classify(Ontology, OntologyOut),
-    list_p(['Classification of', Ontology, 'with output', OntologyOut]).
+    list_p(['Classification of', Ontology, 'with output', OntologyOut]),
+    classify(Ontology, OntologyOut).
 
 activity([sat, Ontology, CSVOutput, Concept]) :-
     list_p(['Sat of', Concept, 'in', Ontology, 'with output', CSVOutput]).
