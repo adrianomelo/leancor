@@ -2,13 +2,15 @@
 :- [owl2_matrix].
 :- [leancop21_swi].
 
+:- dynamic(intance/1).
+
 %%%%%%%%%%%%%%%%%%
 % Activities API %
 %%%%%%%%%%%%%%%%%%
 
-classify(FileIn, FileOut) :-
+classify(FileIn, _TODO1) :-
 	owl2_to_matrix(FileIn, Matrix, Concepts),
-	test_subsumption_list(Matrix, Concepts, Concepts, Pairs).
+	test_subsumption_list(Matrix, Concepts, Concepts, _TODO2).
 
 %%%%%%%%%%%%%%%
 % Subsumption %
@@ -16,14 +18,31 @@ classify(FileIn, FileOut) :-
 
 test_subsumption_list(_, _, [], []).
 test_subsumption_list(Matrix, AllConcepts, [Concept|Concepts], AllPairs) :-
-	test_subsumption(Matrix, AllConcepts, Concept, Pairs),
+	test_subsumption(Matrix, AllConcepts, Concept, SubClasses),
+	print('SubClassesOf '),print(Concept),print(' '),print(SubClasses),print('\n'),
 	test_subsumption_list(Matrix, AllConcepts, Concepts, PairsOthers),
-	append(Pairs, PairsOthers, AllPairs).
+	append([[Concept, SubClasses]], PairsOthers, AllPairs).
 
 test_subsumption(_, [], _, []).
-test_subsumption(Matrix, [TestConcept|Concepts], Concept, Pairs) :-
-	print(TestConcept), print(' subclassof '), print(Concept), print('\n'),
+test_subsumption(Matrix, [TestConcept|Concepts], Concept, [TestConcept|SubClasses]) :-
+	Ghost=instance(_),
+	instanciate(TestConcept, NewTestConcept, Ghost),
+	instanciate(Concept, NewConcept, Ghost),
+	append([[-(#)], [-NewTestConcept], [NewConcept, #]], Matrix, MatrixWithQuery),
+	prove(MatrixWithQuery,_),
+	test_subsumption(Matrix, Concepts, Concept, SubClasses), !.
+
+test_subsumption(Matrix, [_|Concepts], Concept, Pairs) :-
 	test_subsumption(Matrix, Concepts, Concept, Pairs).
+
+%%%%%%%%%%%
+% LeanCop %
+%%%%%%%%%%%
+
+initialize(Matrix) :-
+	retractall(lit(_,_,_,_)),
+	(member([-(#)],Matrix) -> S=conj ; S=pos),
+	assert_clauses(Matrix, S).
 
 %%%%%%%%%%%
 % Helpers %
@@ -54,3 +73,7 @@ print_info([Head|Axioms]) :-
 	create_matrix([Head], Matrix),
 	print('Matrix: '), print(Matrix), print('\n'),
 	print_info(Axioms).
+
+instanciate(Concept, NewConcept, Instance) :-
+	Concept=..[ConceptName,_],
+	NewConcept=..[ConceptName,Instance].
