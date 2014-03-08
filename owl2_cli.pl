@@ -3,19 +3,26 @@
 
 ore :-
     current_prolog_flag(argv, Argv),
-    activity(Argv).
+    print_start(Argv),
+    activity(Argv),
+    print_end(Argv).
 
-activity([consistency, Ontology, CSVOutput]) :-
-    list_p(['Consistency check of', Ontology, 'with output', CSVOutput]).
+print_start([Operation, OntologyFile, _]) :-
+    list_p(['Started', Operation, 'on', OntologyFile]).
 
-activity([classification, Ontology, OntologyOut]) :-
-    list_p(['Classification of', Ontology, 'with output', OntologyOut]),
-    classify(Ontology, OntologyOut).
+print_end([Operation, OntologyFile, _]) :-
+    list_p(['Completed', Operation, 'on', OntologyFile]).
 
-activity([sat, Ontology, CSVOutput, Concept]) :-
-    list_p(['Sat of', Concept, 'in', Ontology, 'with output', CSVOutput]).
+activity([consistency, OntologyFile, Output]) :-
+    consistency(OntologyFile, Output).
+
+activity([classification, OntologyFile, Output]) :-
+    classify(OntologyFile, ParsingTime, Output),
+    list_p(['Operation Time:', round(ParsingTime)]).
+
+activity([realisation, OntologyFile, Output]) :-
+    realisation(OntologyFile, Output).
 
 list_p(List) :-
     atomic_list_concat(List, ' ', Print),
     print(Print), print('\n').
-

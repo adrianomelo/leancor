@@ -8,8 +8,8 @@
 % Activities API %
 %%%%%%%%%%%%%%%%%%
 
-classify(FileIn, _TODO1) :-
-	owl2_to_matrix(FileIn, Matrix, Concepts),
+classify(FileIn, ParsingTime, _TODO1) :-
+	owl2_to_matrix(FileIn, Matrix, Concepts, ParsingTime),
 	test_subsumption_list(Matrix, Concepts, Concepts, _TODO2).
 
 %%%%%%%%%%%%%%%
@@ -19,7 +19,7 @@ classify(FileIn, _TODO1) :-
 test_subsumption_list(_, _, [], []).
 test_subsumption_list(Matrix, AllConcepts, [Concept|Concepts], AllPairs) :-
 	test_subsumption(Matrix, AllConcepts, Concept, SubClasses),
-	print('SubClassesOf '),print(Concept),print(' '),print(SubClasses),print('\n'),
+	%print('SubClassesOf '),print(Concept),print(' '),print(SubClasses),print('\n'),
 	test_subsumption_list(Matrix, AllConcepts, Concepts, PairsOthers),
 	append([[Concept, SubClasses]], PairsOthers, AllPairs).
 
@@ -54,6 +54,14 @@ owl2_to_matrix(File, Matrix) :-
 
 owl2_to_matrix(File, Matrix, Concepts) :-
 	parse_owl(File, _, _, Axioms),
+	create_matrix(Axioms, Matrix),
+	axioms_subclassof(Axioms, Concepts).
+
+owl2_to_matrix(File, Matrix, Concepts, ParsingTime) :-
+	get_time(StartedTime),
+	parse_owl(File, _, _, Axioms),
+	get_time(EndTime),
+	ParsingTime is (EndTime - StartedTime) * 1000,
 	create_matrix(Axioms, Matrix),
 	axioms_subclassof(Axioms, Concepts).
 
