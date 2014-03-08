@@ -132,7 +132,7 @@ def(Lit,_,Lit,[],1,I,I,_).
 dnf(((A;B),C),(F1;F2)) :- !, dnf((A,C),F1), dnf((B,C),F2).
 dnf((A,(B;C)),(F1;F2)) :- !, dnf((A,B),F1), dnf((A,C),F2).
 dnf((A,B),F) :- !, dnf(A,A1), dnf(B,B1),
-    ( (A1=(C;D);B1=(C;D)) -> dnf((A1,B1),F) ; F=(A1,B1) ).
+    ( (A1=(_;_);B1=(_;_)) -> dnf((A1,B1),F) ; F=(A1,B1) ).
 dnf((A;B),(A1;B1)) :- !, dnf(A,A1), dnf(B,B1).
 dnf(Lit,Lit).
 
