@@ -118,7 +118,7 @@ test(somevaluesfrom2) :-
 test(datasomevaluesfrom1) :-
     Input  = "DataSomeValuesFrom(:atomic-number xsd:integer)",
     classExpression(Output, Input, []),
-    Output = dataSomeValuesFrom('atomic-number'(_, _), integer).
+    Output = dataSomeValuesFrom('atomic-number'(_, _), integer(_)).
 
 test(allvaluesfrom) :-
     Input  = "ObjectAllValuesFrom(<http://protege.stanford.edu/plugins/owl/owl-library/koala.owl#hasHabitat> <http://protege.stanford.edu/plugins/owl/owl-library/koala.owl#DryEucalyptForest>)",
@@ -170,6 +170,10 @@ test(objectOneOf1) :-
     Output = objectOneOf(peter, objectOneOf(lois, objectOneOf(stewie, objectOneOf(meg, objectOneOf(chris, brian))))),
     classExpression(Output, Input, []).
 
+test(dataHasValue1) :-
+    Input = "DataHasValue(:dataproperty18 \"something\")",
+    classExpression(Output, Input, []).
+
 test(subClass1) :-
     Input = "SubClassOf(<http://protege.stanford.edu/plugins/owl/owl-library/koala.owl#TasmanianDevil> <http://protege.stanford.edu/plugins/owl/owl-library/koala.owl#Marsupials>)",
     Output = subClassOf(tasmaniandevil(X), marsupials(X)),
@@ -218,6 +222,16 @@ test(equivalent3) :-
 test(equivalent4) :-
     Input = "EquivalentClasses(:A ObjectIntersectionOf(:C :G ObjectUnionOf(:D :E :F) ObjectUnionOf(:I :H)))",
     Output = equivalentClasses(a(_), objectIntersectionOf(c(_), objectIntersectionOf(g(_), objectIntersectionOf(objectUnionOf(d(_), objectUnionOf(e(_), f(_))), objectUnionOf(i(_), h(_)))))),
+    axiom(Output, Input, []).
+
+test(equivalentObjectProperties1) :-
+    Input = "EquivalentObjectProperties(<http://www.cin.ufpe.br/~astm/wine.owl#PropertyA> <http://www.cin.ufpe.br/~astm/wine.owl#PropertyB>)",
+    Output = equivalentObjectProperties(propertya(_, _), propertyb(_, _)),
+    axiom(Output, Input, []).
+
+test(equivalentDataProperties1) :-
+    Input = "EquivalentDataProperties(<http://www.cin.ufpe.br/~astm/wine.owl#PropertyA> <http://www.cin.ufpe.br/~astm/wine.owl#PropertyB>)",
+    Output = equivalentDataProperties(propertya(_, _), propertyb(_, _)),
     axiom(Output, Input, []).
 
 test(disjoint) :-

@@ -123,6 +123,9 @@ objectUnionOf(Union) -->
 objectIntersectionOf(Intersection) --> 
     "ObjectIntersectionOf(", objectIntersectionOfExpression(Intersection), ")".
 
+dataIntersectionOf(Intersection) --> 
+    "DataIntersectionOf(", dataIntersectionOfExpression(Intersection), ")".
+
 objectMaxCardinality(objectMaxCardinality(Number, PropertyName, Expression)) --> 
     "ObjectMaxCardinality(", word(NumberValue), " ", entity(PropertyName), " ", classExpression(Expression), ")",
         { atom_number(NumberValue, Number), ! }.
@@ -176,8 +179,8 @@ objectHasValue(Property) -->
         { Property=..[PropertyName, _, IndividualName] }.
 
 dataHasValue(Property) --> 
-    "DataHasValue(", entity(PropertyName), " ", entity(IndividualName), ")",
-        { Property=..[PropertyName, _, IndividualName] }.
+    "DataHasValue(", entity(PropertyName), " ", literal(LiteralName), ")",
+        { Property=..[PropertyName, _, LiteralName] }.
 
 objectHasSelf(objectHasSelf(PropertyName)) --> 
     "ObjectHasSelf(", entity(PropertyName), ")".
@@ -197,6 +200,12 @@ subClassOf(subClassOf(Exp1, Exp2)) -->
 equivalentClasses(equivalentClasses(Exp1, Exp2)) -->
     "EquivalentClasses(", classExpression(Exp1), " ", classExpression(Exp2), ")".
 
+equivalentDataProperties(Equivalent) -->
+    "EquivalentDataProperties(", equivalentDataPropertiesExpression(Equivalent), ")".
+
+equivalentObjectProperties(Equivalent) -->
+    "EquivalentObjectProperties(", equivalentObjectPropertiesExpression(Equivalent), ")".
+
 disjointClasses(Disjoint) -->
     "DisjointClasses(", disjointExpression(Disjoint), ")".
 
@@ -215,6 +224,15 @@ entity(Uri) -->
 uri(Uri) --> ":", any_chars(Chars), { name(Uri, Chars), ! }.
 uri(Uri) --> "<", any_chars(Chars), "#>", { name(Uri, Chars), ! }.
 uri(Uri) --> "<", any_chars(Chars), ">", { name(Uri, Chars) }.
+
+dataRange(Name) -->
+    entity(Name).
+
+literal(Name) -->
+    quotedString(Name).
+
+quotedString(Name) --> 
+    "\"", any_chars(Chars), "\"", { name(Name, Chars), ! }.
 
 %%%%%%%%%%%%%%%%%%%%%%
 % Complement Clauses %
@@ -249,16 +267,17 @@ classExpression(Exp) --> objectHasSelf(Exp).
 classExpression(Exp) --> objectMinCardinality(Exp), !.
 classExpression(Exp) --> objectMaxCardinality(Exp), !.
 classExpression(Exp) --> objectExactCardinality(Exp), !.
+classExpression(Exp) --> dataIntersectionOf(Exp), !.
 classExpression(Exp) --> dataSomeValuesFrom(Exp), !.
 classExpression(Exp) --> dataAllValuesFrom(Exp).
-classExpression(Exp) --> dataHasValue(Exp).
+classExpression(Exp) --> dataHasValue(Exp), !.
 classExpression(Exp) --> dataMinCardinality(Exp).
 classExpression(Exp) --> dataMaxCardinality(Exp).
 classExpression(Exp) --> dataExactCardinality(Exp).
 classExpression(Exp) --> class(Exp).
 
 objectPropertyAxiom(Ax) --> subObjectPropertyOf(Ax), !.
-%objectPropertyAxiom(Ax) --> equivalentObjectProperties(Ax), !.
+objectPropertyAxiom(Ax) --> equivalentObjectProperties(Ax), !.
 %objectPropertyAxiom(Ax) --> disjointObjectProperties(Ax), !.
 objectPropertyAxiom(Ax) --> inverseObjectProperties(Ax), !.
 objectPropertyAxiom(Ax) --> objectPropertyDomain(Ax), !.
@@ -273,7 +292,7 @@ objectPropertyAxiom(Ax) --> asymmetricObjectProperty(Ax), !.
 objectPropertyAxiom(Ax) --> transitiveObjectProperty(Ax), !.
 
 %dataPropertyAxiom(Ax) --> subDataPropertyOf(Ax), !.
-%dataPropertyAxiom(Ax) --> equivalentDataProperties(Ax), !.
+dataPropertyAxiom(Ax) --> equivalentDataProperties(Ax), !.
 %dataPropertyAxiom(Ax) --> disjointDataProperties(Ax), !.
 dataPropertyAxiom(Ax) --> dataPropertyDomain(Ax), !.
 dataPropertyAxiom(Ax) --> dataPropertyRange(Ax).
@@ -312,8 +331,17 @@ objectUnionOfExpression(Expression) --> classExpression(Expression).
 objectIntersectionOfExpression(objectIntersectionOf(Exp1, Exp2)) --> classExpression(Exp1), " ", objectIntersectionOfExpression(Exp2), !.
 objectIntersectionOfExpression(Expression) --> classExpression(Expression).
 
+dataIntersectionOfExpression(dataIntersectionOf(Exp1, Exp2)) --> dataRange(Exp1), " ", dataIntersectionOfExpression(Exp2), !.
+dataIntersectionOfExpression(Expression) --> dataRange(Expression).
+
 objectOneOfExpression(objectOneOf(Exp1, Exp2)) --> entity(Exp1), " ", objectOneOfExpression(Exp2), !.
 objectOneOfExpression(Expression) --> entity(Expression).
+
+equivalentObjectPropertiesExpression(equivalentObjectProperties(Exp1, Exp2)) --> property(Exp1), " ", equivalentObjectPropertiesExpression(Exp2), !.
+equivalentObjectPropertiesExpression(Expression) --> property(Expression).
+
+equivalentDataPropertiesExpression(equivalentDataProperties(Exp1, Exp2)) --> property(Exp1), " ", equivalentDataPropertiesExpression(Exp2), !.
+equivalentDataPropertiesExpression(Expression) --> property(Expression).
 
 disjointExpression(disjointClasses(Exp1, Exp2)) --> class(Exp1), " ", disjointExpression(Exp2), !.
 disjointExpression(Expression) --> class(Expression).
