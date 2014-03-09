@@ -8,9 +8,12 @@
 % Activities API %
 %%%%%%%%%%%%%%%%%%
 
-classify(FileIn, ParsingTime, _TODO1) :-
-	owl2_to_matrix(FileIn, Matrix, Concepts, ParsingTime),
-	test_subsumption_list(Matrix, Concepts, Concepts, _TODO2).
+classify(FileIn, OperationTime, _TODO1) :-
+	owl2_to_matrix(FileIn, Matrix, Concepts),
+	get_time(Start),
+	test_subsumption_list(Matrix, Concepts, Concepts, _TODO2),
+	get_time(End),
+	OperationTime is round((End - Start) * 1000).
 
 %%%%%%%%%%%%%%%
 % Subsumption %
@@ -54,14 +57,6 @@ owl2_to_matrix(File, Matrix) :-
 
 owl2_to_matrix(File, Matrix, Concepts) :-
 	parse_owl(File, _, _, Axioms),
-	create_matrix(Axioms, Matrix),
-	axioms_subclassof(Axioms, Concepts).
-
-owl2_to_matrix(File, Matrix, Concepts, ParsingTime) :-
-	get_time(StartedTime),
-	parse_owl(File, _, _, Axioms),
-	get_time(EndTime),
-	ParsingTime is (EndTime - StartedTime) * 1000,
 	create_matrix(Axioms, Matrix),
 	axioms_subclassof(Axioms, Concepts).
 

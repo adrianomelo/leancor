@@ -17,8 +17,8 @@ activity([consistency, OntologyFile, Output]) :-
     consistency(OntologyFile, Output).
 
 activity([classification, OntologyFile, Output]) :-
-    classify(OntologyFile, ParsingTime, Output),
-    list_p(['Operation Time:', round(ParsingTime)]).
+    classify(OntologyFile, OperationTime, Output),
+    list_p(['Operation Time:', round(OperationTime)]).
 
 activity([realisation, OntologyFile, Output]) :-
     realisation(OntologyFile, Output).
