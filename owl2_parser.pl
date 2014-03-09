@@ -105,6 +105,12 @@ functionalDataProperty(functionalDataProperty(Property)) -->
 inverseFunctionalObjectProperty(inverseFunctionalObjectProperty(Property)) -->
     "InverseFunctionalObjectProperty(", property(Property), ")".
 
+negativeObjectPropertyAssertion(negativeObjectPropertyAssertion(Property)) -->
+    "NegativeObjectPropertyAssertion(", property(Property), ")".
+
+negativeDataPropertyAssertion(negativeDataPropertyAssertion(Property)) -->
+    "NegativeDataPropertyAssertion(", property(Property), ")".
+
 objectSomeValuesFrom(objectSomeValuesFrom(Property, Expression)) -->
     "ObjectSomeValuesFrom(", property(Property), " ", classExpression(Expression), ")".
 
@@ -252,9 +258,9 @@ declaration(Exp) --> declarationNamedIndividual(Exp).
 assertion(X) --> differentIndividuals(X), !.
 assertion(X) --> classAssertion(X), !.
 assertion(X) --> objectPropertyAssertion(X), !.
-%assertion(X) --> negativeObjectPropertyAssertion(X), !.
+assertion(X) --> negativeObjectPropertyAssertion(X), !.
+assertion(X) --> negativeDataPropertyAssertion(X), !.
 assertion(X) --> dataPropertyAssertion(X).
-%assertion(X) --> negativeDataPropertyAssertion(X).
 
 classExpression(Exp) --> objectIntersectionOf(Exp), !.
 classExpression(Exp) --> objectUnionOf(Exp), !.
