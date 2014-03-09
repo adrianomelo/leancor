@@ -197,6 +197,9 @@ objectComplementOf(objectComplementOf(Exp)) -->
 subObjectPropertyOf(subObjectPropertyOf(PropA, PropB)) --> 
     "SubObjectPropertyOf(", property(PropA), " ", property(PropB), ")".
 
+subDataPropertyOf(subDataPropertyOf(PropA, PropB)) --> 
+    "SubDataPropertyOf(", property(PropA), " ", property(PropB), ")".
+
 objectOneOf(OneOf) -->
     "ObjectOneOf(", objectOneOfExpression(OneOf), ")".
 
@@ -297,7 +300,7 @@ objectPropertyAxiom(Ax) --> symmetricObjectProperty(Ax), !.
 objectPropertyAxiom(Ax) --> asymmetricObjectProperty(Ax), !.
 objectPropertyAxiom(Ax) --> transitiveObjectProperty(Ax), !.
 
-%dataPropertyAxiom(Ax) --> subDataPropertyOf(Ax), !.
+dataPropertyAxiom(Ax) --> subDataPropertyOf(Ax), !.
 dataPropertyAxiom(Ax) --> equivalentDataProperties(Ax), !.
 %dataPropertyAxiom(Ax) --> disjointDataProperties(Ax), !.
 dataPropertyAxiom(Ax) --> dataPropertyDomain(Ax), !.
