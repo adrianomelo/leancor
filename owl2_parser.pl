@@ -221,6 +221,9 @@ disjointClasses(Disjoint) -->
 differentIndividuals(Different) -->
     "DifferentIndividuals(", differentIndividualsExpression(Different), ")".
 
+sameIndividual(SameIndividual) -->
+    "SameIndividual(", sameIndividualExpression(SameIndividual), ")".
+
 entity(Name) -->
     "<", any_chars(_), "#", word(Name), ">", { ! }.
 
@@ -257,7 +260,7 @@ declaration(Exp) --> declarationDataProperty(Exp), !.
 %declaration(Exp) --> declarationAnnotationProperty(Exp), !.
 declaration(Exp) --> declarationNamedIndividual(Exp).
 
-%assertion(X) --> sameIndifidual(X), !.
+assertion(X) --> sameIndividual(X), !.
 assertion(X) --> differentIndividuals(X), !.
 assertion(X) --> classAssertion(X), !.
 assertion(X) --> objectPropertyAssertion(X), !.
@@ -357,6 +360,9 @@ disjointExpression(Expression) --> class(Expression).
 
 differentIndividualsExpression(differentIndividuals(Ind1, Ind2)) --> entity(Ind1), " ", differentIndividualsExpression(Ind2), !.
 differentIndividualsExpression(Individual) --> entity(Individual).
+
+sameIndividualExpression(sameIndividual(Ind1, Ind2)) --> entity(Ind1), " ", sameIndividualExpression(Ind2), !.
+sameIndividualExpression(Individual) --> entity(Individual).
 
 %%%%%%%%%%%%%%%%%
 %% Helper Rules %

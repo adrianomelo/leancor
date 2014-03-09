@@ -254,6 +254,11 @@ test(differentIndividuals1) :-
     Output = differentIndividuals(delicate, differentIndividuals(moderate, strong)),
     axiom(Output, Input, []).
 
+test(sameIndividuals1) :- 
+    Input  = "SameIndividual(:Delicate :Moderate :Strong)",
+    Output = sameIndividual(delicate, sameIndividual(moderate, strong)),
+    axiom(Output, Input, []).
+
 :- end_tests(basic).
 :- begin_tests(combined).
 
