@@ -70,6 +70,21 @@ test(individual) :-
     Output = classAssertion(degree(ba)),
     classAssertion(Output, Input, []).
 
+test(hasKey1) :-
+    Input  = "HasKey(:Thing ( ) ())",
+    Output = hasKey(thing, null, null),
+    axiom(Output, Input, []).
+
+test(hasKey2) :-
+    Input  = "HasKey(:Thing (:MyProperty) ( ))",
+    Output = hasKey(thing, myproperty(_G1331, _G1334), null),
+    axiom(Output, Input, []).
+
+test(hasKey3) :-
+    Input  = "HasKey(:Thing (:MyProperty) (:OtherProperty))",
+    Output = hasKey(thing, myproperty(_G551, _G554), otherproperty(_G602, _G605)),
+    axiom(Output, Input, []).
+
 test(propertyDomain) :-
     Input  = "ObjectPropertyDomain(<http://www.cin.ufpe.br/~astm/dataproperty#hasAbc> <http://www.cin.ufpe.br/~astm/dataproperty#C>)",
     Output = objectPropertyDomain(hasabc(_, _), c(_)),

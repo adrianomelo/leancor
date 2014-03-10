@@ -200,6 +200,9 @@ subObjectPropertyOf(subObjectPropertyOf(PropA, PropB)) -->
 subDataPropertyOf(subDataPropertyOf(PropA, PropB)) --> 
     "SubDataPropertyOf(", property(PropA), " ", property(PropB), ")".
 
+hasKey(hasKey(ClassExpression, ObjectProperty, DataProperty)) -->
+    "HasKey(", entity(ClassExpression), " (", property_or_null(ObjectProperty), ") (", property_or_null(DataProperty), "))".
+
 objectOneOf(OneOf) -->
     "ObjectOneOf(", objectOneOfExpression(OneOf), ")".
 
@@ -245,6 +248,9 @@ literal(Name) -->
 
 quotedString(Name) --> 
     "\"", any_chars(Chars), "\"", { name(Name, Chars), ! }.
+
+property_or_null(Property) --> property(Property), { ! }.
+property_or_null(null) --> space.
 
 %%%%%%%%%%%%%%%%%%%%%%
 % Complement Clauses %
@@ -315,7 +321,7 @@ axiom(X) --> classAxiom(X), !.
 axiom(X) --> objectPropertyAxiom(X), !.
 axiom(X) --> dataPropertyAxiom(X), !.
 %axiom(X) --> dataTypeDefinition(X), !.
-%axiom(X) --> hasKey(X), !.
+axiom(X) --> hasKey(X), !.
 axiom(X) --> assertion(X).
 %axiom(X) --> annotationAxiom(X).
 
@@ -381,6 +387,9 @@ parse_owl(File, Prefixes, Imports, Axioms) :-
 
 newline --> "\n", newline, !.
 newline --> [].
+
+space --> " ", space, !.
+space --> [].
 
 class_name_chars([X|Y]) --> class_name_char(X), class_name_chars(Y).
 class_name_chars([]) --> [].
