@@ -159,8 +159,8 @@ to_clausule(functionalObjectProperty(A), [[NewA, NewB, -eq(Y, Z)]]) :-
     NewA=..[PropertyNameA, X, Y],
     NewB=..[PropertyNameA, X, Z], !.
 
-to_clausule(objectPropertyDomain(Property, Class), Matrix) :- domain_range(Property, Class, Matrix), !.
-to_clausule(dataPropertyDomain(Property, Class), Matrix) :- domain_range(Property, Class, Matrix), !.
+to_clausule(objectPropertyDomain(Property, Class), Matrix) :- domain(Property, Class, Matrix), !.
+to_clausule(dataPropertyDomain(Property, Class), Matrix) :- domain(Property, Class, Matrix), !.
 to_clausule(objectPropertyRange(Property, Class), Matrix) :- domain_range(Property, Class, Matrix), !.
 to_clausule(dataPropertyRange(Property, Class), Matrix) :- domain_range(Property, Class, Matrix), !.
 
@@ -170,8 +170,14 @@ to_clausule(dataPropertyAssertion(A), [[-A]]) :- !.
 to_clausule(class(_), []) :- !.
 to_clausule(_, []).
 
-domain_range(Property, Class, [[NewProperty, -NewClass]]) :-
+domain(Property, Class, [[NewProperty, -NewClass]]) :-
     Property=..[PropertyName,_,_],
     Class=..[ClassName,_],
     NewClass=..[ClassName,X],
     NewProperty=..[PropertyName,X,_].
+
+domain_range(Property, Class, [[NewProperty, -NewClass]]) :-
+    Property=..[PropertyName,_,_],
+    Class=..[ClassName,_],
+    NewClass=..[ClassName,X],
+    NewProperty=..[PropertyName,_,X].
