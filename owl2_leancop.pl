@@ -8,8 +8,8 @@
 % Activities API %
 %%%%%%%%%%%%%%%%%%
 
-classify(FileIn, OperationTime, _TODO1) :-
-	owl2_to_matrix(FileIn, Matrix, Concepts),
+classify(InputOntologyFile, OperationTime, _OutputOntologyFile) :-
+	owl2_to_matrix(InputOntologyFile, Matrix, Concepts),
 	get_time(Start),
 	test_subsumption_list(Matrix, Concepts, Concepts, _TODO2),
 	get_time(End),
