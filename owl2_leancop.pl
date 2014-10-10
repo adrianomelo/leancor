@@ -1,5 +1,6 @@
-:- [owl2_parser].
+:- [owl2_fol].
 :- [owl2_matrix].
+:- [owl2_parser_operators].
 :- [leancop21_swi].
 
 :- dynamic(intance/1).
@@ -22,16 +23,17 @@ classify(InputOntologyFile, OperationTime, _OutputOntologyFile) :-
 test_subsumption_list(_, _, [], []).
 test_subsumption_list(Matrix, AllConcepts, [Concept|Concepts], AllPairs) :-
 	test_subsumption(Matrix, AllConcepts, Concept, SubClasses),
-	%print('SubClassesOf '),print(Concept),print(' '),print(SubClasses),print('\n'),
+	print('SubClassesOf '),print(Concept),print(' '),print(SubClasses),print('\n'),
 	test_subsumption_list(Matrix, AllConcepts, Concepts, PairsOthers),
 	append([[Concept, SubClasses]], PairsOthers, AllPairs).
 
 test_subsumption(_, [], _, []).
-test_subsumption(Matrix, [TestConcept|Concepts], Concept, [TestConcept|SubClasses]) :-
-	Ghost=instance(_),
-	instanciate(TestConcept, NewTestConcept, Ghost),
-	instanciate(Concept, NewConcept, Ghost),
-	append([[-(#)], [-NewTestConcept], [NewConcept, #]], Matrix, MatrixWithQuery),
+test_subsumption(Matrix, [Subsumer|Concepts], Concept, [Subsumer|SubClasses]) :-
+    Subsumer \= Concept,
+    A=..[Subsumer, c],
+    B=..[Concept, c],
+	append([[-(#)], [A], [-B, #]], Matrix, MatrixWithQuery),
+    print(MatrixWithQuery), print('\n'),
 	prove(MatrixWithQuery,_),
 	test_subsumption(Matrix, Concepts, Concept, SubClasses), !.
 
@@ -51,13 +53,10 @@ initialize(Matrix) :-
 % Helpers %
 %%%%%%%%%%%
 
-owl2_to_matrix(File, Matrix) :-
-	parse_owl(File, _, _, Axioms),
-	create_matrix(Axioms, Matrix).
-
 owl2_to_matrix(File, Matrix, Concepts) :-
 	parse_owl(File, _, _, Axioms),
-	create_matrix(Axioms, Matrix),
+	axioms_to_fol(Axioms, Matrix),
+	print(Matrix),print('\n'),
 	axioms_subclassof(Axioms, Concepts).
 
 axioms_subclassof([], []).
@@ -73,10 +72,18 @@ owl2_info(File) :-
 print_info([]).
 print_info([Head|Axioms]) :-
 	print('Axiom: '), print(Head), print('\n'),
-	create_matrix([Head], Matrix),
-	print('Matrix: '), print(Matrix), print('\n'),
+    to_fol(Head, Formula),
+	print('Fol: '), print(Formula), print('\n'),
+	make_matrix(~(Formula), Matrix, []),
+	print('Neg Matrix: '), print(Matrix), print('\n'),
 	print_info(Axioms).
 
-instanciate(Concept, NewConcept, Instance) :-
-	Concept=..[ConceptName,_],
-	NewConcept=..[ConceptName,Instance].
+axioms_to_fol([], []).
+axioms_to_fol([Head|Axioms], Fol) :-
+    to_fol(Head, NewFol),
+    NewFol \= [],
+    make_matrix(~(NewFol), Matrix, []),
+    axioms_to_fol(Axioms, Formulas),
+    append(Matrix, Formulas, Fol).
+axioms_to_fol([_|Axioms], Fol) :-
+    axioms_to_fol(Axioms, Fol).
