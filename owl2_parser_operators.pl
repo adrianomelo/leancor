@@ -229,8 +229,8 @@ sameIndividual(SameIndividual) -->
 entity(Name) -->
     "<", any_chars(_), "#", word(Name), ">", { ! }.
 
-entity(Uri) -->
-    class_name_chars(_), ":", class_name_chars(Chars), { name(Name, Chars), downcase_atom(Name, Uri), ! }.
+entity(Name) -->
+    class_name_chars(_), ":", class_name_chars(Chars), { name(Name, Chars), ! }.
 
 entity(Uri) -->
     ":", class_name_chars(Chars), { name(Name, Chars), downcase_atom(Name, Uri), ! }.
