@@ -1,0 +1,3 @@
+#swipl -q -G7g -T7g -L7g -f owl2_cli.pl -t halt. -g ore classification owl2/ontology_travel.owl owl2/ontology_travel_classification_leancor.owl 2> /dev/null
+
+swipl -q -G7g -T7g -L7g -f owl2_cli.pl -t halt. -g ore $* 2> /dev/null
