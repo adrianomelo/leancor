@@ -26,6 +26,7 @@ test_subsumption_list(Matrix, AllConcepts, [Concept|Concepts]) :-
 
 test_subsumption(_, [], _).
 test_subsumption(Matrix, [Specific|Concepts], Concept) :-
+    not(subclassof(Specific, Concept, _)),
     Specific \= Concept,
     A=..[Specific, c],
     B=..[Concept, c],
@@ -46,7 +47,6 @@ test_subsumption(Matrix, [_|Concepts], Concept) :-
 
 owl2_to_matrix(File, Matrix, Concepts) :-
 	parse_owl(File, Prefixes, _, Axioms),
-    print(Prefixes),
 	axioms_to_fol(Axioms, Formulas),
 	%print(Formulas),print('\n'),
     list_to_operator(Formulas, Fol),
@@ -63,6 +63,11 @@ process_prefixes([Head|List]) :-
 process_axioms([], []).
 process_axioms([class(Concept)|Axioms], [Concept|Concepts]) :-
 	process_axioms(Axioms, Concepts), !.
+process_axioms([A is_a B|Axioms], Concepts) :-
+    atom(A),
+    atom(B),
+    assert(subclassof(A, B, o)),
+    process_axioms(Axioms, Concepts).
 process_axioms([_|Axioms], Concepts) :-
 	process_axioms(Axioms, Concepts). 
 
