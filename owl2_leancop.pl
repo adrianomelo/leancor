@@ -1,6 +1,6 @@
 :- [owl2_fol].
 :- [owl2_matrix].
-:- [owl2_parser_operators].
+:- [owl2_parser].
 :- [owl2_output].
 :- [leancop21_swi].
 

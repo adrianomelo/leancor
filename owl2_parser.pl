@@ -30,6 +30,8 @@
 %    Functional-Style Syntax (Second Edition)
 %    http://www.w3.org/TR/owl2-syntax/
 
+:- [owl2_operators].
+
 owl(Prefixes, Imports, Axioms) --> 
     prefixes(Prefixes), newline, ontology(Imports, Axioms).
 
@@ -54,38 +56,37 @@ declarationObjectProperty(objectProperty(Property)) -->
 declarationDataProperty(dataProperty(Property)) -->
     "Declaration(DataProperty(", property(Property), "))".
 
-classAssertion(classAssertion(Instance)) --> 
-    "ClassAssertion(", entity(ClassName), " ", entity(InstanceName), ")", 
-        { Instance=..[ClassName, InstanceName] }.
+classAssertion((ClassName class_assert InstanceName)) --> 
+    "ClassAssertion(", entity(ClassName), " ", entity(InstanceName), ")".
 
-objectPropertyDomain(objectPropertyDomain(Property, Exp)) -->
-    "ObjectPropertyDomain(", property(Property), " ", classExpression(Exp), ")".
+objectPropertyDomain((PropertyName domain Exp)) -->
+    "ObjectPropertyDomain(", entity(PropertyName), " ", classExpression(Exp), ")".
 
-objectPropertyRange(objectPropertyRange(Property, Exp)) -->
-    "ObjectPropertyRange(", property(Property), " ", classExpression(Exp), ")".
+objectPropertyRange((PropertyName range Exp)) -->
+    "ObjectPropertyRange(", entity(PropertyName), " ", classExpression(Exp), ")".
 
 objectPropertyAssertion(objectPropertyAssertion(Property)) --> 
     "ObjectPropertyAssertion(", entity(PropName), " ", entity(Ind1), " ", entity(Ind2), ")",
         { Property=..[PropName, Ind1, Ind2] }.
 
-dataPropertyDomain(dataPropertyDomain(Property, Exp)) -->
-    "DataPropertyDomain(", property(Property), " ", classExpression(Exp), ")".
+dataPropertyDomain((PropertyName domain Exp)) -->
+    "DataPropertyDomain(", entity(PropertyName), " ", classExpression(Exp), ")".
 
-dataPropertyRange(dataPropertyRange(Property, Exp)) -->
-    "DataPropertyRange(", property(Property), " ", classExpression(Exp), ")".
+dataPropertyRange((PropertyName range Exp)) -->
+    "DataPropertyRange(", entity(PropertyName), " ", classExpression(Exp), ")".
 
 dataPropertyAssertion(dataPropertyAssertion(Property)) --> 
     "DataPropertyAssertion(", entity(PropName), " ", entity(Ind1), " ", any_chars(Chars), ")",
         { name(Ind2, Chars), Property=..[PropName, Ind1, Ind2], ! }.
 
-inverseObjectProperties(inverseObjectProperties(PropertyA, PropertyB)) -->
-    "InverseObjectProperties(", property(PropertyA), " ", property(PropertyB), ")".
+inverseObjectProperties((PropertyA inverse PropertyB)) -->
+    "InverseObjectProperties(", entity(PropertyA), " ", entity(PropertyB), ")".
 
-symmetricObjectProperty(symmetricObjectProperty(Property)) -->
-    "SymmetricObjectProperty(", property(Property), ")".
+symmetricObjectProperty((symmetric PropertyName)) -->
+    "SymmetricObjectProperty(", entity(PropertyName), ")".
 
-asymmetricObjectProperty(asymmetricObjectProperty(Property)) -->
-    "AsymmetricObjectProperty(", property(Property), ")".
+asymmetricObjectProperty((asymmetric PropertyName)) -->
+    "AsymmetricObjectProperty(", entity(PropertyName), ")".
 
 reflexiveObjectProperty(reflexiveObjectProperty(Property)) -->
     "ReflexiveObjectProperty(", property(Property), ")".
@@ -93,14 +94,14 @@ reflexiveObjectProperty(reflexiveObjectProperty(Property)) -->
 irreflexiveObjectProperty(irreflexiveObjectProperty(Property)) -->
     "IrreflexiveObjectProperty(", property(Property), ")".
 
-transitiveObjectProperty(transitiveObjectProperty(Property)) -->
-    "TransitiveObjectProperty(", property(Property), ")".
+transitiveObjectProperty((transitive PropertyName)) -->
+    "TransitiveObjectProperty(", entity(PropertyName), ")".
 
-functionalObjectProperty(functionalObjectProperty(Property)) -->
-    "FunctionalObjectProperty(", property(Property), ")".
+functionalObjectProperty((functional PropertyName)) -->
+    "FunctionalObjectProperty(", entity(PropertyName), ")".
 
-functionalDataProperty(functionalDataProperty(Property)) -->
-    "FunctionalDataProperty(", property(Property), ")".
+functionalDataProperty((functional PropertyName)) -->
+    "FunctionalDataProperty(", entity(PropertyName), ")".
 
 inverseFunctionalObjectProperty(inverseFunctionalObjectProperty(Property)) -->
     "InverseFunctionalObjectProperty(", property(Property), ")".
@@ -111,17 +112,17 @@ negativeObjectPropertyAssertion(negativeObjectPropertyAssertion(Property)) -->
 negativeDataPropertyAssertion(negativeDataPropertyAssertion(Property)) -->
     "NegativeDataPropertyAssertion(", property(Property), ")".
 
-objectSomeValuesFrom(objectSomeValuesFrom(Property, Expression)) -->
-    "ObjectSomeValuesFrom(", property(Property), " ", classExpression(Expression), ")".
+objectSomeValuesFrom((PropertyName some Expression)) -->
+    "ObjectSomeValuesFrom(", entity(PropertyName), " ", classExpression(Expression), ")".
 
-dataSomeValuesFrom(dataSomeValuesFrom(Name, Type)) -->
-    "DataSomeValuesFrom(", property(Name), " ", classExpression(Type), ")".
+dataSomeValuesFrom((PropertyName some Type)) -->
+    "DataSomeValuesFrom(", entity(PropertyName), " ", classExpression(Type), ")".
 
-objectAllValuesFrom(objectAllValuesFrom(Property, Expression)) -->
-    "ObjectAllValuesFrom(", property(Property), " ", classExpression(Expression), ")".
+objectAllValuesFrom((PropertyName any Expression)) -->
+    "ObjectAllValuesFrom(", entity(PropertyName), " ", classExpression(Expression), ")".
 
-dataAllValuesFrom(dataAllValuesFrom(Property, Expression)) -->
-    "DataAllValuesFrom(", property(Property), " ", classExpression(Expression), ")".
+dataAllValuesFrom((PropertyName any Expression)) -->
+    "DataAllValuesFrom(", entity(PropertyName), " ", classExpression(Expression), ")".
 
 objectUnionOf(Union) --> 
     "ObjectUnionOf(", objectUnionOfExpression(Union), ")".
@@ -132,73 +133,71 @@ objectIntersectionOf(Intersection) -->
 dataIntersectionOf(Intersection) --> 
     "DataIntersectionOf(", dataIntersectionOfExpression(Intersection), ")".
 
-objectMaxCardinality(objectMaxCardinality(Number, PropertyName, Expression)) --> 
+objectMaxCardinality(([Number, PropertyName] max Expression)) --> 
     "ObjectMaxCardinality(", word(NumberValue), " ", entity(PropertyName), " ", classExpression(Expression), ")",
         { atom_number(NumberValue, Number), ! }.
 
-objectMaxCardinality(objectMaxCardinality(Number, PropertyName)) --> 
+objectMaxCardinality((Number max PropertyName)) --> 
     "ObjectMaxCardinality(", word(NumberValue), " ", entity(PropertyName), ")",
         { atom_number(NumberValue, Number) }.
 
-dataMaxCardinality(dataMaxCardinality(Number, PropertyName, Expression)) --> 
+dataMaxCardinality(([Number, PropertyName] max_d Expression)) --> 
     "DataMaxCardinality(", word(NumberValue), " ", entity(PropertyName), " ", classExpression(Expression), ")",
         { atom_number(NumberValue, Number), ! }.
 
-dataMaxCardinality(dataMaxCardinality(Number, PropertyName)) --> 
+dataMaxCardinality((Number max_d PropertyName)) --> 
     "DataMaxCardinality(", word(NumberValue), " ", entity(PropertyName), ")",
         { atom_number(NumberValue, Number) }.
 
-objectMinCardinality(objectMinCardinality(Number, PropertyName, Expression)) --> 
+objectMinCardinality(([Number, PropertyName] min Expression)) --> 
     "ObjectMinCardinality(", word(NumberValue), " ", entity(PropertyName), " ", classExpression(Expression), ")",
         { atom_number(NumberValue, Number), ! }.
 
-objectMinCardinality(objectMinCardinality(Number, PropertyName)) --> 
+objectMinCardinality((Number min PropertyName)) --> 
     "ObjectMinCardinality(", word(NumberValue), " ", entity(PropertyName), ")",
         { atom_number(NumberValue, Number) }.
 
-dataMinCardinality(dataMinCardinality(Number, PropertyName, Expression)) --> 
+dataMinCardinality(([Number, PropertyName] min_d Expression)) --> 
     "DataMinCardinality(", word(NumberValue), " ", entity(PropertyName), " ", classExpression(Expression), ")",
         { atom_number(NumberValue, Number), ! }.
 
-dataMinCardinality(dataMinCardinality(Number, PropertyName)) --> 
+dataMinCardinality((Number min_d PropertyName)) --> 
     "DataMinCardinality(", word(NumberValue), " ", entity(PropertyName), ")",
         { atom_number(NumberValue, Number) }.
 
-objectExactCardinality(objectExactCardinality(Number, PropertyName, Expression)) --> 
+objectExactCardinality(([Number, PropertyName] exact Expression)) --> 
     "ObjectExactCardinality(", word(NumberValue), " ", entity(PropertyName), " ", classExpression(Expression), ")",
         { atom_number(NumberValue, Number), ! }.
 
-objectExactCardinality(objectExactCardinality(Number, PropertyName)) --> 
+objectExactCardinality((Number exact PropertyName)) --> 
     "ObjectExactCardinality(", word(NumberValue), " ", entity(PropertyName), ")",
         { atom_number(NumberValue, Number) }.
 
-dataExactCardinality(dataExactCardinality(Number, PropertyName, Expression)) --> 
+dataExactCardinality(([Number, PropertyName] exact_d Expression)) --> 
     "DataExactCardinality(", word(NumberValue), " ", entity(PropertyName), " ", classExpression(Expression), ")",
         { atom_number(NumberValue, Number), ! }.
 
-dataExactCardinality(dataExactCardinality(Number, PropertyName)) --> 
+dataExactCardinality((Number exact_d PropertyName)) --> 
     "DataExactCardinality(", word(NumberValue), " ", entity(PropertyName), ")",
         { atom_number(NumberValue, Number) }.
 
-objectHasValue(Property) --> 
-    "ObjectHasValue(", entity(PropertyName), " ", entity(IndividualName), ")",
-        { Property=..[PropertyName, _, IndividualName] }.
+objectHasValue((PropertyName value IndividualName)) --> 
+    "ObjectHasValue(", entity(PropertyName), " ", entity(IndividualName), ")".
 
-dataHasValue(Property) --> 
-    "DataHasValue(", entity(PropertyName), " ", literal(LiteralName), ")",
-        { Property=..[PropertyName, _, LiteralName] }.
+dataHasValue((PropertyName value LiteralName)) --> 
+    "DataHasValue(", entity(PropertyName), " ", literal(LiteralName), ")".
 
-objectHasSelf(objectHasSelf(PropertyName)) --> 
+objectHasSelf((self PropertyName)) --> 
     "ObjectHasSelf(", entity(PropertyName), ")".
 
-objectComplementOf(objectComplementOf(Exp)) -->
+objectComplementOf((not Exp)) -->
     "ObjectComplementOf(", classExpression(Exp), ")".
 
-subObjectPropertyOf(subObjectPropertyOf(PropA, PropB)) --> 
-    "SubObjectPropertyOf(", property(PropA), " ", property(PropB), ")".
+subObjectPropertyOf((PropA subproperty PropB)) --> 
+    "SubObjectPropertyOf(", entity(PropA), " ", entity(PropB), ")".
 
-subDataPropertyOf(subDataPropertyOf(PropA, PropB)) --> 
-    "SubDataPropertyOf(", property(PropA), " ", property(PropB), ")".
+subDataPropertyOf((PropA subproperty PropB)) --> 
+    "SubDataPropertyOf(", entity(PropA), " ", entity(PropB), ")".
 
 hasKey(hasKey(ClassExpression, ObjectProperty, DataProperty)) -->
     "HasKey(", entity(ClassExpression), " (", property_or_null(ObjectProperty), ") (", property_or_null(DataProperty), "))".
@@ -206,10 +205,10 @@ hasKey(hasKey(ClassExpression, ObjectProperty, DataProperty)) -->
 objectOneOf(OneOf) -->
     "ObjectOneOf(", objectOneOfExpression(OneOf), ")".
 
-subClassOf(subClassOf(Exp1, Exp2)) --> 
+subClassOf((Exp1 is_a Exp2)) --> 
     "SubClassOf(", classExpression(Exp1), " ", classExpression(Exp2), ")".
 
-equivalentClasses(equivalentClasses(Exp1, Exp2)) -->
+equivalentClasses((Exp1 same_as Exp2)) -->
     "EquivalentClasses(", classExpression(Exp1), " ", classExpression(Exp2), ")".
 
 equivalentDataProperties(Equivalent) -->
@@ -230,7 +229,7 @@ sameIndividual(SameIndividual) -->
 entity(Name) -->
     "<", any_chars(_), "#", word(Name), ">", { ! }.
 
-entity(Uri) -->
+entity(Name) -->
     class_name_chars(_), ":", class_name_chars(Chars), { name(Name, Chars), downcase_atom(Name, Uri), ! }.
 
 entity(Uri) -->
@@ -257,7 +256,7 @@ property_or_null(null) --> space.
 %%%%%%%%%%%%%%%%%%%%%%
 
 property(Class) --> entity(PropertyName), { Class=..[PropertyName,_,_] }.
-class(Class) --> entity(ClassName), { Class=..[ClassName,_] }.
+class(ClassName) --> entity(ClassName). %, { Class=..[ClassName,_] }.
 
 declaration(Exp) --> declarationClass(Exp), !.
 %declaration(Exp) --> declarationDatatype(Exp), !.
@@ -343,16 +342,16 @@ prefixes([]) --> [].
 axioms([Axiom|Axioms]) --> axiom(Axiom), "\n", axioms(Axioms), !.
 axioms([]) --> [].
 
-objectUnionOfExpression(objectUnionOf(Exp1, Exp2)) --> classExpression(Exp1), " ", objectUnionOfExpression(Exp2), !.
+objectUnionOfExpression((Exp1 or Exp2)) --> classExpression(Exp1), " ", objectUnionOfExpression(Exp2), !.
 objectUnionOfExpression(Expression) --> classExpression(Expression).
 
-objectIntersectionOfExpression(objectIntersectionOf(Exp1, Exp2)) --> classExpression(Exp1), " ", objectIntersectionOfExpression(Exp2), !.
+objectIntersectionOfExpression((Exp1 and Exp2)) --> classExpression(Exp1), " ", objectIntersectionOfExpression(Exp2), !.
 objectIntersectionOfExpression(Expression) --> classExpression(Expression).
 
-dataIntersectionOfExpression(dataIntersectionOf(Exp1, Exp2)) --> dataRange(Exp1), " ", dataIntersectionOfExpression(Exp2), !.
+dataIntersectionOfExpression((Exp1 and Exp2)) --> dataRange(Exp1), " ", dataIntersectionOfExpression(Exp2), !.
 dataIntersectionOfExpression(Expression) --> dataRange(Expression).
 
-objectOneOfExpression(objectOneOf(Exp1, Exp2)) --> entity(Exp1), " ", objectOneOfExpression(Exp2), !.
+objectOneOfExpression((Exp1 one Exp2)) --> entity(Exp1), " ", objectOneOfExpression(Exp2), !.
 objectOneOfExpression(Expression) --> entity(Expression).
 
 equivalentObjectPropertiesExpression(equivalentObjectProperties(Exp1, Exp2)) --> property(Exp1), " ", equivalentObjectPropertiesExpression(Exp2), !.
@@ -361,7 +360,7 @@ equivalentObjectPropertiesExpression(Expression) --> property(Expression).
 equivalentDataPropertiesExpression(equivalentDataProperties(Exp1, Exp2)) --> property(Exp1), " ", equivalentDataPropertiesExpression(Exp2), !.
 equivalentDataPropertiesExpression(Expression) --> property(Expression).
 
-disjointExpression(disjointClasses(Exp1, Exp2)) --> class(Exp1), " ", disjointExpression(Exp2), !.
+disjointExpression((Exp1 disjoint_classes Exp2)) --> class(Exp1), " ", disjointExpression(Exp2), !.
 disjointExpression(Expression) --> class(Expression).
 
 differentIndividualsExpression(differentIndividuals(Ind1, Ind2)) --> entity(Ind1), " ", differentIndividualsExpression(Ind2), !.
