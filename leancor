@@ -1,3 +1,15 @@
-#swipl -q -G7g -T7g -L7g -f owl2_cli.pl -t halt. -g ore classification owl2/ontology_travel.owl owl2/ontology_travel_classification_leancor.owl 2> /dev/null
+#!/bin/bash
+
+# OWL Reasoner Evaluation Workshop (ORE) 2013
+
+# Check consistency
+# ./leancor consistency test/pizza.owl test/output/pizza-consistency.csv
+
+# Classify ontology
+# ./leancor classification test/pizza.owl test/output/pizza-classification.owl
+
+# Check satisfiability of concept names
+# ./leancor sat test/pizza.owl test/output/pizza-sat.csv http://www.co-ode.org/ontologies/pizza/pizza.owl#SloppyGiuseppe
+# ./leancor sat test/pizza.owl test/output/pizza-sat.csv http://www.co-ode.org/ontologies/pizza/pizza.owl#IceCream
 
 swipl -q -G7g -T7g -L7g -f owl2_cli.pl -t halt. -g ore $* 2> /dev/null
