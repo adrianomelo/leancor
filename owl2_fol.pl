@@ -1,10 +1,10 @@
 :- [def_mm].
 :- [owl2_operators].
 
-to_fol(A same_as B, (all New: (Fa <=> Fb))) :-
+to_fol(A same_as B, (all New: ((Fa) <=> (Fb)))) :-
     to_fol(New, A, Fa), to_fol(New, B, Fb).
 
-to_fol(A is_a B, (all New: (Fa => Fb))) :-
+to_fol(A is_a B, (all New: ((Fa) => (Fb)))) :-
     to_fol(New, A, Fa), to_fol(New, B, Fb).
 
 to_fol(A disjoint_classes B, (all New: (Fa => ~Fb))) :-
@@ -50,6 +50,7 @@ to_fol(functional A, (all X: (all Y: (all Z: ((Fa, Fb) => (Y=Z)))))) :-
     Fa=..[A,X,Y],
     Fb=..[A,X,Z].
 
+to_fol(namedIndividual(_), []) :- !.
 to_fol(class(_), []) :- !.                   % does not generate clauses
 to_fol(objectProperty(_), []) :- !.          % does not generate clauses
 to_fol(dataProperty(_), []) :- !.            % does not generate clauses
@@ -82,7 +83,11 @@ to_fol(New, A any B, (all NewNew: (Fa => Fb))) :-
 to_fol(New, not A, (~Fa)) :-
     to_fol(New, A, Fa).
 
-to_fol(New, A one B, (New = A; New = B)).
+to_fol(New, A one B, (New = A; New = B)) :-
+    atom(A), atom(B).
+
+to_fol(New, A one B, (New = A; Fb)) :-
+    to_fol(New, B, Fb).
 
 to_fol(New, A value B, (Fa)) :-
     Fa=..[A,New,B].
