@@ -80,7 +80,7 @@ to_fol(New, A any B, (all NewNew: (Fa => Fb))) :-
     to_fol(New, NewNew, A, Fa),
     to_fol(NewNew, B, Fb).
 
-to_fol(New, not A, (~Fa)) :-
+to_fol(New, not A, (~(Fa))) :-
     to_fol(New, A, Fa).
 
 to_fol(New, A one B, (New = A; New = B)) :-
@@ -97,10 +97,16 @@ to_fol(New, self A, (Fa)) :-
 
 to_fol(New, [Number, P] min A, unknow).
 to_fol(New, Number min A, unknow).
+to_fol(New, [Number, P] min_d A, unknow).
+to_fol(New, Number min_d A, unknow).
 to_fol(New, [Number, P] max A, unknow).
 to_fol(New, Number max A, unknow).
+to_fol(New, [Number, P] max_d A, unknow).
+to_fol(New, Number max_d A, unknow).
 to_fol(New, [Number, P] exact A, unknow).
 to_fol(New, Number exact A, unknow).
+to_fol(New, [Number, P] exact_d A, unknow).
+to_fol(New, Number exact_d A, unknow).
 
 to_fol(New, A, (Fa)) :-
     Fa=..[A,New].
