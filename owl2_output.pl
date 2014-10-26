@@ -21,5 +21,35 @@ Ontology(<file:%p>\n\n', [Uri, FileName]),
 
 output_axioms :-
     prefix('',Uri),
-    forall((subclassof(A,B,_), not((subclassof(A,C,_), subclassof(C,B,_)))), writef('SubClassOf(<%p#%p> <%p#%p>)\n', [Uri, A, Uri, B])).
+    forall((subclassof(A,B), not((subclassof(A,C), subclassof(C,B)))), writef('SubClassOf(<%p#%p> <%p#%p>)\n', [Uri, A, Uri, B])).
 
+% File with debug information
+write_debug(OntolotyFile, Axioms, Fol, Matrix) :-
+    atom_concat(OntolotyFile, '_err', DebugFile),
+    open(DebugFile, write, File),
+    current_output(Current),
+    set_output(File),
+    writef('------- Axioms --------\n'),
+    write_debug_axioms(Axioms),
+    writef('\n\n------- Formula --------\n'),
+    write_debug_formula(Fol),
+    writef('\n\n------- Matrix -------\n'),
+    write_debug_matrix(Matrix),
+    close(File),
+    set_output(Current).
+
+write_debug_axioms([]).
+write_debug_axioms([Head|Axioms]) :-
+    writef('%p\n', [Head]),
+    write_debug_axioms(Axioms).
+
+write_debug_formula((A,B)) :-
+    writef('%p\n', [A]),
+    write_debug_formula(B).
+write_debug_formula(A) :-
+    writef('%p\n', [A]).
+
+write_debug_matrix([]).
+write_debug_matrix([Head|Matrix]) :-
+    writef('%p\n', [Head]),
+    write_debug_matrix(Matrix).

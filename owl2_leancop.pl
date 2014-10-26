@@ -1,10 +1,10 @@
 :- [owl2_fol].
-:- [owl2_matrix].
 :- [owl2_parser].
 :- [owl2_output].
 :- [leancop21_swi].
+:- [leancop_tptp2].
 
-:- dynamic(subclassof/3).
+:- dynamic(subclassof/2).
 :- dynamic(prefix/2).
 
 %%%%%%%%%%%%%%%%%%
@@ -12,46 +12,58 @@
 %%%%%%%%%%%%%%%%%%
 
 classify(InputOntologyFile, OperationTime, OutputOntologyFile) :-
-	owl2_to_matrix(InputOntologyFile, Matrix, Concepts),
-	get_time(Start),
-	test_subsumption_list(Matrix, Concepts, Concepts),
+    setup_matrix(InputOntologyFile, Concepts),
+    get_time(Start),
+	test_subsumption_list(Concepts, Concepts),
 	get_time(End),
     write_classification_output_file(OutputOntologyFile),
 	OperationTime is round((End - Start) * 1000).
 
-test_subsumption_list(_, _, []).
-test_subsumption_list(Matrix, AllConcepts, [Concept|Concepts]) :-
-	test_subsumption(Matrix, AllConcepts, Concept),
-	test_subsumption_list(Matrix, AllConcepts, Concepts).
+test_subsumption_list(_, []).
+test_subsumption_list(AllConcepts, [Concept|Concepts]) :-
+	test_subsumption(AllConcepts, Concept),
+	test_subsumption_list(AllConcepts, Concepts).
 
-test_subsumption(_, [], _).
-test_subsumption(Matrix, [Specific|Concepts], Concept) :-
-    not(subclassof(Specific, Concept, _)),
+test_subsumption([], _).
+test_subsumption([Specific|Concepts], Concept) :-
+    not(subclassof(Specific, Concept)),
     Specific \= Concept,
     A=..[Specific, c],
     B=..[Concept, c],
-    %print(Matrix),
-	append([[-(#)], [-A], [B, #]], Matrix, MatrixWithQuery),
-	%print('Test'), print(A), print(B),print('\n'),
-    %print(MatrixWithQuery),print('\n'),
-	prove(MatrixWithQuery,_),
-    assert(subclassof(Specific, Concept, i)),
-	test_subsumption(Matrix, Concepts, Concept), !.
+    asserta(lit(-A, -A, [], g)),
+    (prove(B, 1, [cut,comp(7)], _) ->
+        asserta(subclassof(Specific, Concept)); true),
+    retract(lit(-A, -A, [], g)),
+	test_subsumption(Concepts, Concept), !.
 
-test_subsumption(Matrix, [_|Concepts], Concept) :-
-	test_subsumption(Matrix, Concepts, Concept).
+test_subsumption([_|Concepts], Concept) :-
+    test_subsumption(Concepts, Concept).
+
+prove(Literal,PathLim,Set,Proof) :-
+    prove([Literal],[],PathLim,[],Set,Proof).
+
+prove(Literal,PathLim,Set,Proof) :-
+    member(comp(Limit),Set),
+    PathLim\=Limit,
+    PathLim1 is PathLim+1, prove(Literal,PathLim1,Set,Proof).
 
 %%%%%%%%%%%
 % Helpers %
 %%%%%%%%%%%
 
+setup_matrix(OntologyFile, Concepts) :-
+	owl2_to_matrix(OntologyFile, Matrix, Concepts),
+    assert_clauses(Matrix, conj).
+
 owl2_to_matrix(File, Matrix, Concepts) :-
 	parse_owl(File, Prefixes, _, Axioms),
 	axioms_to_fol(Axioms, Formulas),
-	%print(Formulas),print('\n'),
     list_to_operator(Formulas, Fol),
-	%print(Fol),print('\n'),
-    make_matrix(~(Fol), Matrix, []),
+    make_matrix(~(Fol), KBMatrix, []),
+    basic_equal_axioms(F),
+    make_matrix(~(F), EqMatrix, []),
+    append(KBMatrix, EqMatrix, Matrix),
+    write_debug(File, Axioms, Fol, Matrix),
 	process_prefixes(Prefixes),
 	process_axioms(Axioms, Concepts).
 
@@ -64,25 +76,17 @@ process_axioms([], []).
 process_axioms([class(Concept)|Axioms], [Concept|Concepts]) :-
 	process_axioms(Axioms, Concepts), !.
 process_axioms([A is_a B|Axioms], Concepts) :-
-    atom(A),
-    atom(B),
-    assert(subclassof(A, B, o)),
+    atom(A), atom(B),
+    assert(subclassof(A, B)),
+    process_axioms(Axioms, Concepts).
+ process_axioms([A same_as B|Axioms], Concepts) :-
+    atom(A), atom(B),
+    assert(subclassof(A, B)),
+    assert(subclassof(B, A)),
     process_axioms(Axioms, Concepts).
 process_axioms([_|Axioms], Concepts) :-
-	process_axioms(Axioms, Concepts). 
+	process_axioms(Axioms, Concepts).
 
-owl2_info(File) :-
-	parse_owl(File, _, _, Axioms),
-	print_info(Axioms).
-
-print_info([]).
-print_info([Head|Axioms]) :-
-	print('Axiom: '), print(Head), print('\n'),
-    to_fol(Head, Formula),
-	print('Fol: '), print(Formula), print('\n'),
-	make_matrix(~(Formula), Matrix, []),
-	print('Neg Matrix: '), print(Matrix), print('\n'),
-	print_info(Axioms).
 
 axioms_to_fol([], []).
 axioms_to_fol([Head|Axioms], Fol) :-
