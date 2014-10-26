@@ -1,8 +1,6 @@
 :- [owl2_leancop].
 :- [leancop21_swi].
 
-:- thread_setconcurrency(_, 2).
-
 ore :-
     current_prolog_flag(argv, Argv),
     print_start(Argv),
