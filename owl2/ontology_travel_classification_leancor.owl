@@ -6,7 +6,7 @@ Prefix(xsd:=<http://www.w3.org/2001/XMLSchema#>)
 Prefix(rdfs:=<http://www.w3.org/2000/01/rdf-schema#>)
 
 
-Ontology(<file:owl2/output.owl>
+Ontology(<file:owl2/ontology_travel_classification_leancor.owl>
 
 SubClassOf(<http://www.owl-ontologies.com/travel.owl#Adventure> <http://www.owl-ontologies.com/travel.owl#Activity>)
 SubClassOf(<http://www.owl-ontologies.com/travel.owl#BackpackersDestination> <http://www.owl-ontologies.com/travel.owl#Destination>)
@@ -15,7 +15,7 @@ SubClassOf(<http://www.owl-ontologies.com/travel.owl#BedAndBreakfast> <http://ww
 SubClassOf(<http://www.owl-ontologies.com/travel.owl#BudgetAccommodation> <http://www.owl-ontologies.com/travel.owl#Accommodation>)
 SubClassOf(<http://www.owl-ontologies.com/travel.owl#BudgetHotelDestination> <http://www.owl-ontologies.com/travel.owl#Destination>)
 SubClassOf(<http://www.owl-ontologies.com/travel.owl#BunjeeJumping> <http://www.owl-ontologies.com/travel.owl#Adventure>)
-SubClassOf(<http://www.owl-ontologies.com/travel.owl#Campground> <http://www.owl-ontologies.com/travel.owl#Accommodation>)
+SubClassOf(<http://www.owl-ontologies.com/travel.owl#Campground> <http://www.owl-ontologies.com/travel.owl#BudgetAccommodation>)
 SubClassOf(<http://www.owl-ontologies.com/travel.owl#Capital> <http://www.owl-ontologies.com/travel.owl#City>)
 SubClassOf(<http://www.owl-ontologies.com/travel.owl#Capital> <http://www.owl-ontologies.com/travel.owl#RetireeDestination>)
 SubClassOf(<http://www.owl-ontologies.com/travel.owl#City> <http://www.owl-ontologies.com/travel.owl#BudgetHotelDestination>)
@@ -27,6 +27,7 @@ SubClassOf(<http://www.owl-ontologies.com/travel.owl#Hotel> <http://www.owl-onto
 SubClassOf(<http://www.owl-ontologies.com/travel.owl#LuxuryHotel> <http://www.owl-ontologies.com/travel.owl#BudgetAccommodation>)
 SubClassOf(<http://www.owl-ontologies.com/travel.owl#LuxuryHotel> <http://www.owl-ontologies.com/travel.owl#Hotel>)
 SubClassOf(<http://www.owl-ontologies.com/travel.owl#Museums> <http://www.owl-ontologies.com/travel.owl#Sightseeing>)
+SubClassOf(<http://www.owl-ontologies.com/travel.owl#NationalPark> <http://www.owl-ontologies.com/travel.owl#BackpackersDestination>)
 SubClassOf(<http://www.owl-ontologies.com/travel.owl#NationalPark> <http://www.owl-ontologies.com/travel.owl#RuralArea>)
 SubClassOf(<http://www.owl-ontologies.com/travel.owl#QuietDestination> <http://www.owl-ontologies.com/travel.owl#Destination>)
 SubClassOf(<http://www.owl-ontologies.com/travel.owl#Relaxation> <http://www.owl-ontologies.com/travel.owl#Activity>)

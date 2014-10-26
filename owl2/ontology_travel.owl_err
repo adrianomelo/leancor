@@ -1,0 +1,410 @@
+------- Axioms --------
+class(Accommodation)
+class(AccommodationRating)
+AccommodationRating same_as (OneStarRating one (TwoStarRating one ThreeStarRating))
+class(Activity)
+class(Adventure)
+Adventure is_a Activity
+Adventure disjoint_classes Relaxation
+Adventure disjoint_classes Sightseeing
+Adventure disjoint_classes Sports
+class(BackpackersDestination)
+BackpackersDestination same_as (Destination and ((hasAccommodation some BudgetAccommodation)and (hasActivity some (Sports or Adventure))))
+class(Beach)
+Beach is_a Destination
+class(BedAndBreakfast)
+BedAndBreakfast is_a Accommodation
+BedAndBreakfast disjoint_classes Campground
+BedAndBreakfast disjoint_classes Hotel
+class(BudgetAccommodation)
+BudgetAccommodation same_as ((hasRating some (TwoStarRating one OneStarRating))and Accommodation)
+class(BudgetHotelDestination)
+BudgetHotelDestination same_as ((hasAccommodation some (Hotel and BudgetAccommodation))and Destination)
+class(BunjeeJumping)
+BunjeeJumping is_a Adventure
+class(Campground)
+Campground is_a Accommodation
+Campground is_a (hasRating value OneStarRating)
+Campground disjoint_classes BedAndBreakfast
+Campground disjoint_classes Hotel
+class(Capital)
+Capital is_a City
+Capital is_a (hasActivity some Museums)
+class(City)
+City is_a UrbanArea
+City is_a (hasAccommodation some LuxuryHotel)
+class(Contact)
+class(Destination)
+class(FamilyDestination)
+FamilyDestination same_as (Destination and ((1 min hasAccommodation)and (2 min hasActivity)))
+class(Farmland)
+Farmland is_a RuralArea
+class(Hiking)
+Hiking is_a Sports
+class(Hotel)
+Hotel is_a Accommodation
+Hotel disjoint_classes BedAndBreakfast
+Hotel disjoint_classes Campground
+class(LuxuryHotel)
+LuxuryHotel is_a Hotel
+LuxuryHotel is_a (hasRating value ThreeStarRating)
+class(Museums)
+Museums is_a Sightseeing
+class(NationalPark)
+NationalPark is_a RuralArea
+NationalPark is_a (hasAccommodation some Campground)
+NationalPark is_a (hasActivity some Hiking)
+class(QuietDestination)
+QuietDestination same_as ((not FamilyDestination)and Destination)
+class(Relaxation)
+Relaxation is_a Activity
+Relaxation disjoint_classes Adventure
+Relaxation disjoint_classes Sightseeing
+Relaxation disjoint_classes Sports
+class(RetireeDestination)
+RetireeDestination same_as (Destination and ((hasAccommodation some (hasRating value ThreeStarRating))and (hasActivity some Sightseeing)))
+class(RuralArea)
+RuralArea is_a Destination
+RuralArea disjoint_classes UrbanArea
+class(Safari)
+Safari is_a Adventure
+Safari is_a Sightseeing
+class(Sightseeing)
+Sightseeing is_a Activity
+Sightseeing disjoint_classes Adventure
+Sightseeing disjoint_classes Relaxation
+Sightseeing disjoint_classes Sports
+class(Sports)
+Sports is_a Activity
+Sports disjoint_classes Adventure
+Sports disjoint_classes Relaxation
+Sports disjoint_classes Sightseeing
+class(Sunbathing)
+Sunbathing is_a Relaxation
+class(Surfing)
+Surfing is_a Sports
+class(Town)
+Town is_a UrbanArea
+class(UrbanArea)
+UrbanArea is_a Destination
+UrbanArea disjoint_classes RuralArea
+class(Yoga)
+Yoga is_a Relaxation
+objectProperty(hasAccommodation(_G672,_G673))
+hasAccommodation domain Destination
+hasAccommodation range Accommodation
+objectProperty(hasActivity(_G694,_G695))
+hasActivity inverse isOfferedAt
+hasActivity domain Destination
+hasActivity range Activity
+objectProperty(hasContact(_G722,_G723))
+hasContact domain Activity
+hasContact range Contact
+objectProperty(hasPart(_G744,_G745))
+transitive hasPart
+hasPart domain Destination
+hasPart range Destination
+objectProperty(hasRating(_G771,_G772))
+hasRating domain Accommodation
+hasRating range AccommodationRating
+objectProperty(isOfferedAt(_G793,_G794))
+hasActivity inverse isOfferedAt
+isOfferedAt domain Activity
+isOfferedAt range Destination
+dataProperty(hasCity(_G821,_G822))
+functional hasCity
+hasCity domain Contact
+hasCity range string
+dataProperty(hasEMail(_G848,_G849))
+functional hasEMail
+hasEMail domain Contact
+hasEMail range string
+dataProperty(hasStreet(_G875,_G876))
+functional hasStreet
+hasStreet domain Contact
+hasStreet range string
+dataProperty(hasZipCode(_G902,_G903))
+functional hasZipCode
+hasZipCode domain Contact
+hasZipCode range int
+NationalPark class_assert BlueMountains
+Beach class_assert BondiBeach
+City class_assert Cairns
+Capital class_assert Canberra
+RuralArea class_assert CapeYork
+Town class_assert Coonabarabran
+Beach class_assert CurrawongBeach
+LuxuryHotel class_assert FourSeasons
+AccommodationRating class_assert OneStarRating
+Capital class_assert Sydney
+objectPropertyAssertion(hasAccommodation(Sydney,FourSeasons))
+objectPropertyAssertion(hasPart(Sydney,BondiBeach))
+objectPropertyAssertion(hasPart(Sydney,CurrawongBeach))
+AccommodationRating class_assert ThreeStarRating
+AccommodationRating class_assert TwoStarRating
+NationalPark class_assert Warrumbungles
+RuralArea class_assert Woomera
+differentIndividuals(ThreeStarRating,OneStarRating)
+differentIndividuals(TwoStarRating,OneStarRating)
+differentIndividuals(TwoStarRating,ThreeStarRating)
+
+
+------- Formula --------
+all _G1053: (AccommodationRating(_G1053)<=>_G1053=OneStarRating;_G1053=TwoStarRating;_G1053=ThreeStarRating)
+all _G1081: (Adventure(_G1081)=>Activity(_G1081))
+all _G1096: (Adventure(_G1096)=> ~Relaxation(_G1096))
+all _G1113: (Adventure(_G1113)=> ~Sightseeing(_G1113))
+all _G1130: (Adventure(_G1130)=> ~Sports(_G1130))
+all _G1147: (BackpackersDestination(_G1147)<=>Destination(_G1147),ex _G1165: (hasAccommodation(_G1147,_G1165),BudgetAccommodation(_G1165)),ex _G1178: (hasActivity(_G1147,_G1178), (Sports(_G1178);Adventure(_G1178))))
+all _G1199: (Beach(_G1199)=>Destination(_G1199))
+all _G1214: (BedAndBreakfast(_G1214)=>Accommodation(_G1214))
+all _G1229: (BedAndBreakfast(_G1229)=> ~Campground(_G1229))
+all _G1246: (BedAndBreakfast(_G1246)=> ~Hotel(_G1246))
+all _G1263: (BudgetAccommodation(_G1263)<=>ex _G1276: (hasRating(_G1263,_G1276), (_G1276=TwoStarRating;_G1276=OneStarRating)),Accommodation(_G1263))
+all _G1301: (BudgetHotelDestination(_G1301)<=>ex _G1314: (hasAccommodation(_G1301,_G1314),Hotel(_G1314),BudgetAccommodation(_G1314)),Destination(_G1301))
+all _G1337: (BunjeeJumping(_G1337)=>Adventure(_G1337))
+all _G1352: (Campground(_G1352)=>Accommodation(_G1352))
+all _G1367: (Campground(_G1367)=>hasRating(_G1367,OneStarRating))
+all _G1383: (Campground(_G1383)=> ~BedAndBreakfast(_G1383))
+all _G1400: (Campground(_G1400)=> ~Hotel(_G1400))
+all _G1417: (Capital(_G1417)=>City(_G1417))
+all _G1432: (Capital(_G1432)=>ex _G1442: (hasActivity(_G1432,_G1442),Museums(_G1442)))
+all _G1458: (City(_G1458)=>UrbanArea(_G1458))
+all _G1473: (City(_G1473)=>ex _G1483: (hasAccommodation(_G1473,_G1483),LuxuryHotel(_G1483)))
+all _G1499: (FamilyDestination(_G1499)<=>Destination(_G1499),unknow,unknow)
+all _G1520: (Farmland(_G1520)=>RuralArea(_G1520))
+all _G1535: (Hiking(_G1535)=>Sports(_G1535))
+all _G1550: (Hotel(_G1550)=>Accommodation(_G1550))
+all _G1565: (Hotel(_G1565)=> ~BedAndBreakfast(_G1565))
+all _G1582: (Hotel(_G1582)=> ~Campground(_G1582))
+all _G1599: (LuxuryHotel(_G1599)=>Hotel(_G1599))
+all _G1614: (LuxuryHotel(_G1614)=>hasRating(_G1614,ThreeStarRating))
+all _G1630: (Museums(_G1630)=>Sightseeing(_G1630))
+all _G1645: (NationalPark(_G1645)=>RuralArea(_G1645))
+all _G1660: (NationalPark(_G1660)=>ex _G1670: (hasAccommodation(_G1660,_G1670),Campground(_G1670)))
+all _G1686: (NationalPark(_G1686)=>ex _G1696: (hasActivity(_G1686,_G1696),Hiking(_G1696)))
+all _G1712: (QuietDestination(_G1712)<=> ~FamilyDestination(_G1712),Destination(_G1712))
+all _G1734: (Relaxation(_G1734)=>Activity(_G1734))
+all _G1749: (Relaxation(_G1749)=> ~Adventure(_G1749))
+all _G1766: (Relaxation(_G1766)=> ~Sightseeing(_G1766))
+all _G1783: (Relaxation(_G1783)=> ~Sports(_G1783))
+all _G1800: (RetireeDestination(_G1800)<=>Destination(_G1800),ex _G1818: (hasAccommodation(_G1800,_G1818),hasRating(_G1818,ThreeStarRating)),ex _G1832: (hasActivity(_G1800,_G1832),Sightseeing(_G1832)))
+all _G1848: (RuralArea(_G1848)=>Destination(_G1848))
+all _G1863: (RuralArea(_G1863)=> ~UrbanArea(_G1863))
+all _G1880: (Safari(_G1880)=>Adventure(_G1880))
+all _G1895: (Safari(_G1895)=>Sightseeing(_G1895))
+all _G1910: (Sightseeing(_G1910)=>Activity(_G1910))
+all _G1925: (Sightseeing(_G1925)=> ~Adventure(_G1925))
+all _G1942: (Sightseeing(_G1942)=> ~Relaxation(_G1942))
+all _G1959: (Sightseeing(_G1959)=> ~Sports(_G1959))
+all _G1976: (Sports(_G1976)=>Activity(_G1976))
+all _G1991: (Sports(_G1991)=> ~Adventure(_G1991))
+all _G2008: (Sports(_G2008)=> ~Relaxation(_G2008))
+all _G2025: (Sports(_G2025)=> ~Sightseeing(_G2025))
+all _G2042: (Sunbathing(_G2042)=>Relaxation(_G2042))
+all _G2057: (Surfing(_G2057)=>Sports(_G2057))
+all _G2072: (Town(_G2072)=>UrbanArea(_G2072))
+all _G2087: (UrbanArea(_G2087)=>Destination(_G2087))
+all _G2102: (UrbanArea(_G2102)=> ~RuralArea(_G2102))
+all _G2119: (Yoga(_G2119)=>Relaxation(_G2119))
+all _G2134: (hasAccommodation(_G2134,_G2139)=>Destination(_G2134))
+all _G2151: (hasAccommodation(_G2156,_G2151)=>Accommodation(_G2151))
+all _G2168:all _G2173: (hasActivity(_G2168,_G2173)=>isOfferedAt(_G2173,_G2168))
+all _G2190: (hasActivity(_G2190,_G2195)=>Destination(_G2190))
+all _G2207: (hasActivity(_G2212,_G2207)=>Activity(_G2207))
+all _G2224: (hasContact(_G2224,_G2229)=>Activity(_G2224))
+all _G2241: (hasContact(_G2246,_G2241)=>Contact(_G2241))
+all _G2258:all _G2263:all _G2268: (hasPart(_G2258,_G2263),hasPart(_G2263,_G2268)=>hasPart(_G2258,_G2268))
+all _G2291: (hasPart(_G2291,_G2296)=>Destination(_G2291))
+all _G2308: (hasPart(_G2313,_G2308)=>Destination(_G2308))
+all _G2325: (hasRating(_G2325,_G2330)=>Accommodation(_G2325))
+all _G2342: (hasRating(_G2347,_G2342)=>AccommodationRating(_G2342))
+all _G2359:all _G2364: (hasActivity(_G2359,_G2364)=>isOfferedAt(_G2364,_G2359))
+all _G2381: (isOfferedAt(_G2381,_G2386)=>Activity(_G2381))
+all _G2398: (isOfferedAt(_G2403,_G2398)=>Destination(_G2398))
+all _G2415:all _G2420:all _G2425: (hasCity(_G2415,_G2420),hasCity(_G2415,_G2425)=>_G2420=_G2425)
+all _G2448: (hasCity(_G2448,_G2453)=>Contact(_G2448))
+all _G2465: (hasCity(_G2470,_G2465)=>string(_G2465))
+all _G2482:all _G2487:all _G2492: (hasEMail(_G2482,_G2487),hasEMail(_G2482,_G2492)=>_G2487=_G2492)
+all _G2515: (hasEMail(_G2515,_G2520)=>Contact(_G2515))
+all _G2532: (hasEMail(_G2537,_G2532)=>string(_G2532))
+all _G2549:all _G2554:all _G2559: (hasStreet(_G2549,_G2554),hasStreet(_G2549,_G2559)=>_G2554=_G2559)
+all _G2582: (hasStreet(_G2582,_G2587)=>Contact(_G2582))
+all _G2599: (hasStreet(_G2604,_G2599)=>string(_G2599))
+all _G2616:all _G2621:all _G2626: (hasZipCode(_G2616,_G2621),hasZipCode(_G2616,_G2626)=>_G2621=_G2626)
+all _G2649: (hasZipCode(_G2649,_G2654)=>Contact(_G2649))
+all _G2666: (hasZipCode(_G2671,_G2666)=>int(_G2666))
+NationalPark(BlueMountains)
+Beach(BondiBeach)
+City(Cairns)
+Capital(Canberra)
+RuralArea(CapeYork)
+Town(Coonabarabran)
+Beach(CurrawongBeach)
+LuxuryHotel(FourSeasons)
+AccommodationRating(OneStarRating)
+Capital(Sydney)
+hasAccommodation(Sydney,FourSeasons)
+hasPart(Sydney,BondiBeach)
+hasPart(Sydney,CurrawongBeach)
+AccommodationRating(ThreeStarRating)
+AccommodationRating(TwoStarRating)
+NationalPark(Warrumbungles)
+RuralArea(Woomera)
+ThreeStarRating=OneStarRating
+TwoStarRating=OneStarRating
+TwoStarRating=ThreeStarRating
+
+
+------- Matrix -------
+[- 23^[_G5046],-Sightseeing(22^[_G5046])]
+[- 23^[_G5046],-hasActivity(_G5046,22^[_G5046])]
+[- 23^[_G5046],-hasRating(21^[_G5046],ThreeStarRating)]
+[- 23^[_G5046],-hasAccommodation(_G5046,21^[_G5046])]
+[- 23^[_G5046],-Destination(_G5046)]
+[- 20^[_G4269],-Destination(_G4269)]
+[- 20^[_G4269],FamilyDestination(_G4269)]
+[- 19^[_G3996],-Hiking(18^[_G3996])]
+[- 19^[_G3996],-hasActivity(_G3996,18^[_G3996])]
+[- 17^[_G3831],-Campground(16^[_G3831])]
+[- 17^[_G3831],-hasAccommodation(_G3831,16^[_G3831])]
+[- 15^[_G3625],-unknow]
+[- 15^[_G3625],-unknow]
+[- 15^[_G3625],-Destination(_G3625)]
+[- 14^[_G3594],-LuxuryHotel(13^[_G3594])]
+[- 14^[_G3594],-hasAccommodation(_G3594,13^[_G3594])]
+[- 12^[_G3544],-Museums(11^[_G3544])]
+[- 12^[_G3544],-hasActivity(_G3544,11^[_G3544])]
+[- 10^[_G3384],-Destination(_G3384)]
+[- 10^[_G3384],-BudgetAccommodation(9^[_G3384])]
+[- 10^[_G3384],-Hotel(9^[_G3384])]
+[- 10^[_G3384],-hasAccommodation(_G3384,9^[_G3384])]
+[- 8^[_G3344,_G3341],_G3344=OneStarRating]
+[- 8^[_G3344,_G3341],_G3344=TwoStarRating]
+[- 7^[_G3341],- (6^[_G3341]=TwoStarRating),- (6^[_G3341]=OneStarRating)]
+[- 7^[_G3341],-hasRating(_G3341,6^[_G3341])]
+[- 7^[_G3341],-Accommodation(_G3341)]
+[- 5^[_G3222,_G3203],Adventure(_G3222)]
+[- 5^[_G3222,_G3203],Sports(_G3222)]
+[- 4^[_G3203],-Sports(3^[_G3203]),-Adventure(3^[_G3203])]
+[- 4^[_G3203],-hasActivity(_G3203,3^[_G3203])]
+[- 4^[_G3203],-BudgetAccommodation(2^[_G3203])]
+[- 4^[_G3203],-hasAccommodation(_G3203,2^[_G3203])]
+[- 4^[_G3203],-Destination(_G3203)]
+[- 1^[_G3089],_G3089=ThreeStarRating]
+[- 1^[_G3089],_G3089=TwoStarRating]
+[- 1^[_G3089],_G3089=OneStarRating]
+[-AccommodationRating(_G3089),1^[_G3089]]
+[AccommodationRating(_G3089),- (_G3089=OneStarRating),- (_G3089=TwoStarRating),- (_G3089=ThreeStarRating)]
+[Adventure(_G3121),-Activity(_G3121)]
+[Adventure(_G3140),Relaxation(_G3140)]
+[Adventure(_G3161),Sightseeing(_G3161)]
+[Adventure(_G3182),Sports(_G3182)]
+[BackpackersDestination(_G3203),4^[_G3203]]
+[-BackpackersDestination(_G3203),Destination(_G3203),BudgetAccommodation(_G3208),hasAccommodation(_G3203,_G3208),hasActivity(_G3203,_G3222),5^[_G3222,_G3203]]
+[Beach(_G3261),-Destination(_G3261)]
+[BedAndBreakfast(_G3280),-Accommodation(_G3280)]
+[BedAndBreakfast(_G3299),Campground(_G3299)]
+[BedAndBreakfast(_G3320),Hotel(_G3320)]
+[BudgetAccommodation(_G3341),7^[_G3341]]
+[-BudgetAccommodation(_G3341),Accommodation(_G3341),hasRating(_G3341,_G3344),8^[_G3344,_G3341]]
+[BudgetHotelDestination(_G3384),10^[_G3384]]
+[-BudgetHotelDestination(_G3384),Destination(_G3384),hasAccommodation(_G3384,_G3387),Hotel(_G3387),BudgetAccommodation(_G3387)]
+[BunjeeJumping(_G3425),-Adventure(_G3425)]
+[Campground(_G3444),-Accommodation(_G3444)]
+[Campground(_G3463),-hasRating(_G3463,OneStarRating)]
+[Campground(_G3483),BedAndBreakfast(_G3483)]
+[Campground(_G3504),Hotel(_G3504)]
+[Capital(_G3525),-City(_G3525)]
+[Capital(_G3544),12^[_G3544]]
+[City(_G3575),-UrbanArea(_G3575)]
+[City(_G3594),14^[_G3594]]
+[FamilyDestination(_G3625),15^[_G3625]]
+[-FamilyDestination(_G3625),Destination(_G3625),unknow]
+[Farmland(_G3650),-RuralArea(_G3650)]
+[Hiking(_G3669),-Sports(_G3669)]
+[Hotel(_G3688),-Accommodation(_G3688)]
+[Hotel(_G3707),BedAndBreakfast(_G3707)]
+[Hotel(_G3728),Campground(_G3728)]
+[LuxuryHotel(_G3749),-Hotel(_G3749)]
+[LuxuryHotel(_G3768),-hasRating(_G3768,ThreeStarRating)]
+[Museums(_G3788),-Sightseeing(_G3788)]
+[NationalPark(_G3807),-RuralArea(_G3807)]
+[NationalPark(_G3831),17^[_G3831]]
+[NationalPark(_G3996),19^[_G3996]]
+[QuietDestination(_G4269),20^[_G4269]]
+[-QuietDestination(_G4269),-FamilyDestination(_G4269),Destination(_G4269)]
+[Relaxation(_G4474),-Activity(_G4474)]
+[Relaxation(_G4605),Adventure(_G4605)]
+[Relaxation(_G4752),Sightseeing(_G4752)]
+[Relaxation(_G4899),Sports(_G4899)]
+[RetireeDestination(_G5046),23^[_G5046]]
+[-RetireeDestination(_G5046),Destination(_G5046),hasRating(_G5190,ThreeStarRating),hasAccommodation(_G5046,_G5190),hasActivity(_G5046,_G5370),Sightseeing(_G5370)]
+[RuralArea(_G5604),-Destination(_G5604)]
+[RuralArea(_G5735),UrbanArea(_G5735)]
+[Safari(_G5882),-Adventure(_G5882)]
+[Safari(_G6013),-Sightseeing(_G6013)]
+[Sightseeing(_G6144),-Activity(_G6144)]
+[Sightseeing(_G6275),Adventure(_G6275)]
+[Sightseeing(_G6422),Relaxation(_G6422)]
+[Sightseeing(_G6569),Sports(_G6569)]
+[Sports(_G6716),-Activity(_G6716)]
+[Sports(_G6847),Adventure(_G6847)]
+[Sports(_G6994),Relaxation(_G6994)]
+[Sports(_G7141),Sightseeing(_G7141)]
+[Sunbathing(_G7288),-Relaxation(_G7288)]
+[Surfing(_G7419),-Sports(_G7419)]
+[Town(_G7550),-UrbanArea(_G7550)]
+[UrbanArea(_G7681),-Destination(_G7681)]
+[UrbanArea(_G7812),RuralArea(_G7812)]
+[Yoga(_G7959),-Relaxation(_G7959)]
+[hasAccommodation(_G8090,_G8107),-Destination(_G8090)]
+[hasAccommodation(_G8263,_G8247),-Accommodation(_G8247)]
+[hasActivity(_G8404,_G8449),-isOfferedAt(_G8449,_G8404)]
+[hasActivity(_G8646,_G8663),-Destination(_G8646)]
+[hasActivity(_G8819,_G8803),-Activity(_G8803)]
+[hasContact(_G8960,_G8977),-Activity(_G8960)]
+[hasContact(_G9133,_G9117),-Contact(_G9117)]
+[-hasPart(_G9274,_G9387),hasPart(_G9274,_G9330),hasPart(_G9330,_G9387)]
+[hasPart(_G9682,_G9699),-Destination(_G9682)]
+[hasPart(_G9855,_G9839),-Destination(_G9839)]
+[hasRating(_G9996,_G10013),-Accommodation(_G9996)]
+[hasRating(_G10169,_G10153),-AccommodationRating(_G10153)]
+[hasActivity(_G10310,_G10355),-isOfferedAt(_G10355,_G10310)]
+[isOfferedAt(_G10552,_G10569),-Activity(_G10552)]
+[isOfferedAt(_G10725,_G10709),-Destination(_G10709)]
+[- (_G10922=_G10979),hasCity(_G10866,_G10922),hasCity(_G10866,_G10979)]
+[hasCity(_G11274,_G11291),-Contact(_G11274)]
+[hasCity(_G11447,_G11431),-string(_G11431)]
+[- (_G11644=_G11701),hasEMail(_G11588,_G11644),hasEMail(_G11588,_G11701)]
+[hasEMail(_G11996,_G12013),-Contact(_G11996)]
+[hasEMail(_G12169,_G12153),-string(_G12153)]
+[- (_G12366=_G12423),hasStreet(_G12310,_G12366),hasStreet(_G12310,_G12423)]
+[hasStreet(_G12718,_G12735),-Contact(_G12718)]
+[hasStreet(_G12891,_G12875),-string(_G12875)]
+[- (_G13088=_G13145),hasZipCode(_G13032,_G13088),hasZipCode(_G13032,_G13145)]
+[hasZipCode(_G13440,_G13457),-Contact(_G13440)]
+[-NationalPark(BlueMountains)]
+[-Beach(BondiBeach)]
+[-City(Cairns)]
+[-Capital(Canberra)]
+[-RuralArea(CapeYork)]
+[-Town(Coonabarabran)]
+[-Beach(CurrawongBeach)]
+[-LuxuryHotel(FourSeasons)]
+[-AccommodationRating(OneStarRating)]
+[-Capital(Sydney)]
+[-hasAccommodation(Sydney,FourSeasons)]
+[-hasPart(Sydney,BondiBeach)]
+[-hasPart(Sydney,CurrawongBeach)]
+[-AccommodationRating(ThreeStarRating)]
+[-AccommodationRating(TwoStarRating)]
+[-NationalPark(Warrumbungles)]
+[-RuralArea(Woomera)]
+[- (ThreeStarRating=OneStarRating)]
+[- (TwoStarRating=OneStarRating)]
+[- (TwoStarRating=ThreeStarRating)]
+[hasZipCode(_G13613,_G13597),-int(_G13597)]
+[- (_G25477=_G25477)]
+[_G25576=_G25621,- (_G25621=_G25576)]
+[- (_G25809=_G25922),_G25809=_G25865,_G25865=_G25922]

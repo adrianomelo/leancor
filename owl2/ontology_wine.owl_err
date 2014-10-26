@@ -1,0 +1,2294 @@
+------- Axioms --------
+Anjou class_assert RoseDAnjou
+Beaujolais class_assert ChateauMorgonBeaujolais
+CabernetFranc class_assert WhitehallLaneCabernetFranc
+CabernetSauvignon class_assert FormanCabernetSauvignon
+CabernetSauvignon class_assert MariettaCabernetSauvignon
+CabernetSauvignon class_assert PageMillWineryCabernetSauvignon
+CabernetSauvignon class_assert SantaCruzMountainVineyardCabernetSauvignon
+Chardonnay class_assert BancroftChardonnay
+Chardonnay class_assert FormanChardonnay
+Chardonnay class_assert MountadamChardonnay
+Chardonnay class_assert MountEdenVineyardEdnaValleyChardonnay
+Chardonnay class_assert PeterMccoyChardonnay
+CheninBlanc class_assert FoxenCheninBlanc
+CheninBlanc class_assert VentanaCheninBlanc
+Chianti class_assert ChiantiClassico
+CotesDOr class_assert ClosDeVougeotCotesDOr
+DessertWine class_assert WhitehallLanePrimavera
+DryRiesling class_assert MountadamRiesling
+IceWine class_assert SelaksIceWine
+Margaux class_assert ChateauMargaux
+Meritage class_assert KathrynKennedyLateral
+Merlot class_assert GaryFarrellMerlot
+Merlot class_assert LongridgeMerlot
+Meursault class_assert ChateauDeMeursaultMeursault
+Muscadet class_assert SevreEtMaineMuscadet
+Pauillac class_assert ChateauLafiteRothschildPauillac
+PetiteSyrah class_assert MariettaPetiteSyrah
+PetiteSyrah class_assert SeanThackreySiriusPetiteSyrah
+PinotNoir class_assert LaneTannerPinotNoir
+PinotNoir class_assert MountadamPinotNoir
+PinotNoir class_assert MountEdenVineyardEstatePinotNoir
+Port class_assert TaylorPort
+RedTableWine class_assert MariettaOldVinesRed
+Region class_assert AlsaceRegion
+Region class_assert AnjouRegion
+Region class_assert ArroyoGrandeRegion
+Region class_assert AustralianRegion
+Region class_assert BeaujolaisRegion
+Region class_assert BordeauxRegion
+Region class_assert BourgogneRegion
+Region class_assert CaliforniaRegion
+Region class_assert CentralCoastRegion
+Region class_assert CentralTexasRegion
+Region class_assert ChiantiRegion
+Region class_assert CotesDOrRegion
+Region class_assert EdnaValleyRegion
+Region class_assert FrenchRegion
+Region class_assert GermanyRegion
+Region class_assert ItalianRegion
+Region class_assert LoireRegion
+Region class_assert MargauxRegion
+Region class_assert MedocRegion
+Region class_assert MendocinoRegion
+Region class_assert MeursaultRegion
+Region class_assert MuscadetRegion
+Region class_assert NapaRegion
+Region class_assert NewZealandRegion
+Region class_assert PauillacRegion
+Region class_assert PortugalRegion
+Region class_assert SancerreRegion
+Region class_assert SantaBarbaraRegion
+Region class_assert SantaCruzMountainsRegion
+Region class_assert SauterneRegion
+Region class_assert SonomaRegion
+Region class_assert SouthAustraliaRegion
+Region class_assert StEmilionRegion
+Region class_assert TexasRegion
+Region class_assert ToursRegion
+Region class_assert USRegion
+Riesling class_assert CorbansDryWhiteRiesling
+Sancerre class_assert ClosDeLaPoussieSancerre
+Sauternes class_assert ChateauDYchemSauterne
+SauvignonBlanc class_assert CorbansPrivateBinSauvignonBlanc
+SauvignonBlanc class_assert CorbansSauvignonBlanc
+SauvignonBlanc class_assert SelaksSauvignonBlanc
+SauvignonBlanc class_assert StonleighSauvignonBlanc
+Semillon class_assert CongressSpringsSemillon
+Semillon class_assert KalinCellarsSemillon
+StEmilion class_assert ChateauChevalBlancStEmilion
+SweetRiesling class_assert SchlossRothermelTrochenbierenausleseRiesling
+SweetRiesling class_assert SchlossVolradTrochenbierenausleseRiesling
+VintageYear class_assert Year1998
+WhiteBurgundy class_assert CortonMontrachetWhiteBurgundy
+WhiteBurgundy class_assert PulignyMontrachetWhiteBurgundy
+WhiteWine class_assert StGenevieveTexasWhite
+WineBody class_assert Full
+WineBody class_assert Light
+WineBody class_assert Medium
+WineColor class_assert Red
+WineColor class_assert Rose
+WineColor class_assert White
+WineFlavor class_assert Delicate
+WineFlavor class_assert Moderate
+WineFlavor class_assert Strong
+WineGrape class_assert CabernetFrancGrape
+WineGrape class_assert CabernetSauvignonGrape
+WineGrape class_assert ChardonnayGrape
+WineGrape class_assert CheninBlancGrape
+WineGrape class_assert GamayGrape
+WineGrape class_assert MalbecGrape
+WineGrape class_assert MerlotGrape
+WineGrape class_assert PetiteSyrahGrape
+WineGrape class_assert PetiteVerdotGrape
+WineGrape class_assert PinotBlancGrape
+WineGrape class_assert PinotNoirGrape
+WineGrape class_assert RieslingGrape
+WineGrape class_assert SangioveseGrape
+WineGrape class_assert SauvignonBlancGrape
+WineGrape class_assert SemillonGrape
+WineGrape class_assert ZinfandelGrape
+Winery class_assert Bancroft
+Winery class_assert Beringer
+Winery class_assert ChateauChevalBlanc
+Winery class_assert ChateauDeMeursault
+Winery class_assert ChateauDYchem
+Winery class_assert ChateauLafiteRothschild
+Winery class_assert ChateauMargauxWinery
+Winery class_assert ChateauMorgon
+Winery class_assert ClosDeLaPoussie
+Winery class_assert ClosDeVougeot
+Winery class_assert CongressSprings
+Winery class_assert Corbans
+Winery class_assert CortonMontrachet
+Winery class_assert Cotturi
+Winery class_assert DAnjou
+Winery class_assert Elyse
+Winery class_assert Forman
+Winery class_assert Foxen
+Winery class_assert GaryFarrell
+Winery class_assert Handley
+Winery class_assert KalinCellars
+Winery class_assert KathrynKennedy
+Winery class_assert LaneTanner
+Winery class_assert Longridge
+Winery class_assert Marietta
+Winery class_assert McGuinnesso
+Winery class_assert Mountadam
+Winery class_assert MountEdenVineyard
+Winery class_assert PageMillWinery
+Winery class_assert PeterMccoy
+Winery class_assert PulignyMontrachet
+Winery class_assert SantaCruzMountainVineyard
+Winery class_assert SaucelitoCanyon
+Winery class_assert SchlossRothermel
+Winery class_assert SchlossVolrad
+Winery class_assert SeanThackrey
+Winery class_assert Selaks
+Winery class_assert SevreEtMaine
+Winery class_assert StGenevieve
+Winery class_assert Stonleigh
+Winery class_assert Taylor
+Winery class_assert Ventana
+Winery class_assert WhitehallLane
+WineSugar class_assert Dry
+WineSugar class_assert OffDry
+WineSugar class_assert Sweet
+Zinfandel class_assert CotturiZinfandel
+Zinfandel class_assert ElyseZinfandel
+Zinfandel class_assert MariettaZinfandel
+Zinfandel class_assert SaucelitoCanyonZinfandel
+Zinfandel class_assert SaucelitoCanyonZinfandel1998
+Thing class_assert CabernetFrancGrape
+Thing class_assert CabernetSauvignonGrape
+Thing class_assert CheninBlancGrape
+Thing class_assert Delicate
+Thing class_assert Dry
+Thing class_assert Full
+Thing class_assert Light
+Thing class_assert MalbecGrape
+Thing class_assert Medium
+Thing class_assert MerlotGrape
+Thing class_assert Moderate
+Thing class_assert OffDry
+Thing class_assert PetiteVerdotGrape
+Thing class_assert PinotBlancGrape
+Thing class_assert Red
+Thing class_assert Rose
+Thing class_assert SauvignonBlancGrape
+Thing class_assert SemillonGrape
+Thing class_assert Strong
+Thing class_assert Sweet
+Thing class_assert White
+dataPropertyAssertion(yearValue(Year1998,"1998"^^xsd:positiveInteger))
+yearValue domain VintageYear
+yearValue range positiveInteger
+class(AlsatianWine)
+class(AmericanWine)
+class(Anjou)
+class(Beaujolais)
+class(Bordeaux)
+class(Burgundy)
+class(CabernetFranc)
+class(CabernetSauvignon)
+class(CaliforniaWine)
+class(Chardonnay)
+class(CheninBlanc)
+class(Chianti)
+class(CotesDOr)
+class(DessertWine)
+class(DryRedWine)
+class(DryRiesling)
+class(DryWhiteWine)
+class(DryWine)
+class(EarlyHarvest)
+class(FrenchWine)
+class(FullBodiedWine)
+class(Gamay)
+class(GermanWine)
+class(IceWine)
+class(ItalianWine)
+class(LateHarvest)
+class(Loire)
+class(Margaux)
+class(Medoc)
+class(Meritage)
+class(Merlot)
+class(Meursault)
+class(Muscadet)
+class(Pauillac)
+class(PetiteSyrah)
+class(PinotBlanc)
+class(PinotNoir)
+class(Port)
+class(RedBordeaux)
+class(RedBurgundy)
+class(RedTableWine)
+class(RedWine)
+class(Region)
+class(Riesling)
+class(RoseWine)
+class(Sancerre)
+class(Sauternes)
+class(SauvignonBlanc)
+class(Semillon)
+class(SemillonOrSauvignonBlanc)
+class(StEmilion)
+class(SweetRiesling)
+class(SweetWine)
+class(TableWine)
+class(TexasWine)
+class(Tours)
+class(Vintage)
+class(VintageYear)
+class(WhiteBordeaux)
+class(WhiteBurgundy)
+class(WhiteLoire)
+class(WhiteNonSweetWine)
+class(WhiteTableWine)
+class(WhiteWine)
+class(Wine)
+class(WineBody)
+class(WineColor)
+class(WineDescriptor)
+class(WineFlavor)
+class(WineGrape)
+class(Winery)
+class(WineSugar)
+class(WineTaste)
+class(Zinfandel)
+dataProperty(yearValue(_G1553,_G1554))
+objectProperty(adjacentRegion(_G1563,_G1564))
+objectProperty(hasBody(_G1573,_G1574))
+objectProperty(hasColor(_G1583,_G1584))
+objectProperty(hasFlavor(_G1593,_G1594))
+objectProperty(hasMaker(_G1603,_G1604))
+objectProperty(hasSugar(_G1613,_G1614))
+objectProperty(hasVintageYear(_G1623,_G1624))
+objectProperty(hasWineDescriptor(_G1633,_G1634))
+objectProperty(locatedIn(_G1643,_G1644))
+objectProperty(madeFromGrape(_G1653,_G1654))
+objectProperty(madeIntoWine(_G1663,_G1664))
+objectProperty(producesWine(_G1673,_G1674))
+differentIndividuals(Bancroft,differentIndividuals(ChateauChevalBlanc,differentIndividuals(ChateauDYchem,differentIndividuals(ChateauDeMeursault,differentIndividuals(ChateauLafiteRothschild,differentIndividuals(ChateauMargauxWinery,differentIndividuals(ChateauMorgon,differentIndividuals(ClosDeLaPoussie,differentIndividuals(ClosDeVougeot,differentIndividuals(CongressSprings,differentIndividuals(Corbans,differentIndividuals(CortonMontrachet,differentIndividuals(Cotturi,differentIndividuals(DAnjou,differentIndividuals(Elyse,differentIndividuals(Forman,differentIndividuals(Foxen,differentIndividuals(GaryFarrell,differentIndividuals(KalinCellars,differentIndividuals(KathrynKennedy,differentIndividuals(LaneTanner,differentIndividuals(Longridge,differentIndividuals(Marietta,differentIndividuals(McGuinnesso,differentIndividuals(MountEdenVineyard,differentIndividuals(Mountadam,differentIndividuals(PageMillWinery,differentIndividuals(PeterMccoy,differentIndividuals(PulignyMontrachet,differentIndividuals(SantaCruzMountainVineyard,differentIndividuals(SaucelitoCanyon,differentIndividuals(SchlossRothermel,differentIndividuals(SchlossVolrad,differentIndividuals(SeanThackrey,differentIndividuals(Selaks,differentIndividuals(SevreEtMaine,differentIndividuals(StGenevieve,differentIndividuals(Stonleigh,differentIndividuals(Taylor,differentIndividuals(Ventana,WhitehallLane))))))))))))))))))))))))))))))))))))))))
+differentIndividuals(Delicate,differentIndividuals(Moderate,Strong))
+differentIndividuals(Dry,differentIndividuals(OffDry,Sweet))
+differentIndividuals(Full,differentIndividuals(Light,Medium))
+differentIndividuals(OffDry,Dry)
+differentIndividuals(Red,differentIndividuals(Rose,White))
+differentIndividuals(Sweet,Dry)
+differentIndividuals(Sweet,OffDry)
+EarlyHarvest disjoint_classes LateHarvest
+LateHarvest disjoint_classes EarlyHarvest
+AlsatianWine same_as ((locatedIn value AlsaceRegion)and Wine)
+AmericanWine same_as ((locatedIn value USRegion)and Wine)
+Anjou same_as ((locatedIn value AnjouRegion)and Loire)
+Beaujolais same_as ((locatedIn value BeaujolaisRegion)and Wine)
+Bordeaux same_as ((locatedIn value BordeauxRegion)and Wine)
+Burgundy same_as ((locatedIn value BourgogneRegion)and Wine)
+CabernetFranc same_as (Wine and ((madeFromGrape value CabernetFrancGrape)and (1 max madeFromGrape)))
+CabernetSauvignon same_as (Wine and ((madeFromGrape value CabernetSauvignonGrape)and (1 max madeFromGrape)))
+CaliforniaWine same_as ((locatedIn value CaliforniaRegion)and Wine)
+Chardonnay same_as (Wine and ((madeFromGrape value ChardonnayGrape)and (1 max madeFromGrape)))
+CheninBlanc same_as (Wine and ((madeFromGrape value CheninBlancGrape)and (1 max madeFromGrape)))
+CotesDOr same_as ((locatedIn value CotesDOrRegion)and RedBurgundy)
+DryRedWine same_as (RedWine and DryWine)
+DryRiesling same_as ((hasSugar value Dry)and Riesling)
+DryWhiteWine same_as (WhiteWine and DryWine)
+DryWine same_as ((hasSugar value Dry)and Wine)
+FrenchWine same_as ((locatedIn value FrenchRegion)and Wine)
+FullBodiedWine same_as ((hasBody value Full)and Wine)
+Gamay same_as (Wine and ((madeFromGrape value GamayGrape)and (1 max madeFromGrape)))
+GermanWine same_as ((locatedIn value GermanyRegion)and Wine)
+IceWine same_as (DessertWine and (LateHarvest and (hasColor value White)))
+ItalianWine same_as ((locatedIn value ItalianRegion)and Wine)
+Loire same_as ((locatedIn value LoireRegion)and Wine)
+Margaux same_as ((locatedIn value MargauxRegion)and Medoc)
+Medoc same_as ((locatedIn value MedocRegion)and Bordeaux)
+Meritage same_as (Wine and ((madeFromGrape any (PetiteVerdotGrape one (MerlotGrape one (MalbecGrape one (CabernetSauvignonGrape one CabernetFrancGrape)))))and (2 min madeFromGrape)))
+Merlot same_as (Wine and ((madeFromGrape value MerlotGrape)and (1 max madeFromGrape)))
+Meursault same_as ((locatedIn value MeursaultRegion)and WhiteBurgundy)
+Muscadet same_as ((locatedIn value MuscadetRegion)and Loire)
+Pauillac same_as ((locatedIn value PauillacRegion)and Medoc)
+PetiteSyrah same_as (Wine and ((madeFromGrape value PetiteSyrahGrape)and (1 max madeFromGrape)))
+PinotBlanc same_as (Wine and ((madeFromGrape value PinotBlancGrape)and (1 max madeFromGrape)))
+PinotNoir same_as (Wine and ((madeFromGrape value PinotNoirGrape)and (1 max madeFromGrape)))
+RedBordeaux same_as (RedWine and Bordeaux)
+RedBurgundy same_as (RedWine and Burgundy)
+RedTableWine same_as ((hasColor value Red)and TableWine)
+RedWine same_as ((hasColor value Red)and Wine)
+Riesling same_as (Wine and ((madeFromGrape value RieslingGrape)and (1 max madeFromGrape)))
+RoseWine same_as ((hasColor value Rose)and Wine)
+Sancerre same_as ((locatedIn value SancerreRegion)and Loire)
+SauvignonBlanc same_as (SemillonOrSauvignonBlanc and ((madeFromGrape value SauvignonBlancGrape)and (1 max madeFromGrape)))
+Semillon same_as (SemillonOrSauvignonBlanc and ((madeFromGrape value SemillonGrape)and (1 max madeFromGrape)))
+SemillonOrSauvignonBlanc same_as ((madeFromGrape any (SemillonGrape one SauvignonBlancGrape))and Wine)
+StEmilion same_as ((locatedIn value StEmilionRegion)and Bordeaux)
+SweetRiesling same_as ((hasSugar value Sweet)and Riesling)
+SweetWine same_as ((hasSugar value Sweet)and Wine)
+TableWine same_as ((hasSugar value Dry)and Wine)
+TexasWine same_as ((locatedIn value TexasRegion)and Wine)
+Tours same_as ((locatedIn value ToursRegion)and Loire)
+WhiteBordeaux same_as (WhiteWine and Bordeaux)
+WhiteBurgundy same_as (WhiteWine and Burgundy)
+WhiteLoire same_as (WhiteWine and Loire)
+WhiteNonSweetWine same_as ((hasSugar any (Dry one OffDry))and WhiteWine)
+WhiteTableWine same_as ((hasColor value White)and TableWine)
+WhiteWine same_as ((hasColor value White)and Wine)
+WineBody same_as (Full one (Medium one Light))
+WineColor same_as (Red one (Rose one White))
+WineDescriptor same_as (WineTaste or WineColor)
+WineFlavor same_as (Strong one (Delicate one Moderate))
+WineSugar same_as (OffDry one (Dry one Sweet))
+Zinfandel same_as (Wine and ((madeFromGrape value ZinfandelGrape)and (1 max madeFromGrape)))
+functional hasBody
+functional hasColor
+functional hasFlavor
+functional hasMaker
+functional hasSugar
+functional hasVintageYear
+madeIntoWine inverse madeFromGrape
+madeIntoWine inverse madeFromGrape
+producesWine inverse hasMaker
+producesWine inverse hasMaker
+objectPropertyAssertion(adjacentRegion(MendocinoRegion,SonomaRegion))
+objectPropertyAssertion(hasBody(BancroftChardonnay,Medium))
+objectPropertyAssertion(hasBody(ChiantiClassico,Medium))
+objectPropertyAssertion(hasBody(CongressSpringsSemillon,Medium))
+objectPropertyAssertion(hasBody(CorbansDryWhiteRiesling,Medium))
+objectPropertyAssertion(hasBody(CorbansPrivateBinSauvignonBlanc,Full))
+objectPropertyAssertion(hasBody(CorbansSauvignonBlanc,Medium))
+objectPropertyAssertion(hasBody(CortonMontrachetWhiteBurgundy,Full))
+objectPropertyAssertion(hasBody(CotturiZinfandel,Full))
+objectPropertyAssertion(hasBody(ElyseZinfandel,Full))
+objectPropertyAssertion(hasBody(FormanCabernetSauvignon,Medium))
+objectPropertyAssertion(hasBody(FormanChardonnay,Full))
+objectPropertyAssertion(hasBody(FoxenCheninBlanc,Full))
+objectPropertyAssertion(hasBody(GaryFarrellMerlot,Medium))
+objectPropertyAssertion(hasBody(KalinCellarsSemillon,Full))
+objectPropertyAssertion(hasBody(KathrynKennedyLateral,Medium))
+objectPropertyAssertion(hasBody(LaneTannerPinotNoir,Light))
+objectPropertyAssertion(hasBody(LongridgeMerlot,Light))
+objectPropertyAssertion(hasBody(MariettaCabernetSauvignon,Medium))
+objectPropertyAssertion(hasBody(MariettaOldVinesRed,Medium))
+objectPropertyAssertion(hasBody(MariettaPetiteSyrah,Medium))
+objectPropertyAssertion(hasBody(MariettaZinfandel,Medium))
+objectPropertyAssertion(hasBody(MountadamChardonnay,Full))
+objectPropertyAssertion(hasBody(MountadamPinotNoir,Medium))
+objectPropertyAssertion(hasBody(MountadamRiesling,Medium))
+objectPropertyAssertion(hasBody(MountEdenVineyardEdnaValleyChardonnay,Medium))
+objectPropertyAssertion(hasBody(MountEdenVineyardEstatePinotNoir,Full))
+objectPropertyAssertion(hasBody(PageMillWineryCabernetSauvignon,Medium))
+objectPropertyAssertion(hasBody(PeterMccoyChardonnay,Medium))
+objectPropertyAssertion(hasBody(PulignyMontrachetWhiteBurgundy,Medium))
+objectPropertyAssertion(hasBody(SantaCruzMountainVineyardCabernetSauvignon,Full))
+objectPropertyAssertion(hasBody(SaucelitoCanyonZinfandel,Medium))
+objectPropertyAssertion(hasBody(SaucelitoCanyonZinfandel1998,Medium))
+objectPropertyAssertion(hasBody(SchlossRothermelTrochenbierenausleseRiesling,Full))
+objectPropertyAssertion(hasBody(SchlossVolradTrochenbierenausleseRiesling,Full))
+objectPropertyAssertion(hasBody(SeanThackreySiriusPetiteSyrah,Full))
+objectPropertyAssertion(hasBody(SelaksIceWine,Medium))
+objectPropertyAssertion(hasBody(SelaksSauvignonBlanc,Medium))
+objectPropertyAssertion(hasBody(StonleighSauvignonBlanc,Medium))
+objectPropertyAssertion(hasBody(VentanaCheninBlanc,Medium))
+objectPropertyAssertion(hasBody(WhitehallLaneCabernetFranc,Medium))
+objectPropertyAssertion(hasBody(WhitehallLanePrimavera,Light))
+objectPropertyAssertion(hasColor(SelaksIceWine,White))
+objectPropertyAssertion(hasFlavor(BancroftChardonnay,Moderate))
+objectPropertyAssertion(hasFlavor(ChateauDeMeursaultMeursault,Moderate))
+objectPropertyAssertion(hasFlavor(ChateauDYchemSauterne,Strong))
+objectPropertyAssertion(hasFlavor(CongressSpringsSemillon,Moderate))
+objectPropertyAssertion(hasFlavor(CorbansDryWhiteRiesling,Moderate))
+objectPropertyAssertion(hasFlavor(CorbansPrivateBinSauvignonBlanc,Strong))
+objectPropertyAssertion(hasFlavor(CorbansSauvignonBlanc,Strong))
+objectPropertyAssertion(hasFlavor(CortonMontrachetWhiteBurgundy,Strong))
+objectPropertyAssertion(hasFlavor(CotturiZinfandel,Strong))
+objectPropertyAssertion(hasFlavor(ElyseZinfandel,Moderate))
+objectPropertyAssertion(hasFlavor(FormanCabernetSauvignon,Strong))
+objectPropertyAssertion(hasFlavor(FormanChardonnay,Moderate))
+objectPropertyAssertion(hasFlavor(FoxenCheninBlanc,Moderate))
+objectPropertyAssertion(hasFlavor(GaryFarrellMerlot,Moderate))
+objectPropertyAssertion(hasFlavor(KalinCellarsSemillon,Strong))
+objectPropertyAssertion(hasFlavor(KathrynKennedyLateral,Delicate))
+objectPropertyAssertion(hasFlavor(LaneTannerPinotNoir,Delicate))
+objectPropertyAssertion(hasFlavor(LongridgeMerlot,Moderate))
+objectPropertyAssertion(hasFlavor(MariettaCabernetSauvignon,Moderate))
+objectPropertyAssertion(hasFlavor(MariettaOldVinesRed,Moderate))
+objectPropertyAssertion(hasFlavor(MariettaPetiteSyrah,Moderate))
+objectPropertyAssertion(hasFlavor(MariettaZinfandel,Moderate))
+objectPropertyAssertion(hasFlavor(MountadamChardonnay,Strong))
+objectPropertyAssertion(hasFlavor(MountadamPinotNoir,Moderate))
+objectPropertyAssertion(hasFlavor(MountadamRiesling,Delicate))
+objectPropertyAssertion(hasFlavor(MountEdenVineyardEdnaValleyChardonnay,Moderate))
+objectPropertyAssertion(hasFlavor(MountEdenVineyardEstatePinotNoir,Strong))
+objectPropertyAssertion(hasFlavor(PageMillWineryCabernetSauvignon,Moderate))
+objectPropertyAssertion(hasFlavor(PeterMccoyChardonnay,Moderate))
+objectPropertyAssertion(hasFlavor(PulignyMontrachetWhiteBurgundy,Moderate))
+objectPropertyAssertion(hasFlavor(SantaCruzMountainVineyardCabernetSauvignon,Strong))
+objectPropertyAssertion(hasFlavor(SaucelitoCanyonZinfandel,Moderate))
+objectPropertyAssertion(hasFlavor(SaucelitoCanyonZinfandel1998,Moderate))
+objectPropertyAssertion(hasFlavor(SchlossRothermelTrochenbierenausleseRiesling,Strong))
+objectPropertyAssertion(hasFlavor(SchlossVolradTrochenbierenausleseRiesling,Moderate))
+objectPropertyAssertion(hasFlavor(SeanThackreySiriusPetiteSyrah,Strong))
+objectPropertyAssertion(hasFlavor(SelaksIceWine,Moderate))
+objectPropertyAssertion(hasFlavor(SelaksSauvignonBlanc,Moderate))
+objectPropertyAssertion(hasFlavor(StGenevieveTexasWhite,Moderate))
+objectPropertyAssertion(hasFlavor(StonleighSauvignonBlanc,Delicate))
+objectPropertyAssertion(hasFlavor(VentanaCheninBlanc,Moderate))
+objectPropertyAssertion(hasFlavor(WhitehallLaneCabernetFranc,Moderate))
+objectPropertyAssertion(hasFlavor(WhitehallLanePrimavera,Delicate))
+objectPropertyAssertion(hasMaker(BancroftChardonnay,Bancroft))
+objectPropertyAssertion(hasMaker(ChateauChevalBlancStEmilion,ChateauChevalBlanc))
+objectPropertyAssertion(hasMaker(ChateauDeMeursaultMeursault,ChateauDeMeursault))
+objectPropertyAssertion(hasMaker(ChateauDYchemSauterne,ChateauDYchem))
+objectPropertyAssertion(hasMaker(ChateauLafiteRothschildPauillac,ChateauLafiteRothschild))
+objectPropertyAssertion(hasMaker(ChateauMargaux,ChateauMargauxWinery))
+objectPropertyAssertion(hasMaker(ChateauMorgonBeaujolais,ChateauMorgon))
+objectPropertyAssertion(hasMaker(ChiantiClassico,McGuinnesso))
+objectPropertyAssertion(hasMaker(ClosDeLaPoussieSancerre,ClosDeLaPoussie))
+objectPropertyAssertion(hasMaker(ClosDeVougeotCotesDOr,ClosDeVougeot))
+objectPropertyAssertion(hasMaker(CongressSpringsSemillon,CongressSprings))
+objectPropertyAssertion(hasMaker(CorbansDryWhiteRiesling,Corbans))
+objectPropertyAssertion(hasMaker(CorbansPrivateBinSauvignonBlanc,Corbans))
+objectPropertyAssertion(hasMaker(CorbansSauvignonBlanc,Corbans))
+objectPropertyAssertion(hasMaker(CortonMontrachetWhiteBurgundy,CortonMontrachet))
+objectPropertyAssertion(hasMaker(CotturiZinfandel,Cotturi))
+objectPropertyAssertion(hasMaker(ElyseZinfandel,Elyse))
+objectPropertyAssertion(hasMaker(FormanCabernetSauvignon,Forman))
+objectPropertyAssertion(hasMaker(FormanChardonnay,Forman))
+objectPropertyAssertion(hasMaker(FoxenCheninBlanc,Foxen))
+objectPropertyAssertion(hasMaker(GaryFarrellMerlot,GaryFarrell))
+objectPropertyAssertion(hasMaker(KalinCellarsSemillon,KalinCellars))
+objectPropertyAssertion(hasMaker(KathrynKennedyLateral,KathrynKennedy))
+objectPropertyAssertion(hasMaker(LaneTannerPinotNoir,LaneTanner))
+objectPropertyAssertion(hasMaker(LongridgeMerlot,Longridge))
+objectPropertyAssertion(hasMaker(MariettaCabernetSauvignon,Marietta))
+objectPropertyAssertion(hasMaker(MariettaOldVinesRed,Marietta))
+objectPropertyAssertion(hasMaker(MariettaPetiteSyrah,Marietta))
+objectPropertyAssertion(hasMaker(MariettaZinfandel,Marietta))
+objectPropertyAssertion(hasMaker(MountadamChardonnay,Mountadam))
+objectPropertyAssertion(hasMaker(MountadamPinotNoir,Mountadam))
+objectPropertyAssertion(hasMaker(MountadamRiesling,Mountadam))
+objectPropertyAssertion(hasMaker(MountEdenVineyardEdnaValleyChardonnay,MountEdenVineyard))
+objectPropertyAssertion(hasMaker(MountEdenVineyardEstatePinotNoir,MountEdenVineyard))
+objectPropertyAssertion(hasMaker(PageMillWineryCabernetSauvignon,PageMillWinery))
+objectPropertyAssertion(hasMaker(PeterMccoyChardonnay,PeterMccoy))
+objectPropertyAssertion(hasMaker(PulignyMontrachetWhiteBurgundy,PulignyMontrachet))
+objectPropertyAssertion(hasMaker(RoseDAnjou,DAnjou))
+objectPropertyAssertion(hasMaker(SantaCruzMountainVineyardCabernetSauvignon,SantaCruzMountainVineyard))
+objectPropertyAssertion(hasMaker(SaucelitoCanyonZinfandel,SaucelitoCanyon))
+objectPropertyAssertion(hasMaker(SaucelitoCanyonZinfandel1998,SaucelitoCanyon))
+objectPropertyAssertion(hasMaker(SchlossRothermelTrochenbierenausleseRiesling,SchlossRothermel))
+objectPropertyAssertion(hasMaker(SchlossVolradTrochenbierenausleseRiesling,SchlossVolrad))
+objectPropertyAssertion(hasMaker(SeanThackreySiriusPetiteSyrah,SeanThackrey))
+objectPropertyAssertion(hasMaker(SelaksIceWine,Selaks))
+objectPropertyAssertion(hasMaker(SelaksSauvignonBlanc,Selaks))
+objectPropertyAssertion(hasMaker(SevreEtMaineMuscadet,SevreEtMaine))
+objectPropertyAssertion(hasMaker(StGenevieveTexasWhite,StGenevieve))
+objectPropertyAssertion(hasMaker(StonleighSauvignonBlanc,Stonleigh))
+objectPropertyAssertion(hasMaker(TaylorPort,Taylor))
+objectPropertyAssertion(hasMaker(VentanaCheninBlanc,Ventana))
+objectPropertyAssertion(hasMaker(WhitehallLaneCabernetFranc,WhitehallLane))
+objectPropertyAssertion(hasSugar(BancroftChardonnay,Dry))
+objectPropertyAssertion(hasSugar(CongressSpringsSemillon,Dry))
+objectPropertyAssertion(hasSugar(CorbansDryWhiteRiesling,OffDry))
+objectPropertyAssertion(hasSugar(CorbansPrivateBinSauvignonBlanc,Dry))
+objectPropertyAssertion(hasSugar(CorbansSauvignonBlanc,Dry))
+objectPropertyAssertion(hasSugar(CortonMontrachetWhiteBurgundy,Dry))
+objectPropertyAssertion(hasSugar(CotturiZinfandel,Dry))
+objectPropertyAssertion(hasSugar(ElyseZinfandel,Dry))
+objectPropertyAssertion(hasSugar(FormanCabernetSauvignon,Dry))
+objectPropertyAssertion(hasSugar(FormanChardonnay,Dry))
+objectPropertyAssertion(hasSugar(FoxenCheninBlanc,Dry))
+objectPropertyAssertion(hasSugar(GaryFarrellMerlot,Dry))
+objectPropertyAssertion(hasSugar(KalinCellarsSemillon,Dry))
+objectPropertyAssertion(hasSugar(KathrynKennedyLateral,Dry))
+objectPropertyAssertion(hasSugar(LaneTannerPinotNoir,Dry))
+objectPropertyAssertion(hasSugar(LongridgeMerlot,Dry))
+objectPropertyAssertion(hasSugar(MariettaCabernetSauvignon,Dry))
+objectPropertyAssertion(hasSugar(MariettaOldVinesRed,Dry))
+objectPropertyAssertion(hasSugar(MariettaPetiteSyrah,Dry))
+objectPropertyAssertion(hasSugar(MariettaZinfandel,Dry))
+objectPropertyAssertion(hasSugar(MountadamChardonnay,Dry))
+objectPropertyAssertion(hasSugar(MountadamPinotNoir,Dry))
+objectPropertyAssertion(hasSugar(MountadamRiesling,Dry))
+objectPropertyAssertion(hasSugar(MountEdenVineyardEdnaValleyChardonnay,Dry))
+objectPropertyAssertion(hasSugar(MountEdenVineyardEstatePinotNoir,Dry))
+objectPropertyAssertion(hasSugar(PageMillWineryCabernetSauvignon,Dry))
+objectPropertyAssertion(hasSugar(PeterMccoyChardonnay,Dry))
+objectPropertyAssertion(hasSugar(PulignyMontrachetWhiteBurgundy,Dry))
+objectPropertyAssertion(hasSugar(SantaCruzMountainVineyardCabernetSauvignon,Dry))
+objectPropertyAssertion(hasSugar(SaucelitoCanyonZinfandel,Dry))
+objectPropertyAssertion(hasSugar(SaucelitoCanyonZinfandel1998,Dry))
+objectPropertyAssertion(hasSugar(SchlossRothermelTrochenbierenausleseRiesling,Sweet))
+objectPropertyAssertion(hasSugar(SchlossVolradTrochenbierenausleseRiesling,Sweet))
+objectPropertyAssertion(hasSugar(SeanThackreySiriusPetiteSyrah,Dry))
+objectPropertyAssertion(hasSugar(SelaksSauvignonBlanc,Dry))
+objectPropertyAssertion(hasSugar(StGenevieveTexasWhite,Dry))
+objectPropertyAssertion(hasSugar(StonleighSauvignonBlanc,Dry))
+objectPropertyAssertion(hasSugar(VentanaCheninBlanc,OffDry))
+objectPropertyAssertion(hasSugar(WhitehallLaneCabernetFranc,Dry))
+objectPropertyAssertion(hasSugar(WhitehallLanePrimavera,Sweet))
+objectPropertyAssertion(hasVintageYear(SaucelitoCanyonZinfandel1998,Year1998))
+objectPropertyAssertion(locatedIn(AlsaceRegion,FrenchRegion))
+objectPropertyAssertion(locatedIn(AnjouRegion,LoireRegion))
+objectPropertyAssertion(locatedIn(ArroyoGrandeRegion,CaliforniaRegion))
+objectPropertyAssertion(locatedIn(BancroftChardonnay,NapaRegion))
+objectPropertyAssertion(locatedIn(BeaujolaisRegion,FrenchRegion))
+objectPropertyAssertion(locatedIn(BordeauxRegion,FrenchRegion))
+objectPropertyAssertion(locatedIn(BourgogneRegion,FrenchRegion))
+objectPropertyAssertion(locatedIn(CaliforniaRegion,USRegion))
+objectPropertyAssertion(locatedIn(CentralCoastRegion,CaliforniaRegion))
+objectPropertyAssertion(locatedIn(CentralTexasRegion,TexasRegion))
+objectPropertyAssertion(locatedIn(ChiantiRegion,ItalianRegion))
+objectPropertyAssertion(locatedIn(CorbansDryWhiteRiesling,NewZealandRegion))
+objectPropertyAssertion(locatedIn(CorbansPrivateBinSauvignonBlanc,NewZealandRegion))
+objectPropertyAssertion(locatedIn(CorbansSauvignonBlanc,NewZealandRegion))
+objectPropertyAssertion(locatedIn(CotesDOrRegion,BourgogneRegion))
+objectPropertyAssertion(locatedIn(CotturiZinfandel,SonomaRegion))
+objectPropertyAssertion(locatedIn(EdnaValleyRegion,CaliforniaRegion))
+objectPropertyAssertion(locatedIn(ElyseZinfandel,NapaRegion))
+objectPropertyAssertion(locatedIn(FormanCabernetSauvignon,NapaRegion))
+objectPropertyAssertion(locatedIn(FormanChardonnay,NapaRegion))
+objectPropertyAssertion(locatedIn(FoxenCheninBlanc,SantaBarbaraRegion))
+objectPropertyAssertion(locatedIn(GaryFarrellMerlot,SonomaRegion))
+objectPropertyAssertion(locatedIn(LaneTannerPinotNoir,SantaBarbaraRegion))
+objectPropertyAssertion(locatedIn(LoireRegion,FrenchRegion))
+objectPropertyAssertion(locatedIn(LongridgeMerlot,NewZealandRegion))
+objectPropertyAssertion(locatedIn(MargauxRegion,MedocRegion))
+objectPropertyAssertion(locatedIn(MariettaCabernetSauvignon,SonomaRegion))
+objectPropertyAssertion(locatedIn(MariettaOldVinesRed,SonomaRegion))
+objectPropertyAssertion(locatedIn(MariettaPetiteSyrah,SonomaRegion))
+objectPropertyAssertion(locatedIn(MariettaZinfandel,SonomaRegion))
+objectPropertyAssertion(locatedIn(MedocRegion,BordeauxRegion))
+objectPropertyAssertion(locatedIn(MendocinoRegion,CaliforniaRegion))
+objectPropertyAssertion(locatedIn(MeursaultRegion,BourgogneRegion))
+objectPropertyAssertion(locatedIn(MountadamChardonnay,SouthAustraliaRegion))
+objectPropertyAssertion(locatedIn(MountadamPinotNoir,SouthAustraliaRegion))
+objectPropertyAssertion(locatedIn(MountadamRiesling,SouthAustraliaRegion))
+objectPropertyAssertion(locatedIn(MountEdenVineyardEdnaValleyChardonnay,EdnaValleyRegion))
+objectPropertyAssertion(locatedIn(MountEdenVineyardEstatePinotNoir,EdnaValleyRegion))
+objectPropertyAssertion(locatedIn(MuscadetRegion,LoireRegion))
+objectPropertyAssertion(locatedIn(NapaRegion,CaliforniaRegion))
+objectPropertyAssertion(locatedIn(PageMillWineryCabernetSauvignon,NapaRegion))
+objectPropertyAssertion(locatedIn(PauillacRegion,MedocRegion))
+objectPropertyAssertion(locatedIn(PeterMccoyChardonnay,SonomaRegion))
+objectPropertyAssertion(locatedIn(SancerreRegion,LoireRegion))
+objectPropertyAssertion(locatedIn(SantaBarbaraRegion,CaliforniaRegion))
+objectPropertyAssertion(locatedIn(SantaCruzMountainsRegion,CaliforniaRegion))
+objectPropertyAssertion(locatedIn(SantaCruzMountainVineyardCabernetSauvignon,SantaCruzMountainsRegion))
+objectPropertyAssertion(locatedIn(SaucelitoCanyonZinfandel,ArroyoGrandeRegion))
+objectPropertyAssertion(locatedIn(SaucelitoCanyonZinfandel1998,ArroyoGrandeRegion))
+objectPropertyAssertion(locatedIn(SauterneRegion,BordeauxRegion))
+objectPropertyAssertion(locatedIn(SchlossRothermelTrochenbierenausleseRiesling,GermanyRegion))
+objectPropertyAssertion(locatedIn(SchlossVolradTrochenbierenausleseRiesling,GermanyRegion))
+objectPropertyAssertion(locatedIn(SeanThackreySiriusPetiteSyrah,NapaRegion))
+objectPropertyAssertion(locatedIn(SelaksIceWine,NewZealandRegion))
+objectPropertyAssertion(locatedIn(SelaksSauvignonBlanc,NewZealandRegion))
+objectPropertyAssertion(locatedIn(SonomaRegion,CaliforniaRegion))
+objectPropertyAssertion(locatedIn(SouthAustraliaRegion,AustralianRegion))
+objectPropertyAssertion(locatedIn(StEmilionRegion,BordeauxRegion))
+objectPropertyAssertion(locatedIn(StGenevieveTexasWhite,CentralTexasRegion))
+objectPropertyAssertion(locatedIn(StonleighSauvignonBlanc,NewZealandRegion))
+objectPropertyAssertion(locatedIn(TexasRegion,USRegion))
+objectPropertyAssertion(locatedIn(ToursRegion,LoireRegion))
+objectPropertyAssertion(locatedIn(VentanaCheninBlanc,CentralCoastRegion))
+objectPropertyAssertion(locatedIn(WhitehallLaneCabernetFranc,NapaRegion))
+objectPropertyAssertion(locatedIn(WhitehallLanePrimavera,NapaRegion))
+objectPropertyAssertion(madeFromGrape(ChateauDYchemSauterne,SauvignonBlancGrape))
+objectPropertyAssertion(madeFromGrape(ChateauDYchemSauterne,SemillonGrape))
+adjacentRegion domain Region
+hasColor domain Wine
+hasVintageYear domain Vintage
+hasWineDescriptor domain Wine
+locatedIn domain Thing
+madeFromGrape domain Wine
+adjacentRegion range Region
+hasBody range WineBody
+hasColor range WineColor
+hasFlavor range WineFlavor
+hasSugar range WineSugar
+hasVintageYear range VintageYear
+hasWineDescriptor range WineDescriptor
+locatedIn range Region
+madeFromGrape range WineGrape
+Anjou is_a (hasBody value Light)
+Anjou is_a (hasColor value Rose)
+Anjou is_a (hasFlavor value Delicate)
+Anjou is_a (hasSugar value OffDry)
+Beaujolais is_a (hasBody value Light)
+Beaujolais is_a (hasColor value Red)
+Beaujolais is_a (hasFlavor value Delicate)
+Beaujolais is_a (hasSugar value Dry)
+Beaujolais is_a (madeFromGrape value GamayGrape)
+Beaujolais is_a (1 max madeFromGrape)
+Burgundy is_a (hasSugar value Dry)
+CabernetFranc is_a (hasBody value Medium)
+CabernetFranc is_a (hasColor value Red)
+CabernetFranc is_a (hasFlavor value Moderate)
+CabernetFranc is_a (hasSugar value Dry)
+CabernetSauvignon is_a (hasBody any (Medium one Full))
+CabernetSauvignon is_a (hasFlavor any (Moderate one Strong))
+CabernetSauvignon is_a (hasColor value Red)
+CabernetSauvignon is_a (hasSugar value Dry)
+Chardonnay is_a (hasBody any (Medium one Full))
+Chardonnay is_a (hasFlavor any (Moderate one Strong))
+Chardonnay is_a (hasColor value White)
+CheninBlanc is_a (hasBody any (Medium one Full))
+CheninBlanc is_a (hasSugar any (Dry one OffDry))
+CheninBlanc is_a (hasColor value White)
+CheninBlanc is_a (hasFlavor value Moderate)
+Chianti is_a ItalianWine
+Chianti is_a (hasBody any (Light one Medium))
+Chianti is_a (hasColor value Red)
+Chianti is_a (hasFlavor value Moderate)
+Chianti is_a (hasSugar value Dry)
+Chianti is_a (locatedIn value ChiantiRegion)
+Chianti is_a (madeFromGrape value SangioveseGrape)
+CotesDOr is_a (hasFlavor value Moderate)
+DessertWine is_a Wine
+DessertWine is_a (hasSugar any (Sweet one OffDry))
+DryRiesling is_a (hasBody any (Light one Medium))
+DryRiesling is_a (hasColor value White)
+DryRiesling is_a (hasFlavor value Delicate)
+EarlyHarvest is_a Wine
+EarlyHarvest is_a (hasSugar any (Dry one OffDry))
+IceWine is_a (hasBody any (Medium one Full))
+IceWine is_a (hasFlavor any (Moderate one Strong))
+LateHarvest is_a Wine
+LateHarvest is_a (hasFlavor any (Moderate one Strong))
+LateHarvest is_a (hasSugar value Sweet)
+Margaux is_a (hasFlavor value Delicate)
+Margaux is_a (madeFromGrape value MerlotGrape)
+Margaux is_a (1 max madeFromGrape)
+Medoc is_a (hasColor value Red)
+Medoc is_a (hasSugar value Dry)
+Meritage is_a (hasColor value Red)
+Merlot is_a (hasBody any (Light one Medium))
+Merlot is_a (hasFlavor any (Moderate one Delicate))
+Merlot is_a (hasColor value Red)
+Merlot is_a (hasSugar value Dry)
+Meursault is_a (hasBody value Full)
+Muscadet is_a (hasBody value Light)
+Muscadet is_a (hasFlavor value Delicate)
+Muscadet is_a (hasSugar value Dry)
+Muscadet is_a (madeFromGrape value PinotBlancGrape)
+Muscadet is_a (1 max madeFromGrape)
+Pauillac is_a (hasBody value Full)
+Pauillac is_a (hasFlavor value Strong)
+Pauillac is_a (madeFromGrape value CabernetSauvignonGrape)
+Pauillac is_a (1 max madeFromGrape)
+PetiteSyrah is_a (hasBody any (Medium one Full))
+PetiteSyrah is_a (hasFlavor any (Moderate one Strong))
+PetiteSyrah is_a (hasColor value Red)
+PetiteSyrah is_a (hasSugar value Dry)
+PinotBlanc is_a (hasColor value White)
+PinotNoir is_a (hasColor value Red)
+Port is_a RedWine
+Port is_a (hasBody value Full)
+Port is_a (hasFlavor value Strong)
+Port is_a (hasSugar value Sweet)
+Port is_a (locatedIn value PortugalRegion)
+RedBordeaux is_a (madeFromGrape any (CabernetSauvignonGrape one MerlotGrape))
+RedBurgundy is_a (madeFromGrape value PinotNoirGrape)
+RedBurgundy is_a (1 max madeFromGrape)
+Riesling is_a (hasColor value White)
+Sancerre is_a (hasBody value Medium)
+Sancerre is_a (hasFlavor value Delicate)
+Sancerre is_a (hasSugar value OffDry)
+Sancerre is_a (madeFromGrape value SauvignonBlancGrape)
+Sancerre is_a (1 max madeFromGrape)
+Sauternes is_a Bordeaux
+Sauternes is_a LateHarvest
+Sauternes is_a (hasBody value Medium)
+Sauternes is_a (hasColor value White)
+Sauternes is_a (locatedIn value SauterneRegion)
+SemillonOrSauvignonBlanc is_a (hasBody any (Medium one Full))
+SemillonOrSauvignonBlanc is_a (hasColor value White)
+StEmilion is_a (hasColor value Red)
+StEmilion is_a (hasFlavor value Strong)
+StEmilion is_a (madeFromGrape value CabernetSauvignonGrape)
+StEmilion is_a (1 max madeFromGrape)
+SweetRiesling is_a DessertWine
+SweetRiesling is_a (hasFlavor any (Moderate one Strong))
+SweetRiesling is_a (hasBody value Full)
+Tours is_a (madeFromGrape value CheninBlancGrape)
+Tours is_a (1 max madeFromGrape)
+Vintage is_a (1 exact hasVintageYear)
+WhiteBordeaux is_a (madeFromGrape any (SemillonGrape one SauvignonBlancGrape))
+WhiteBurgundy is_a (madeFromGrape value ChardonnayGrape)
+WhiteBurgundy is_a (1 max madeFromGrape)
+WhiteLoire is_a (madeFromGrape any (CheninBlancGrape one (SauvignonBlancGrape one PinotBlancGrape)))
+Wine is_a PotableLiquid
+Wine is_a (hasMaker any Winery)
+Wine is_a (1 exact hasBody)
+Wine is_a (1 exact hasColor)
+Wine is_a (1 exact hasFlavor)
+Wine is_a (1 exact hasMaker)
+Wine is_a (1 exact hasSugar)
+Wine is_a (1 min madeFromGrape)
+Wine is_a (locatedIn some Region)
+WineBody is_a WineTaste
+WineColor is_a WineDescriptor
+WineFlavor is_a WineTaste
+WineGrape is_a Grape
+WineSugar is_a WineTaste
+WineTaste is_a WineDescriptor
+Zinfandel is_a (hasBody any (Medium one Full))
+Zinfandel is_a (hasFlavor any (Moderate one Strong))
+Zinfandel is_a (hasColor value Red)
+Zinfandel is_a (hasSugar value Dry)
+hasBody subproperty hasWineDescriptor
+hasColor subproperty hasWineDescriptor
+hasFlavor subproperty hasWineDescriptor
+hasSugar subproperty hasWineDescriptor
+madeFromGrape subproperty madeFromFruit
+symmetric adjacentRegion
+transitive locatedIn
+
+
+------- Formula --------
+Anjou(RoseDAnjou)
+Beaujolais(ChateauMorgonBeaujolais)
+CabernetFranc(WhitehallLaneCabernetFranc)
+CabernetSauvignon(FormanCabernetSauvignon)
+CabernetSauvignon(MariettaCabernetSauvignon)
+CabernetSauvignon(PageMillWineryCabernetSauvignon)
+CabernetSauvignon(SantaCruzMountainVineyardCabernetSauvignon)
+Chardonnay(BancroftChardonnay)
+Chardonnay(FormanChardonnay)
+Chardonnay(MountadamChardonnay)
+Chardonnay(MountEdenVineyardEdnaValleyChardonnay)
+Chardonnay(PeterMccoyChardonnay)
+CheninBlanc(FoxenCheninBlanc)
+CheninBlanc(VentanaCheninBlanc)
+Chianti(ChiantiClassico)
+CotesDOr(ClosDeVougeotCotesDOr)
+DessertWine(WhitehallLanePrimavera)
+DryRiesling(MountadamRiesling)
+IceWine(SelaksIceWine)
+Margaux(ChateauMargaux)
+Meritage(KathrynKennedyLateral)
+Merlot(GaryFarrellMerlot)
+Merlot(LongridgeMerlot)
+Meursault(ChateauDeMeursaultMeursault)
+Muscadet(SevreEtMaineMuscadet)
+Pauillac(ChateauLafiteRothschildPauillac)
+PetiteSyrah(MariettaPetiteSyrah)
+PetiteSyrah(SeanThackreySiriusPetiteSyrah)
+PinotNoir(LaneTannerPinotNoir)
+PinotNoir(MountadamPinotNoir)
+PinotNoir(MountEdenVineyardEstatePinotNoir)
+Port(TaylorPort)
+RedTableWine(MariettaOldVinesRed)
+Region(AlsaceRegion)
+Region(AnjouRegion)
+Region(ArroyoGrandeRegion)
+Region(AustralianRegion)
+Region(BeaujolaisRegion)
+Region(BordeauxRegion)
+Region(BourgogneRegion)
+Region(CaliforniaRegion)
+Region(CentralCoastRegion)
+Region(CentralTexasRegion)
+Region(ChiantiRegion)
+Region(CotesDOrRegion)
+Region(EdnaValleyRegion)
+Region(FrenchRegion)
+Region(GermanyRegion)
+Region(ItalianRegion)
+Region(LoireRegion)
+Region(MargauxRegion)
+Region(MedocRegion)
+Region(MendocinoRegion)
+Region(MeursaultRegion)
+Region(MuscadetRegion)
+Region(NapaRegion)
+Region(NewZealandRegion)
+Region(PauillacRegion)
+Region(PortugalRegion)
+Region(SancerreRegion)
+Region(SantaBarbaraRegion)
+Region(SantaCruzMountainsRegion)
+Region(SauterneRegion)
+Region(SonomaRegion)
+Region(SouthAustraliaRegion)
+Region(StEmilionRegion)
+Region(TexasRegion)
+Region(ToursRegion)
+Region(USRegion)
+Riesling(CorbansDryWhiteRiesling)
+Sancerre(ClosDeLaPoussieSancerre)
+Sauternes(ChateauDYchemSauterne)
+SauvignonBlanc(CorbansPrivateBinSauvignonBlanc)
+SauvignonBlanc(CorbansSauvignonBlanc)
+SauvignonBlanc(SelaksSauvignonBlanc)
+SauvignonBlanc(StonleighSauvignonBlanc)
+Semillon(CongressSpringsSemillon)
+Semillon(KalinCellarsSemillon)
+StEmilion(ChateauChevalBlancStEmilion)
+SweetRiesling(SchlossRothermelTrochenbierenausleseRiesling)
+SweetRiesling(SchlossVolradTrochenbierenausleseRiesling)
+VintageYear(Year1998)
+WhiteBurgundy(CortonMontrachetWhiteBurgundy)
+WhiteBurgundy(PulignyMontrachetWhiteBurgundy)
+WhiteWine(StGenevieveTexasWhite)
+WineBody(Full)
+WineBody(Light)
+WineBody(Medium)
+WineColor(Red)
+WineColor(Rose)
+WineColor(White)
+WineFlavor(Delicate)
+WineFlavor(Moderate)
+WineFlavor(Strong)
+WineGrape(CabernetFrancGrape)
+WineGrape(CabernetSauvignonGrape)
+WineGrape(ChardonnayGrape)
+WineGrape(CheninBlancGrape)
+WineGrape(GamayGrape)
+WineGrape(MalbecGrape)
+WineGrape(MerlotGrape)
+WineGrape(PetiteSyrahGrape)
+WineGrape(PetiteVerdotGrape)
+WineGrape(PinotBlancGrape)
+WineGrape(PinotNoirGrape)
+WineGrape(RieslingGrape)
+WineGrape(SangioveseGrape)
+WineGrape(SauvignonBlancGrape)
+WineGrape(SemillonGrape)
+WineGrape(ZinfandelGrape)
+Winery(Bancroft)
+Winery(Beringer)
+Winery(ChateauChevalBlanc)
+Winery(ChateauDeMeursault)
+Winery(ChateauDYchem)
+Winery(ChateauLafiteRothschild)
+Winery(ChateauMargauxWinery)
+Winery(ChateauMorgon)
+Winery(ClosDeLaPoussie)
+Winery(ClosDeVougeot)
+Winery(CongressSprings)
+Winery(Corbans)
+Winery(CortonMontrachet)
+Winery(Cotturi)
+Winery(DAnjou)
+Winery(Elyse)
+Winery(Forman)
+Winery(Foxen)
+Winery(GaryFarrell)
+Winery(Handley)
+Winery(KalinCellars)
+Winery(KathrynKennedy)
+Winery(LaneTanner)
+Winery(Longridge)
+Winery(Marietta)
+Winery(McGuinnesso)
+Winery(Mountadam)
+Winery(MountEdenVineyard)
+Winery(PageMillWinery)
+Winery(PeterMccoy)
+Winery(PulignyMontrachet)
+Winery(SantaCruzMountainVineyard)
+Winery(SaucelitoCanyon)
+Winery(SchlossRothermel)
+Winery(SchlossVolrad)
+Winery(SeanThackrey)
+Winery(Selaks)
+Winery(SevreEtMaine)
+Winery(StGenevieve)
+Winery(Stonleigh)
+Winery(Taylor)
+Winery(Ventana)
+Winery(WhitehallLane)
+WineSugar(Dry)
+WineSugar(OffDry)
+WineSugar(Sweet)
+Zinfandel(CotturiZinfandel)
+Zinfandel(ElyseZinfandel)
+Zinfandel(MariettaZinfandel)
+Zinfandel(SaucelitoCanyonZinfandel)
+Zinfandel(SaucelitoCanyonZinfandel1998)
+Thing(CabernetFrancGrape)
+Thing(CabernetSauvignonGrape)
+Thing(CheninBlancGrape)
+Thing(Delicate)
+Thing(Dry)
+Thing(Full)
+Thing(Light)
+Thing(MalbecGrape)
+Thing(Medium)
+Thing(MerlotGrape)
+Thing(Moderate)
+Thing(OffDry)
+Thing(PetiteVerdotGrape)
+Thing(PinotBlancGrape)
+Thing(Red)
+Thing(Rose)
+Thing(SauvignonBlancGrape)
+Thing(SemillonGrape)
+Thing(Strong)
+Thing(Sweet)
+Thing(White)
+yearValue(Year1998,"1998"^^xsd:positiveInteger)
+all _G6912: (yearValue(_G6912,_G6917)=>VintageYear(_G6912))
+all _G6929: (yearValue(_G6934,_G6929)=>positiveInteger(_G6929))
+Bancroft= (ChateauChevalBlanc= (ChateauDYchem= (ChateauDeMeursault= (ChateauLafiteRothschild= (ChateauMargauxWinery= (ChateauMorgon= (ClosDeLaPoussie= (ClosDeVougeot= (CongressSprings= (Corbans= (CortonMontrachet= (Cotturi= (DAnjou= (Elyse= (Forman= (Foxen= (GaryFarrell= (KalinCellars= (KathrynKennedy= (LaneTanner= (Longridge= (Marietta= (McGuinnesso= (MountEdenVineyard= (Mountadam= (PageMillWinery= (PeterMccoy= (PulignyMontrachet= (SantaCruzMountainVineyard= (SaucelitoCanyon= (SchlossRothermel= (SchlossVolrad= (SeanThackrey= (Selaks= (SevreEtMaine= (StGenevieve= (Stonleigh= (Taylor= (Ventana=WhitehallLane)))))))))))))))))))))))))))))))))))))))
+Delicate= (Moderate=Strong)
+Dry= (OffDry=Sweet)
+Full= (Light=Medium)
+OffDry=Dry
+Red= (Rose=White)
+Sweet=Dry
+Sweet=OffDry
+all _G7123: (EarlyHarvest(_G7123)=> ~LateHarvest(_G7123))
+all _G7140: (LateHarvest(_G7140)=> ~EarlyHarvest(_G7140))
+all _G7157: (AlsatianWine(_G7157)<=>locatedIn(_G7157,AlsaceRegion),Wine(_G7157))
+all _G7178: (AmericanWine(_G7178)<=>locatedIn(_G7178,USRegion),Wine(_G7178))
+all _G7199: (Anjou(_G7199)<=>locatedIn(_G7199,AnjouRegion),Loire(_G7199))
+all _G7220: (Beaujolais(_G7220)<=>locatedIn(_G7220,BeaujolaisRegion),Wine(_G7220))
+all _G7241: (Bordeaux(_G7241)<=>locatedIn(_G7241,BordeauxRegion),Wine(_G7241))
+all _G7262: (Burgundy(_G7262)<=>locatedIn(_G7262,BourgogneRegion),Wine(_G7262))
+all _G7283: (CabernetFranc(_G7283)<=>Wine(_G7283),madeFromGrape(_G7283,CabernetFrancGrape),unknow)
+all _G7307: (CabernetSauvignon(_G7307)<=>Wine(_G7307),madeFromGrape(_G7307,CabernetSauvignonGrape),unknow)
+all _G7331: (CaliforniaWine(_G7331)<=>locatedIn(_G7331,CaliforniaRegion),Wine(_G7331))
+all _G7352: (Chardonnay(_G7352)<=>Wine(_G7352),madeFromGrape(_G7352,ChardonnayGrape),unknow)
+all _G7376: (CheninBlanc(_G7376)<=>Wine(_G7376),madeFromGrape(_G7376,CheninBlancGrape),unknow)
+all _G7400: (CotesDOr(_G7400)<=>locatedIn(_G7400,CotesDOrRegion),RedBurgundy(_G7400))
+all _G7421: (DryRedWine(_G7421)<=>RedWine(_G7421),DryWine(_G7421))
+all _G7441: (DryRiesling(_G7441)<=>hasSugar(_G7441,Dry),Riesling(_G7441))
+all _G7462: (DryWhiteWine(_G7462)<=>WhiteWine(_G7462),DryWine(_G7462))
+all _G7482: (DryWine(_G7482)<=>hasSugar(_G7482,Dry),Wine(_G7482))
+all _G7503: (FrenchWine(_G7503)<=>locatedIn(_G7503,FrenchRegion),Wine(_G7503))
+all _G7524: (FullBodiedWine(_G7524)<=>hasBody(_G7524,Full),Wine(_G7524))
+all _G7545: (Gamay(_G7545)<=>Wine(_G7545),madeFromGrape(_G7545,GamayGrape),unknow)
+all _G7569: (GermanWine(_G7569)<=>locatedIn(_G7569,GermanyRegion),Wine(_G7569))
+all _G7590: (IceWine(_G7590)<=>DessertWine(_G7590),LateHarvest(_G7590),hasColor(_G7590,White))
+all _G7616: (ItalianWine(_G7616)<=>locatedIn(_G7616,ItalianRegion),Wine(_G7616))
+all _G7637: (Loire(_G7637)<=>locatedIn(_G7637,LoireRegion),Wine(_G7637))
+all _G7658: (Margaux(_G7658)<=>locatedIn(_G7658,MargauxRegion),Medoc(_G7658))
+all _G7679: (Medoc(_G7679)<=>locatedIn(_G7679,MedocRegion),Bordeaux(_G7679))
+all _G7700: (Meritage(_G7700)<=>Wine(_G7700),all _G7718: (madeFromGrape(_G7700,_G7718)=>_G7718=PetiteVerdotGrape;_G7718=MerlotGrape;_G7718=MalbecGrape;_G7718=CabernetSauvignonGrape;_G7718=CabernetFrancGrape),unknow)
+all _G7759: (Merlot(_G7759)<=>Wine(_G7759),madeFromGrape(_G7759,MerlotGrape),unknow)
+all _G7783: (Meursault(_G7783)<=>locatedIn(_G7783,MeursaultRegion),WhiteBurgundy(_G7783))
+all _G7804: (Muscadet(_G7804)<=>locatedIn(_G7804,MuscadetRegion),Loire(_G7804))
+all _G7825: (Pauillac(_G7825)<=>locatedIn(_G7825,PauillacRegion),Medoc(_G7825))
+all _G7846: (PetiteSyrah(_G7846)<=>Wine(_G7846),madeFromGrape(_G7846,PetiteSyrahGrape),unknow)
+all _G7870: (PinotBlanc(_G7870)<=>Wine(_G7870),madeFromGrape(_G7870,PinotBlancGrape),unknow)
+all _G7894: (PinotNoir(_G7894)<=>Wine(_G7894),madeFromGrape(_G7894,PinotNoirGrape),unknow)
+all _G7918: (RedBordeaux(_G7918)<=>RedWine(_G7918),Bordeaux(_G7918))
+all _G7938: (RedBurgundy(_G7938)<=>RedWine(_G7938),Burgundy(_G7938))
+all _G7958: (RedTableWine(_G7958)<=>hasColor(_G7958,Red),TableWine(_G7958))
+all _G7979: (RedWine(_G7979)<=>hasColor(_G7979,Red),Wine(_G7979))
+all _G8000: (Riesling(_G8000)<=>Wine(_G8000),madeFromGrape(_G8000,RieslingGrape),unknow)
+all _G8024: (RoseWine(_G8024)<=>hasColor(_G8024,Rose),Wine(_G8024))
+all _G8045: (Sancerre(_G8045)<=>locatedIn(_G8045,SancerreRegion),Loire(_G8045))
+all _G8066: (SauvignonBlanc(_G8066)<=>SemillonOrSauvignonBlanc(_G8066),madeFromGrape(_G8066,SauvignonBlancGrape),unknow)
+all _G8090: (Semillon(_G8090)<=>SemillonOrSauvignonBlanc(_G8090),madeFromGrape(_G8090,SemillonGrape),unknow)
+all _G8114: (SemillonOrSauvignonBlanc(_G8114)<=>all _G8127: (madeFromGrape(_G8114,_G8127)=>_G8127=SemillonGrape;_G8127=SauvignonBlancGrape),Wine(_G8114))
+all _G8152: (StEmilion(_G8152)<=>locatedIn(_G8152,StEmilionRegion),Bordeaux(_G8152))
+all _G8173: (SweetRiesling(_G8173)<=>hasSugar(_G8173,Sweet),Riesling(_G8173))
+all _G8194: (SweetWine(_G8194)<=>hasSugar(_G8194,Sweet),Wine(_G8194))
+all _G8215: (TableWine(_G8215)<=>hasSugar(_G8215,Dry),Wine(_G8215))
+all _G8236: (TexasWine(_G8236)<=>locatedIn(_G8236,TexasRegion),Wine(_G8236))
+all _G8257: (Tours(_G8257)<=>locatedIn(_G8257,ToursRegion),Loire(_G8257))
+all _G8278: (WhiteBordeaux(_G8278)<=>WhiteWine(_G8278),Bordeaux(_G8278))
+all _G8298: (WhiteBurgundy(_G8298)<=>WhiteWine(_G8298),Burgundy(_G8298))
+all _G8318: (WhiteLoire(_G8318)<=>WhiteWine(_G8318),Loire(_G8318))
+all _G8338: (WhiteNonSweetWine(_G8338)<=>all _G8351: (hasSugar(_G8338,_G8351)=>_G8351=Dry;_G8351=OffDry),WhiteWine(_G8338))
+all _G8376: (WhiteTableWine(_G8376)<=>hasColor(_G8376,White),TableWine(_G8376))
+all _G8397: (WhiteWine(_G8397)<=>hasColor(_G8397,White),Wine(_G8397))
+all _G8418: (WineBody(_G8418)<=>_G8418=Full;_G8418=Medium;_G8418=Light)
+all _G8446: (WineColor(_G8446)<=>_G8446=Red;_G8446=Rose;_G8446=White)
+all _G8474: (WineDescriptor(_G8474)<=>WineTaste(_G8474);WineColor(_G8474))
+all _G8494: (WineFlavor(_G8494)<=>_G8494=Strong;_G8494=Delicate;_G8494=Moderate)
+all _G8522: (WineSugar(_G8522)<=>_G8522=OffDry;_G8522=Dry;_G8522=Sweet)
+all _G8550: (Zinfandel(_G8550)<=>Wine(_G8550),madeFromGrape(_G8550,ZinfandelGrape),unknow)
+all _G8574:all _G8579:all _G8584: (hasBody(_G8574,_G8579),hasBody(_G8574,_G8584)=>_G8579=_G8584)
+all _G8607:all _G8612:all _G8617: (hasColor(_G8607,_G8612),hasColor(_G8607,_G8617)=>_G8612=_G8617)
+all _G8640:all _G8645:all _G8650: (hasFlavor(_G8640,_G8645),hasFlavor(_G8640,_G8650)=>_G8645=_G8650)
+all _G8673:all _G8678:all _G8683: (hasMaker(_G8673,_G8678),hasMaker(_G8673,_G8683)=>_G8678=_G8683)
+all _G8706:all _G8711:all _G8716: (hasSugar(_G8706,_G8711),hasSugar(_G8706,_G8716)=>_G8711=_G8716)
+all _G8739:all _G8744:all _G8749: (hasVintageYear(_G8739,_G8744),hasVintageYear(_G8739,_G8749)=>_G8744=_G8749)
+all _G8772:all _G8777: (madeIntoWine(_G8772,_G8777)=>madeFromGrape(_G8777,_G8772))
+all _G8794:all _G8799: (madeIntoWine(_G8794,_G8799)=>madeFromGrape(_G8799,_G8794))
+all _G8816:all _G8821: (producesWine(_G8816,_G8821)=>hasMaker(_G8821,_G8816))
+all _G8838:all _G8843: (producesWine(_G8838,_G8843)=>hasMaker(_G8843,_G8838))
+adjacentRegion(MendocinoRegion,SonomaRegion)
+hasBody(BancroftChardonnay,Medium)
+hasBody(ChiantiClassico,Medium)
+hasBody(CongressSpringsSemillon,Medium)
+hasBody(CorbansDryWhiteRiesling,Medium)
+hasBody(CorbansPrivateBinSauvignonBlanc,Full)
+hasBody(CorbansSauvignonBlanc,Medium)
+hasBody(CortonMontrachetWhiteBurgundy,Full)
+hasBody(CotturiZinfandel,Full)
+hasBody(ElyseZinfandel,Full)
+hasBody(FormanCabernetSauvignon,Medium)
+hasBody(FormanChardonnay,Full)
+hasBody(FoxenCheninBlanc,Full)
+hasBody(GaryFarrellMerlot,Medium)
+hasBody(KalinCellarsSemillon,Full)
+hasBody(KathrynKennedyLateral,Medium)
+hasBody(LaneTannerPinotNoir,Light)
+hasBody(LongridgeMerlot,Light)
+hasBody(MariettaCabernetSauvignon,Medium)
+hasBody(MariettaOldVinesRed,Medium)
+hasBody(MariettaPetiteSyrah,Medium)
+hasBody(MariettaZinfandel,Medium)
+hasBody(MountadamChardonnay,Full)
+hasBody(MountadamPinotNoir,Medium)
+hasBody(MountadamRiesling,Medium)
+hasBody(MountEdenVineyardEdnaValleyChardonnay,Medium)
+hasBody(MountEdenVineyardEstatePinotNoir,Full)
+hasBody(PageMillWineryCabernetSauvignon,Medium)
+hasBody(PeterMccoyChardonnay,Medium)
+hasBody(PulignyMontrachetWhiteBurgundy,Medium)
+hasBody(SantaCruzMountainVineyardCabernetSauvignon,Full)
+hasBody(SaucelitoCanyonZinfandel,Medium)
+hasBody(SaucelitoCanyonZinfandel1998,Medium)
+hasBody(SchlossRothermelTrochenbierenausleseRiesling,Full)
+hasBody(SchlossVolradTrochenbierenausleseRiesling,Full)
+hasBody(SeanThackreySiriusPetiteSyrah,Full)
+hasBody(SelaksIceWine,Medium)
+hasBody(SelaksSauvignonBlanc,Medium)
+hasBody(StonleighSauvignonBlanc,Medium)
+hasBody(VentanaCheninBlanc,Medium)
+hasBody(WhitehallLaneCabernetFranc,Medium)
+hasBody(WhitehallLanePrimavera,Light)
+hasColor(SelaksIceWine,White)
+hasFlavor(BancroftChardonnay,Moderate)
+hasFlavor(ChateauDeMeursaultMeursault,Moderate)
+hasFlavor(ChateauDYchemSauterne,Strong)
+hasFlavor(CongressSpringsSemillon,Moderate)
+hasFlavor(CorbansDryWhiteRiesling,Moderate)
+hasFlavor(CorbansPrivateBinSauvignonBlanc,Strong)
+hasFlavor(CorbansSauvignonBlanc,Strong)
+hasFlavor(CortonMontrachetWhiteBurgundy,Strong)
+hasFlavor(CotturiZinfandel,Strong)
+hasFlavor(ElyseZinfandel,Moderate)
+hasFlavor(FormanCabernetSauvignon,Strong)
+hasFlavor(FormanChardonnay,Moderate)
+hasFlavor(FoxenCheninBlanc,Moderate)
+hasFlavor(GaryFarrellMerlot,Moderate)
+hasFlavor(KalinCellarsSemillon,Strong)
+hasFlavor(KathrynKennedyLateral,Delicate)
+hasFlavor(LaneTannerPinotNoir,Delicate)
+hasFlavor(LongridgeMerlot,Moderate)
+hasFlavor(MariettaCabernetSauvignon,Moderate)
+hasFlavor(MariettaOldVinesRed,Moderate)
+hasFlavor(MariettaPetiteSyrah,Moderate)
+hasFlavor(MariettaZinfandel,Moderate)
+hasFlavor(MountadamChardonnay,Strong)
+hasFlavor(MountadamPinotNoir,Moderate)
+hasFlavor(MountadamRiesling,Delicate)
+hasFlavor(MountEdenVineyardEdnaValleyChardonnay,Moderate)
+hasFlavor(MountEdenVineyardEstatePinotNoir,Strong)
+hasFlavor(PageMillWineryCabernetSauvignon,Moderate)
+hasFlavor(PeterMccoyChardonnay,Moderate)
+hasFlavor(PulignyMontrachetWhiteBurgundy,Moderate)
+hasFlavor(SantaCruzMountainVineyardCabernetSauvignon,Strong)
+hasFlavor(SaucelitoCanyonZinfandel,Moderate)
+hasFlavor(SaucelitoCanyonZinfandel1998,Moderate)
+hasFlavor(SchlossRothermelTrochenbierenausleseRiesling,Strong)
+hasFlavor(SchlossVolradTrochenbierenausleseRiesling,Moderate)
+hasFlavor(SeanThackreySiriusPetiteSyrah,Strong)
+hasFlavor(SelaksIceWine,Moderate)
+hasFlavor(SelaksSauvignonBlanc,Moderate)
+hasFlavor(StGenevieveTexasWhite,Moderate)
+hasFlavor(StonleighSauvignonBlanc,Delicate)
+hasFlavor(VentanaCheninBlanc,Moderate)
+hasFlavor(WhitehallLaneCabernetFranc,Moderate)
+hasFlavor(WhitehallLanePrimavera,Delicate)
+hasMaker(BancroftChardonnay,Bancroft)
+hasMaker(ChateauChevalBlancStEmilion,ChateauChevalBlanc)
+hasMaker(ChateauDeMeursaultMeursault,ChateauDeMeursault)
+hasMaker(ChateauDYchemSauterne,ChateauDYchem)
+hasMaker(ChateauLafiteRothschildPauillac,ChateauLafiteRothschild)
+hasMaker(ChateauMargaux,ChateauMargauxWinery)
+hasMaker(ChateauMorgonBeaujolais,ChateauMorgon)
+hasMaker(ChiantiClassico,McGuinnesso)
+hasMaker(ClosDeLaPoussieSancerre,ClosDeLaPoussie)
+hasMaker(ClosDeVougeotCotesDOr,ClosDeVougeot)
+hasMaker(CongressSpringsSemillon,CongressSprings)
+hasMaker(CorbansDryWhiteRiesling,Corbans)
+hasMaker(CorbansPrivateBinSauvignonBlanc,Corbans)
+hasMaker(CorbansSauvignonBlanc,Corbans)
+hasMaker(CortonMontrachetWhiteBurgundy,CortonMontrachet)
+hasMaker(CotturiZinfandel,Cotturi)
+hasMaker(ElyseZinfandel,Elyse)
+hasMaker(FormanCabernetSauvignon,Forman)
+hasMaker(FormanChardonnay,Forman)
+hasMaker(FoxenCheninBlanc,Foxen)
+hasMaker(GaryFarrellMerlot,GaryFarrell)
+hasMaker(KalinCellarsSemillon,KalinCellars)
+hasMaker(KathrynKennedyLateral,KathrynKennedy)
+hasMaker(LaneTannerPinotNoir,LaneTanner)
+hasMaker(LongridgeMerlot,Longridge)
+hasMaker(MariettaCabernetSauvignon,Marietta)
+hasMaker(MariettaOldVinesRed,Marietta)
+hasMaker(MariettaPetiteSyrah,Marietta)
+hasMaker(MariettaZinfandel,Marietta)
+hasMaker(MountadamChardonnay,Mountadam)
+hasMaker(MountadamPinotNoir,Mountadam)
+hasMaker(MountadamRiesling,Mountadam)
+hasMaker(MountEdenVineyardEdnaValleyChardonnay,MountEdenVineyard)
+hasMaker(MountEdenVineyardEstatePinotNoir,MountEdenVineyard)
+hasMaker(PageMillWineryCabernetSauvignon,PageMillWinery)
+hasMaker(PeterMccoyChardonnay,PeterMccoy)
+hasMaker(PulignyMontrachetWhiteBurgundy,PulignyMontrachet)
+hasMaker(RoseDAnjou,DAnjou)
+hasMaker(SantaCruzMountainVineyardCabernetSauvignon,SantaCruzMountainVineyard)
+hasMaker(SaucelitoCanyonZinfandel,SaucelitoCanyon)
+hasMaker(SaucelitoCanyonZinfandel1998,SaucelitoCanyon)
+hasMaker(SchlossRothermelTrochenbierenausleseRiesling,SchlossRothermel)
+hasMaker(SchlossVolradTrochenbierenausleseRiesling,SchlossVolrad)
+hasMaker(SeanThackreySiriusPetiteSyrah,SeanThackrey)
+hasMaker(SelaksIceWine,Selaks)
+hasMaker(SelaksSauvignonBlanc,Selaks)
+hasMaker(SevreEtMaineMuscadet,SevreEtMaine)
+hasMaker(StGenevieveTexasWhite,StGenevieve)
+hasMaker(StonleighSauvignonBlanc,Stonleigh)
+hasMaker(TaylorPort,Taylor)
+hasMaker(VentanaCheninBlanc,Ventana)
+hasMaker(WhitehallLaneCabernetFranc,WhitehallLane)
+hasSugar(BancroftChardonnay,Dry)
+hasSugar(CongressSpringsSemillon,Dry)
+hasSugar(CorbansDryWhiteRiesling,OffDry)
+hasSugar(CorbansPrivateBinSauvignonBlanc,Dry)
+hasSugar(CorbansSauvignonBlanc,Dry)
+hasSugar(CortonMontrachetWhiteBurgundy,Dry)
+hasSugar(CotturiZinfandel,Dry)
+hasSugar(ElyseZinfandel,Dry)
+hasSugar(FormanCabernetSauvignon,Dry)
+hasSugar(FormanChardonnay,Dry)
+hasSugar(FoxenCheninBlanc,Dry)
+hasSugar(GaryFarrellMerlot,Dry)
+hasSugar(KalinCellarsSemillon,Dry)
+hasSugar(KathrynKennedyLateral,Dry)
+hasSugar(LaneTannerPinotNoir,Dry)
+hasSugar(LongridgeMerlot,Dry)
+hasSugar(MariettaCabernetSauvignon,Dry)
+hasSugar(MariettaOldVinesRed,Dry)
+hasSugar(MariettaPetiteSyrah,Dry)
+hasSugar(MariettaZinfandel,Dry)
+hasSugar(MountadamChardonnay,Dry)
+hasSugar(MountadamPinotNoir,Dry)
+hasSugar(MountadamRiesling,Dry)
+hasSugar(MountEdenVineyardEdnaValleyChardonnay,Dry)
+hasSugar(MountEdenVineyardEstatePinotNoir,Dry)
+hasSugar(PageMillWineryCabernetSauvignon,Dry)
+hasSugar(PeterMccoyChardonnay,Dry)
+hasSugar(PulignyMontrachetWhiteBurgundy,Dry)
+hasSugar(SantaCruzMountainVineyardCabernetSauvignon,Dry)
+hasSugar(SaucelitoCanyonZinfandel,Dry)
+hasSugar(SaucelitoCanyonZinfandel1998,Dry)
+hasSugar(SchlossRothermelTrochenbierenausleseRiesling,Sweet)
+hasSugar(SchlossVolradTrochenbierenausleseRiesling,Sweet)
+hasSugar(SeanThackreySiriusPetiteSyrah,Dry)
+hasSugar(SelaksSauvignonBlanc,Dry)
+hasSugar(StGenevieveTexasWhite,Dry)
+hasSugar(StonleighSauvignonBlanc,Dry)
+hasSugar(VentanaCheninBlanc,OffDry)
+hasSugar(WhitehallLaneCabernetFranc,Dry)
+hasSugar(WhitehallLanePrimavera,Sweet)
+hasVintageYear(SaucelitoCanyonZinfandel1998,Year1998)
+locatedIn(AlsaceRegion,FrenchRegion)
+locatedIn(AnjouRegion,LoireRegion)
+locatedIn(ArroyoGrandeRegion,CaliforniaRegion)
+locatedIn(BancroftChardonnay,NapaRegion)
+locatedIn(BeaujolaisRegion,FrenchRegion)
+locatedIn(BordeauxRegion,FrenchRegion)
+locatedIn(BourgogneRegion,FrenchRegion)
+locatedIn(CaliforniaRegion,USRegion)
+locatedIn(CentralCoastRegion,CaliforniaRegion)
+locatedIn(CentralTexasRegion,TexasRegion)
+locatedIn(ChiantiRegion,ItalianRegion)
+locatedIn(CorbansDryWhiteRiesling,NewZealandRegion)
+locatedIn(CorbansPrivateBinSauvignonBlanc,NewZealandRegion)
+locatedIn(CorbansSauvignonBlanc,NewZealandRegion)
+locatedIn(CotesDOrRegion,BourgogneRegion)
+locatedIn(CotturiZinfandel,SonomaRegion)
+locatedIn(EdnaValleyRegion,CaliforniaRegion)
+locatedIn(ElyseZinfandel,NapaRegion)
+locatedIn(FormanCabernetSauvignon,NapaRegion)
+locatedIn(FormanChardonnay,NapaRegion)
+locatedIn(FoxenCheninBlanc,SantaBarbaraRegion)
+locatedIn(GaryFarrellMerlot,SonomaRegion)
+locatedIn(LaneTannerPinotNoir,SantaBarbaraRegion)
+locatedIn(LoireRegion,FrenchRegion)
+locatedIn(LongridgeMerlot,NewZealandRegion)
+locatedIn(MargauxRegion,MedocRegion)
+locatedIn(MariettaCabernetSauvignon,SonomaRegion)
+locatedIn(MariettaOldVinesRed,SonomaRegion)
+locatedIn(MariettaPetiteSyrah,SonomaRegion)
+locatedIn(MariettaZinfandel,SonomaRegion)
+locatedIn(MedocRegion,BordeauxRegion)
+locatedIn(MendocinoRegion,CaliforniaRegion)
+locatedIn(MeursaultRegion,BourgogneRegion)
+locatedIn(MountadamChardonnay,SouthAustraliaRegion)
+locatedIn(MountadamPinotNoir,SouthAustraliaRegion)
+locatedIn(MountadamRiesling,SouthAustraliaRegion)
+locatedIn(MountEdenVineyardEdnaValleyChardonnay,EdnaValleyRegion)
+locatedIn(MountEdenVineyardEstatePinotNoir,EdnaValleyRegion)
+locatedIn(MuscadetRegion,LoireRegion)
+locatedIn(NapaRegion,CaliforniaRegion)
+locatedIn(PageMillWineryCabernetSauvignon,NapaRegion)
+locatedIn(PauillacRegion,MedocRegion)
+locatedIn(PeterMccoyChardonnay,SonomaRegion)
+locatedIn(SancerreRegion,LoireRegion)
+locatedIn(SantaBarbaraRegion,CaliforniaRegion)
+locatedIn(SantaCruzMountainsRegion,CaliforniaRegion)
+locatedIn(SantaCruzMountainVineyardCabernetSauvignon,SantaCruzMountainsRegion)
+locatedIn(SaucelitoCanyonZinfandel,ArroyoGrandeRegion)
+locatedIn(SaucelitoCanyonZinfandel1998,ArroyoGrandeRegion)
+locatedIn(SauterneRegion,BordeauxRegion)
+locatedIn(SchlossRothermelTrochenbierenausleseRiesling,GermanyRegion)
+locatedIn(SchlossVolradTrochenbierenausleseRiesling,GermanyRegion)
+locatedIn(SeanThackreySiriusPetiteSyrah,NapaRegion)
+locatedIn(SelaksIceWine,NewZealandRegion)
+locatedIn(SelaksSauvignonBlanc,NewZealandRegion)
+locatedIn(SonomaRegion,CaliforniaRegion)
+locatedIn(SouthAustraliaRegion,AustralianRegion)
+locatedIn(StEmilionRegion,BordeauxRegion)
+locatedIn(StGenevieveTexasWhite,CentralTexasRegion)
+locatedIn(StonleighSauvignonBlanc,NewZealandRegion)
+locatedIn(TexasRegion,USRegion)
+locatedIn(ToursRegion,LoireRegion)
+locatedIn(VentanaCheninBlanc,CentralCoastRegion)
+locatedIn(WhitehallLaneCabernetFranc,NapaRegion)
+locatedIn(WhitehallLanePrimavera,NapaRegion)
+madeFromGrape(ChateauDYchemSauterne,SauvignonBlancGrape)
+madeFromGrape(ChateauDYchemSauterne,SemillonGrape)
+all _G9598: (adjacentRegion(_G9598,_G9603)=>Region(_G9598))
+all _G9615: (hasColor(_G9615,_G9620)=>Wine(_G9615))
+all _G9632: (hasVintageYear(_G9632,_G9637)=>Vintage(_G9632))
+all _G9649: (hasWineDescriptor(_G9649,_G9654)=>Wine(_G9649))
+all _G9666: (locatedIn(_G9666,_G9671)=>Thing(_G9666))
+all _G9683: (madeFromGrape(_G9683,_G9688)=>Wine(_G9683))
+all _G9700: (adjacentRegion(_G9705,_G9700)=>Region(_G9700))
+all _G9717: (hasBody(_G9722,_G9717)=>WineBody(_G9717))
+all _G9734: (hasColor(_G9739,_G9734)=>WineColor(_G9734))
+all _G9751: (hasFlavor(_G9756,_G9751)=>WineFlavor(_G9751))
+all _G9768: (hasSugar(_G9773,_G9768)=>WineSugar(_G9768))
+all _G9785: (hasVintageYear(_G9790,_G9785)=>VintageYear(_G9785))
+all _G9802: (hasWineDescriptor(_G9807,_G9802)=>WineDescriptor(_G9802))
+all _G9819: (locatedIn(_G9824,_G9819)=>Region(_G9819))
+all _G9836: (madeFromGrape(_G9841,_G9836)=>WineGrape(_G9836))
+all _G9853: (Anjou(_G9853)=>hasBody(_G9853,Light))
+all _G9869: (Anjou(_G9869)=>hasColor(_G9869,Rose))
+all _G9885: (Anjou(_G9885)=>hasFlavor(_G9885,Delicate))
+all _G9901: (Anjou(_G9901)=>hasSugar(_G9901,OffDry))
+all _G9917: (Beaujolais(_G9917)=>hasBody(_G9917,Light))
+all _G9933: (Beaujolais(_G9933)=>hasColor(_G9933,Red))
+all _G9949: (Beaujolais(_G9949)=>hasFlavor(_G9949,Delicate))
+all _G9965: (Beaujolais(_G9965)=>hasSugar(_G9965,Dry))
+all _G9981: (Beaujolais(_G9981)=>madeFromGrape(_G9981,GamayGrape))
+all _G9997: (Beaujolais(_G9997)=>unknow)
+all _G10010: (Burgundy(_G10010)=>hasSugar(_G10010,Dry))
+all _G10026: (CabernetFranc(_G10026)=>hasBody(_G10026,Medium))
+all _G10042: (CabernetFranc(_G10042)=>hasColor(_G10042,Red))
+all _G10058: (CabernetFranc(_G10058)=>hasFlavor(_G10058,Moderate))
+all _G10074: (CabernetFranc(_G10074)=>hasSugar(_G10074,Dry))
+all _G10090: (CabernetSauvignon(_G10090)=>all _G10100: (hasBody(_G10090,_G10100)=>_G10100=Medium;_G10100=Full))
+all _G10123: (CabernetSauvignon(_G10123)=>all _G10133: (hasFlavor(_G10123,_G10133)=>_G10133=Moderate;_G10133=Strong))
+all _G10156: (CabernetSauvignon(_G10156)=>hasColor(_G10156,Red))
+all _G10172: (CabernetSauvignon(_G10172)=>hasSugar(_G10172,Dry))
+all _G10188: (Chardonnay(_G10188)=>all _G10198: (hasBody(_G10188,_G10198)=>_G10198=Medium;_G10198=Full))
+all _G10221: (Chardonnay(_G10221)=>all _G10231: (hasFlavor(_G10221,_G10231)=>_G10231=Moderate;_G10231=Strong))
+all _G10254: (Chardonnay(_G10254)=>hasColor(_G10254,White))
+all _G10270: (CheninBlanc(_G10270)=>all _G10280: (hasBody(_G10270,_G10280)=>_G10280=Medium;_G10280=Full))
+all _G10303: (CheninBlanc(_G10303)=>all _G10313: (hasSugar(_G10303,_G10313)=>_G10313=Dry;_G10313=OffDry))
+all _G10336: (CheninBlanc(_G10336)=>hasColor(_G10336,White))
+all _G10352: (CheninBlanc(_G10352)=>hasFlavor(_G10352,Moderate))
+all _G10368: (Chianti(_G10368)=>ItalianWine(_G10368))
+all _G10383: (Chianti(_G10383)=>all _G10393: (hasBody(_G10383,_G10393)=>_G10393=Light;_G10393=Medium))
+all _G10416: (Chianti(_G10416)=>hasColor(_G10416,Red))
+all _G10432: (Chianti(_G10432)=>hasFlavor(_G10432,Moderate))
+all _G10448: (Chianti(_G10448)=>hasSugar(_G10448,Dry))
+all _G10464: (Chianti(_G10464)=>locatedIn(_G10464,ChiantiRegion))
+all _G10480: (Chianti(_G10480)=>madeFromGrape(_G10480,SangioveseGrape))
+all _G10496: (CotesDOr(_G10496)=>hasFlavor(_G10496,Moderate))
+all _G10512: (DessertWine(_G10512)=>Wine(_G10512))
+all _G10527: (DessertWine(_G10527)=>all _G10537: (hasSugar(_G10527,_G10537)=>_G10537=Sweet;_G10537=OffDry))
+all _G10560: (DryRiesling(_G10560)=>all _G10570: (hasBody(_G10560,_G10570)=>_G10570=Light;_G10570=Medium))
+all _G10593: (DryRiesling(_G10593)=>hasColor(_G10593,White))
+all _G10609: (DryRiesling(_G10609)=>hasFlavor(_G10609,Delicate))
+all _G10625: (EarlyHarvest(_G10625)=>Wine(_G10625))
+all _G10640: (EarlyHarvest(_G10640)=>all _G10650: (hasSugar(_G10640,_G10650)=>_G10650=Dry;_G10650=OffDry))
+all _G10673: (IceWine(_G10673)=>all _G10683: (hasBody(_G10673,_G10683)=>_G10683=Medium;_G10683=Full))
+all _G10706: (IceWine(_G10706)=>all _G10716: (hasFlavor(_G10706,_G10716)=>_G10716=Moderate;_G10716=Strong))
+all _G10739: (LateHarvest(_G10739)=>Wine(_G10739))
+all _G10754: (LateHarvest(_G10754)=>all _G10764: (hasFlavor(_G10754,_G10764)=>_G10764=Moderate;_G10764=Strong))
+all _G10787: (LateHarvest(_G10787)=>hasSugar(_G10787,Sweet))
+all _G10803: (Margaux(_G10803)=>hasFlavor(_G10803,Delicate))
+all _G10819: (Margaux(_G10819)=>madeFromGrape(_G10819,MerlotGrape))
+all _G10835: (Margaux(_G10835)=>unknow)
+all _G10848: (Medoc(_G10848)=>hasColor(_G10848,Red))
+all _G10864: (Medoc(_G10864)=>hasSugar(_G10864,Dry))
+all _G10880: (Meritage(_G10880)=>hasColor(_G10880,Red))
+all _G10896: (Merlot(_G10896)=>all _G10906: (hasBody(_G10896,_G10906)=>_G10906=Light;_G10906=Medium))
+all _G10929: (Merlot(_G10929)=>all _G10939: (hasFlavor(_G10929,_G10939)=>_G10939=Moderate;_G10939=Delicate))
+all _G10962: (Merlot(_G10962)=>hasColor(_G10962,Red))
+all _G10978: (Merlot(_G10978)=>hasSugar(_G10978,Dry))
+all _G10994: (Meursault(_G10994)=>hasBody(_G10994,Full))
+all _G11010: (Muscadet(_G11010)=>hasBody(_G11010,Light))
+all _G11026: (Muscadet(_G11026)=>hasFlavor(_G11026,Delicate))
+all _G11042: (Muscadet(_G11042)=>hasSugar(_G11042,Dry))
+all _G11058: (Muscadet(_G11058)=>madeFromGrape(_G11058,PinotBlancGrape))
+all _G11074: (Muscadet(_G11074)=>unknow)
+all _G11087: (Pauillac(_G11087)=>hasBody(_G11087,Full))
+all _G11103: (Pauillac(_G11103)=>hasFlavor(_G11103,Strong))
+all _G11119: (Pauillac(_G11119)=>madeFromGrape(_G11119,CabernetSauvignonGrape))
+all _G11135: (Pauillac(_G11135)=>unknow)
+all _G11148: (PetiteSyrah(_G11148)=>all _G11158: (hasBody(_G11148,_G11158)=>_G11158=Medium;_G11158=Full))
+all _G11181: (PetiteSyrah(_G11181)=>all _G11191: (hasFlavor(_G11181,_G11191)=>_G11191=Moderate;_G11191=Strong))
+all _G11214: (PetiteSyrah(_G11214)=>hasColor(_G11214,Red))
+all _G11230: (PetiteSyrah(_G11230)=>hasSugar(_G11230,Dry))
+all _G11246: (PinotBlanc(_G11246)=>hasColor(_G11246,White))
+all _G11262: (PinotNoir(_G11262)=>hasColor(_G11262,Red))
+all _G11278: (Port(_G11278)=>RedWine(_G11278))
+all _G11293: (Port(_G11293)=>hasBody(_G11293,Full))
+all _G11309: (Port(_G11309)=>hasFlavor(_G11309,Strong))
+all _G11325: (Port(_G11325)=>hasSugar(_G11325,Sweet))
+all _G11341: (Port(_G11341)=>locatedIn(_G11341,PortugalRegion))
+all _G11357: (RedBordeaux(_G11357)=>all _G11367: (madeFromGrape(_G11357,_G11367)=>_G11367=CabernetSauvignonGrape;_G11367=MerlotGrape))
+all _G11390: (RedBurgundy(_G11390)=>madeFromGrape(_G11390,PinotNoirGrape))
+all _G11406: (RedBurgundy(_G11406)=>unknow)
+all _G11419: (Riesling(_G11419)=>hasColor(_G11419,White))
+all _G11435: (Sancerre(_G11435)=>hasBody(_G11435,Medium))
+all _G11451: (Sancerre(_G11451)=>hasFlavor(_G11451,Delicate))
+all _G11467: (Sancerre(_G11467)=>hasSugar(_G11467,OffDry))
+all _G11483: (Sancerre(_G11483)=>madeFromGrape(_G11483,SauvignonBlancGrape))
+all _G11499: (Sancerre(_G11499)=>unknow)
+all _G11512: (Sauternes(_G11512)=>Bordeaux(_G11512))
+all _G11527: (Sauternes(_G11527)=>LateHarvest(_G11527))
+all _G11542: (Sauternes(_G11542)=>hasBody(_G11542,Medium))
+all _G11558: (Sauternes(_G11558)=>hasColor(_G11558,White))
+all _G11574: (Sauternes(_G11574)=>locatedIn(_G11574,SauterneRegion))
+all _G11590: (SemillonOrSauvignonBlanc(_G11590)=>all _G11600: (hasBody(_G11590,_G11600)=>_G11600=Medium;_G11600=Full))
+all _G11623: (SemillonOrSauvignonBlanc(_G11623)=>hasColor(_G11623,White))
+all _G11639: (StEmilion(_G11639)=>hasColor(_G11639,Red))
+all _G11655: (StEmilion(_G11655)=>hasFlavor(_G11655,Strong))
+all _G11671: (StEmilion(_G11671)=>madeFromGrape(_G11671,CabernetSauvignonGrape))
+all _G11687: (StEmilion(_G11687)=>unknow)
+all _G11700: (SweetRiesling(_G11700)=>DessertWine(_G11700))
+all _G11715: (SweetRiesling(_G11715)=>all _G11725: (hasFlavor(_G11715,_G11725)=>_G11725=Moderate;_G11725=Strong))
+all _G11748: (SweetRiesling(_G11748)=>hasBody(_G11748,Full))
+all _G11764: (Tours(_G11764)=>madeFromGrape(_G11764,CheninBlancGrape))
+all _G11780: (Tours(_G11780)=>unknow)
+all _G11793: (Vintage(_G11793)=>unknow)
+all _G11806: (WhiteBordeaux(_G11806)=>all _G11816: (madeFromGrape(_G11806,_G11816)=>_G11816=SemillonGrape;_G11816=SauvignonBlancGrape))
+all _G11839: (WhiteBurgundy(_G11839)=>madeFromGrape(_G11839,ChardonnayGrape))
+all _G11855: (WhiteBurgundy(_G11855)=>unknow)
+all _G11868: (WhiteLoire(_G11868)=>all _G11878: (madeFromGrape(_G11868,_G11878)=>_G11878=CheninBlancGrape;_G11878=SauvignonBlancGrape;_G11878=PinotBlancGrape))
+all _G11907: (Wine(_G11907)=>PotableLiquid(_G11907))
+all _G11922: (Wine(_G11922)=>all _G11932: (hasMaker(_G11922,_G11932)=>Winery(_G11932)))
+all _G11948: (Wine(_G11948)=>unknow)
+all _G11961: (Wine(_G11961)=>unknow)
+all _G11974: (Wine(_G11974)=>unknow)
+all _G11987: (Wine(_G11987)=>unknow)
+all _G12000: (Wine(_G12000)=>unknow)
+all _G12013: (Wine(_G12013)=>unknow)
+all _G12026: (Wine(_G12026)=>ex _G12036: (locatedIn(_G12026,_G12036),Region(_G12036)))
+all _G12052: (WineBody(_G12052)=>WineTaste(_G12052))
+all _G12067: (WineColor(_G12067)=>WineDescriptor(_G12067))
+all _G12082: (WineFlavor(_G12082)=>WineTaste(_G12082))
+all _G12097: (WineGrape(_G12097)=>Grape(_G12097))
+all _G12112: (WineSugar(_G12112)=>WineTaste(_G12112))
+all _G12127: (WineTaste(_G12127)=>WineDescriptor(_G12127))
+all _G12142: (Zinfandel(_G12142)=>all _G12152: (hasBody(_G12142,_G12152)=>_G12152=Medium;_G12152=Full))
+all _G12175: (Zinfandel(_G12175)=>all _G12185: (hasFlavor(_G12175,_G12185)=>_G12185=Moderate;_G12185=Strong))
+all _G12208: (Zinfandel(_G12208)=>hasColor(_G12208,Red))
+all _G12224: (Zinfandel(_G12224)=>hasSugar(_G12224,Dry))
+all _G12240:all _G12245: (hasBody(_G12240,_G12245)=>hasWineDescriptor(_G12240,_G12245))
+all _G12262:all _G12267: (hasColor(_G12262,_G12267)=>hasWineDescriptor(_G12262,_G12267))
+all _G12284:all _G12289: (hasFlavor(_G12284,_G12289)=>hasWineDescriptor(_G12284,_G12289))
+all _G12306:all _G12311: (hasSugar(_G12306,_G12311)=>hasWineDescriptor(_G12306,_G12311))
+all _G12328:all _G12333: (madeFromGrape(_G12328,_G12333)=>madeFromFruit(_G12328,_G12333))
+all _G12350:all _G12355: (adjacentRegion(_G12350,_G12355)<=>adjacentRegion(_G12355,_G12350))
+all _G12372:all _G12377:all _G12382: (locatedIn(_G12372,_G12377),locatedIn(_G12377,_G12382)=>locatedIn(_G12372,_G12382))
+
+
+------- Matrix -------
+[- 69^[_G63079],-Region(68^[_G63079])]
+[- 69^[_G63079],-locatedIn(_G63079,68^[_G63079])]
+[- 67^[_G20548],-unknow]
+[- 67^[_G20548],-madeFromGrape(_G20548,ZinfandelGrape)]
+[- 67^[_G20548],-Wine(_G20548)]
+[- 66^[_G20223],_G20223=Sweet]
+[- 66^[_G20223],_G20223=Dry]
+[- 66^[_G20223],_G20223=OffDry]
+[- 65^[_G19898],_G19898=Moderate]
+[- 65^[_G19898],_G19898=Delicate]
+[- 65^[_G19898],_G19898=Strong]
+[- 64^[_G19709],WineColor(_G19709)]
+[- 64^[_G19709],WineTaste(_G19709)]
+[- 63^[_G19384],_G19384=White]
+[- 63^[_G19384],_G19384=Rose]
+[- 63^[_G19384],_G19384=Red]
+[- 62^[_G19059],_G19059=Light]
+[- 62^[_G19059],_G19059=Medium]
+[- 62^[_G19059],_G19059=Full]
+[- 61^[_G18844],-Wine(_G18844)]
+[- 61^[_G18844],-hasColor(_G18844,White)]
+[- 60^[_G18629],-TableWine(_G18629)]
+[- 60^[_G18629],-hasColor(_G18629,White)]
+[- 59^[_G18181],58^[_G18181]=OffDry]
+[- 59^[_G18181],58^[_G18181]=Dry]
+[- 59^[_G18181],-hasSugar(_G18181,58^[_G18181])]
+[- 57^[_G18181],hasSugar(_G18181,_G18283),- (_G18283=Dry),- (_G18283=OffDry)]
+[- 57^[_G18181],-WhiteWine(_G18181)]
+[- 56^[_G17992],-Loire(_G17992)]
+[- 56^[_G17992],-WhiteWine(_G17992)]
+[- 55^[_G17803],-Burgundy(_G17803)]
+[- 55^[_G17803],-WhiteWine(_G17803)]
+[- 54^[_G17614],-Bordeaux(_G17614)]
+[- 54^[_G17614],-WhiteWine(_G17614)]
+[- 53^[_G17431],-Loire(_G17431)]
+[- 53^[_G17431],-locatedIn(_G17431,ToursRegion)]
+[- 52^[_G17401],-Wine(_G17401)]
+[- 52^[_G17401],-locatedIn(_G17401,TexasRegion)]
+[- 51^[_G17376],-Wine(_G17376)]
+[- 51^[_G17376],-hasSugar(_G17376,Dry)]
+[- 50^[_G17351],-Wine(_G17351)]
+[- 50^[_G17351],-hasSugar(_G17351,Sweet)]
+[- 49^[_G17326],-Riesling(_G17326)]
+[- 49^[_G17326],-hasSugar(_G17326,Sweet)]
+[- 48^[_G17301],-Bordeaux(_G17301)]
+[- 48^[_G17301],-locatedIn(_G17301,StEmilionRegion)]
+[- 47^[_G17258],46^[_G17258]=SauvignonBlancGrape]
+[- 47^[_G17258],46^[_G17258]=SemillonGrape]
+[- 47^[_G17258],-madeFromGrape(_G17258,46^[_G17258])]
+[- 45^[_G17258],madeFromGrape(_G17258,_G17261),- (_G17261=SemillonGrape),- (_G17261=SauvignonBlancGrape)]
+[- 45^[_G17258],-Wine(_G17258)]
+[- 44^[_G17230],-unknow]
+[- 44^[_G17230],-madeFromGrape(_G17230,SemillonGrape)]
+[- 44^[_G17230],-SemillonOrSauvignonBlanc(_G17230)]
+[- 43^[_G17202],-unknow]
+[- 43^[_G17202],-madeFromGrape(_G17202,SauvignonBlancGrape)]
+[- 43^[_G17202],-SemillonOrSauvignonBlanc(_G17202)]
+[- 42^[_G17177],-Loire(_G17177)]
+[- 42^[_G17177],-locatedIn(_G17177,SancerreRegion)]
+[- 41^[_G17152],-Wine(_G17152)]
+[- 41^[_G17152],-hasColor(_G17152,Rose)]
+[- 40^[_G17124],-unknow]
+[- 40^[_G17124],-madeFromGrape(_G17124,RieslingGrape)]
+[- 40^[_G17124],-Wine(_G17124)]
+[- 39^[_G17099],-Wine(_G17099)]
+[- 39^[_G17099],-hasColor(_G17099,Red)]
+[- 38^[_G17074],-TableWine(_G17074)]
+[- 38^[_G17074],-hasColor(_G17074,Red)]
+[- 37^[_G17050],-Burgundy(_G17050)]
+[- 37^[_G17050],-RedWine(_G17050)]
+[- 36^[_G17026],-Bordeaux(_G17026)]
+[- 36^[_G17026],-RedWine(_G17026)]
+[- 35^[_G16998],-unknow]
+[- 35^[_G16998],-madeFromGrape(_G16998,PinotNoirGrape)]
+[- 35^[_G16998],-Wine(_G16998)]
+[- 34^[_G16970],-unknow]
+[- 34^[_G16970],-madeFromGrape(_G16970,PinotBlancGrape)]
+[- 34^[_G16970],-Wine(_G16970)]
+[- 33^[_G16942],-unknow]
+[- 33^[_G16942],-madeFromGrape(_G16942,PetiteSyrahGrape)]
+[- 33^[_G16942],-Wine(_G16942)]
+[- 32^[_G16917],-Medoc(_G16917)]
+[- 32^[_G16917],-locatedIn(_G16917,PauillacRegion)]
+[- 31^[_G16892],-Loire(_G16892)]
+[- 31^[_G16892],-locatedIn(_G16892,MuscadetRegion)]
+[- 30^[_G16867],-WhiteBurgundy(_G16867)]
+[- 30^[_G16867],-locatedIn(_G16867,MeursaultRegion)]
+[- 29^[_G16839],-unknow]
+[- 29^[_G16839],-madeFromGrape(_G16839,MerlotGrape)]
+[- 29^[_G16839],-Wine(_G16839)]
+[- 28^[_G16775],27^[_G16775]=CabernetFrancGrape]
+[- 28^[_G16775],27^[_G16775]=CabernetSauvignonGrape]
+[- 28^[_G16775],27^[_G16775]=MalbecGrape]
+[- 28^[_G16775],27^[_G16775]=MerlotGrape]
+[- 28^[_G16775],27^[_G16775]=PetiteVerdotGrape]
+[- 28^[_G16775],-madeFromGrape(_G16775,27^[_G16775])]
+[- 26^[_G16775],madeFromGrape(_G16775,_G16780),- (_G16780=PetiteVerdotGrape),- (_G16780=MerlotGrape),- (_G16780=MalbecGrape),- (_G16780=CabernetSauvignonGrape),- (_G16780=CabernetFrancGrape)]
+[- 26^[_G16775],-unknow]
+[- 26^[_G16775],-Wine(_G16775)]
+[- 25^[_G16750],-Bordeaux(_G16750)]
+[- 25^[_G16750],-locatedIn(_G16750,MedocRegion)]
+[- 24^[_G16725],-Medoc(_G16725)]
+[- 24^[_G16725],-locatedIn(_G16725,MargauxRegion)]
+[- 23^[_G16700],-Wine(_G16700)]
+[- 23^[_G16700],-locatedIn(_G16700,LoireRegion)]
+[- 22^[_G16675],-Wine(_G16675)]
+[- 22^[_G16675],-locatedIn(_G16675,ItalianRegion)]
+[- 21^[_G16645],-hasColor(_G16645,White)]
+[- 21^[_G16645],-LateHarvest(_G16645)]
+[- 21^[_G16645],-DessertWine(_G16645)]
+[- 20^[_G16620],-Wine(_G16620)]
+[- 20^[_G16620],-locatedIn(_G16620,GermanyRegion)]
+[- 19^[_G16592],-unknow]
+[- 19^[_G16592],-madeFromGrape(_G16592,GamayGrape)]
+[- 19^[_G16592],-Wine(_G16592)]
+[- 18^[_G16567],-Wine(_G16567)]
+[- 18^[_G16567],-hasBody(_G16567,Full)]
+[- 17^[_G16542],-Wine(_G16542)]
+[- 17^[_G16542],-locatedIn(_G16542,FrenchRegion)]
+[- 16^[_G16517],-Wine(_G16517)]
+[- 16^[_G16517],-hasSugar(_G16517,Dry)]
+[- 15^[_G16493],-DryWine(_G16493)]
+[- 15^[_G16493],-WhiteWine(_G16493)]
+[- 14^[_G16468],-Riesling(_G16468)]
+[- 14^[_G16468],-hasSugar(_G16468,Dry)]
+[- 13^[_G16444],-DryWine(_G16444)]
+[- 13^[_G16444],-RedWine(_G16444)]
+[- 12^[_G16419],-RedBurgundy(_G16419)]
+[- 12^[_G16419],-locatedIn(_G16419,CotesDOrRegion)]
+[- 11^[_G16391],-unknow]
+[- 11^[_G16391],-madeFromGrape(_G16391,CheninBlancGrape)]
+[- 11^[_G16391],-Wine(_G16391)]
+[- 10^[_G16363],-unknow]
+[- 10^[_G16363],-madeFromGrape(_G16363,ChardonnayGrape)]
+[- 10^[_G16363],-Wine(_G16363)]
+[- 9^[_G16338],-Wine(_G16338)]
+[- 9^[_G16338],-locatedIn(_G16338,CaliforniaRegion)]
+[- 8^[_G16310],-unknow]
+[- 8^[_G16310],-madeFromGrape(_G16310,CabernetSauvignonGrape)]
+[- 8^[_G16310],-Wine(_G16310)]
+[- 7^[_G16282],-unknow]
+[- 7^[_G16282],-madeFromGrape(_G16282,CabernetFrancGrape)]
+[- 7^[_G16282],-Wine(_G16282)]
+[- 6^[_G16257],-Wine(_G16257)]
+[- 6^[_G16257],-locatedIn(_G16257,BourgogneRegion)]
+[- 5^[_G16232],-Wine(_G16232)]
+[- 5^[_G16232],-locatedIn(_G16232,BordeauxRegion)]
+[- 4^[_G16207],-Wine(_G16207)]
+[- 4^[_G16207],-locatedIn(_G16207,BeaujolaisRegion)]
+[- 3^[_G16182],-Loire(_G16182)]
+[- 3^[_G16182],-locatedIn(_G16182,AnjouRegion)]
+[- 2^[_G16157],-Wine(_G16157)]
+[- 2^[_G16157],-locatedIn(_G16157,USRegion)]
+[- 1^[_G16132],-Wine(_G16132)]
+[- 1^[_G16132],-locatedIn(_G16132,AlsaceRegion)]
+[-Anjou(RoseDAnjou)]
+[-Beaujolais(ChateauMorgonBeaujolais)]
+[-CabernetFranc(WhitehallLaneCabernetFranc)]
+[-CabernetSauvignon(FormanCabernetSauvignon)]
+[-CabernetSauvignon(MariettaCabernetSauvignon)]
+[-CabernetSauvignon(PageMillWineryCabernetSauvignon)]
+[-CabernetSauvignon(SantaCruzMountainVineyardCabernetSauvignon)]
+[-Chardonnay(BancroftChardonnay)]
+[-Chardonnay(FormanChardonnay)]
+[-Chardonnay(MountadamChardonnay)]
+[-Chardonnay(MountEdenVineyardEdnaValleyChardonnay)]
+[-Chardonnay(PeterMccoyChardonnay)]
+[-CheninBlanc(FoxenCheninBlanc)]
+[-CheninBlanc(VentanaCheninBlanc)]
+[-Chianti(ChiantiClassico)]
+[-CotesDOr(ClosDeVougeotCotesDOr)]
+[-DessertWine(WhitehallLanePrimavera)]
+[-DryRiesling(MountadamRiesling)]
+[-IceWine(SelaksIceWine)]
+[-Margaux(ChateauMargaux)]
+[-Meritage(KathrynKennedyLateral)]
+[-Merlot(GaryFarrellMerlot)]
+[-Merlot(LongridgeMerlot)]
+[-Meursault(ChateauDeMeursaultMeursault)]
+[-Muscadet(SevreEtMaineMuscadet)]
+[-Pauillac(ChateauLafiteRothschildPauillac)]
+[-PetiteSyrah(MariettaPetiteSyrah)]
+[-PetiteSyrah(SeanThackreySiriusPetiteSyrah)]
+[-PinotNoir(LaneTannerPinotNoir)]
+[-PinotNoir(MountadamPinotNoir)]
+[-PinotNoir(MountEdenVineyardEstatePinotNoir)]
+[-Port(TaylorPort)]
+[-RedTableWine(MariettaOldVinesRed)]
+[-Region(AlsaceRegion)]
+[-Region(AnjouRegion)]
+[-Region(ArroyoGrandeRegion)]
+[-Region(AustralianRegion)]
+[-Region(BeaujolaisRegion)]
+[-Region(BordeauxRegion)]
+[-Region(BourgogneRegion)]
+[-Region(CaliforniaRegion)]
+[-Region(CentralCoastRegion)]
+[-Region(CentralTexasRegion)]
+[-Region(ChiantiRegion)]
+[-Region(CotesDOrRegion)]
+[-Region(EdnaValleyRegion)]
+[-Region(FrenchRegion)]
+[-Region(GermanyRegion)]
+[-Region(ItalianRegion)]
+[-Region(LoireRegion)]
+[-Region(MargauxRegion)]
+[-Region(MedocRegion)]
+[-Region(MendocinoRegion)]
+[-Region(MeursaultRegion)]
+[-Region(MuscadetRegion)]
+[-Region(NapaRegion)]
+[-Region(NewZealandRegion)]
+[-Region(PauillacRegion)]
+[-Region(PortugalRegion)]
+[-Region(SancerreRegion)]
+[-Region(SantaBarbaraRegion)]
+[-Region(SantaCruzMountainsRegion)]
+[-Region(SauterneRegion)]
+[-Region(SonomaRegion)]
+[-Region(SouthAustraliaRegion)]
+[-Region(StEmilionRegion)]
+[-Region(TexasRegion)]
+[-Region(ToursRegion)]
+[-Region(USRegion)]
+[-Riesling(CorbansDryWhiteRiesling)]
+[-Sancerre(ClosDeLaPoussieSancerre)]
+[-Sauternes(ChateauDYchemSauterne)]
+[-SauvignonBlanc(CorbansPrivateBinSauvignonBlanc)]
+[-SauvignonBlanc(CorbansSauvignonBlanc)]
+[-SauvignonBlanc(SelaksSauvignonBlanc)]
+[-SauvignonBlanc(StonleighSauvignonBlanc)]
+[-Semillon(CongressSpringsSemillon)]
+[-Semillon(KalinCellarsSemillon)]
+[-StEmilion(ChateauChevalBlancStEmilion)]
+[-SweetRiesling(SchlossRothermelTrochenbierenausleseRiesling)]
+[-SweetRiesling(SchlossVolradTrochenbierenausleseRiesling)]
+[-VintageYear(Year1998)]
+[-WhiteBurgundy(CortonMontrachetWhiteBurgundy)]
+[-WhiteBurgundy(PulignyMontrachetWhiteBurgundy)]
+[-WhiteWine(StGenevieveTexasWhite)]
+[-WineBody(Full)]
+[-WineBody(Light)]
+[-WineBody(Medium)]
+[-WineColor(Red)]
+[-WineColor(Rose)]
+[-WineColor(White)]
+[-WineFlavor(Delicate)]
+[-WineFlavor(Moderate)]
+[-WineFlavor(Strong)]
+[-WineGrape(CabernetFrancGrape)]
+[-WineGrape(CabernetSauvignonGrape)]
+[-WineGrape(ChardonnayGrape)]
+[-WineGrape(CheninBlancGrape)]
+[-WineGrape(GamayGrape)]
+[-WineGrape(MalbecGrape)]
+[-WineGrape(MerlotGrape)]
+[-WineGrape(PetiteSyrahGrape)]
+[-WineGrape(PetiteVerdotGrape)]
+[-WineGrape(PinotBlancGrape)]
+[-WineGrape(PinotNoirGrape)]
+[-WineGrape(RieslingGrape)]
+[-WineGrape(SangioveseGrape)]
+[-WineGrape(SauvignonBlancGrape)]
+[-WineGrape(SemillonGrape)]
+[-WineGrape(ZinfandelGrape)]
+[-Winery(Bancroft)]
+[-Winery(Beringer)]
+[-Winery(ChateauChevalBlanc)]
+[-Winery(ChateauDeMeursault)]
+[-Winery(ChateauDYchem)]
+[-Winery(ChateauLafiteRothschild)]
+[-Winery(ChateauMargauxWinery)]
+[-Winery(ChateauMorgon)]
+[-Winery(ClosDeLaPoussie)]
+[-Winery(ClosDeVougeot)]
+[-Winery(CongressSprings)]
+[-Winery(Corbans)]
+[-Winery(CortonMontrachet)]
+[-Winery(Cotturi)]
+[-Winery(DAnjou)]
+[-Winery(Elyse)]
+[-Winery(Forman)]
+[-Winery(Foxen)]
+[-Winery(GaryFarrell)]
+[-Winery(Handley)]
+[-Winery(KalinCellars)]
+[-Winery(KathrynKennedy)]
+[-Winery(LaneTanner)]
+[-Winery(Longridge)]
+[-Winery(Marietta)]
+[-Winery(McGuinnesso)]
+[-Winery(Mountadam)]
+[-Winery(MountEdenVineyard)]
+[-Winery(PageMillWinery)]
+[-Winery(PeterMccoy)]
+[-Winery(PulignyMontrachet)]
+[-Winery(SantaCruzMountainVineyard)]
+[-Winery(SaucelitoCanyon)]
+[-Winery(SchlossRothermel)]
+[-Winery(SchlossVolrad)]
+[-Winery(SeanThackrey)]
+[-Winery(Selaks)]
+[-Winery(SevreEtMaine)]
+[-Winery(StGenevieve)]
+[-Winery(Stonleigh)]
+[-Winery(Taylor)]
+[-Winery(Ventana)]
+[-Winery(WhitehallLane)]
+[-WineSugar(Dry)]
+[-WineSugar(OffDry)]
+[-WineSugar(Sweet)]
+[-Zinfandel(CotturiZinfandel)]
+[-Zinfandel(ElyseZinfandel)]
+[-Zinfandel(MariettaZinfandel)]
+[-Zinfandel(SaucelitoCanyonZinfandel)]
+[-Zinfandel(SaucelitoCanyonZinfandel1998)]
+[-Thing(CabernetFrancGrape)]
+[-Thing(CabernetSauvignonGrape)]
+[-Thing(CheninBlancGrape)]
+[-Thing(Delicate)]
+[-Thing(Dry)]
+[-Thing(Full)]
+[-Thing(Light)]
+[-Thing(MalbecGrape)]
+[-Thing(Medium)]
+[-Thing(MerlotGrape)]
+[-Thing(Moderate)]
+[-Thing(OffDry)]
+[-Thing(PetiteVerdotGrape)]
+[-Thing(PinotBlancGrape)]
+[-Thing(Red)]
+[-Thing(Rose)]
+[-Thing(SauvignonBlancGrape)]
+[-Thing(SemillonGrape)]
+[-Thing(Strong)]
+[-Thing(Sweet)]
+[-Thing(White)]
+[-yearValue(Year1998,"1998"^^xsd:positiveInteger)]
+[yearValue(_G15847,_G15848),-VintageYear(_G15847)]
+[yearValue(_G15869,_G15868),-positiveInteger(_G15868)]
+[- (Bancroft= (ChateauChevalBlanc= (ChateauDYchem= (ChateauDeMeursault= (ChateauLafiteRothschild= (ChateauMargauxWinery= (ChateauMorgon= (ClosDeLaPoussie= (ClosDeVougeot= (CongressSprings= (Corbans= (CortonMontrachet= (Cotturi= (DAnjou= (Elyse= (Forman= (Foxen= (GaryFarrell= (KalinCellars= (KathrynKennedy= (LaneTanner= (Longridge= (Marietta= (McGuinnesso= (MountEdenVineyard= (Mountadam= (PageMillWinery= (PeterMccoy= (PulignyMontrachet= (SantaCruzMountainVineyard= (SaucelitoCanyon= (SchlossRothermel= (SchlossVolrad= (SeanThackrey= (Selaks= (SevreEtMaine= (StGenevieve= (Stonleigh= (Taylor= (Ventana=WhitehallLane))))))))))))))))))))))))))))))))))))))))]
+[- (Delicate= (Moderate=Strong))]
+[- (Dry= (OffDry=Sweet))]
+[- (Full= (Light=Medium))]
+[- (OffDry=Dry)]
+[- (Red= (Rose=White))]
+[- (Sweet=Dry)]
+[- (Sweet=OffDry)]
+[EarlyHarvest(_G16090),LateHarvest(_G16090)]
+[LateHarvest(_G16111),EarlyHarvest(_G16111)]
+[AlsatianWine(_G16132),1^[_G16132]]
+[-AlsatianWine(_G16132),locatedIn(_G16132,AlsaceRegion),Wine(_G16132)]
+[AmericanWine(_G16157),2^[_G16157]]
+[-AmericanWine(_G16157),locatedIn(_G16157,USRegion),Wine(_G16157)]
+[Anjou(_G16182),3^[_G16182]]
+[-Anjou(_G16182),locatedIn(_G16182,AnjouRegion),Loire(_G16182)]
+[Beaujolais(_G16207),4^[_G16207]]
+[-Beaujolais(_G16207),locatedIn(_G16207,BeaujolaisRegion),Wine(_G16207)]
+[Bordeaux(_G16232),5^[_G16232]]
+[-Bordeaux(_G16232),locatedIn(_G16232,BordeauxRegion),Wine(_G16232)]
+[Burgundy(_G16257),6^[_G16257]]
+[-Burgundy(_G16257),locatedIn(_G16257,BourgogneRegion),Wine(_G16257)]
+[CabernetFranc(_G16282),7^[_G16282]]
+[-CabernetFranc(_G16282),Wine(_G16282),madeFromGrape(_G16282,CabernetFrancGrape),unknow]
+[CabernetSauvignon(_G16310),8^[_G16310]]
+[-CabernetSauvignon(_G16310),Wine(_G16310),madeFromGrape(_G16310,CabernetSauvignonGrape),unknow]
+[CaliforniaWine(_G16338),9^[_G16338]]
+[-CaliforniaWine(_G16338),locatedIn(_G16338,CaliforniaRegion),Wine(_G16338)]
+[Chardonnay(_G16363),10^[_G16363]]
+[-Chardonnay(_G16363),Wine(_G16363),madeFromGrape(_G16363,ChardonnayGrape),unknow]
+[CheninBlanc(_G16391),11^[_G16391]]
+[-CheninBlanc(_G16391),Wine(_G16391),madeFromGrape(_G16391,CheninBlancGrape),unknow]
+[CotesDOr(_G16419),12^[_G16419]]
+[-CotesDOr(_G16419),locatedIn(_G16419,CotesDOrRegion),RedBurgundy(_G16419)]
+[DryRedWine(_G16444),13^[_G16444]]
+[-DryRedWine(_G16444),RedWine(_G16444),DryWine(_G16444)]
+[DryRiesling(_G16468),14^[_G16468]]
+[-DryRiesling(_G16468),hasSugar(_G16468,Dry),Riesling(_G16468)]
+[DryWhiteWine(_G16493),15^[_G16493]]
+[-DryWhiteWine(_G16493),WhiteWine(_G16493),DryWine(_G16493)]
+[DryWine(_G16517),16^[_G16517]]
+[-DryWine(_G16517),hasSugar(_G16517,Dry),Wine(_G16517)]
+[FrenchWine(_G16542),17^[_G16542]]
+[-FrenchWine(_G16542),locatedIn(_G16542,FrenchRegion),Wine(_G16542)]
+[FullBodiedWine(_G16567),18^[_G16567]]
+[-FullBodiedWine(_G16567),hasBody(_G16567,Full),Wine(_G16567)]
+[Gamay(_G16592),19^[_G16592]]
+[-Gamay(_G16592),Wine(_G16592),madeFromGrape(_G16592,GamayGrape),unknow]
+[GermanWine(_G16620),20^[_G16620]]
+[-GermanWine(_G16620),locatedIn(_G16620,GermanyRegion),Wine(_G16620)]
+[IceWine(_G16645),21^[_G16645]]
+[-IceWine(_G16645),DessertWine(_G16645),LateHarvest(_G16645),hasColor(_G16645,White)]
+[ItalianWine(_G16675),22^[_G16675]]
+[-ItalianWine(_G16675),locatedIn(_G16675,ItalianRegion),Wine(_G16675)]
+[Loire(_G16700),23^[_G16700]]
+[-Loire(_G16700),locatedIn(_G16700,LoireRegion),Wine(_G16700)]
+[Margaux(_G16725),24^[_G16725]]
+[-Margaux(_G16725),locatedIn(_G16725,MargauxRegion),Medoc(_G16725)]
+[Medoc(_G16750),25^[_G16750]]
+[-Medoc(_G16750),locatedIn(_G16750,MedocRegion),Bordeaux(_G16750)]
+[-Meritage(_G16775),Wine(_G16775),28^[_G16775],unknow]
+[Meritage(_G16775),26^[_G16775]]
+[Merlot(_G16839),29^[_G16839]]
+[-Merlot(_G16839),Wine(_G16839),madeFromGrape(_G16839,MerlotGrape),unknow]
+[Meursault(_G16867),30^[_G16867]]
+[-Meursault(_G16867),locatedIn(_G16867,MeursaultRegion),WhiteBurgundy(_G16867)]
+[Muscadet(_G16892),31^[_G16892]]
+[-Muscadet(_G16892),locatedIn(_G16892,MuscadetRegion),Loire(_G16892)]
+[Pauillac(_G16917),32^[_G16917]]
+[-Pauillac(_G16917),locatedIn(_G16917,PauillacRegion),Medoc(_G16917)]
+[PetiteSyrah(_G16942),33^[_G16942]]
+[-PetiteSyrah(_G16942),Wine(_G16942),madeFromGrape(_G16942,PetiteSyrahGrape),unknow]
+[PinotBlanc(_G16970),34^[_G16970]]
+[-PinotBlanc(_G16970),Wine(_G16970),madeFromGrape(_G16970,PinotBlancGrape),unknow]
+[PinotNoir(_G16998),35^[_G16998]]
+[-PinotNoir(_G16998),Wine(_G16998),madeFromGrape(_G16998,PinotNoirGrape),unknow]
+[RedBordeaux(_G17026),36^[_G17026]]
+[-RedBordeaux(_G17026),RedWine(_G17026),Bordeaux(_G17026)]
+[RedBurgundy(_G17050),37^[_G17050]]
+[-RedBurgundy(_G17050),RedWine(_G17050),Burgundy(_G17050)]
+[RedTableWine(_G17074),38^[_G17074]]
+[-RedTableWine(_G17074),hasColor(_G17074,Red),TableWine(_G17074)]
+[RedWine(_G17099),39^[_G17099]]
+[-RedWine(_G17099),hasColor(_G17099,Red),Wine(_G17099)]
+[Riesling(_G17124),40^[_G17124]]
+[-Riesling(_G17124),Wine(_G17124),madeFromGrape(_G17124,RieslingGrape),unknow]
+[RoseWine(_G17152),41^[_G17152]]
+[-RoseWine(_G17152),hasColor(_G17152,Rose),Wine(_G17152)]
+[Sancerre(_G17177),42^[_G17177]]
+[-Sancerre(_G17177),locatedIn(_G17177,SancerreRegion),Loire(_G17177)]
+[SauvignonBlanc(_G17202),43^[_G17202]]
+[-SauvignonBlanc(_G17202),SemillonOrSauvignonBlanc(_G17202),madeFromGrape(_G17202,SauvignonBlancGrape),unknow]
+[Semillon(_G17230),44^[_G17230]]
+[-Semillon(_G17230),SemillonOrSauvignonBlanc(_G17230),madeFromGrape(_G17230,SemillonGrape),unknow]
+[-SemillonOrSauvignonBlanc(_G17258),47^[_G17258],Wine(_G17258)]
+[SemillonOrSauvignonBlanc(_G17258),45^[_G17258]]
+[StEmilion(_G17301),48^[_G17301]]
+[-StEmilion(_G17301),locatedIn(_G17301,StEmilionRegion),Bordeaux(_G17301)]
+[SweetRiesling(_G17326),49^[_G17326]]
+[-SweetRiesling(_G17326),hasSugar(_G17326,Sweet),Riesling(_G17326)]
+[SweetWine(_G17351),50^[_G17351]]
+[-SweetWine(_G17351),hasSugar(_G17351,Sweet),Wine(_G17351)]
+[TableWine(_G17376),51^[_G17376]]
+[-TableWine(_G17376),hasSugar(_G17376,Dry),Wine(_G17376)]
+[TexasWine(_G17401),52^[_G17401]]
+[-TexasWine(_G17401),locatedIn(_G17401,TexasRegion),Wine(_G17401)]
+[Tours(_G17431),53^[_G17431]]
+[-Tours(_G17431),locatedIn(_G17431,ToursRegion),Loire(_G17431)]
+[WhiteBordeaux(_G17614),54^[_G17614]]
+[-WhiteBordeaux(_G17614),WhiteWine(_G17614),Bordeaux(_G17614)]
+[WhiteBurgundy(_G17803),55^[_G17803]]
+[-WhiteBurgundy(_G17803),WhiteWine(_G17803),Burgundy(_G17803)]
+[WhiteLoire(_G17992),56^[_G17992]]
+[-WhiteLoire(_G17992),WhiteWine(_G17992),Loire(_G17992)]
+[-WhiteNonSweetWine(_G18181),59^[_G18181],WhiteWine(_G18181)]
+[WhiteNonSweetWine(_G18181),57^[_G18181]]
+[WhiteTableWine(_G18629),60^[_G18629]]
+[-WhiteTableWine(_G18629),hasColor(_G18629,White),TableWine(_G18629)]
+[WhiteWine(_G18844),61^[_G18844]]
+[-WhiteWine(_G18844),hasColor(_G18844,White),Wine(_G18844)]
+[-WineBody(_G19059),62^[_G19059]]
+[WineBody(_G19059),- (_G19059=Full),- (_G19059=Medium),- (_G19059=Light)]
+[-WineColor(_G19384),63^[_G19384]]
+[WineColor(_G19384),- (_G19384=Red),- (_G19384=Rose),- (_G19384=White)]
+[-WineDescriptor(_G19709),64^[_G19709]]
+[WineDescriptor(_G19709),-WineTaste(_G19709),-WineColor(_G19709)]
+[-WineFlavor(_G19898),65^[_G19898]]
+[WineFlavor(_G19898),- (_G19898=Strong),- (_G19898=Delicate),- (_G19898=Moderate)]
+[-WineSugar(_G20223),66^[_G20223]]
+[WineSugar(_G20223),- (_G20223=OffDry),- (_G20223=Dry),- (_G20223=Sweet)]
+[Zinfandel(_G20548),67^[_G20548]]
+[-Zinfandel(_G20548),Wine(_G20548),madeFromGrape(_G20548,ZinfandelGrape),unknow]
+[- (_G20861=_G20918),hasBody(_G20805,_G20861),hasBody(_G20805,_G20918)]
+[- (_G21269=_G21326),hasColor(_G21213,_G21269),hasColor(_G21213,_G21326)]
+[- (_G21677=_G21734),hasFlavor(_G21621,_G21677),hasFlavor(_G21621,_G21734)]
+[- (_G22085=_G22142),hasMaker(_G22029,_G22085),hasMaker(_G22029,_G22142)]
+[- (_G22493=_G22550),hasSugar(_G22437,_G22493),hasSugar(_G22437,_G22550)]
+[- (_G22901=_G22958),hasVintageYear(_G22845,_G22901),hasVintageYear(_G22845,_G22958)]
+[madeIntoWine(_G23253,_G23298),-madeFromGrape(_G23298,_G23253)]
+[madeIntoWine(_G23495,_G23540),-madeFromGrape(_G23540,_G23495)]
+[producesWine(_G23737,_G23782),-hasMaker(_G23782,_G23737)]
+[producesWine(_G23979,_G24024),-hasMaker(_G24024,_G23979)]
+[-adjacentRegion(MendocinoRegion,SonomaRegion)]
+[-hasBody(BancroftChardonnay,Medium)]
+[-hasBody(ChiantiClassico,Medium)]
+[-hasBody(CongressSpringsSemillon,Medium)]
+[-hasBody(CorbansDryWhiteRiesling,Medium)]
+[-hasBody(CorbansPrivateBinSauvignonBlanc,Full)]
+[-hasBody(CorbansSauvignonBlanc,Medium)]
+[-hasBody(CortonMontrachetWhiteBurgundy,Full)]
+[-hasBody(CotturiZinfandel,Full)]
+[-hasBody(ElyseZinfandel,Full)]
+[-hasBody(FormanCabernetSauvignon,Medium)]
+[-hasBody(FormanChardonnay,Full)]
+[-hasBody(FoxenCheninBlanc,Full)]
+[-hasBody(GaryFarrellMerlot,Medium)]
+[-hasBody(KalinCellarsSemillon,Full)]
+[-hasBody(KathrynKennedyLateral,Medium)]
+[-hasBody(LaneTannerPinotNoir,Light)]
+[-hasBody(LongridgeMerlot,Light)]
+[-hasBody(MariettaCabernetSauvignon,Medium)]
+[-hasBody(MariettaOldVinesRed,Medium)]
+[-hasBody(MariettaPetiteSyrah,Medium)]
+[-hasBody(MariettaZinfandel,Medium)]
+[-hasBody(MountadamChardonnay,Full)]
+[-hasBody(MountadamPinotNoir,Medium)]
+[-hasBody(MountadamRiesling,Medium)]
+[-hasBody(MountEdenVineyardEdnaValleyChardonnay,Medium)]
+[-hasBody(MountEdenVineyardEstatePinotNoir,Full)]
+[-hasBody(PageMillWineryCabernetSauvignon,Medium)]
+[-hasBody(PeterMccoyChardonnay,Medium)]
+[-hasBody(PulignyMontrachetWhiteBurgundy,Medium)]
+[-hasBody(SantaCruzMountainVineyardCabernetSauvignon,Full)]
+[-hasBody(SaucelitoCanyonZinfandel,Medium)]
+[-hasBody(SaucelitoCanyonZinfandel1998,Medium)]
+[-hasBody(SchlossRothermelTrochenbierenausleseRiesling,Full)]
+[-hasBody(SchlossVolradTrochenbierenausleseRiesling,Full)]
+[-hasBody(SeanThackreySiriusPetiteSyrah,Full)]
+[-hasBody(SelaksIceWine,Medium)]
+[-hasBody(SelaksSauvignonBlanc,Medium)]
+[-hasBody(StonleighSauvignonBlanc,Medium)]
+[-hasBody(VentanaCheninBlanc,Medium)]
+[-hasBody(WhitehallLaneCabernetFranc,Medium)]
+[-hasBody(WhitehallLanePrimavera,Light)]
+[-hasColor(SelaksIceWine,White)]
+[-hasFlavor(BancroftChardonnay,Moderate)]
+[-hasFlavor(ChateauDeMeursaultMeursault,Moderate)]
+[-hasFlavor(ChateauDYchemSauterne,Strong)]
+[-hasFlavor(CongressSpringsSemillon,Moderate)]
+[-hasFlavor(CorbansDryWhiteRiesling,Moderate)]
+[-hasFlavor(CorbansPrivateBinSauvignonBlanc,Strong)]
+[-hasFlavor(CorbansSauvignonBlanc,Strong)]
+[-hasFlavor(CortonMontrachetWhiteBurgundy,Strong)]
+[-hasFlavor(CotturiZinfandel,Strong)]
+[-hasFlavor(ElyseZinfandel,Moderate)]
+[-hasFlavor(FormanCabernetSauvignon,Strong)]
+[-hasFlavor(FormanChardonnay,Moderate)]
+[-hasFlavor(FoxenCheninBlanc,Moderate)]
+[-hasFlavor(GaryFarrellMerlot,Moderate)]
+[-hasFlavor(KalinCellarsSemillon,Strong)]
+[-hasFlavor(KathrynKennedyLateral,Delicate)]
+[-hasFlavor(LaneTannerPinotNoir,Delicate)]
+[-hasFlavor(LongridgeMerlot,Moderate)]
+[-hasFlavor(MariettaCabernetSauvignon,Moderate)]
+[-hasFlavor(MariettaOldVinesRed,Moderate)]
+[-hasFlavor(MariettaPetiteSyrah,Moderate)]
+[-hasFlavor(MariettaZinfandel,Moderate)]
+[-hasFlavor(MountadamChardonnay,Strong)]
+[-hasFlavor(MountadamPinotNoir,Moderate)]
+[-hasFlavor(MountadamRiesling,Delicate)]
+[-hasFlavor(MountEdenVineyardEdnaValleyChardonnay,Moderate)]
+[-hasFlavor(MountEdenVineyardEstatePinotNoir,Strong)]
+[-hasFlavor(PageMillWineryCabernetSauvignon,Moderate)]
+[-hasFlavor(PeterMccoyChardonnay,Moderate)]
+[-hasFlavor(PulignyMontrachetWhiteBurgundy,Moderate)]
+[-hasFlavor(SantaCruzMountainVineyardCabernetSauvignon,Strong)]
+[-hasFlavor(SaucelitoCanyonZinfandel,Moderate)]
+[-hasFlavor(SaucelitoCanyonZinfandel1998,Moderate)]
+[-hasFlavor(SchlossRothermelTrochenbierenausleseRiesling,Strong)]
+[-hasFlavor(SchlossVolradTrochenbierenausleseRiesling,Moderate)]
+[-hasFlavor(SeanThackreySiriusPetiteSyrah,Strong)]
+[-hasFlavor(SelaksIceWine,Moderate)]
+[-hasFlavor(SelaksSauvignonBlanc,Moderate)]
+[-hasFlavor(StGenevieveTexasWhite,Moderate)]
+[-hasFlavor(StonleighSauvignonBlanc,Delicate)]
+[-hasFlavor(VentanaCheninBlanc,Moderate)]
+[-hasFlavor(WhitehallLaneCabernetFranc,Moderate)]
+[-hasFlavor(WhitehallLanePrimavera,Delicate)]
+[-hasMaker(BancroftChardonnay,Bancroft)]
+[-hasMaker(ChateauChevalBlancStEmilion,ChateauChevalBlanc)]
+[-hasMaker(ChateauDeMeursaultMeursault,ChateauDeMeursault)]
+[-hasMaker(ChateauDYchemSauterne,ChateauDYchem)]
+[-hasMaker(ChateauLafiteRothschildPauillac,ChateauLafiteRothschild)]
+[-hasMaker(ChateauMargaux,ChateauMargauxWinery)]
+[-hasMaker(ChateauMorgonBeaujolais,ChateauMorgon)]
+[-hasMaker(ChiantiClassico,McGuinnesso)]
+[-hasMaker(ClosDeLaPoussieSancerre,ClosDeLaPoussie)]
+[-hasMaker(ClosDeVougeotCotesDOr,ClosDeVougeot)]
+[-hasMaker(CongressSpringsSemillon,CongressSprings)]
+[-hasMaker(CorbansDryWhiteRiesling,Corbans)]
+[-hasMaker(CorbansPrivateBinSauvignonBlanc,Corbans)]
+[-hasMaker(CorbansSauvignonBlanc,Corbans)]
+[-hasMaker(CortonMontrachetWhiteBurgundy,CortonMontrachet)]
+[-hasMaker(CotturiZinfandel,Cotturi)]
+[-hasMaker(ElyseZinfandel,Elyse)]
+[-hasMaker(FormanCabernetSauvignon,Forman)]
+[-hasMaker(FormanChardonnay,Forman)]
+[-hasMaker(FoxenCheninBlanc,Foxen)]
+[-hasMaker(GaryFarrellMerlot,GaryFarrell)]
+[-hasMaker(KalinCellarsSemillon,KalinCellars)]
+[-hasMaker(KathrynKennedyLateral,KathrynKennedy)]
+[-hasMaker(LaneTannerPinotNoir,LaneTanner)]
+[-hasMaker(LongridgeMerlot,Longridge)]
+[-hasMaker(MariettaCabernetSauvignon,Marietta)]
+[-hasMaker(MariettaOldVinesRed,Marietta)]
+[-hasMaker(MariettaPetiteSyrah,Marietta)]
+[-hasMaker(MariettaZinfandel,Marietta)]
+[-hasMaker(MountadamChardonnay,Mountadam)]
+[-hasMaker(MountadamPinotNoir,Mountadam)]
+[-hasMaker(MountadamRiesling,Mountadam)]
+[-hasMaker(MountEdenVineyardEdnaValleyChardonnay,MountEdenVineyard)]
+[-hasMaker(MountEdenVineyardEstatePinotNoir,MountEdenVineyard)]
+[-hasMaker(PageMillWineryCabernetSauvignon,PageMillWinery)]
+[-hasMaker(PeterMccoyChardonnay,PeterMccoy)]
+[-hasMaker(PulignyMontrachetWhiteBurgundy,PulignyMontrachet)]
+[-hasMaker(RoseDAnjou,DAnjou)]
+[-hasMaker(SantaCruzMountainVineyardCabernetSauvignon,SantaCruzMountainVineyard)]
+[-hasMaker(SaucelitoCanyonZinfandel,SaucelitoCanyon)]
+[-hasMaker(SaucelitoCanyonZinfandel1998,SaucelitoCanyon)]
+[-hasMaker(SchlossRothermelTrochenbierenausleseRiesling,SchlossRothermel)]
+[-hasMaker(SchlossVolradTrochenbierenausleseRiesling,SchlossVolrad)]
+[-hasMaker(SeanThackreySiriusPetiteSyrah,SeanThackrey)]
+[-hasMaker(SelaksIceWine,Selaks)]
+[-hasMaker(SelaksSauvignonBlanc,Selaks)]
+[-hasMaker(SevreEtMaineMuscadet,SevreEtMaine)]
+[-hasMaker(StGenevieveTexasWhite,StGenevieve)]
+[-hasMaker(StonleighSauvignonBlanc,Stonleigh)]
+[-hasMaker(TaylorPort,Taylor)]
+[-hasMaker(VentanaCheninBlanc,Ventana)]
+[-hasMaker(WhitehallLaneCabernetFranc,WhitehallLane)]
+[-hasSugar(BancroftChardonnay,Dry)]
+[-hasSugar(CongressSpringsSemillon,Dry)]
+[-hasSugar(CorbansDryWhiteRiesling,OffDry)]
+[-hasSugar(CorbansPrivateBinSauvignonBlanc,Dry)]
+[-hasSugar(CorbansSauvignonBlanc,Dry)]
+[-hasSugar(CortonMontrachetWhiteBurgundy,Dry)]
+[-hasSugar(CotturiZinfandel,Dry)]
+[-hasSugar(ElyseZinfandel,Dry)]
+[-hasSugar(FormanCabernetSauvignon,Dry)]
+[-hasSugar(FormanChardonnay,Dry)]
+[-hasSugar(FoxenCheninBlanc,Dry)]
+[-hasSugar(GaryFarrellMerlot,Dry)]
+[-hasSugar(KalinCellarsSemillon,Dry)]
+[-hasSugar(KathrynKennedyLateral,Dry)]
+[-hasSugar(LaneTannerPinotNoir,Dry)]
+[-hasSugar(LongridgeMerlot,Dry)]
+[-hasSugar(MariettaCabernetSauvignon,Dry)]
+[-hasSugar(MariettaOldVinesRed,Dry)]
+[-hasSugar(MariettaPetiteSyrah,Dry)]
+[-hasSugar(MariettaZinfandel,Dry)]
+[-hasSugar(MountadamChardonnay,Dry)]
+[-hasSugar(MountadamPinotNoir,Dry)]
+[-hasSugar(MountadamRiesling,Dry)]
+[-hasSugar(MountEdenVineyardEdnaValleyChardonnay,Dry)]
+[-hasSugar(MountEdenVineyardEstatePinotNoir,Dry)]
+[-hasSugar(PageMillWineryCabernetSauvignon,Dry)]
+[-hasSugar(PeterMccoyChardonnay,Dry)]
+[-hasSugar(PulignyMontrachetWhiteBurgundy,Dry)]
+[-hasSugar(SantaCruzMountainVineyardCabernetSauvignon,Dry)]
+[-hasSugar(SaucelitoCanyonZinfandel,Dry)]
+[-hasSugar(SaucelitoCanyonZinfandel1998,Dry)]
+[-hasSugar(SchlossRothermelTrochenbierenausleseRiesling,Sweet)]
+[-hasSugar(SchlossVolradTrochenbierenausleseRiesling,Sweet)]
+[-hasSugar(SeanThackreySiriusPetiteSyrah,Dry)]
+[-hasSugar(SelaksSauvignonBlanc,Dry)]
+[-hasSugar(StGenevieveTexasWhite,Dry)]
+[-hasSugar(StonleighSauvignonBlanc,Dry)]
+[-hasSugar(VentanaCheninBlanc,OffDry)]
+[-hasSugar(WhitehallLaneCabernetFranc,Dry)]
+[-hasSugar(WhitehallLanePrimavera,Sweet)]
+[-hasVintageYear(SaucelitoCanyonZinfandel1998,Year1998)]
+[-locatedIn(AlsaceRegion,FrenchRegion)]
+[-locatedIn(AnjouRegion,LoireRegion)]
+[-locatedIn(ArroyoGrandeRegion,CaliforniaRegion)]
+[-locatedIn(BancroftChardonnay,NapaRegion)]
+[-locatedIn(BeaujolaisRegion,FrenchRegion)]
+[-locatedIn(BordeauxRegion,FrenchRegion)]
+[-locatedIn(BourgogneRegion,FrenchRegion)]
+[-locatedIn(CaliforniaRegion,USRegion)]
+[-locatedIn(CentralCoastRegion,CaliforniaRegion)]
+[-locatedIn(CentralTexasRegion,TexasRegion)]
+[-locatedIn(ChiantiRegion,ItalianRegion)]
+[-locatedIn(CorbansDryWhiteRiesling,NewZealandRegion)]
+[-locatedIn(CorbansPrivateBinSauvignonBlanc,NewZealandRegion)]
+[-locatedIn(CorbansSauvignonBlanc,NewZealandRegion)]
+[-locatedIn(CotesDOrRegion,BourgogneRegion)]
+[-locatedIn(CotturiZinfandel,SonomaRegion)]
+[-locatedIn(EdnaValleyRegion,CaliforniaRegion)]
+[-locatedIn(ElyseZinfandel,NapaRegion)]
+[-locatedIn(FormanCabernetSauvignon,NapaRegion)]
+[-locatedIn(FormanChardonnay,NapaRegion)]
+[-locatedIn(FoxenCheninBlanc,SantaBarbaraRegion)]
+[-locatedIn(GaryFarrellMerlot,SonomaRegion)]
+[-locatedIn(LaneTannerPinotNoir,SantaBarbaraRegion)]
+[-locatedIn(LoireRegion,FrenchRegion)]
+[-locatedIn(LongridgeMerlot,NewZealandRegion)]
+[-locatedIn(MargauxRegion,MedocRegion)]
+[-locatedIn(MariettaCabernetSauvignon,SonomaRegion)]
+[-locatedIn(MariettaOldVinesRed,SonomaRegion)]
+[-locatedIn(MariettaPetiteSyrah,SonomaRegion)]
+[-locatedIn(MariettaZinfandel,SonomaRegion)]
+[-locatedIn(MedocRegion,BordeauxRegion)]
+[-locatedIn(MendocinoRegion,CaliforniaRegion)]
+[-locatedIn(MeursaultRegion,BourgogneRegion)]
+[-locatedIn(MountadamChardonnay,SouthAustraliaRegion)]
+[-locatedIn(MountadamPinotNoir,SouthAustraliaRegion)]
+[-locatedIn(MountadamRiesling,SouthAustraliaRegion)]
+[-locatedIn(MountEdenVineyardEdnaValleyChardonnay,EdnaValleyRegion)]
+[-locatedIn(MountEdenVineyardEstatePinotNoir,EdnaValleyRegion)]
+[-locatedIn(MuscadetRegion,LoireRegion)]
+[-locatedIn(NapaRegion,CaliforniaRegion)]
+[-locatedIn(PageMillWineryCabernetSauvignon,NapaRegion)]
+[-locatedIn(PauillacRegion,MedocRegion)]
+[-locatedIn(PeterMccoyChardonnay,SonomaRegion)]
+[-locatedIn(SancerreRegion,LoireRegion)]
+[-locatedIn(SantaBarbaraRegion,CaliforniaRegion)]
+[-locatedIn(SantaCruzMountainsRegion,CaliforniaRegion)]
+[-locatedIn(SantaCruzMountainVineyardCabernetSauvignon,SantaCruzMountainsRegion)]
+[-locatedIn(SaucelitoCanyonZinfandel,ArroyoGrandeRegion)]
+[-locatedIn(SaucelitoCanyonZinfandel1998,ArroyoGrandeRegion)]
+[-locatedIn(SauterneRegion,BordeauxRegion)]
+[-locatedIn(SchlossRothermelTrochenbierenausleseRiesling,GermanyRegion)]
+[-locatedIn(SchlossVolradTrochenbierenausleseRiesling,GermanyRegion)]
+[-locatedIn(SeanThackreySiriusPetiteSyrah,NapaRegion)]
+[-locatedIn(SelaksIceWine,NewZealandRegion)]
+[-locatedIn(SelaksSauvignonBlanc,NewZealandRegion)]
+[-locatedIn(SonomaRegion,CaliforniaRegion)]
+[-locatedIn(SouthAustraliaRegion,AustralianRegion)]
+[-locatedIn(StEmilionRegion,BordeauxRegion)]
+[-locatedIn(StGenevieveTexasWhite,CentralTexasRegion)]
+[-locatedIn(StonleighSauvignonBlanc,NewZealandRegion)]
+[-locatedIn(TexasRegion,USRegion)]
+[-locatedIn(ToursRegion,LoireRegion)]
+[-locatedIn(VentanaCheninBlanc,CentralCoastRegion)]
+[-locatedIn(WhitehallLaneCabernetFranc,NapaRegion)]
+[-locatedIn(WhitehallLanePrimavera,NapaRegion)]
+[-madeFromGrape(ChateauDYchemSauterne,SauvignonBlancGrape)]
+[-madeFromGrape(ChateauDYchemSauterne,SemillonGrape)]
+[adjacentRegion(_G38243,_G38260),-Region(_G38243)]
+[hasColor(_G38400,_G38417),-Wine(_G38400)]
+[hasVintageYear(_G38557,_G38574),-Vintage(_G38557)]
+[hasWineDescriptor(_G38714,_G38731),-Wine(_G38714)]
+[locatedIn(_G38871,_G38888),-Thing(_G38871)]
+[madeFromGrape(_G39028,_G39045),-Wine(_G39028)]
+[adjacentRegion(_G39201,_G39185),-Region(_G39185)]
+[hasBody(_G39358,_G39342),-WineBody(_G39342)]
+[hasColor(_G39515,_G39499),-WineColor(_G39499)]
+[hasFlavor(_G39672,_G39656),-WineFlavor(_G39656)]
+[hasSugar(_G39829,_G39813),-WineSugar(_G39813)]
+[hasVintageYear(_G39986,_G39970),-VintageYear(_G39970)]
+[hasWineDescriptor(_G40143,_G40127),-WineDescriptor(_G40127)]
+[locatedIn(_G40300,_G40284),-Region(_G40284)]
+[madeFromGrape(_G40457,_G40441),-WineGrape(_G40441)]
+[Anjou(_G40598),-hasBody(_G40598,Light)]
+[Anjou(_G40755),-hasColor(_G40755,Rose)]
+[Anjou(_G40912),-hasFlavor(_G40912,Delicate)]
+[Anjou(_G41069),-hasSugar(_G41069,OffDry)]
+[Beaujolais(_G41226),-hasBody(_G41226,Light)]
+[Beaujolais(_G41383),-hasColor(_G41383,Red)]
+[Beaujolais(_G41540),-hasFlavor(_G41540,Delicate)]
+[Beaujolais(_G41697),-hasSugar(_G41697,Dry)]
+[Beaujolais(_G41854),-madeFromGrape(_G41854,GamayGrape)]
+[Beaujolais(_G42011),-unknow]
+[Burgundy(_G42126),-hasSugar(_G42126,Dry)]
+[CabernetFranc(_G42283),-hasBody(_G42283,Medium)]
+[CabernetFranc(_G42440),-hasColor(_G42440,Red)]
+[CabernetFranc(_G42597),-hasFlavor(_G42597,Moderate)]
+[CabernetFranc(_G42754),-hasSugar(_G42754,Dry)]
+[CabernetSauvignon(_G42911),hasBody(_G42911,_G42999),- (_G42999=Medium),- (_G42999=Full)]
+[CabernetSauvignon(_G43301),hasFlavor(_G43301,_G43389),- (_G43389=Moderate),- (_G43389=Strong)]
+[CabernetSauvignon(_G43691),-hasColor(_G43691,Red)]
+[CabernetSauvignon(_G43848),-hasSugar(_G43848,Dry)]
+[Chardonnay(_G44005),hasBody(_G44005,_G44093),- (_G44093=Medium),- (_G44093=Full)]
+[Chardonnay(_G44395),hasFlavor(_G44395,_G44483),- (_G44483=Moderate),- (_G44483=Strong)]
+[Chardonnay(_G44785),-hasColor(_G44785,White)]
+[CheninBlanc(_G44942),hasBody(_G44942,_G45030),- (_G45030=Medium),- (_G45030=Full)]
+[CheninBlanc(_G45332),hasSugar(_G45332,_G45420),- (_G45420=Dry),- (_G45420=OffDry)]
+[CheninBlanc(_G45722),-hasColor(_G45722,White)]
+[CheninBlanc(_G45879),-hasFlavor(_G45879,Moderate)]
+[Chianti(_G46036),-ItalianWine(_G46036)]
+[Chianti(_G46167),hasBody(_G46167,_G46255),- (_G46255=Light),- (_G46255=Medium)]
+[Chianti(_G46557),-hasColor(_G46557,Red)]
+[Chianti(_G46714),-hasFlavor(_G46714,Moderate)]
+[Chianti(_G46871),-hasSugar(_G46871,Dry)]
+[Chianti(_G47028),-locatedIn(_G47028,ChiantiRegion)]
+[Chianti(_G47185),-madeFromGrape(_G47185,SangioveseGrape)]
+[CotesDOr(_G47342),-hasFlavor(_G47342,Moderate)]
+[DessertWine(_G47499),-Wine(_G47499)]
+[DessertWine(_G47630),hasSugar(_G47630,_G47718),- (_G47718=Sweet),- (_G47718=OffDry)]
+[DryRiesling(_G48020),hasBody(_G48020,_G48108),- (_G48108=Light),- (_G48108=Medium)]
+[DryRiesling(_G48410),-hasColor(_G48410,White)]
+[DryRiesling(_G48567),-hasFlavor(_G48567,Delicate)]
+[EarlyHarvest(_G48724),-Wine(_G48724)]
+[EarlyHarvest(_G48855),hasSugar(_G48855,_G48943),- (_G48943=Dry),- (_G48943=OffDry)]
+[IceWine(_G49245),hasBody(_G49245,_G49333),- (_G49333=Medium),- (_G49333=Full)]
+[IceWine(_G49635),hasFlavor(_G49635,_G49723),- (_G49723=Moderate),- (_G49723=Strong)]
+[LateHarvest(_G50025),-Wine(_G50025)]
+[LateHarvest(_G50156),hasFlavor(_G50156,_G50244),- (_G50244=Moderate),- (_G50244=Strong)]
+[LateHarvest(_G50546),-hasSugar(_G50546,Sweet)]
+[Margaux(_G50703),-hasFlavor(_G50703,Delicate)]
+[Margaux(_G50860),-madeFromGrape(_G50860,MerlotGrape)]
+[Margaux(_G51017),-unknow]
+[Medoc(_G51132),-hasColor(_G51132,Red)]
+[Medoc(_G51289),-hasSugar(_G51289,Dry)]
+[Meritage(_G51446),-hasColor(_G51446,Red)]
+[Merlot(_G51603),hasBody(_G51603,_G51691),- (_G51691=Light),- (_G51691=Medium)]
+[Merlot(_G51993),hasFlavor(_G51993,_G52081),- (_G52081=Moderate),- (_G52081=Delicate)]
+[Merlot(_G52383),-hasColor(_G52383,Red)]
+[Merlot(_G52540),-hasSugar(_G52540,Dry)]
+[Meursault(_G52697),-hasBody(_G52697,Full)]
+[Muscadet(_G52854),-hasBody(_G52854,Light)]
+[Muscadet(_G53011),-hasFlavor(_G53011,Delicate)]
+[Muscadet(_G53168),-hasSugar(_G53168,Dry)]
+[Muscadet(_G53325),-madeFromGrape(_G53325,PinotBlancGrape)]
+[Muscadet(_G53482),-unknow]
+[Pauillac(_G53597),-hasBody(_G53597,Full)]
+[Pauillac(_G53754),-hasFlavor(_G53754,Strong)]
+[Pauillac(_G53911),-madeFromGrape(_G53911,CabernetSauvignonGrape)]
+[Pauillac(_G54068),-unknow]
+[PetiteSyrah(_G54183),hasBody(_G54183,_G54271),- (_G54271=Medium),- (_G54271=Full)]
+[PetiteSyrah(_G54573),hasFlavor(_G54573,_G54661),- (_G54661=Moderate),- (_G54661=Strong)]
+[PetiteSyrah(_G54963),-hasColor(_G54963,Red)]
+[PetiteSyrah(_G55120),-hasSugar(_G55120,Dry)]
+[PinotBlanc(_G55277),-hasColor(_G55277,White)]
+[PinotNoir(_G55434),-hasColor(_G55434,Red)]
+[Port(_G55591),-RedWine(_G55591)]
+[Port(_G55722),-hasBody(_G55722,Full)]
+[Port(_G55879),-hasFlavor(_G55879,Strong)]
+[Port(_G56036),-hasSugar(_G56036,Sweet)]
+[Port(_G56193),-locatedIn(_G56193,PortugalRegion)]
+[RedBordeaux(_G56350),madeFromGrape(_G56350,_G56438),- (_G56438=CabernetSauvignonGrape),- (_G56438=MerlotGrape)]
+[RedBurgundy(_G56740),-madeFromGrape(_G56740,PinotNoirGrape)]
+[RedBurgundy(_G56897),-unknow]
+[Riesling(_G57012),-hasColor(_G57012,White)]
+[Sancerre(_G57169),-hasBody(_G57169,Medium)]
+[Sancerre(_G57326),-hasFlavor(_G57326,Delicate)]
+[Sancerre(_G57483),-hasSugar(_G57483,OffDry)]
+[Sancerre(_G57640),-madeFromGrape(_G57640,SauvignonBlancGrape)]
+[Sancerre(_G57797),-unknow]
+[Sauternes(_G57912),-Bordeaux(_G57912)]
+[Sauternes(_G58043),-LateHarvest(_G58043)]
+[Sauternes(_G58174),-hasBody(_G58174,Medium)]
+[Sauternes(_G58331),-hasColor(_G58331,White)]
+[Sauternes(_G58488),-locatedIn(_G58488,SauterneRegion)]
+[SemillonOrSauvignonBlanc(_G58645),hasBody(_G58645,_G58733),- (_G58733=Medium),- (_G58733=Full)]
+[SemillonOrSauvignonBlanc(_G59035),-hasColor(_G59035,White)]
+[StEmilion(_G59192),-hasColor(_G59192,Red)]
+[StEmilion(_G59349),-hasFlavor(_G59349,Strong)]
+[StEmilion(_G59506),-madeFromGrape(_G59506,CabernetSauvignonGrape)]
+[StEmilion(_G59663),-unknow]
+[SweetRiesling(_G59778),-DessertWine(_G59778)]
+[SweetRiesling(_G59909),hasFlavor(_G59909,_G59997),- (_G59997=Moderate),- (_G59997=Strong)]
+[SweetRiesling(_G60299),-hasBody(_G60299,Full)]
+[Tours(_G60456),-madeFromGrape(_G60456,CheninBlancGrape)]
+[Tours(_G60613),-unknow]
+[Vintage(_G60728),-unknow]
+[WhiteBordeaux(_G60843),madeFromGrape(_G60843,_G60931),- (_G60931=SemillonGrape),- (_G60931=SauvignonBlancGrape)]
+[WhiteBurgundy(_G61233),-madeFromGrape(_G61233,ChardonnayGrape)]
+[WhiteBurgundy(_G61390),-unknow]
+[WhiteLoire(_G61505),madeFromGrape(_G61505,_G61599),- (_G61599=CheninBlancGrape),- (_G61599=SauvignonBlancGrape),- (_G61599=PinotBlancGrape)]
+[Wine(_G61985),-PotableLiquid(_G61985)]
+[Wine(_G62116),hasMaker(_G62116,_G62197),-Winery(_G62197)]
+[Wine(_G62389),-unknow]
+[Wine(_G62504),-unknow]
+[Wine(_G62619),-unknow]
+[Wine(_G62734),-unknow]
+[Wine(_G62849),-unknow]
+[Wine(_G62964),-unknow]
+[Wine(_G63079),69^[_G63079]]
+[WineBody(_G63352),-WineTaste(_G63352)]
+[WineColor(_G63483),-WineDescriptor(_G63483)]
+[WineFlavor(_G63614),-WineTaste(_G63614)]
+[WineGrape(_G63745),-Grape(_G63745)]
+[WineSugar(_G63876),-WineTaste(_G63876)]
+[WineTaste(_G64007),-WineDescriptor(_G64007)]
+[Zinfandel(_G64138),hasBody(_G64138,_G64226),- (_G64226=Medium),- (_G64226=Full)]
+[Zinfandel(_G64528),hasFlavor(_G64528,_G64616),- (_G64616=Moderate),- (_G64616=Strong)]
+[Zinfandel(_G64918),-hasColor(_G64918,Red)]
+[Zinfandel(_G65075),-hasSugar(_G65075,Dry)]
+[hasBody(_G65232,_G65277),-hasWineDescriptor(_G65232,_G65277)]
+[hasColor(_G65474,_G65519),-hasWineDescriptor(_G65474,_G65519)]
+[hasFlavor(_G65716,_G65761),-hasWineDescriptor(_G65716,_G65761)]
+[hasSugar(_G65958,_G66003),-hasWineDescriptor(_G65958,_G66003)]
+[madeFromGrape(_G66200,_G66245),-madeFromFruit(_G66200,_G66245)]
+[-locatedIn(_G66675,_G66788),locatedIn(_G66675,_G66731),locatedIn(_G66731,_G66788)]
+[adjacentRegion(_G66442,_G66487),-adjacentRegion(_G66487,_G66442)]
+[-adjacentRegion(_G66442,_G66487),adjacentRegion(_G66487,_G66442)]
+[- (_G123129=_G123129)]
+[_G123228=_G123273,- (_G123273=_G123228)]
+[- (_G123461=_G123574),_G123461=_G123517,_G123517=_G123574]

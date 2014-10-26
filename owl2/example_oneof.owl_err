@@ -1,0 +1,28 @@
+------- Axioms --------
+class(a)
+class(b)
+class(c)
+namedIndividual(inda)
+namedIndividual(indb)
+objectProperty(objproperty(_G78,_G79))
+b same_as (objproperty some (indb one inda))
+a is_a (objproperty value inda)
+c is_a a
+
+
+------- Formula --------
+all _G113: (b(_G113)<=>ex _G123: (objproperty(_G113,_G123), (_G123=indb;_G123=inda)))
+all _G146: (a(_G146)=>objproperty(_G146,inda))
+
+
+------- Matrix -------
+[- 3^[_G280,_G192],_G280=inda]
+[- 3^[_G280,_G192],_G280=indb]
+[- 2^[_G192],- (1^[_G192]=indb),- (1^[_G192]=inda)]
+[- 2^[_G192],-objproperty(_G192,1^[_G192])]
+[a(_G573),-objproperty(_G573,inda)]
+[b(_G192),2^[_G192]]
+[-b(_G192),objproperty(_G192,_G280),3^[_G280,_G192]]
+[- (_G1257=_G1257)]
+[_G1356=_G1401,- (_G1401=_G1356)]
+[- (_G1589=_G1702),_G1589=_G1645,_G1645=_G1702]
