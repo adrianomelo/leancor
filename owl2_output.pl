@@ -24,18 +24,16 @@ output_axioms :-
     forall((subclassof(A,B), not((subclassof(A,C), subclassof(C,B)))), writef('SubClassOf(<%p#%p> <%p#%p>)\n', [Uri, A, Uri, B])).
 
 % File with debug information
-write_debug(OntolotyFile, Axioms, Fol, Matrix) :-
-    atom_concat(OntolotyFile, '_err', DebugFile),
-    open(DebugFile, write, File),
+write_debug(Axioms, Fol, Matrix) :-
     current_output(Current),
-    set_output(File),
+    set_output(user_error),
     writef('------- Axioms --------\n'),
     write_debug_axioms(Axioms),
     writef('\n\n------- Formula --------\n'),
     write_debug_formula(Fol),
     writef('\n\n------- Matrix -------\n'),
     write_debug_matrix(Matrix),
-    close(File),
+    writef('\n\n------- Database -------\n'),
     set_output(Current).
 
 write_debug_axioms([]).
@@ -53,3 +51,11 @@ write_debug_matrix([]).
 write_debug_matrix([Head|Matrix]) :-
     writef('%p\n', [Head]),
     write_debug_matrix(Matrix).
+
+write_debug_operation_time(Time) :-
+    current_output(Current),
+    set_output(user_error),
+    listing(lit(_,_,_,_)),
+    writef('\n\nOperation Time: %p\n', [Time]),
+    set_output(Current).
+

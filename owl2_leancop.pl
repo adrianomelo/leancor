@@ -14,15 +14,16 @@
 classify(InputOntologyFile, OperationTime, OutputOntologyFile) :-
     setup_matrix(InputOntologyFile, Concepts),
     get_time(Start),
-	test_subsumption_list(Concepts, Concepts),
-	get_time(End),
+    test_subsumption_list(Concepts, Concepts),
+    get_time(End),
     write_classification_output_file(OutputOntologyFile),
-	OperationTime is round((End - Start) * 1000).
+    OperationTime is round((End - Start) * 1000),
+    write_debug_operation_time(OperationTime).
 
 test_subsumption_list(_, []).
 test_subsumption_list(AllConcepts, [Concept|Concepts]) :-
-	test_subsumption(AllConcepts, Concept),
-	test_subsumption_list(AllConcepts, Concepts).
+    test_subsumption(AllConcepts, Concept),
+    test_subsumption_list(AllConcepts, Concepts).
 
 test_subsumption([], _).
 test_subsumption([Specific|Concepts], Concept) :-
@@ -34,7 +35,7 @@ test_subsumption([Specific|Concepts], Concept) :-
     (prove(B, 1, [cut,comp(7)], _) ->
         asserta(subclassof(Specific, Concept)); true),
     retract(lit(-A, -A, [], g)),
-	test_subsumption(Concepts, Concept), !.
+    test_subsumption(Concepts, Concept), !.
 
 test_subsumption([_|Concepts], Concept) :-
     test_subsumption(Concepts, Concept).
@@ -52,20 +53,23 @@ prove(Literal,PathLim,Set,Proof) :-
 %%%%%%%%%%%
 
 setup_matrix(OntologyFile, Concepts) :-
-	owl2_to_matrix(OntologyFile, Matrix, Concepts),
-    assert_clauses(Matrix, conj).
+    owl2_to_matrix(OntologyFile, Prefixes, Axioms, Fol, Matrix),
+    process_prefixes(Prefixes),
+    process_axioms(Axioms, Concepts),
+    assert_clauses(Matrix, conj),
+    write_debug(Axioms, Fol, Matrix).
 
-owl2_to_matrix(File, Matrix, Concepts) :-
-	parse_owl(File, Prefixes, _, Axioms),
-	axioms_to_fol(Axioms, Formulas),
-    list_to_operator(Formulas, Fol),
+owl2_to_matrix(OntologyFile, Prefixes, Axioms, Fol, Matrix) :-
+    parse_owl(OntologyFile, Prefixes, _, Axioms),
+    axiom_list_to_fol_formula(Axioms, Fol),
+    fol_formula_to_matrix(Fol, Matrix).
+
+fol_formula_to_matrix(Fol, Matrix) :- 
     make_matrix(~(Fol), KBMatrix, []),
     basic_equal_axioms(F),
     make_matrix(~(F), EqMatrix, []),
-    append(KBMatrix, EqMatrix, Matrix),
-    write_debug(File, Axioms, Fol, Matrix),
-	process_prefixes(Prefixes),
-	process_axioms(Axioms, Concepts).
+    append(KBMatrix, EqMatrix, Matrix).
+
 
 process_prefixes([]).
 process_prefixes([Head|List]) :-
@@ -74,7 +78,7 @@ process_prefixes([Head|List]) :-
 
 process_axioms([], []).
 process_axioms([class(Concept)|Axioms], [Concept|Concepts]) :-
-	process_axioms(Axioms, Concepts), !.
+    process_axioms(Axioms, Concepts), !.
 process_axioms([A is_a B|Axioms], Concepts) :-
     atom(A), atom(B),
     assert(subclassof(A, B)),
@@ -85,8 +89,12 @@ process_axioms([A is_a B|Axioms], Concepts) :-
     assert(subclassof(B, A)),
     process_axioms(Axioms, Concepts).
 process_axioms([_|Axioms], Concepts) :-
-	process_axioms(Axioms, Concepts).
+    process_axioms(Axioms, Concepts).
 
+
+axiom_list_to_fol_formula(Axioms, Fol) :-
+    axioms_to_fol(Axioms, Formulas),
+    list_to_operator(Formulas, Fol).
 
 axioms_to_fol([], []).
 axioms_to_fol([Head|Axioms], Fol) :-
