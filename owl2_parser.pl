@@ -220,6 +220,9 @@ equivalentObjectProperties(Equivalent) -->
 disjointClasses(Disjoint) -->
     "DisjointClasses(", disjointExpression(Disjoint), ")".
 
+disjointUnion(Disjoint) -->
+    "DisjointUnion(", disjointUnionExpression(Disjoint), ")".
+
 differentIndividuals(Different) -->
     "DifferentIndividuals(", differentIndividualsExpression(Different), ")".
 
@@ -327,7 +330,7 @@ axiom(X) --> assertion(X).
 classAxiom(X) --> subClassOf(X), !.
 classAxiom(X) --> equivalentClasses(X), !.
 classAxiom(X) --> disjointClasses(X).
-%classAxiom(X) --> disjointUnion(X), !.
+classAxiom(X) --> disjointUnion(X), !.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Clauses that create lists %
@@ -362,6 +365,9 @@ equivalentDataPropertiesExpression(Expression) --> property(Expression).
 
 disjointExpression((Exp1 disjoint_classes Exp2)) --> class(Exp1), " ", disjointExpression(Exp2), !.
 disjointExpression(Expression) --> class(Expression).
+
+disjointUnionExpression((Exp1 disjoint_union Exp2)) --> class(Exp1), " ", disjointUnionExpression(Exp2), !.
+disjointUnionExpression(Expression) --> class(Expression).
 
 differentIndividualsExpression(differentIndividuals(Ind1, Ind2)) --> entity(Ind1), " ", differentIndividualsExpression(Ind2), !.
 differentIndividualsExpression(Individual) --> entity(Individual).
