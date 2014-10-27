@@ -18,10 +18,21 @@ Prefix(rdfs:=<http://www.w3.org/2000/01/rdf-schema#>)\n\n\n\
 Ontology(<file:%p>\n\n', [Uri, FileName]),
     output_axioms,
     writef(')\n').
+write_classification_output(FileName) :-
+    writef('Prefix(owl:=<http://www.w3.org/2002/07/owl#>)\n\
+Prefix(rdf:=<http://www.w3.org/1999/02/22-rdf-syntax-ns#>)\n\
+Prefix(xml:=<http://www.w3.org/XML/1998/namespace>)\n\
+Prefix(xsd:=<http://www.w3.org/2001/XMLSchema#>)\n\
+Prefix(rdfs:=<http://www.w3.org/2000/01/rdf-schema#>)\n\n\n\
+Ontology(<file:%p>\n\n', [FileName]),
+    output_axioms,
+    writef(')\n').
 
 output_axioms :-
     prefix('',Uri),
     forall((subclassof(A,B), not((subclassof(A,C), subclassof(C,B)))), writef('SubClassOf(<%p#%p> <%p#%p>)\n', [Uri, A, Uri, B])).
+output_axioms :-
+    forall((subclassof(A,B), not((subclassof(A,C), subclassof(C,B)))), writef('SubClassOf(%p %p)\n', [A, B])).
 
 % File with debug information
 write_debug(OutputOntology, Axioms, Fol, Matrix) :-
@@ -64,4 +75,3 @@ write_debug_operation_time(OutputOntology, Time) :-
     writef('\n\nOperation Time: %p\n', [Time]),
     close(File),
     set_output(Current).
-

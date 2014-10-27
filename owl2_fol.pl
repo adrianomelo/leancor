@@ -1,21 +1,26 @@
 :- [def_mm].
 :- [owl2_operators].
 
-to_fol(A same_as B, (all New: ((Fa) <=> (Fb)))) :-
+to_fol(A equivalent B, (all New: ((Fa) <=> (Fb)))) :-
     to_fol(New, A, Fa), to_fol(New, B, Fb).
 
 to_fol(A is_a B, (all New: ((Fa) => (Fb)))) :-
     to_fol(New, A, Fa), to_fol(New, B, Fb).
 
-to_fol(A disjoint_classes B, (all New: (Fa => ~Fb))) :-
+to_fol(A disjoint B, (all New: (Fa => ~Fb))) :-
     to_fol(New, A, Fa),
     to_fol(New, B, Fb).
 
-to_fol(A class_assert B, F) :-
+to_fol(A assert B, F) :-
     F=..[A,B].
 
-to_fol(dataPropertyAssertion(A), A).
-to_fol(objectPropertyAssertion(A), A).
+to_fol(P assert_p [A, B], F) :-
+    F=..[P,A,B].
+
+to_fol(P negative_p [A, B], ~F) :-
+    F=..[P,A,B].
+
+to_fol(A same B, A = B).
 
 to_fol(A domain B, (all NewA: (Fa => Fb))) :-
     Fa=..[A,NewA,_],
@@ -26,6 +31,10 @@ to_fol(A range B, (all NewA: (Fa => Fb))) :-
     to_fol(NewA, B, Fb).
 
 to_fol(A subproperty B, (all X: (all Y: (Fa => Fb)))) :-
+    Fa=..[A,X,Y],
+    Fb=..[B,X,Y].
+
+to_fol(A equivalent_p B, (all X: (all Y: (Fa <=> Fb)))) :-
     Fa=..[A,X,Y],
     Fb=..[B,X,Y]. 
 
@@ -50,17 +59,28 @@ to_fol(functional A, (all X: (all Y: (all Z: ((Fa, Fb) => (Y=Z)))))) :-
     Fa=..[A,X,Y],
     Fb=..[A,X,Z].
 
-to_fol(namedIndividual(_), []) :- !.
-to_fol(class(_), []) :- !.                   % does not generate clauses
-to_fol(objectProperty(_), []) :- !.          % does not generate clauses
-to_fol(dataProperty(_), []) :- !.            % does not generate clauses
+to_fol(inverse_functional A, (all X: (all Y: (all Z: ((Fa, Fb) => (X=Z)))))) :-
+    Fa=..[A,X,Y],
+    Fb=..[A,Z,Y].
+
+to_fol(reflexive A, (all X: Fa)) :-
+    Fa=..[A,X,X].
+
+to_fol(irreflexive A, (all X: ~Fa)) :-
+    Fa=..[A,X,X].
+
+to_fol(_ disjoint_union _, []) :- !. % FIXME
+
+to_fol(individual _, []) :- !.
+to_fol(class _, []) :- !.                   % does not generate clauses
+to_fol(property _, []) :- !.                % does not generate clauses
 
 % individual
 to_fol(A, A) :-
     atom(A).
 
 % equality
-to_fol(differentIndividuals(A, B), (A=Fb)) :-               % WRONG
+to_fol((A different B), (A=Fb)) :-               % WRONG
     to_fol(B, Fb).
 
 % class expessions

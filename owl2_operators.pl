@@ -1,34 +1,33 @@
 
 % assertions
-:- op(80, xfx, [class_assert,
-                property_assert_o,
-                property_assert_d]).
+:- op(80, xfx, [assert,
+                assert_p]).                     % data and object property assert
 
 % disjointness
-:- op(90, xfx, [different_individuals,
+:- op(90, xfx, [different,                      % different individuals
                 disjoint_union,
-                disjoint_classes,
+                disjoint,                       % disjoint classes
                 disjoint_o,
                 disjoint_d]).
 
 % equivalence
 :- op(100, xfx, [is_a,
                 subproperty,
-                same_as,
-                eq_classes,
-                eq_properties_o,
-                eq_properties_d]).
+                same,                           % same individuals
+                equivalent,                     % equivalent classes
+                equivalent_p]).                 % equivalent object and data properties
 
 % declarations
-:- op(110, fx, [decl_class,
-                decl_object_property,
-                decl_data_property,
+:- op(110, fx, [class,
+                individual,
+                property,
                 decl_datatype]).
 
 % property
 :- op(130, xfx, [inverse,
                 domain,                         % object and data
-                range]).                        % object and data
+                range,
+                negative_p]).                        % object and data
 
 :- op(130, fx, [symmetric,
                 asymmetric,
@@ -36,10 +35,9 @@
                 reflexive,
                 irreflexive,
                 functional,
-                inverse_functional,
-                negative]).
+                inverse_functional]).
 
-:- op(140, fx, has_key).
+:- op(140, xfx, haskey).
 
 :- op(150, xfx, [any, some, and, or, max, min, exact,
                  one, inverse, value, self,

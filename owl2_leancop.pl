@@ -83,7 +83,7 @@ process_axioms([A is_a B|Axioms], Concepts) :-
     atom(A), atom(B),
     assert(subclassof(A, B)),
     process_axioms(Axioms, Concepts).
- process_axioms([A same_as B|Axioms], Concepts) :-
+ process_axioms([A equivalent B|Axioms], Concepts) :-
     atom(A), atom(B),
     assert(subclassof(A, B)),
     assert(subclassof(B, A)),

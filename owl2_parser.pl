@@ -44,19 +44,19 @@ ontology(Imports, Axioms) -->
 import(import(Uri)) -->
     "Import(", uri(Uri), ")".
 
-declarationClass(class(Class)) -->
-    "Declaration(Class(", class(Class), "))".
+declarationClass(class Class) -->
+    "Declaration(Class(", entity(Class), "))".
 
-declarationNamedIndividual(namedIndividual(Name)) -->
+declarationNamedIndividual((individual Name)) -->
     "Declaration(NamedIndividual(", entity(Name), "))".
 
-declarationObjectProperty(objectProperty(Property)) -->
+declarationObjectProperty((property Property)) -->
     "Declaration(ObjectProperty(", property(Property), "))".
 
-declarationDataProperty(dataProperty(Property)) -->
+declarationDataProperty((property Property)) -->
     "Declaration(DataProperty(", property(Property), "))".
 
-classAssertion((ClassName class_assert InstanceName)) --> 
+classAssertion((ClassName assert InstanceName)) --> 
     "ClassAssertion(", entity(ClassName), " ", entity(InstanceName), ")".
 
 objectPropertyDomain((PropertyName domain Exp)) -->
@@ -65,9 +65,8 @@ objectPropertyDomain((PropertyName domain Exp)) -->
 objectPropertyRange((PropertyName range Exp)) -->
     "ObjectPropertyRange(", entity(PropertyName), " ", classExpression(Exp), ")".
 
-objectPropertyAssertion(objectPropertyAssertion(Property)) --> 
-    "ObjectPropertyAssertion(", entity(PropName), " ", entity(Ind1), " ", entity(Ind2), ")",
-        { Property=..[PropName, Ind1, Ind2] }.
+objectPropertyAssertion((PropertyName assert_p [Ind1, Ind2])) --> 
+    "ObjectPropertyAssertion(", entity(PropertyName), " ", entity(Ind1), " ", entity(Ind2), ")".
 
 dataPropertyDomain((PropertyName domain Exp)) -->
     "DataPropertyDomain(", entity(PropertyName), " ", classExpression(Exp), ")".
@@ -75,9 +74,9 @@ dataPropertyDomain((PropertyName domain Exp)) -->
 dataPropertyRange((PropertyName range Exp)) -->
     "DataPropertyRange(", entity(PropertyName), " ", classExpression(Exp), ")".
 
-dataPropertyAssertion(dataPropertyAssertion(Property)) --> 
-    "DataPropertyAssertion(", entity(PropName), " ", entity(Ind1), " ", any_chars(Chars), ")",
-        { name(Ind2, Chars), Property=..[PropName, Ind1, Ind2], ! }.
+dataPropertyAssertion((PropetyName assert_p [Ind1, Ind2])) --> 
+    "DataPropertyAssertion(", entity(PropetyName), " ", entity(Ind1), " ", any_chars(Chars), ")",
+        { name(Ind2, Chars), ! }.
 
 inverseObjectProperties((PropertyA inverse PropertyB)) -->
     "InverseObjectProperties(", entity(PropertyA), " ", entity(PropertyB), ")".
@@ -88,11 +87,11 @@ symmetricObjectProperty((symmetric PropertyName)) -->
 asymmetricObjectProperty((asymmetric PropertyName)) -->
     "AsymmetricObjectProperty(", entity(PropertyName), ")".
 
-reflexiveObjectProperty(reflexiveObjectProperty(Property)) -->
-    "ReflexiveObjectProperty(", property(Property), ")".
+reflexiveObjectProperty((reflexive Property)) -->
+    "ReflexiveObjectProperty(", entity(Property), ")".
 
-irreflexiveObjectProperty(irreflexiveObjectProperty(Property)) -->
-    "IrreflexiveObjectProperty(", property(Property), ")".
+irreflexiveObjectProperty((irreflexive Property)) -->
+    "IrreflexiveObjectProperty(", entity(Property), ")".
 
 transitiveObjectProperty((transitive PropertyName)) -->
     "TransitiveObjectProperty(", entity(PropertyName), ")".
@@ -103,14 +102,14 @@ functionalObjectProperty((functional PropertyName)) -->
 functionalDataProperty((functional PropertyName)) -->
     "FunctionalDataProperty(", entity(PropertyName), ")".
 
-inverseFunctionalObjectProperty(inverseFunctionalObjectProperty(Property)) -->
-    "InverseFunctionalObjectProperty(", property(Property), ")".
+inverseFunctionalObjectProperty((inverse_functional PropertyName)) -->
+    "InverseFunctionalObjectProperty(", entity(PropertyName), ")".
 
-negativeObjectPropertyAssertion(negativeObjectPropertyAssertion(Property)) -->
-    "NegativeObjectPropertyAssertion(", property(Property), ")".
+negativeObjectPropertyAssertion((PropertyName negative_p [Ind1, Ind2])) -->
+    "NegativeObjectPropertyAssertion(", entity(PropertyName), " ", entity(Ind1), " ", entity(Ind2), ")".
 
-negativeDataPropertyAssertion(negativeDataPropertyAssertion(Property)) -->
-    "NegativeDataPropertyAssertion(", property(Property), ")".
+negativeDataPropertyAssertion((PropertyName negative_p [Ind1, Ind2])) -->
+    "NegativeDataPropertyAssertion(", entity(PropertyName), " ", entity(Ind1), " ", literal(Ind2), ")".
 
 objectSomeValuesFrom((PropertyName some Expression)) -->
     "ObjectSomeValuesFrom(", entity(PropertyName), " ", classExpression(Expression), ")".
@@ -199,7 +198,7 @@ subObjectPropertyOf((PropA subproperty PropB)) -->
 subDataPropertyOf((PropA subproperty PropB)) --> 
     "SubDataPropertyOf(", entity(PropA), " ", entity(PropB), ")".
 
-hasKey(hasKey(ClassExpression, ObjectProperty, DataProperty)) -->
+hasKey((ClassExpression haskey [ObjectProperty, DataProperty])) -->
     "HasKey(", entity(ClassExpression), " (", property_or_null(ObjectProperty), ") (", property_or_null(DataProperty), "))".
 
 objectOneOf(OneOf) -->
@@ -208,7 +207,7 @@ objectOneOf(OneOf) -->
 subClassOf((Exp1 is_a Exp2)) --> 
     "SubClassOf(", classExpression(Exp1), " ", classExpression(Exp2), ")".
 
-equivalentClasses((Exp1 same_as Exp2)) -->
+equivalentClasses((Exp1 equivalent Exp2)) -->
     "EquivalentClasses(", classExpression(Exp1), " ", classExpression(Exp2), ")".
 
 equivalentDataProperties(Equivalent) -->
@@ -233,14 +232,14 @@ entity(Name) -->
     "<", any_chars(_), "#", word(Name), ">", { ! }.
 
 entity(Name) -->
-    class_name_chars(_), ":", class_name_chars(Chars), { name(Name, Chars), downcase_atom(Name, Uri), ! }.
+    class_name_chars(_), ":", class_name_chars(Chars), { name(Name, Chars), ! }.
 
-entity(Uri) -->
-    ":", class_name_chars(Chars), { name(Name, Chars), downcase_atom(Name, Uri), ! }.
+entity(Name) -->
+    ":", class_name_chars(Chars), { name(Name, Chars), ! }.
 
 uri(Uri) --> ":", any_chars(Chars), { name(Uri, Chars), ! }.
 uri(Uri) --> "<", any_chars(Chars), "#>", { name(Uri, Chars), ! }.
-uri(Uri) --> "<", any_chars(Chars), ">", { name(Uri, Chars) }.
+uri(Uri) --> "<", any_chars(Chars), ">", { name(Uri, Chars), ! }.
 
 dataRange(Name) -->
     entity(Name).
@@ -251,7 +250,7 @@ literal(Name) -->
 quotedString(Name) --> 
     "\"", any_chars(Chars), "\"", { name(Name, Chars), ! }.
 
-property_or_null(Property) --> property(Property), { ! }.
+property_or_null(Property) --> entity(Property), { ! }.
 property_or_null(null) --> space.
 
 %%%%%%%%%%%%%%%%%%%%%%
@@ -357,22 +356,22 @@ dataIntersectionOfExpression(Expression) --> dataRange(Expression).
 objectOneOfExpression((Exp1 one Exp2)) --> entity(Exp1), " ", objectOneOfExpression(Exp2), !.
 objectOneOfExpression(Expression) --> entity(Expression).
 
-equivalentObjectPropertiesExpression(equivalentObjectProperties(Exp1, Exp2)) --> property(Exp1), " ", equivalentObjectPropertiesExpression(Exp2), !.
-equivalentObjectPropertiesExpression(Expression) --> property(Expression).
+equivalentObjectPropertiesExpression((Exp1 equivalent_p Exp2)) --> entity(Exp1), " ", equivalentObjectPropertiesExpression(Exp2), !.
+equivalentObjectPropertiesExpression(Expression) --> entity(Expression).
 
-equivalentDataPropertiesExpression(equivalentDataProperties(Exp1, Exp2)) --> property(Exp1), " ", equivalentDataPropertiesExpression(Exp2), !.
-equivalentDataPropertiesExpression(Expression) --> property(Expression).
+equivalentDataPropertiesExpression((Exp1 equivalent_p Exp2)) --> entity(Exp1), " ", equivalentDataPropertiesExpression(Exp2), !.
+equivalentDataPropertiesExpression(Expression) --> entity(Expression).
 
-disjointExpression((Exp1 disjoint_classes Exp2)) --> class(Exp1), " ", disjointExpression(Exp2), !.
+disjointExpression((Exp1 disjoint Exp2)) --> class(Exp1), " ", disjointExpression(Exp2), !.
 disjointExpression(Expression) --> class(Expression).
 
 disjointUnionExpression((Exp1 disjoint_union Exp2)) --> class(Exp1), " ", disjointUnionExpression(Exp2), !.
 disjointUnionExpression(Expression) --> class(Expression).
 
-differentIndividualsExpression(differentIndividuals(Ind1, Ind2)) --> entity(Ind1), " ", differentIndividualsExpression(Ind2), !.
+differentIndividualsExpression((Ind1 different Ind2)) --> entity(Ind1), " ", differentIndividualsExpression(Ind2), !.
 differentIndividualsExpression(Individual) --> entity(Individual).
 
-sameIndividualExpression(sameIndividual(Ind1, Ind2)) --> entity(Ind1), " ", sameIndividualExpression(Ind2), !.
+sameIndividualExpression((Ind1 same Ind2)) --> entity(Ind1), " ", sameIndividualExpression(Ind2), !.
 sameIndividualExpression(Individual) --> entity(Individual).
 
 %%%%%%%%%%%%%%%%%
@@ -407,7 +406,7 @@ any_chars([]) --> [].
 any_char(X) --> [X], { is_any_char(X) }.
 
 word(Word) --> chars(CHARS),
-    { atom_codes(WORD, CHARS), downcase_atom(WORD, Word), !  }.
+    { atom_codes(Word, CHARS), !  }.
 
 chars([X|Y]) --> char(X), chars(Y).
 chars([]) --> [].
