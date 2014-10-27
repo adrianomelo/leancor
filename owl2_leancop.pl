@@ -12,13 +12,13 @@
 %%%%%%%%%%%%%%%%%%
 
 classify(InputOntologyFile, OperationTime, OutputOntologyFile) :-
-    setup_matrix(InputOntologyFile, Concepts),
+    setup_matrix(InputOntologyFile, OutputOntologyFile, Concepts),
     get_time(Start),
     test_subsumption_list(Concepts, Concepts),
     get_time(End),
     write_classification_output_file(OutputOntologyFile),
     OperationTime is round((End - Start) * 1000),
-    write_debug_operation_time(OperationTime).
+    write_debug_operation_time(OutputOntologyFile, OperationTime), !.
 
 test_subsumption_list(_, []).
 test_subsumption_list(AllConcepts, [Concept|Concepts]) :-
@@ -52,12 +52,12 @@ prove(Literal,PathLim,Set,Proof) :-
 % Helpers %
 %%%%%%%%%%%
 
-setup_matrix(OntologyFile, Concepts) :-
+setup_matrix(OntologyFile, OutputFile, Concepts) :-
     owl2_to_matrix(OntologyFile, Prefixes, Axioms, Fol, Matrix),
     process_prefixes(Prefixes),
     process_axioms(Axioms, Concepts),
     assert_clauses(Matrix, conj),
-    write_debug(Axioms, Fol, Matrix).
+    write_debug(OutputFile, Axioms, Fol, Matrix).
 
 owl2_to_matrix(OntologyFile, Prefixes, Axioms, Fol, Matrix) :-
     parse_owl(OntologyFile, Prefixes, _, Axioms),
