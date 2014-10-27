@@ -42,7 +42,7 @@
 :- op(140, fx, has_key).
 
 :- op(150, xfx, [any, some, and, or, max, min, exact,
-                 one, inverse, not, value, self,
+                 one, inverse, value, self,
                  any_d, some_d, and_d, or_d, max_d,
                  min_d, exact_d, one_d, value_d]).
 
