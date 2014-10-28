@@ -51,10 +51,10 @@ declarationNamedIndividual((individual Name)) -->
     "Declaration(NamedIndividual(", entity(Name), "))".
 
 declarationObjectProperty((property Property)) -->
-    "Declaration(ObjectProperty(", property(Property), "))".
+    "Declaration(ObjectProperty(", entity(Property), "))".
 
 declarationDataProperty((property Property)) -->
-    "Declaration(DataProperty(", property(Property), "))".
+    "Declaration(DataProperty(", entity(Property), "))".
 
 classAssertion((ClassName assert InstanceName)) --> 
     "ClassAssertion(", entity(ClassName), " ", entity(InstanceName), ")".
