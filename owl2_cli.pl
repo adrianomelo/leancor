@@ -3,9 +3,10 @@
 
 ore :-
     current_prolog_flag(argv, Argv),
-    print_start(Argv),
-    activity(Argv),
-    print_end(Argv).
+    append(_, [O,In,Out], Argv),
+    print_start([O,In,Out]),
+    activity([O,In,Out]),
+    print_end([O,In,Out]).
 
 print_start([Operation, OntologyFile, _]) :-
     list_p(['Started', Operation, 'on', OntologyFile]).
