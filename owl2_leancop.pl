@@ -6,6 +6,7 @@
 
 :- dynamic(subclassof/2).
 :- dynamic(prefix/2).
+:- dynamic(class/1).
 
 %%%%%%%%%%%%%%%%%%
 % Activities API %
@@ -14,31 +15,21 @@
 classify(InputOntologyFile, OperationTime, OutputOntologyFile) :-
     setup_matrix(InputOntologyFile, OutputOntologyFile, Concepts),
     get_time(Start),
-    test_subsumption_list(Concepts, Concepts),
+    forall((class(A),class(B),A\=B,not(subclassof(A,B))), test_subsumption(A,B)),
     get_time(End),
     write_classification_output_file(OutputOntologyFile),
     OperationTime is round((End - Start) * 1000),
-    write_debug_tuple(OutputOntologyFile, 'Classification time', OperationTime), !.
+    write_debug_tuple(OutputOntologyFile, 'Classification time', OperationTime),
+    length(Concepts, Size),
+    write_debug_tuple(OutputOntologyFile, 'Concepts', Size), !.
 
-test_subsumption_list(_, []).
-test_subsumption_list(AllConcepts, [Concept|Concepts]) :-
-    test_subsumption(AllConcepts, Concept),
-    test_subsumption_list(AllConcepts, Concepts).
-
-test_subsumption([], _).
-test_subsumption([Specific|Concepts], Concept) :-
-    not(subclassof(Specific, Concept)),
-    Specific \= Concept,
+test_subsumption(Specific, Concept) :-
     A=..[Specific, c],
     B=..[Concept, c],
     asserta(lit(-A, -A, [], g)),
     (prove(B, 1, [cut,comp(7)], _) ->
         asserta(subclassof(Specific, Concept)); true),
-    retract(lit(-A, -A, [], g)),
-    test_subsumption(Concepts, Concept), !.
-
-test_subsumption([_|Concepts], Concept) :-
-    test_subsumption(Concepts, Concept).
+    retract(lit(-A, -A, [], g)).
 
 prove(Literal,PathLim,Set,Proof) :-
     prove([Literal],[],PathLim,[],Set,Proof).
@@ -86,6 +77,7 @@ process_prefixes([Head|List]) :-
 
 process_axioms([], []).
 process_axioms([class(Concept)|Axioms], [Concept|Concepts]) :-
+    assert(class(Concept)),
     process_axioms(Axioms, Concepts), !.
 process_axioms([A is_a B|Axioms], Concepts) :-
     atom(A), atom(B),
