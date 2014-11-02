@@ -47,8 +47,8 @@ setup_matrix(OntologyFile, OutputFile, Concepts) :-
     owl2_to_matrix(OntologyFile, OutputFile, Prefixes, Axioms, Fol, Matrix),
     process_prefixes(Prefixes),
     process_axioms(Axioms, Concepts),
-    assert_clauses(Matrix, conj),
-    write_debug(OutputFile, Axioms, Fol, Matrix).
+    assert_clauses(Matrix, conj).
+    %write_debug(OutputFile, Axioms, Fol, Matrix), !.
 
 owl2_to_matrix(OntologyFile, OutputFile, Prefixes, Axioms, Fol, Matrix) :-
     get_time(Start1),
