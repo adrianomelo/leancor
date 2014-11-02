@@ -1,29 +1,35 @@
 :- [owl2_leancop].
 :- [leancop21_swi].
 
+:- dynamic(file/2).
+
 ore :-
     current_prolog_flag(argv, Argv),
     append(_, [O,In,Out], Argv),
-    print_start([O,In,Out]),
-    activity([O,In,Out]),
-    print_end([O,In,Out]).
+    run(O, In, Out).
 
-print_start([Operation, OntologyFile, _]) :-
-    list_p(['Started', Operation, 'on', OntologyFile]).
+run(Operation, Input, Output) :-
+    writef('Started %p on %p\n', [Operation, Input]),
+    assert_files(Input, Output),
+    activity(Operation, OperationTime),
+    writef('Operation Time: %p\n', [OperationTime]),
+    writef('Completed %p on %p\n', [Operation, Input]).
 
-print_end([Operation, OntologyFile, _]) :-
-    list_p(['Completed', Operation, 'on', OntologyFile]).
+activity(consistency, OperationTime) :-
+    consistency(OperationTime).
 
-activity([consistency, OntologyFile, Output]) :-
-    consistency(OntologyFile, Output).
+activity(classification, OperationTime) :-
+    classify(OperationTime).
 
-activity([classification, OntologyFile, Output]) :-
-    classify(OntologyFile, OperationTime, Output),
-    list_p(['Operation Time:', OperationTime]).
+activity(realisation, OperationTime) :-
+    realisation(OperationTime).
 
-activity([realisation, OntologyFile, Output]) :-
-    realisation(OntologyFile, Output).
-
-list_p(List) :-
-    atomic_list_concat(List, ' ', Print),
-    print(Print), print('\n').
+assert_files(Input, Output) :-
+    atom_concat(Output, '_debug', Debug),
+    atom_concat(Output, '_err', Error),
+    atom_concat(Output, '_info', Info),
+    assert(file(input, Input)),
+    assert(file(output, Output)),
+    assert(file(debug, Debug)),
+    assert(file(error, Error)),
+    assert(file(info, Info)).

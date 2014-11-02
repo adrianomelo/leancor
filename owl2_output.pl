@@ -1,13 +1,15 @@
 
-write_classification_output_file(FileName) :-
+write_classification_output_file :-
+    file(output, FileName),
     open(FileName, write, File),
     current_output(Current),
     set_output(File),
-    write_classification_output(FileName),
+    write_classification_output,
     close(File),
     set_output(Current).
  
-write_classification_output(FileName) :-
+write_classification_output :-
+    file(output, FileName),
     prefix('',Uri),
     writef('Prefix(:=<%p#>)\n\
 Prefix(owl:=<http://www.w3.org/2002/07/owl#>)\n\
@@ -18,7 +20,8 @@ Prefix(rdfs:=<http://www.w3.org/2000/01/rdf-schema#>)\n\n\n\
 Ontology(<file:%p>\n\n', [Uri, FileName]),
     output_axioms,
     writef(')\n').
-write_classification_output(FileName) :-
+write_classification_output :-
+    file(output, FileName),
     writef('Prefix(owl:=<http://www.w3.org/2002/07/owl#>)\n\
 Prefix(rdf:=<http://www.w3.org/1999/02/22-rdf-syntax-ns#>)\n\
 Prefix(xml:=<http://www.w3.org/XML/1998/namespace>)\n\
@@ -35,9 +38,9 @@ output_axioms :-
     forall((subclassof(A,B), not((subclassof(A,C), subclassof(C,B)))), writef('SubClassOf(%p %p)\n', [A, B])).
 
 % File with debug information
-write_debug(OutputOntology, Axioms, Fol, Matrix) :-
-    atom_concat(OutputOntology, '_err', DebugFile),
-    open(DebugFile, write, File),
+write_debug(Axioms, Fol, Matrix) :-
+    file(debug, FileName),
+    open(FileName, write, File),
     current_output(Current),
     set_output(File),
     writef('------- Axioms --------\n'),
@@ -65,9 +68,9 @@ write_debug_matrix([Head|Matrix]) :-
     writef('%p\n', [Head]),
     write_debug_matrix(Matrix).
 
-write_debug_tuple(OutputOntology, Name, Value) :-
-    atom_concat(OutputOntology, '_info', DebugFile),
-    open(DebugFile, append, File),
+write_debug_tuple(Name, Value) :-
+    file(info, FileName),
+    open(FileName, append, File),
     current_output(Current),
     set_output(File),
     writef('%p: %p\n', [Name, Value]),

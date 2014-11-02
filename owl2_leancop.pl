@@ -12,16 +12,14 @@
 % Activities API %
 %%%%%%%%%%%%%%%%%%
 
-classify(InputOntologyFile, OperationTime, OutputOntologyFile) :-
-    setup_matrix(InputOntologyFile, OutputOntologyFile, Concepts),
+classify(OperationTime) :-
+    setup_matrix,
     get_time(Start),
     forall((class(A),class(B),A\=B,not(subclassof(A,B))), test_subsumption(A,B)),
     get_time(End),
-    write_classification_output_file(OutputOntologyFile),
+    write_classification_output_file,
     OperationTime is round((End - Start) * 1000),
-    write_debug_tuple(OutputOntologyFile, 'Classification time', OperationTime),
-    length(Concepts, Size),
-    write_debug_tuple(OutputOntologyFile, 'Concepts', Size), !.
+    write_debug_tuple('Classification time', OperationTime), !.
 
 test_subsumption(Specific, Concept) :-
     A=..[Specific, c],
@@ -43,25 +41,28 @@ prove(Literal,PathLim,Set,Proof) :-
 % Helpers %
 %%%%%%%%%%%
 
-setup_matrix(OntologyFile, OutputFile, Concepts) :-
-    owl2_to_matrix(OntologyFile, OutputFile, Prefixes, Axioms, Fol, Matrix),
+setup_matrix :-
+    owl2_to_matrix(Prefixes, Axioms, Fol, Matrix),
     process_prefixes(Prefixes),
     process_axioms(Axioms, Concepts),
-    assert_clauses(Matrix, conj).
+    assert_clauses(Matrix, conj),
+    length(Concepts, Size),
+    write_debug_tuple('Concepts', Size), !.
     %write_debug(OutputFile, Axioms, Fol, Matrix), !.
 
-owl2_to_matrix(OntologyFile, OutputFile, Prefixes, Axioms, Fol, Matrix) :-
+owl2_to_matrix(Prefixes, Axioms, Fol, Matrix) :-
     get_time(Start1),
+    file(input, OntologyFile),
     parse_owl(OntologyFile, Prefixes, _, Axioms),
     get_time(End1),
     OperationTime1 is round((End1 - Start1) * 1000),
-    write_debug_tuple(OutputFile, 'Parsing time', OperationTime1),
+    write_debug_tuple('Parsing time', OperationTime1),
     get_time(Start2),
     axiom_list_to_fol_formula(Axioms, Fol),
     fol_formula_to_matrix(Fol, Matrix),
     get_time(End2),
     OperationTime2 is round((End2 - Start2) * 1000),
-    write_debug_tuple(OutputFile, 'Convertion to matrix', OperationTime2).
+    write_debug_tuple('Convertion to matrix', OperationTime2).
 
 fol_formula_to_matrix(Fol, Matrix) :- 
     make_matrix(~(Fol), KBMatrix, []),
