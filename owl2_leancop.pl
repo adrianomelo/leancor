@@ -18,7 +18,7 @@ classify(InputOntologyFile, OperationTime, OutputOntologyFile) :-
     get_time(End),
     write_classification_output_file(OutputOntologyFile),
     OperationTime is round((End - Start) * 1000),
-    write_debug_operation_time(OutputOntologyFile, OperationTime), !.
+    write_debug_tuple(OutputOntologyFile, 'Classification time', OperationTime), !.
 
 test_subsumption_list(_, []).
 test_subsumption_list(AllConcepts, [Concept|Concepts]) :-
@@ -53,16 +53,24 @@ prove(Literal,PathLim,Set,Proof) :-
 %%%%%%%%%%%
 
 setup_matrix(OntologyFile, OutputFile, Concepts) :-
-    owl2_to_matrix(OntologyFile, Prefixes, Axioms, Fol, Matrix),
+    owl2_to_matrix(OntologyFile, OutputFile, Prefixes, Axioms, Fol, Matrix),
     process_prefixes(Prefixes),
     process_axioms(Axioms, Concepts),
     assert_clauses(Matrix, conj),
     write_debug(OutputFile, Axioms, Fol, Matrix).
 
-owl2_to_matrix(OntologyFile, Prefixes, Axioms, Fol, Matrix) :-
+owl2_to_matrix(OntologyFile, OutputFile, Prefixes, Axioms, Fol, Matrix) :-
+    get_time(Start1),
     parse_owl(OntologyFile, Prefixes, _, Axioms),
+    get_time(End1),
+    OperationTime1 is round((End1 - Start1) * 1000),
+    write_debug_tuple(OutputFile, 'Parsing time', OperationTime1),
+    get_time(Start2),
     axiom_list_to_fol_formula(Axioms, Fol),
-    fol_formula_to_matrix(Fol, Matrix).
+    fol_formula_to_matrix(Fol, Matrix),
+    get_time(End2),
+    OperationTime2 is round((End2 - Start2) * 1000),
+    write_debug_tuple(OutputFile, 'Convertion to matrix', OperationTime2).
 
 fol_formula_to_matrix(Fol, Matrix) :- 
     make_matrix(~(Fol), KBMatrix, []),

@@ -65,13 +65,11 @@ write_debug_matrix([Head|Matrix]) :-
     writef('%p\n', [Head]),
     write_debug_matrix(Matrix).
 
-write_debug_operation_time(OutputOntology, Time) :-
-    atom_concat(OutputOntology, '_err', DebugFile),
+write_debug_tuple(OutputOntology, Name, Value) :-
+    atom_concat(OutputOntology, '_info', DebugFile),
     open(DebugFile, append, File),
     current_output(Current),
     set_output(File),
-    writef('\n\n------- Database -------\n'),
-    listing(lit(_,_,_,_)),
-    writef('\n\nOperation Time: %p\n', [Time]),
+    writef('%p: %p\n', [Name, Value]),
     close(File),
     set_output(Current).
