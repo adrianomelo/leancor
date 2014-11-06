@@ -106,15 +106,61 @@
 % :- end_tests(examples_from_specification).
 :- begin_tests(basic).
 
+test(uri1) :-
+    Input  = "<http://oaei.ontologymatching.org/2009/benchmarks/228/onto.rdf#Book>",
+    uri(Output, Input, []),
+    Output = uri(url, '<http://oaei.ontologymatching.org/2009/benchmarks/228/onto.rdf#Book>'),
+    uri_to_name(Output, Name, Uri).
+
+test(uri2) :-
+    Input  = "<bib:Author>",
+    uri(Output, Input, []),
+    Output = uri(url, '<bib:Author>').
+
+test(uri3) :-
+    Input  = "<f://m#AdministrativeArea>",
+    uri(Output, Input, []),
+    Output = uri(url, '<f://m#AdministrativeArea>').
+
+test(uri4) :-
+    Input  = "<file:/home/aurona/0AlleWerk/Navorsing/Ontologies/NAP/NAP#Foldable_Wheelchair>",
+    uri(Output, Input, []),
+    Output = uri(url, '<file:/home/aurona/0AlleWerk/Navorsing/Ontologies/NAP/NAP#Foldable_Wheelchair>').
+
+test(uri5) :-
+    Input  = "owl:Thing",
+    uri(Output, Input, []),
+    Output = uri(prefix, owl, 'Thing', 'owl:Thing').
+
+test(uri6) :-
+    Input  = "<http://172.16.83.69/univ-bench-dl.owl#BaseballLover>",
+    uri(Output, Input, []),
+    Output = uri(url, '<http://172.16.83.69/univ-bench-dl.owl#BaseballLover>').
+
+test(uri7) :-
+    Input  = "<http://172.16.83.69/univ-bench-dl.owl/BaseballLover>",
+    uri(Output, Input, []),
+    Output = uri(url, '<http://172.16.83.69/univ-bench-dl.owl/BaseballLover>').
+
+test(uri8) :-
+    Input  = "<http://kb.phenoscape.org/uuid/cc266256-17ca-4cbf-8612-64d42c0032ad-8>",
+    uri(Output, Input, []),
+    Output = uri(url, '<http://kb.phenoscape.org/uuid/cc266256-17ca-4cbf-8612-64d42c0032ad-8>').
+
+test(uri9) :-
+    Input  = "<http://confOf#Social_event>",
+    uri(Output, Input, []),
+    Output = uri(url, '<http://confOf#Social_event>').
+
 test(prefix) :-
     Input  = "Prefix(rdf:=<http://www.w3.org/1999/02/22-rdf-syntax-ns#>)",
     prefix(Output, Input, []),
-    Output == prefix(rdf,'http://www.w3.org/1999/02/22-rdf-syntax-ns').
+    Output == prefix(rdf, uri(url, '<http://www.w3.org/1999/02/22-rdf-syntax-ns#>')).
 
 test(ontologyImport) :-
     Input  = "Import(<http://www.co-ode.org/ontologies/pizza/pizza.owl>)",
     import(Output, Input, []),
-    Output == import('http://www.co-ode.org/ontologies/pizza/pizza.owl').
+    Output == import(uri(url, '<http://www.co-ode.org/ontologies/pizza/pizza.owl>')).
 
 test(uri1) :-
     Input = "ObjectPropertyAssertion(:hasBody :VentanaCheninBlanc :Medium)",
@@ -124,7 +170,7 @@ test(uri1) :-
 test(uri2) :-
     Input = ":atomic-number",
     uri(Output, Input, []),
-    Output == 'atomic-number'.
+    Output == uri(empty, 'atomic-number', ':atomic-number').
 
 test(entity1) :-
     Input = "abc:atomic-number",
@@ -367,7 +413,7 @@ test(sameIndividuals1) :-
 test(prefixes1) :-
     Input = "Prefix(owl:=<http://www.w3.org/2002/07/owl#>)\nPrefix(rdfs:=<http://www.w3.org/2000/01/rdf-schema#>)\n\n",
     prefixes(Prefixes, Input, _),
-    Prefixes = [prefix(owl, 'http://www.w3.org/2002/07/owl'), prefix(rdfs, 'http://www.w3.org/2000/01/rdf-schema')].
+    Prefixes == [prefix(owl, uri(url, '<http://www.w3.org/2002/07/owl#>')), prefix(rdfs, uri(url, '<http://www.w3.org/2000/01/rdf-schema#>'))].
 
 test(ontology1) :-
     Input = "Ontology(<http://www.cin.ufpe.br/~astm/or.owl>\n\nDeclaration(Class(<http://www.cin.ufpe.br/~astm/or.owl#A>))\n)",
@@ -384,33 +430,9 @@ test(ontology2) :-
 test(owl1) :-
     Input = "Prefix(owl:=<http://www.w3.org/2002/07/owl#>)\n\n\nOntology(<http://www.cin.ufpe.br/~astm/or.owl>\n\nDeclaration(Class(<http://www.cin.ufpe.br/~astm/or.owl#A>))\n)",
     owl(Prefixes, Imports, Axioms, Input, []),
-    Prefixes == [prefix(owl, 'http://www.w3.org/2002/07/owl')],
+    Prefixes == [prefix(owl, uri(url, '<http://www.w3.org/2002/07/owl#>'))],
     Imports == [],
     Axioms = [class 'A'].
-
-test(owl2) :-
-    Input = "Prefix(owl:=<http://www.w3.org/2002/07/owl#>)\nPrefix(rdf:=<http://www.w3.org/1999/02/22-rdf-syntax-ns#>)\nPrefix(xml:=<http://www.w3.org/XML/1998/namespace>)\nPrefix(xsd:=<http://www.w3.org/2001/XMLSchema#>)\nPrefix(rdfs:=<http://www.w3.org/2000/01/rdf-schema#>)\n\n\nOntology(<http://www.cin.ufpe.br/~astm/or.owl>\n\nDeclaration(Class(<http://www.cin.ufpe.br/~astm/or.owl#A>))\nSubClassOf(<http://www.cin.ufpe.br/~astm/or.owl#A> ObjectUnionOf(<http://www.cin.ufpe.br/~astm/or.owl#C> <http://www.cin.ufpe.br/~astm/or.owl#B>))\nDeclaration(Class(<http://www.cin.ufpe.br/~astm/or.owl#B>))\nDeclaration(Class(<http://www.cin.ufpe.br/~astm/or.owl#C>))\n)",
-    owl(Prefixes, Imports, Axioms, Input, _),
-    Prefixes == [prefix(owl, 'http://www.w3.org/2002/07/owl'), prefix(rdf, 'http://www.w3.org/1999/02/22-rdf-syntax-ns'), prefix(xml, 'http://www.w3.org/XML/1998/namespace'), prefix(xsd, 'http://www.w3.org/2001/XMLSchema'), prefix(rdfs, 'http://www.w3.org/2000/01/rdf-schema')],
-    Imports == [],
-    Axioms == [
-        class 'A',
-        'A' is_a ('C' or 'B'),
-        class 'B',
-        class 'C'
-    ].
-
-test(owl3) :-
-    Input = "Prefix(owl:=<http://www.w3.org/2002/07/owl#>)\nPrefix(rdf:=<http://www.w3.org/1999/02/22-rdf-syntax-ns#>)\nPrefix(xml:=<http://www.w3.org/XML/1998/namespace>)\nPrefix(xsd:=<http://www.w3.org/2001/XMLSchema#>)\nPrefix(rdfs:=<http://www.w3.org/2000/01/rdf-schema#>)\n\n\nOntology(<http://www.cin.ufpe.br/~astm/or.owl>\n\nDeclaration(Class(<http://www.cin.ufpe.br/~astm/or.owl#A>))\nSubClassOf(<http://www.cin.ufpe.br/~astm/or.owl#A> ObjectUnionOf(<http://www.cin.ufpe.br/~astm/or.owl#C> <http://www.cin.ufpe.br/~astm/or.owl#B>))\nDeclaration(Class(<http://www.cin.ufpe.br/~astm/or.owl#B>))\nDeclaration(Class(<http://www.cin.ufpe.br/~astm/or.owl#C>))\n)\n",
-    owl(Prefixes, Imports, Axioms, Input, []),
-    Prefixes == [prefix(owl, 'http://www.w3.org/2002/07/owl'), prefix(rdf, 'http://www.w3.org/1999/02/22-rdf-syntax-ns'), prefix(xml, 'http://www.w3.org/XML/1998/namespace'), prefix(xsd, 'http://www.w3.org/2001/XMLSchema'), prefix(rdfs, 'http://www.w3.org/2000/01/rdf-schema')],
-    Imports == [],
-    Axioms = [
-        class 'A',
-        'A' is_a ('C' or 'B'),
-        class 'B',
-        class 'C'
-    ].
 
 test(axioms1) :-
     Input  = "Declaration(Class(<http://www.cin.ufpe.br/~astm/owl/bird.owl#Animal>))\n",

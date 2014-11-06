@@ -44,8 +44,8 @@ ontology(Imports, Axioms) -->
 import(import(Uri)) -->
     "Import(", uri(Uri), ")".
 
-declarationClass(class Class) -->
-    "Declaration(Class(", entity(Class), "))".
+declarationClass(class [Class, Uri]) -->
+    "Declaration(Class(", uri(URI), "))", { uri_to_name(URI, Class, Uri) }.
 
 declarationNamedIndividual((individual Name)) -->
     "Declaration(NamedIndividual(", entity(Name), "))".
@@ -237,9 +237,15 @@ entity(Name) -->
 entity(Name) -->
     ":", class_name_chars(Chars), { name(Name, Chars), ! }.
 
-uri(Uri) --> ":", any_chars(Chars), { name(Uri, Chars), ! }.
-uri(Uri) --> "<", any_chars(Chars), "#>", { name(Uri, Chars), ! }.
-uri(Uri) --> "<", any_chars(Chars), ">", { name(Uri, Chars), ! }.
+uri(uri(url, Uri)) -->
+    "<", any_chars(Chars), ">", { name(Uri1, Chars), atomic_list_concat(['<', Uri1, '>'], Uri), ! }.
+
+uri(uri(empty, Name, Uri)) -->
+    ":", any_chars(Chars), { name(Name, Chars), atom_codes(Uri, [58 | Chars]), ! }.
+
+uri(uri(prefix, Prefix, Name, Uri)) -->
+    class_name_chars(Uri1), ":", class_name_chars(Uri2),
+        { name(Prefix, Uri1), name(Name, Uri2), atomic_list_concat([Prefix, ':', Name], Uri), ! }.
 
 dataRange(Name) -->
     entity(Name).
@@ -378,8 +384,14 @@ sameIndividualExpression(Individual) --> entity(Individual).
 %% Helper Rules %
 %%%%%%%%%%%%%%%%%
 
+% 32: ' ', 41: ), 10: \n, 58: ':'
+
 is_any_char(X) :- X >= 0, X < 255, X \== 32, X \== 41, X \== 10.
 is_class_name_char(X) :- X >= 0, X < 255, X \== 32, X \== 41, X \== 10, X \== 58.
+
+uri_to_name(uri(empty, Name, Uri), Name, Uri).
+uri_to_name(uri(prefix, Prefix, Name, Uri), Name, Uri).
+uri_to_name(uri(url, Uri), Uri, Uri).
 
 parse_owl(File, Prefixes, Imports, Axioms) :-
     read_file_to_codes(File, Input, []),
