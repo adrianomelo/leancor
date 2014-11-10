@@ -6,7 +6,7 @@
 
 :- dynamic(subclassof/2).
 :- dynamic(prefix/2).
-:- dynamic(class/1).
+:- dynamic(class/2).
 
 %%%%%%%%%%%%%%%%%%
 % Activities API %
@@ -15,7 +15,7 @@
 classify(OperationTime) :-
     setup_matrix,
     get_time(Start),
-    forall((class(A),class(B),A\=B,not(subclassof(A,B))), test_subsumption(A,B)),
+    forall((class(A,_),class(B,_),A\=B,not(subclassof(A,B))), test_subsumption(A,B)),
     get_time(End),
     write_classification_output_file,
     OperationTime is round((End - Start) * 1000),
@@ -77,8 +77,8 @@ process_prefixes([Head|List]) :-
     process_prefixes(List).
 
 process_axioms([], []).
-process_axioms([class(Concept)|Axioms], [Concept|Concepts]) :-
-    assert(class(Concept)),
+process_axioms([class [Class, Uri]|Axioms], [Concept|Concepts]) :-
+    assert(class(Class, Uri)),
     process_axioms(Axioms, Concepts), !.
 process_axioms([A is_a B|Axioms], Concepts) :-
     atom(A), atom(B),

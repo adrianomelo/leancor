@@ -110,7 +110,8 @@ test(uri1) :-
     Input  = "<http://oaei.ontologymatching.org/2009/benchmarks/228/onto.rdf#Book>",
     uri(Output, Input, []),
     Output = uri(url, '<http://oaei.ontologymatching.org/2009/benchmarks/228/onto.rdf#Book>'),
-    uri_to_name(Output, Name, Uri).
+    uri_to_name(Output, Name, _),
+    Name   = 'Book'.
 
 test(uri2) :-
     Input  = "<bib:Author>",
@@ -120,12 +121,16 @@ test(uri2) :-
 test(uri3) :-
     Input  = "<f://m#AdministrativeArea>",
     uri(Output, Input, []),
-    Output = uri(url, '<f://m#AdministrativeArea>').
+    Output = uri(url, '<f://m#AdministrativeArea>'),
+    uri_to_name(Output, Name, _),
+    Name  = 'AdministrativeArea'.
 
 test(uri4) :-
     Input  = "<file:/home/aurona/0AlleWerk/Navorsing/Ontologies/NAP/NAP#Foldable_Wheelchair>",
     uri(Output, Input, []),
-    Output = uri(url, '<file:/home/aurona/0AlleWerk/Navorsing/Ontologies/NAP/NAP#Foldable_Wheelchair>').
+    Output = uri(url, '<file:/home/aurona/0AlleWerk/Navorsing/Ontologies/NAP/NAP#Foldable_Wheelchair>'),
+    uri_to_name(Output, Name, _),
+    Name = 'Foldable_Wheelchair'.
 
 test(uri5) :-
     Input  = "owl:Thing",
@@ -140,12 +145,16 @@ test(uri6) :-
 test(uri7) :-
     Input  = "<http://172.16.83.69/univ-bench-dl.owl/BaseballLover>",
     uri(Output, Input, []),
-    Output = uri(url, '<http://172.16.83.69/univ-bench-dl.owl/BaseballLover>').
+    Output = uri(url, '<http://172.16.83.69/univ-bench-dl.owl/BaseballLover>'),
+    uri_to_name(Output, Name, _),
+    Name = 'BaseballLover'.
 
 test(uri8) :-
     Input  = "<http://kb.phenoscape.org/uuid/cc266256-17ca-4cbf-8612-64d42c0032ad-8>",
     uri(Output, Input, []),
-    Output = uri(url, '<http://kb.phenoscape.org/uuid/cc266256-17ca-4cbf-8612-64d42c0032ad-8>').
+    Output = uri(url, '<http://kb.phenoscape.org/uuid/cc266256-17ca-4cbf-8612-64d42c0032ad-8>'),
+    uri_to_name(Output, Name, _),
+    Name = 'cc266256-17ca-4cbf-8612-64d42c0032ad-8'.
 
 test(uri9) :-
     Input  = "<http://confOf#Social_event>",
@@ -184,8 +193,8 @@ test(individual) :-
 
 test(classDeclaration2) :-
     Input  = "Declaration(Class(<http://www.cin.ufpe.br/~astm/owl/bird.owl#Animal>))",
-    Output = class 'Animal',
-    declaration(Output, Input, []).
+    declaration(Output, Input, []),
+    Output = class ['Animal', '<http://www.cin.ufpe.br/~astm/owl/bird.owl#Animal>'].
 
 test(individual) :-
     Input  = "ClassAssertion(<http://protege.stanford.edu/plugins/owl/owl-library/koala.owl#Degree> <http://protege.stanford.edu/plugins/owl/owl-library/koala.owl#BA>)",
@@ -417,9 +426,9 @@ test(prefixes1) :-
 
 test(ontology1) :-
     Input = "Ontology(<http://www.cin.ufpe.br/~astm/or.owl>\n\nDeclaration(Class(<http://www.cin.ufpe.br/~astm/or.owl#A>))\n)",
+    ontology(Imports, Axioms, Input, []),
     Imports = [],
-    Axioms = [class 'A' ],
-    ontology(Imports, Axioms, Input, []).
+    Axioms = [class['A', '<http://www.cin.ufpe.br/~astm/or.owl#A>']].
 
 test(ontology2) :-
     Input = "Ontology(<http://cin.ufpe.br/~astm/owl/bird.owl>\nSubClassOf(<http://protege.stanford.edu/plugins/owl/owl-library/koala.owl#TasmanianDevil> <http://protege.stanford.edu/plugins/owl/owl-library/koala.owl#Marsupials>)\n)",
@@ -432,12 +441,12 @@ test(owl1) :-
     owl(Prefixes, Imports, Axioms, Input, []),
     Prefixes == [prefix(owl, uri(url, '<http://www.w3.org/2002/07/owl#>'))],
     Imports == [],
-    Axioms = [class 'A'].
+    Axioms = [class['A', '<http://www.cin.ufpe.br/~astm/or.owl#A>']].
 
 test(axioms1) :-
     Input  = "Declaration(Class(<http://www.cin.ufpe.br/~astm/owl/bird.owl#Animal>))\n",
-    Output = [class 'Animal'],
-    axioms(Output, Input, []).
+    axioms(Output, Input, []),
+    Output = [class ['Animal', '<http://www.cin.ufpe.br/~astm/owl/bird.owl#Animal>']].
 
 test(axioms2) :-
     Input  = "SubClassOf(<http://protege.stanford.edu/plugins/owl/owl-library/koala.owl#TasmanianDevil> <http://protege.stanford.edu/plugins/owl/owl-library/koala.owl#Marsupials>)\nSubClassOf(<http://protege.stanford.edu/plugins/owl/owl-library/koala.owl#TasmanianDevil> <http://protege.stanford.edu/plugins/owl/owl-library/koala.owl#Marsupials>)\n",
@@ -447,7 +456,7 @@ test(axioms2) :-
 test(axioms3) :-
     Input  = "Declaration(Class(<http://www.cin.ufpe.br/~astm/owl/bird.owl#Animal>))\nDeclaration(Class(<http://www.cin.ufpe.br/~astm/owl/bird.owl#Animal>))\nDeclaration(Class(<http://www.cin.ufpe.br/~astm/owl/bird.owl#Animal>))\n",
     axioms(Output, Input, []),
-    Output = [class'Animal', class'Animal', class'Animal'].
+    Output = [class['Animal', '<http://www.cin.ufpe.br/~astm/owl/bird.owl#Animal>'], class['Animal', '<http://www.cin.ufpe.br/~astm/owl/bird.owl#Animal>'], class['Animal', '<http://www.cin.ufpe.br/~astm/owl/bird.owl#Animal>']].
 
 :- end_tests(combined).
 :- run_tests.

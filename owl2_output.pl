@@ -10,32 +10,26 @@ write_classification_output_file :-
  
 write_classification_output :-
     file(output, FileName),
-    prefix('',Uri),
-    writef('Prefix(:=<%p#>)\n\
-Prefix(owl:=<http://www.w3.org/2002/07/owl#>)\n\
-Prefix(rdf:=<http://www.w3.org/1999/02/22-rdf-syntax-ns#>)\n\
-Prefix(xml:=<http://www.w3.org/XML/1998/namespace>)\n\
-Prefix(xsd:=<http://www.w3.org/2001/XMLSchema#>)\n\
-Prefix(rdfs:=<http://www.w3.org/2000/01/rdf-schema#>)\n\n\n\
-Ontology(<file:%p>\n\n', [Uri, FileName]),
-    output_axioms,
-    writef(')\n').
-write_classification_output :-
-    file(output, FileName),
+    absolute_file_name(FileName, Absolute),
     writef('Prefix(owl:=<http://www.w3.org/2002/07/owl#>)\n\
 Prefix(rdf:=<http://www.w3.org/1999/02/22-rdf-syntax-ns#>)\n\
 Prefix(xml:=<http://www.w3.org/XML/1998/namespace>)\n\
 Prefix(xsd:=<http://www.w3.org/2001/XMLSchema#>)\n\
 Prefix(rdfs:=<http://www.w3.org/2000/01/rdf-schema#>)\n\n\n\
-Ontology(<file:%p>\n\n', [FileName]),
+Ontology(<file:%p>\n\n', [Absolute]),
     output_axioms,
     writef(')\n').
 
 output_axioms :-
-    prefix('',Uri),
-    forall((subclassof(A,B), not((subclassof(A,C), subclassof(C,B)))), writef('SubClassOf(<%p#%p> <%p#%p>)\n', [Uri, A, Uri, B])).
+    forall((subclassof(A,B), not((subclassof(A,C), subclassof(C,B)))), write_subclassof(A, B)).
 output_axioms :-
-    forall((subclassof(A,B), not((subclassof(A,C), subclassof(C,B)))), writef('SubClassOf(%p %p)\n', [A, B])).
+    forall((subclassof(A,B), not((subclassof(A,C), subclassof(C,B)))), write_subclassof(A, B)).
+
+write_subclassof(A, B) :-
+    class(A, UriA),
+    class(B, UriB),
+    writef('SubClassOf(%p %p>)\n', [UriA, UriB]).
+
 
 % File with debug information
 write_debug(Axioms, Fol, Matrix) :-

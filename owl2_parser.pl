@@ -264,7 +264,7 @@ property_or_null(null) --> space.
 %%%%%%%%%%%%%%%%%%%%%%
 
 property(Class) --> entity(PropertyName), { Class=..[PropertyName,_,_] }.
-class(ClassName) --> entity(ClassName). %, { Class=..[ClassName,_] }.
+class(Name) --> uri(URI), { uri_to_name(URI, Name, _) }. %, { Class=..[ClassName,_] }.
 
 declaration(Exp) --> declarationClass(Exp), !.
 %declaration(Exp) --> declarationDatatype(Exp), !.
@@ -390,7 +390,14 @@ is_any_char(X) :- X >= 0, X < 255, X \== 32, X \== 41, X \== 10.
 is_class_name_char(X) :- X >= 0, X < 255, X \== 32, X \== 41, X \== 10, X \== 58.
 
 uri_to_name(uri(empty, Name, Uri), Name, Uri).
-uri_to_name(uri(prefix, Prefix, Name, Uri), Name, Uri).
+uri_to_name(uri(prefix, _, Name, Uri), Name, Uri).
+uri_to_name(uri(url, Uri), Name, Uri) :-                    % <http://oaei.ontologymatching.org/2009/benchmarks/228/onto.rdf#Book>
+    atomic_list_concat([_, Name1], '#', Uri),
+    atomic_list_concat([Name, _], '>', Name1), !.
+uri_to_name(uri(url, Uri), Name, Uri) :-                    % <http://oaei.ontologymatching.org/2009/benchmarks/228/onto.rdf/Book>
+    atomic_list_concat(List, '/', Uri),
+    append(_, [Name1], List),
+    atomic_list_concat([Name, _], '>', Name1), !.
 uri_to_name(uri(url, Uri), Uri, Uri).
 
 parse_owl(File, Prefixes, Imports, Axioms) :-
