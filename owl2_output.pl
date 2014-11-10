@@ -28,7 +28,7 @@ output_axioms :-
 write_subclassof(A, B) :-
     class(A, UriA),
     class(B, UriB),
-    writef('SubClassOf(%p %p>)\n', [UriA, UriB]).
+    writef('SubClassOf(%p %p)\n', [UriA, UriB]).
 
 
 % File with debug information
