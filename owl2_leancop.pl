@@ -70,6 +70,18 @@ fol_formula_to_matrix(Fol, Matrix) :-
     make_matrix(~(F), EqMatrix, []),
     append(KBMatrix, EqMatrix, Matrix).
 
+parse_owl(File, Prefixes, Imports, Axioms) :-
+    read_file_to_codes(File, Input, []),
+    (phrase(owl(Prefixes, Imports, Axioms), Input, _) -> 
+        write_debug_tuple('Parsed', 'true')
+        ; % print debug information
+        write_debug_tuple('Parsed', 'false'),
+        atom_codes(InputAtom, Input),
+        atomic_list_concat([PreOnto, PostOnto], 'Ontology', InputAtom),
+        atomic_list_concat(AxiomList, '\n', PostOnto),
+        forall((member(Ax, AxiomList), atom_codes(Ax, AxInput)), (axiom(_, AxInput, []) -> true; write_debug_tuple(Ax, 'failed'))),
+        fail).
+
 
 process_prefixes([]).
 process_prefixes([Head|List]) :-

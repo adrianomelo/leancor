@@ -400,10 +400,6 @@ uri_to_name(uri(url, Uri), Name, Uri) :-                    % <http://oaei.ontol
     atomic_list_concat([Name, _], '>', Name1), !.
 uri_to_name(uri(url, Uri), Uri, Uri).
 
-parse_owl(File, Prefixes, Imports, Axioms) :-
-    read_file_to_codes(File, Input, []),
-    owl(Prefixes, Imports, Axioms, Input, _).
-
 %%%%%%%%%%%%%%%%%%%
 %% Helper Clauses %
 %%%%%%%%%%%%%%%%%%%
