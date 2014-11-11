@@ -196,10 +196,15 @@ test(classDeclaration2) :-
     declaration(Output, Input, []),
     Output = class ['Animal', '<http://www.cin.ufpe.br/~astm/owl/bird.owl#Animal>'].
 
-test(individual) :-
+test(individual1) :-
     Input  = "ClassAssertion(<http://protege.stanford.edu/plugins/owl/owl-library/koala.owl#Degree> <http://protege.stanford.edu/plugins/owl/owl-library/koala.owl#BA>)",
     Output = 'Degree' assert 'BA',
     classAssertion(Output, Input, []).
+
+test(individual2) :- 
+    Input  = "ClassAssertion(<http://purl.obolibrary.org/obo/BFO_0000053_some_http://purl.obolibrary.org/obo/PATO_0000467> <http://kb.phenoscape.org/uuid/cc266256-17ca-4cbf-8612-64d42c0032ad-10>)",
+    classAssertion(Output, Input, []),
+    Output = 'PATO_0000467' assert 'cc266256-17ca-4cbf-8612-64d42c0032ad-10'.
 
 test(hasKey1) :-
     Input  = "HasKey(:Thing ( ) ())",
