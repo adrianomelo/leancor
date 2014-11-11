@@ -229,13 +229,7 @@ sameIndividual(SameIndividual) -->
     "SameIndividual(", sameIndividualExpression(SameIndividual), ")".
 
 entity(Name) -->
-    "<", any_chars(_), "#", word(Name), ">", { ! }.
-
-entity(Name) -->
-    class_name_chars(_), ":", class_name_chars(Chars), { name(Name, Chars), ! }.
-
-entity(Name) -->
-    ":", class_name_chars(Chars), { name(Name, Chars), ! }.
+    uri(URI), { uri_to_name(URI, Name, _) }.
 
 uri(uri(url, Uri)) -->
     "<", any_chars(Chars), ">", { name(Uri1, Chars), atomic_list_concat(['<', Uri1, '>'], Uri), ! }.
