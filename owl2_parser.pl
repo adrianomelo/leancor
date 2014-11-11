@@ -215,6 +215,9 @@ equivalentDataProperties(Equivalent) -->
 equivalentObjectProperties(Equivalent) -->
     "EquivalentObjectProperties(", equivalentObjectPropertiesExpression(Equivalent), ")".
 
+disjointObjectProperties(Disjoint) -->
+    "DisjointObjectProperties(", disjointObjectPropertiesExpression(Disjoint), ")".
+
 disjointClasses(Disjoint) -->
     "DisjointClasses(", disjointExpression(Disjoint), ")".
 
@@ -299,7 +302,7 @@ classExpression(Exp) --> class(Exp).
 
 objectPropertyAxiom(Ax) --> subObjectPropertyOf(Ax), !.
 objectPropertyAxiom(Ax) --> equivalentObjectProperties(Ax), !.
-%objectPropertyAxiom(Ax) --> disjointObjectProperties(Ax), !.
+objectPropertyAxiom(Ax) --> disjointObjectProperties(Ax), !.
 objectPropertyAxiom(Ax) --> inverseObjectProperties(Ax), !.
 objectPropertyAxiom(Ax) --> objectPropertyDomain(Ax), !.
 objectPropertyAxiom(Ax) --> objectPropertyRange(Ax), !.
@@ -363,6 +366,9 @@ equivalentObjectPropertiesExpression(Expression) --> entity(Expression).
 
 equivalentDataPropertiesExpression((Exp1 equivalent_p Exp2)) --> entity(Exp1), " ", equivalentDataPropertiesExpression(Exp2), !.
 equivalentDataPropertiesExpression(Expression) --> entity(Expression).
+
+disjointObjectPropertiesExpression((Exp1 disjoint_p Exp2)) --> entity(Exp1), " ", disjointObjectPropertiesExpression(Exp2), !.
+disjointObjectPropertiesExpression(Expression) --> entity(Expression).
 
 disjointExpression((Exp1 disjoint Exp2)) --> class(Exp1), " ", disjointExpression(Exp2), !.
 disjointExpression(Expression) --> class(Expression).

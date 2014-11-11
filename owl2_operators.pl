@@ -14,6 +14,7 @@
 :- op(100, xfx, [is_a,
                 subproperty,
                 same,                           % same individuals
+                disjoint_p,                     % disjoint properties
                 equivalent,                     % equivalent classes
                 equivalent_p]).                 % equivalent object and data properties
 

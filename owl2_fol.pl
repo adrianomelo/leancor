@@ -38,6 +38,10 @@ to_fol(A equivalent_p B, (all X: (all Y: (Fa <=> Fb)))) :-
     Fa=..[A,X,Y],
     Fb=..[B,X,Y]. 
 
+to_fol(A disjoint_p B, (all X: (all Y: (Fa <=> ~Fb)))) :-
+    Fa=..[A,X,Y],
+    Fb=..[B,X,Y].
+
 to_fol(A inverse B, (all X: (all Y: (Fa => Fb)))) :-
     Fa=..[A,X,Y],
     Fb=..[B,Y,X].
