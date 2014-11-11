@@ -75,8 +75,7 @@ dataPropertyRange((PropertyName range Exp)) -->
     "DataPropertyRange(", entity(PropertyName), " ", classExpression(Exp), ")".
 
 dataPropertyAssertion((PropetyName assert_p [Ind1, Ind2])) --> 
-    "DataPropertyAssertion(", entity(PropetyName), " ", entity(Ind1), " ", any_chars(Chars), ")",
-        { name(Ind2, Chars), ! }.
+    "DataPropertyAssertion(", entity(PropetyName), " ", entity(Ind1), " ", literal(Ind2), ")".
 
 inverseObjectProperties((PropertyA inverse PropertyB)) -->
     "InverseObjectProperties(", entity(PropertyA), " ", entity(PropertyB), ")".
@@ -244,7 +243,10 @@ uri(uri(prefix, Prefix, Name, Uri)) -->
 dataRange(Name) -->
     entity(Name).
 
-literal(Name) -->
+literal(Name) --> % "Best Practice"^^xsd:string
+    quotedString(Name), "^^", uri(_), { ! }.
+
+literal(Name) --> % "Best Practice"^^xsd:string
     quotedString(Name).
 
 quotedString(Name) --> 

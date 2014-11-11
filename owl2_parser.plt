@@ -253,7 +253,7 @@ test(propertyassertion1) :-
 
 test(propertyassertion2) :-
     Input  = "DataPropertyAssertion(<http://www.cin.ufpe.br/~astm/dataproperty#temNome> <http://www.cin.ufpe.br/~astm/dataproperty#c> \"nomeC\")",
-    Output = temNome assert_p [c, '"nomeC"'],
+    Output = temNome assert_p [c, nomeC],
     assertion(Output, Input, []).
 
 test(negativeObjectPropertyAssertion) :-
@@ -261,10 +261,10 @@ test(negativeObjectPropertyAssertion) :-
     assertion(Output, Input, []),
     Output = hasSon negative_p ['Peter', 'Meg'].
 
-% test(negativeDataPropertyAssertion) :-
-%     Input = "NegativeDataPropertyAssertion(a:hasAge a:Meg \"5\"^^xsd:integer)",
-%     assertion(Output, Input, []),
-%     Output = hasAge negative_p ['Meg', 5].
+test(negativeDataPropertyAssertion) :-
+    Input = "NegativeDataPropertyAssertion(a:hasAge a:Meg \"5\"^^xsd:integer)",
+    assertion(Output, Input, []),
+    Output = hasAge negative_p ['Meg', 5].
 
 test(somevaluesfrom1) :-
     Input  = "ObjectSomeValuesFrom(<http://protege.stanford.edu/plugins/owl/owl-library/koala.owl#hasHabitat> <http://protege.stanford.edu/plugins/owl/owl-library/koala.owl#DryEucalyptForest>)",
