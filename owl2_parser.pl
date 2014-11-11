@@ -56,8 +56,8 @@ declarationObjectProperty((property Property)) -->
 declarationDataProperty((property Property)) -->
     "Declaration(DataProperty(", entity(Property), "))".
 
-classAssertion((ClassName assert InstanceName)) --> 
-    "ClassAssertion(", entity(ClassName), " ", entity(InstanceName), ")".
+classAssertion((Exp assert InstanceName)) --> 
+    "ClassAssertion(", classExpression(Exp), " ", entity(InstanceName), ")".
 
 objectPropertyDomain((PropertyName domain Exp)) -->
     "ObjectPropertyDomain(", entity(PropertyName), " ", classExpression(Exp), ")".

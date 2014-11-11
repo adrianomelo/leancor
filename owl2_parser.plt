@@ -206,6 +206,10 @@ test(individual2) :-
     classAssertion(Output, Input, []),
     Output = 'PATO_0000467' assert 'cc266256-17ca-4cbf-8612-64d42c0032ad-10'.
 
+test(individual3) :-
+    Input  = "ClassAssertion(ObjectAllValuesFrom(<http://purl.obolibrary.org/obo/IAO_0000219> <http://kb.phenoscape.org/uuid/38230db5-38b0-47b7-bc1d-3c9f2e501bbb-4>) <http://kb.phenoscape.org/uuid/38230db5-38b0-47b7-bc1d-3c9f2e501bbb-3>)",
+    classAssertion(Output, Input, []).
+
 test(hasKey1) :-
     Input  = "HasKey(:Thing ( ) ())",
     Output = 'Thing' haskey [null, null],

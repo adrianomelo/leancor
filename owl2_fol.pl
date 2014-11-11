@@ -12,7 +12,7 @@ to_fol(A disjoint B, (all New: (Fa => ~Fb))) :-
     to_fol(New, B, Fb).
 
 to_fol(A assert B, F) :-
-    F=..[A,B].
+    to_fol(B, A, F).
 
 to_fol(P assert_p [A, B], F) :-
     F=..[P,A,B].
