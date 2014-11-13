@@ -1,0 +1,40 @@
+# Reasoner configuration file.
+# Lines starting with '#' are interpreted as comments (like this line).
+# Each non-comment line starts with a key followed by one or more values. 
+# All values must be separated by tabs (i.e., by the character '	').
+
+# The official name of the reasoner.
+ReasonerName	leancor
+
+# The output sub-directory in the 'responses' folder, must not contain characters that are not allowed for paths/files.
+OutputPathName	leancor
+
+# The starter script that is executed to start the reasoner, must be executable!
+StarterScript	RELATIVETOSOURCEDIRECTORY	./execReasoner.sh
+
+# The working directory for the reasoner process. It should not be necessary to change this.
+WorkingDirectory	RELATIVETOSOURCEDIRECTORY	./
+
+# The used interface for the reasoner, must be 'OREV2' for the ORE 2014 competition.
+InterfaceType	OREV2
+
+# The ontology serialisation format that is required by the reasoner.
+# Must be:
+# - 'OWL2XML' (for the OWL 2 XML serialisation format <http://www.w3.org/TR/2012/REC-owl2-syntax-20121211/>), or
+# - 'OWL2FUNCTIONAL' (for the OWL 2 Functional Style serialisation format <http://www.w3.org/TR/2012/REC-owl2-xml-serialization-20121211/>), or
+# - 'RDFXML' (for the RDF/XML mapping of OWL 2, <http://www.w3.org/TR/2012/REC-owl2-mapping-to-rdf-20121211/>), or
+# - 'ANY' (if the reasoner supports all ontology serialisation formats, e.g., by using the OWL API).
+# Note that the evaluation framework automatically converts the ontologies into the required format (except for the 'ANY' configuration, where the original ontologies are directly used).
+OntologyFormatType	OWL2FUNCTIONAL
+
+# The OWL 2 Profiles that are supported by the reasoner.
+# The specified profiles must be separated by tabs, e.g., if the reasoner supports EL and RL, then the following line can be used:
+# ProfileSupport	EL	RL
+# The evaluation framework reports errors if the reasoner calculates unexpected results for ontologies in supported profiles.
+ProfileSupport	EL
+
+# Specifies whether the reasoner supports the OWL 2 datatypes.
+DatatypeSupport	FALSE
+
+# Specifies whether the reasoner supports DL-safe/SWRL rules.
+RuleSupport	FALSE
