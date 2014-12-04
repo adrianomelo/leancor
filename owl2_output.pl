@@ -1,3 +1,4 @@
+:- [owl2_utils].
 
 write_classification_output_file :-
     file(output, FileName),
@@ -21,14 +22,20 @@ Ontology(<file:%p>\n\n', [Absolute]),
     writef(')\n').
 
 output_axioms :-
-    forall((subclassof(A,B), not((subclassof(A,C), subclassof(C,B)))), write_subclassof(A, B)).
-output_axioms :-
-    forall((subclassof(A,B), not((subclassof(A,C), subclassof(C,B)))), write_subclassof(A, B)).
+    forall((subclassof(A,B), not(indirect(A,B)), not(indirect(B,A))), write_subclassof(A, B)),
+    forall((subclassof(A,B), compare(<,A,B), (subclassof(B,A) ; indirect(B,A))), write_equivalentclasses(A, B)).
+;output_axioms :-
+;    forall((subclassof(A,B), not((subclassof(A,C), subclassof(C,B)))), write_subclassof(A, B)).
 
 write_subclassof(A, B) :-
     class(A, UriA),
     class(B, UriB),
     writef('SubClassOf(%p %p)\n', [UriA, UriB]).
+
+write_equivalentclasses(A, B) :-
+    class(A, UriA),
+    class(B, UriB),
+    writef('EquivalentClasses(%p %p)\n', [UriA, UriB]).
 
 
 % File with debug information
