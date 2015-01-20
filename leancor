@@ -13,4 +13,4 @@
 # ./leancor sat test/pizza.owl test/output/pizza-sat.csv http://www.co-ode.org/ontologies/pizza/pizza.owl#IceCream
 echo -n > $3_info
 ulimit -t 360
-swipl -O -q -G7g -T7g -L7g -f owl2_cli.pl -t halt. -g ore $* 2> "$3_err"
+swipl -O -q -G7g -T7g -L7g -f owl2_cli.pl -t halt. -g main $* 2> "$3_err"

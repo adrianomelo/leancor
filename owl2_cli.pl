@@ -3,12 +3,25 @@
 
 :- dynamic(file/2).
 
-ore :-
+main :-
     current_prolog_flag(argv, Argv),
-    append(_, [O,In,Out], Argv),
-    run(O, In, Out).
+    run(Argv).
 
-run(Operation, Input, Output) :-
+run(Args) :-
+    member(time, Args),
+    append(_, [O,In,Out], Args),
+    time(O, In, Out), !.
+
+run(Args) :-
+    append(_, [O,In,Out], Args),
+    ore(O, In, Out), !.
+
+time(Operation, Input, Output) :-
+    assert_files(Input, Output),
+    activity(Operation, OperationTime),
+    writef("%p\n", [OperationTime]).
+
+ore(Operation, Input, Output) :-
     writef('Started %p on %p\n', [Operation, Input]),
     assert_files(Input, Output),
     activity(Operation, OperationTime),
