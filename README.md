@@ -4,19 +4,19 @@ A fork of leanCoR that aims description logics reasoning.
 
 Usage
 =======
-Check consistency
+Check consistency (not supported yet)
 
 ```
-./leancor consistency test/pizza.owl test/output/pizza-consistency.csv
+./leancor consistency tests/ontologies/examples/ontology_travel.owl ../travel-consistency.csv
 ```
 
 Classify ontology
 
 ```
-./leancor classification test/pizza.owl test/output/pizza-classification.owl
+./leancor classification tests/ontologies/examples/ontology_travel.owl ../travel.owl
 ```
 
-Check satisfiability of concept names
+Check satisfiability of concept names (not supported yet)
 
 ```
 ./leancor sat test/pizza.owl test/output/pizza-sat.csv http://www.co-ode.org/ontologies/pizza/pizza.owl#SloppyGiuseppe
