@@ -24,8 +24,8 @@ Ontology(<file:%p>\n\n', [Absolute]),
 output_axioms :-
     forall((subclassof(A,B), not(indirect(A,B)), not(indirect(B,A))), write_subclassof(A, B)),
     forall((subclassof(A,B), compare(<,A,B), (subclassof(B,A) ; indirect(B,A))), write_equivalentclasses(A, B)).
-;output_axioms :-
-;    forall((subclassof(A,B), not((subclassof(A,C), subclassof(C,B)))), write_subclassof(A, B)).
+%output_axioms :-
+%    forall((subclassof(A,B), not((subclassof(A,C), subclassof(C,B)))), write_subclassof(A, B)).
 
 write_subclassof(A, B) :-
     class(A, UriA),
