@@ -45,6 +45,7 @@ setup_matrix :-
     owl2_to_matrix(Prefixes, Axioms, _UnUsed_Fol, Matrix),
     process_prefixes(Prefixes),
     process_axioms(Axioms, Concepts),
+    assert(class(thing, 'owl:Thing')),
     assert_clauses(Matrix, conj),
     length(Concepts, Size),
     write_debug_tuple('Concepts', Size), !.
@@ -82,7 +83,6 @@ parse_owl(File, Prefixes, Imports, Axioms) :-
         forall((member(Ax, AxiomList), atom_codes(Ax, AxInput)), (axiom(_, AxInput, []) -> true; write_debug_tuple(Ax, 'failed'))),
         fail).
 
-
 process_prefixes([]).
 process_prefixes([Head|List]) :-
     assert(Head),
@@ -91,6 +91,7 @@ process_prefixes([Head|List]) :-
 process_axioms([], []).
 process_axioms([class [Class, Uri]|Axioms], [_UnUsed_Concept|Concepts]) :-
     assert(class(Class, Uri)),
+    assert(subclassof(Class, thing)),
     process_axioms(Axioms, Concepts), !.
 process_axioms([A is_a B|Axioms], Concepts) :-
     atom(A), atom(B),
