@@ -119,18 +119,19 @@ to_fol(New, A value B, (Fa)) :-
 to_fol(New, self A, (Fa)) :-
     Fa=..[A,New,New].
 
-to_fol(New, [Number, P] min A, unknow).
-to_fol(New, Number min A, unknow).
-to_fol(New, [Number, P] min_d A, unknow).
-to_fol(New, Number min_d A, unknow).
-to_fol(New, [Number, P] max A, unknow).
-to_fol(New, Number max A, unknow).
-to_fol(New, [Number, P] max_d A, unknow).
-to_fol(New, Number max_d A, unknow).
-to_fol(New, [Number, P] exact A, unknow).
-to_fol(New, Number exact A, unknow).
-to_fol(New, [Number, P] exact_d A, unknow).
-to_fol(New, Number exact_d A, unknow).
+% TODO: cardinality axioms
+to_fol(_New, [_Number, _P] min _A, unknow).
+to_fol(_New, _Number min _A, unknow).
+to_fol(_New, [_Number, _P] min_d _A, unknow).
+to_fol(_New, _Number min_d _A, unknow).
+to_fol(_New, [_Number, _P] max _A, unknow).
+to_fol(_New, _Number max _A, unknow).
+to_fol(_New, [_Number, _P] max_d _A, unknow).
+to_fol(_New, _Number max_d _A, unknow).
+to_fol(_New, [_Number, _P] exact _A, unknow).
+to_fol(_New, _Number exact _A, unknow).
+to_fol(_New, [_Number, _P] exact_d _A, unknow).
+to_fol(_New, _Number exact_d _A, unknow).
 
 to_fol(New, A, (Fa)) :-
     Fa=..[A,New].

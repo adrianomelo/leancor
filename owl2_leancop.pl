@@ -42,7 +42,7 @@ prove(Literal,PathLim,Set,Proof) :-
 %%%%%%%%%%%
 
 setup_matrix :-
-    owl2_to_matrix(Prefixes, Axioms, Fol, Matrix),
+    owl2_to_matrix(Prefixes, Axioms, _UnUsed_Fol, Matrix),
     process_prefixes(Prefixes),
     process_axioms(Axioms, Concepts),
     assert_clauses(Matrix, conj),
@@ -77,7 +77,7 @@ parse_owl(File, Prefixes, Imports, Axioms) :-
         ; % print debug information
         write_debug_tuple('Parsed', 'false'),
         atom_codes(InputAtom, Input),
-        atomic_list_concat([PreOnto, PostOnto], 'Ontology', InputAtom),
+        atomic_list_concat([_TODO_PreOnto, PostOnto], 'Ontology', InputAtom),
         atomic_list_concat(AxiomList, '\n', PostOnto),
         forall((member(Ax, AxiomList), atom_codes(Ax, AxInput)), (axiom(_, AxInput, []) -> true; write_debug_tuple(Ax, 'failed'))),
         fail).
@@ -89,7 +89,7 @@ process_prefixes([Head|List]) :-
     process_prefixes(List).
 
 process_axioms([], []).
-process_axioms([class [Class, Uri]|Axioms], [Concept|Concepts]) :-
+process_axioms([class [Class, Uri]|Axioms], [_UnUsed_Concept|Concepts]) :-
     assert(class(Class, Uri)),
     process_axioms(Axioms, Concepts), !.
 process_axioms([A is_a B|Axioms], Concepts) :-
