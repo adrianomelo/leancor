@@ -15,7 +15,7 @@
 classify(OperationTime) :-
     setup_matrix,
     get_time(Start),
-    forall((class(A,_),class(B,_),A\=B,not(subclassof(A,B))), test_subsumption(A,B)),
+    forall((class(_,A),class(_,B),A\=B,not(subclassof(A,B))), test_subsumption(A,B)),
     get_time(End),
     write_classification_output_file,
     OperationTime is round((End - Start) * 1000),
@@ -91,7 +91,7 @@ process_prefixes([Head|List]) :-
 process_axioms([], []).
 process_axioms([class [Class, Uri]|Axioms], [_UnUsed_Concept|Concepts]) :-
     assert(class(Class, Uri)),
-    assert(subclassof(Class, thing)),
+    assert(subclassof(Uri, 'owl:Thing')),
     process_axioms(Axioms, Concepts), !.
 process_axioms([A is_a B|Axioms], Concepts) :-
     atom(A), atom(B),

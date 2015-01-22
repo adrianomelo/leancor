@@ -230,8 +230,8 @@ differentIndividuals(Different) -->
 sameIndividual(SameIndividual) -->
     "SameIndividual(", sameIndividualExpression(SameIndividual), ")".
 
-entity(Name) -->
-    uri(URI), { uri_to_name(URI, Name, _) }.
+entity(Uri) -->
+    uri(URI), { uri_to_name(URI, _Name, Uri) }.
 
 uri(uri(url, Uri)) -->
     "<", any_chars(Chars), ">", { name(Uri1, Chars), atomic_list_concat(['<', Uri1, '>'], Uri), ! }.
@@ -263,7 +263,7 @@ property_or_null(null) --> space.
 %%%%%%%%%%%%%%%%%%%%%%
 
 property(Class) --> entity(PropertyName), { Class=..[PropertyName,_,_] }.
-class(Name) --> uri(URI), { uri_to_name(URI, Name, _) }. %, { Class=..[ClassName,_] }.
+class(Uri) --> uri(URI), { uri_to_name(URI, _Name, Uri) }. %, { Class=..[ClassName,_] }.
 
 declaration(Exp) --> declarationClass(Exp), !.
 %declaration(Exp) --> declarationDatatype(Exp), !.

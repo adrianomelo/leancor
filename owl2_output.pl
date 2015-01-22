@@ -27,14 +27,10 @@ output_axioms :-
 %output_axioms :-
 %    forall((subclassof(A,B), not((subclassof(A,C), subclassof(C,B)))), write_subclassof(A, B)).
 
-write_subclassof(A, B) :-
-    class(A, UriA),
-    class(B, UriB),
+write_subclassof(UriA, UriB) :-
     writef('SubClassOf(%p %p)\n', [UriA, UriB]).
 
-write_equivalentclasses(A, B) :-
-    class(A, UriA),
-    class(B, UriB),
+write_equivalentclasses(UriA, UriB) :-
     writef('EquivalentClasses(%p %p)\n', [UriA, UriB]).
 
 
