@@ -40,7 +40,7 @@ do
                         diff -u /tmp/out2 /tmp/out1 > $diff_file
 
                         report_file="$report_dir/$file.report.txt"
-                        python "related-axioms.py $diff_file $ontology_dir/$file" > $report_file
+                        python "./related_axioms.py" "$diff_file" "$ontology_dir/$file" > $report_file
 
                         adds=`cat $diff_file | grep '\+SubClassOf' | wc -l`
                         deletes=`cat $diff_file | grep '\-SubClassOf' | wc -l`

@@ -52,11 +52,5 @@ def process_files(diff_file, ontology_file):
 		print '\n'.join(axioms)
 
 if __name__ == '__main__':
-	#diffs = os.listdir(report_dir)
-	#for diff in diffs:
-	#	diff_file = report_dir + '/' + diff
-	#	ontology_file = ontology_dir + '/' + diff[:-4]
-
-	print  str(sys.argv)
 	process_files(sys.argv[1], sys.argv[2])
 	
