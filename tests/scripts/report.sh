@@ -39,10 +39,13 @@ do
                         diff_file="$report_dir/$file.txt"
                         diff -u /tmp/out2 /tmp/out1 > $diff_file
 
+                        report_file="$report_dir/$file.report.txt"
+                        python "related-axioms.py $diff_file $ontology_dir/$file" > $report_file
+
                         adds=`cat $diff_file | grep '\+SubClassOf' | wc -l`
                         deletes=`cat $diff_file | grep '\-SubClassOf' | wc -l`
 
-                        echo "We need $adds new axioms and $deletes less axioms, $server_addr/$file.txt"
+                        echo "We need $adds new axioms and $deletes less axioms, $server_addr/$file.report.txt"
                         unexpected=$(($unexpected+1))
                 fi
         else
