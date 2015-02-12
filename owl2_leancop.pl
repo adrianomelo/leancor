@@ -49,10 +49,11 @@ setup_matrix :-
     assert_clauses(Matrix, conj), !.
     %write_debug(Axioms, Fol, Matrix), !.
 
-process_ontology(Prefixes, Axioms, NewClauses) :-
+process_ontology(Prefixes, Axioms, NewAxioms) :-
     process_prefixes(Prefixes),
     process_axioms(Axioms),
-    post_process(NewClauses).
+    post_process(NewAxioms),
+    process_axioms(NewAxioms).
 
 %%%%%%%%%%%%%%%%%%%%
 % Axioms to matrix %
