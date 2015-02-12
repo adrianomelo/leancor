@@ -11,7 +11,7 @@ ontology_path='ore2014/files'
 ontology_dir="$root/data/ontologies/$ontology_path"
 
 def find_uris(string):
-	return re.findall('<[^>]*>', string)
+	return re.findall('<[^>]*>', string) + re.findall('[a-z]+:[a-zA-Z]+', string)
 
 def find_axiom_related_with(ontology, uri):
 	lines = ontology.split('\n')
@@ -27,11 +27,12 @@ def process_files(diff_file, ontology_file):
 	uris_uris = {}
 
 	errors = open(diff_file, 'r').readlines()
-	errors = [e for e in errors if e[0] == '+' or e[0] == '-']
+	errors = [e for e in errors if (e[0] == '+' or e[0] == '-')]
 	pairs = map(find_uris, errors)
 
 	ontology = open(ontology_file, 'r').read()
 	all_uris = find_uris(ontology)
+	all_uris.append('owl:Thing')
 
 	for uri in all_uris:
 		if not uris_axioms.has_key(uri):
@@ -40,7 +41,7 @@ def process_files(diff_file, ontology_file):
 	for i in xrange(len(pairs)):
 		pair = pairs[i]
 
-		if (len(pair) != 2):
+		if (len(pair) < 1):
 			continue
 
 		print "-" * 100
