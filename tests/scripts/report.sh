@@ -6,6 +6,7 @@ ontology_path='ore2014/files'
 winner_reasoner='trowl-linux'
 leancor_reasoner='leancor'
 
+script_dir=`dirname $0`
 root='/home/adr/tests/ore-competition'
 filelist="$root/data/competitions/$file_list_name"
 ontology_dir="$root/data/ontologies/$ontology_path"
@@ -40,7 +41,7 @@ do
                         diff -u /tmp/out2 /tmp/out1 > $diff_file
 
                         report_file="$report_dir/$file.report.txt"
-                        python "./related_axioms.py" "$diff_file" "$ontology_dir/$file" > $report_file
+                        python "$script_dir/related_axioms.py" "$diff_file" "$ontology_dir/$file" > $report_file
 
                         adds=`cat $diff_file | grep '\+SubClassOf' | wc -l`
                         deletes=`cat $diff_file | grep '\-SubClassOf' | wc -l`
