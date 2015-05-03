@@ -7,10 +7,21 @@
 :- dynamic(subclassof/2).
 :- dynamic(prefix/2).
 :- dynamic(class/2).
+:- dynamic(consistent/1).
 
 %%%%%%%%%%%%%%%%%%
 % Activities API %
 %%%%%%%%%%%%%%%%%%
+
+consistency(OperationTime) :-
+    setup_matrix,
+    get_time(Start),
+    (prove(1, [cut,comp(7)], _) ->
+        asserta(consistent(false));
+        asserta(consistent(true))),
+    get_time(End),
+    OperationTime is round((End - Start) * 1000),
+    write_consistency_output.
 
 classify(OperationTime) :-
     setup_matrix,

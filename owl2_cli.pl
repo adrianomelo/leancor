@@ -43,6 +43,7 @@ assert_files(Input, Output) :-
     atom_concat(Output, '_info', Info),
     assert(file(input, Input)),
     assert(file(output, Output)),
+    assert(file(consistency, Output)),
     assert(file(debug, Debug)),
     assert(file(error, Error)),
     assert(file(info, Info)).

@@ -1,5 +1,14 @@
 :- [owl2_utils].
 
+write_consistency_output :-
+    file(consistency, FileName),
+    open(FileName, write, File),
+    current_output(Current),
+    set_output(File),
+    writef(Value),
+    close(File),
+    set_output(Current).
+
 write_classification_output_file :-
     file(output, FileName),
     open(FileName, write, File),
