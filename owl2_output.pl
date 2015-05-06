@@ -5,6 +5,7 @@ write_consistency_output :-
     open(FileName, write, File),
     current_output(Current),
     set_output(File),
+    consistent(Value),
     writef(Value),
     close(File),
     set_output(Current).
