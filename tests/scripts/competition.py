@@ -13,7 +13,7 @@ ontologies = {}
 
 def process_file(ontology):
 	content = file(ontologies_dir + ontology, 'r').read()
-	matches = re.findall('[A-Z][A-Za-z]+\(', content)
+	matches = re.findall('\\n[A-Z][A-Za-z]+\(', content)
 	matches = [a[:-1] for a in matches]
 	axioms = sets.ImmutableSet(matches)
 	key = hash(axioms)
@@ -34,7 +34,8 @@ if __name__ == "__main__":
 		if count > 200:
 			break
 		#count += 1
-		process_file(f)
+		if (f[-3:] == 'owl'):
+			process_file(f)
 	
 	output = []
 	for (key,ontos) in ontologies.items():
