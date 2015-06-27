@@ -13,7 +13,8 @@ ontologies = {}
 
 def process_file(ontology):
 	content = file(ontologies_dir + ontology, 'r').read()
-	matches = re.findall('\\n[A-Z][A-Za-z]+\(', content)
+	matches = re.findall('[A-Z][A-Za-z]+\(', content)
+	matches = matches + re.findall('(Data[A-Za-z]+\(|Object[a-zA-Z]+\(|HasKey)', content)
 	matches = [a[:-1] for a in matches]
 	axioms = sets.ImmutableSet(matches)
 	key = hash(axioms)
