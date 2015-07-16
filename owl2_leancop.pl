@@ -16,12 +16,18 @@
 consistency(OperationTime) :-
     setup_matrix,
     get_time(Start),
-    (prove(1, [cut,comp(7)], _) ->
-        asserta(consistent(false));
-        asserta(consistent(true))),
+    asserta(consistent(true)),
+    forall((class(_,A),not(consistent(false))), test_consistency(A)),
     get_time(End),
     OperationTime is round((End - Start) * 1000),
     write_consistency_output.
+
+test_consistency(Class) :-
+  A=..[Class, _],
+  asserta(lit(-A, -A, [], n)),
+  (prove(1, [cut,scut,comp(7)], _) ->
+      asserta(consistent(false)); true),
+  retract(lit(-A, -A, [], n)).
 
 classify(OperationTime) :-
     setup_matrix,
@@ -57,7 +63,7 @@ setup_matrix :-
     process_ontology(Prefixes, Axioms, NewAxioms),
     append(Axioms, NewAxioms, ProcessedAxioms),
     axiom_list_to_matrix(ProcessedAxioms, Fol, Matrix),
-    assert_clauses(Matrix, conj), !.
+    assert_clauses(Matrix, pos), !.
     %write_debug(Axioms, Fol, Matrix), !.
 
 process_ontology(Prefixes, Axioms, NewAxioms) :-
@@ -91,7 +97,7 @@ axioms_to_fol([Head|Axioms], Fol) :-
 axioms_to_fol([_|Axioms], Fol) :-
     axioms_to_fol(Axioms, Fol).
 
-fol_formula_to_matrix(Fol, Matrix) :- 
+fol_formula_to_matrix(Fol, Matrix) :-
     make_matrix(~(Fol), KBMatrix, []),
     basic_equal_axioms(F),
     make_matrix(~(F), EqMatrix, []),
@@ -111,7 +117,7 @@ load_ontology(Prefixes, Axioms) :-
 
 parse_owl(File, Prefixes, Imports, Axioms) :-
     read_file_to_codes(File, Input, []),
-    (phrase(owl(Prefixes, Imports, Axioms), Input, _) -> 
+    (phrase(owl(Prefixes, Imports, Axioms), Input, _) ->
         write_debug_tuple('Parsed', 'true')
         ; % print debug information
         write_debug_tuple('Parsed', 'false'),
