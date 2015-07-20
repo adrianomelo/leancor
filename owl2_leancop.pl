@@ -21,7 +21,7 @@ consistency(OperationTime) :-
     (prove(1, [cut,comp(7),scut], _) ->
         asserta(consistent(false)); true),
     get_time(End),
-    OperationTime is round((End - Start) * 1000),
+    OperationTime is ceil((End - Start) * 1000),
     write_consistency_output.
 
 test_consistency(Class) :-
