@@ -18,6 +18,7 @@ consistency(OperationTime) :-
     setup_matrix(consistency),
     get_time(Start),
     asserta(consistent(true)),
+    write_consistency_output,
     (prove(1, [cut,comp(7),scut], _) ->
         asserta(consistent(false)); true),
     get_time(End),

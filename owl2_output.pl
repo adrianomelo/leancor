@@ -6,7 +6,7 @@ write_consistency_output :-
     current_output(Current),
     set_output(File),
     consistent(Value),
-    writef(Value),
+    writef('%p\n', [Value]),
     close(File),
     set_output(Current).
 
